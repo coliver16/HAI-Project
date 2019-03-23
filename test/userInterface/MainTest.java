@@ -1,4 +1,4 @@
-package sample;
+package userInterface;
 
 import static org.junit.Assert.*;
 
