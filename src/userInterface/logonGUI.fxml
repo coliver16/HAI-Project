@@ -13,13 +13,13 @@
         <HBox maxWidth="Infinity" alignment="TOP_CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="CENTER"
               GridPane.hgrow="ALWAYS">
 
-            <Label text="Why HAI! Technologies" maxWidth="200" minWidth="200" alignment="CENTER_LEFT">
+            <Label fx:id="whyHai" maxWidth="200" minWidth="200" alignment="CENTER_LEFT">
             </Label>
 
-            <Label text="Customer Service Portal" maxWidth="200" minWidth="200" alignment="CENTER"> >
+            <Label fx:id="custServPortal" maxWidth="200" minWidth="200" alignment="CENTER"> >
             </Label>
 
-            <Label text="Contact Us" maxWidth="200" minWidth="200" alignment="CENTER_RIGHT"> >
+            <Label fx:id="contactUs" maxWidth="200" minWidth="200" alignment="CENTER_RIGHT"> >
             </Label>
 
         </HBox>
@@ -37,7 +37,7 @@
             </GridPane>
         </HBox>
 
-        <HBox maxWidth="1920" alignment="TOP_CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="CENTER"
+        <HBox maxWidth="1920" alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="CENTER"
               GridPane.hgrow="ALWAYS">
             <ImageView fx:id="userLogo" fitHeight="250" fitWidth="200" pickOnBounds="true"
                        preserveRatio="true">
@@ -45,7 +45,7 @@
                     <Image url="@user_white.png"/>
                 </image>
             </ImageView>
-            <VBox>
+            <VBox alignment="CENTER">
 
                 <TextField fx:id="username" prefHeight="40" prefWidth="300" promptText="User Email" visible="true">
                     <VBox.margin>
@@ -79,6 +79,18 @@
                         </HBox.margin>
                     </Button>
                 </HBox>
+
+                <!-- Create New User -->
+                <Button fx:id="createUser" onAction="#createUser" textAlignment="CENTER"
+                        prefWidth="150" prefHeight="50" defaultButton="true">
+                    <HBox.margin>
+                        <Insets top="10" right="10" bottom="10" left="10"></Insets>
+                    </HBox.margin>
+                </Button>
+                <HBox>
+
+                </HBox>
+
             </VBox>
 
         </HBox>

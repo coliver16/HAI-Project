@@ -8,8 +8,8 @@ public class GuiNavigator {
     public static final String MAIN = "main.fxml";
     public static final String LOGIN_GUI = "logonGUI.fxml";
     public static final String MAIN_MENU_GUI = "mainMenu/mainMenuGUI.fxml";
-    public static final String EMPLOYEE_PORTAL_GUI = "employeeInterface/employeePortalGUI.fxml";
-    public static final String MEMBER_ADD_GUI = "memberInterface/memberAddGUI.fxml";
+    public static final String CREATE_USER_GUI = "newUser/createUserGUI.fxml";
+    public static final String CREATE_USER_SUCCESS_GUI = "newUser/createUserSuccessGUI.fxml";
     public static final String MEMBER_GUI = "memberInterface/memberGUI.fxml";
     public static final String MANAGER_PORTAL_GUI = "managerInterface/managerPortalGUI.fxml";
     public static final String MANAGER_LOGIN_GUI = "managerInterface/managerLoginGUI.fxml";
