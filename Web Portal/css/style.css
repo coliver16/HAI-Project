@@ -1,0 +1,66 @@
+/* Style for body w/ soothing background image to calm the user's anxiety over their destroyed property */
+body{
+  margin: 0;
+  padding:0;
+  font-size: 30px;
+	background-image: url("../images/background.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+  font-family: Snell Roundhand;
+}
+/* Style for title div*/
+div.title{
+    font-size: 400%;
+    text-align: center;
+    margin-top: 175px;
+    margin-bottom: 75px;
+    color: white;
+}
+/*General style for login div*/
+.login{
+    width: 320px;
+    height: 350px;
+    background: transparent;
+    color: #0f0;
+    box-sizing: border-box;
+    margin: 0 auto
+}
+
+/* Set width */
+.login input{
+    width: 100%;
+    margin-bottom: 20px;
+
+}
+/* Email box specific styling */
+.login input[type="email"]{
+    color: black;
+    font-size: 15px;
+    background: white;
+    outline: none;
+    height: 60px;
+    padding-left: 10px;
+}
+/* Password box specific styling */
+.login input[type="password"]{
+    font-size: 15px;
+    color: black;
+    background: white;
+    outline: none;
+    height: 60px;
+    padding-left: 10px;
+}
+/* Submission button specific styling */
+.login input[type="submit"]{
+
+    cursor: pointer;
+    font-size: 20px;
+    background: purple;
+    outline: none;
+    color: white;
+    font-weight: bold;
+    height: 60px;
+    border-radius: 20px;
+    width: 105%;
+
+}
