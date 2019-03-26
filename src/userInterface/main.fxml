@@ -9,6 +9,6 @@
     <children>
         <Label fx:id="headerLabel" maxWidth="Infinity" text="Homeowners Assistant for Insurance" VBox.vgrow="NEVER"
                alignment="CENTER"></Label>
-        <StackPane fx:id="guiHolder" VBox.vgrow="ALWAYS" />
+        <StackPane fx:id="guiHolder" VBox.vgrow="ALWAYS"/>
     </children>
 </VBox>

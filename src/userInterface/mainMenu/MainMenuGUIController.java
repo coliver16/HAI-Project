@@ -112,9 +112,14 @@ public class MainMenuGUIController {
     }
 
     @FXML
-    public void logOutButton(ActionEvent event) {
+    public void setLogOut(ActionEvent event) {
         setLoggedIn(true);
         GuiNavigator.loadGui(GuiNavigator.LOGIN_GUI);
+    }
+
+    @FXML
+    public void setViewItems(ActionEvent event) {
+        GuiNavigator.loadGui(GuiNavigator.VIEW_ITEMS_GUI);
     }
 
 

@@ -17,7 +17,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("HAI! Let Us Help You.");
-        primaryStage.setFullScreen(true);
+        //primaryStage.setFullScreen(true);
+        primaryStage.setMaximized(true);
         primaryStage.setScene(createScene(loadedMainPane()));
         primaryStage.setMinHeight(800);
         primaryStage.setMinWidth(1200);

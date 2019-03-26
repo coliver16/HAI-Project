@@ -10,7 +10,7 @@
 <StackPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="userInterface.newUser.createUserGUIController"
-           alignment="center" styleClass="root">
+           alignment="center">
     <GridPane hgap="10" vgap="10">
 
         <HBox maxWidth="Infinity" alignment="TOP_CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="CENTER"

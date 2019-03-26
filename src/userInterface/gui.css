@@ -9,7 +9,7 @@ root {
 }
 
 #headerLabel {
-    -fx-background-color: white;
+    -fx-background-color: transparent;
     -fx-text-fill: steelblue;
     -fx-padding: 10px;
     -fx-font-size: 30px;
@@ -18,7 +18,7 @@ root {
 }
 
 #guiHolder {
-    -fx-background-color: lightgrey;
+    -fx-background-color: transparent;
 }
 
 #mainGUI {

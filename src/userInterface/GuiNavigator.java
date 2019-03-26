@@ -10,7 +10,7 @@ public class GuiNavigator {
     public static final String MAIN_MENU_GUI = "mainMenu/mainMenuGUI.fxml";
     public static final String CREATE_USER_GUI = "newUser/createUserGUI.fxml";
     public static final String CREATE_USER_SUCCESS_GUI = "newUser/createUserSuccessGUI.fxml";
-    public static final String MEMBER_GUI = "memberInterface/memberGUI.fxml";
+    public static final String VIEW_ITEMS_GUI = "manageItems/viewItemsGUI.fxml";
     public static final String MANAGER_PORTAL_GUI = "managerInterface/managerPortalGUI.fxml";
     public static final String MANAGER_LOGIN_GUI = "managerInterface/managerLoginGUI.fxml";
 
