@@ -1,0 +1,42 @@
+-- DROP TABLE User_454
+-- DROP TABLE Item_454
+-- DROP TABLE Profile_454
+-- DROP TABLE Policy_454
+
+-- Creates the Item Table of the database
+CREATE TABLE Item_454 (
+    item_id int IDENTITY not null, -- An auto incremented value to give each item an unique identifier
+    user_own int not null PRIMARY KEY, -- A column that says which user owns this item
+    item_price decimal(7,2) not null, -- Price of the item, (99,999.99) is the max price
+    item_room varchar(50) not null, -- What room of the house the item is located in (Ex. Living Room, Kitchen, etc.)
+    item_category varchar(50) not null, -- What category the item is a part of (Ex. Electronics, Jewelry, etc.)
+    item_image text not null, -- An image of the item or a close replica 
+    item_serial_num text null, -- The serial number of the item (some items won't have serial numbers so NULL is allowed)
+    item_comments text not null -- Any extra comments about the item the user wants to add
+	)
+
+CREATE TABLE Profile_454 (
+    profile_id int IDENTITY not null, -- An auto incremented value to give each profile an unique identifier
+    profile_user int not null PRIMARY KEY, -- A column that says which user this profile is for
+    profile_email varchar(50) not null, -- The user's profile email
+    profile_firstname varchar(50) not null, -- The user's first name
+    profile_lastname varchar(50) not null, -- The user's last name
+    profile_password nvarchar(50) not null -- The user's profile password
+	)
+
+CREATE TABLE Policy_454 (
+    policy_id int IDENTITY not null, -- An auto incremented value to give each policy an unique identifier
+    policy_user int not null PRIMARY KEY, -- A column that says which user this policy information is for
+    policy_company text not null, -- The company in which the user has a policy with
+    policy_fax int not null, -- The company's fax number in which the user has a policy with
+    policy_claims_email text not null, -- The company's claims email address in which the user has a policy with
+    CONSTRAINT CK_fax CHECK (policy_fax LIKE REPLICATE ('[0-9]',8)) -- Check to make sure the fax number is 9 digits, no more, no less
+	)
+
+-- Creates the User Table of the database
+CREATE TABLE User_454 (
+    id int IDENTITY not null PRIMARY KEY, -- An auto incremented value to give each user an unique identifier
+    CONSTRAINT FK_items FOREIGN KEY (id) REFERENCES Item_454(user_own), -- This allows for each item added to be attributed to a specific user
+    CONSTRAINT FK_profile FOREIGN KEY (id) REFERENCES Profile_454(profile_user), -- This allows for each profile created to be attributed to a specific user
+    CONSTRAINT FK_policy FOREIGN KEY (id) REFERENCES Policy_454(policy_user) -- This allows for policy information to be attributed to a specific user
+	)
