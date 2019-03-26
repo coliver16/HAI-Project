@@ -50,10 +50,27 @@
 
         <HBox maxWidth="1920" alignment="BOTTOM_CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="CENTER"
               GridPane.hgrow="ALWAYS">
-            <TableView fx:id="itemList" prefWidth="1225">
+            <VBox alignment="CENTER">
+                <TableView fx:id="itemList" prefWidth="1225">
 
-            </TableView>
+                </TableView>
+
+
+                <HBox alignment="CENTER">
+                    <Button fx:id="backButton" onAction="#setBackButton" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
+                        <HBox.margin>
+                            <Insets top="10" right="10" bottom="10" left="10"></Insets>
+                        </HBox.margin>
+                    </Button>
+                    <Button fx:id="addButton" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
+                        <HBox.margin>
+                            <Insets top="10" right="10" bottom="10" left="10"></Insets>
+                        </HBox.margin>
+                    </Button>
+                </HBox>
+            </VBox>
         </HBox>
+
 
 
     </GridPane>

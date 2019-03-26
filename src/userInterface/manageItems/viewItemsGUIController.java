@@ -42,6 +42,12 @@ public class viewItemsGUIController {
     private TableView itemList = new TableView();
 
     @FXML
+    private Button backButton;
+
+    @FXML
+    private Button addButton;
+
+    @FXML
     public void initialize() {
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(5.0);
@@ -144,6 +150,9 @@ public class viewItemsGUIController {
         itemList.getItems().add(new Item("00112", "Bed Room", "Jewelry", "Necklace", "Pandora", "Disney Collection", "3468975", "receipt", "photo","$1200", "Fancy stuff"));
         itemList.getItems().add(new Item("00162", "Garage", "Tools", "Tools", "Craftsman", "Carkit", "548768", "receipt", "photo","$400", "For fixing stuff"));
 
+        backButton.setText("Back");
+        addButton.setText("Add Item");
+
     }
 
     public class Item {
@@ -187,5 +196,10 @@ public class viewItemsGUIController {
         public String getValue() { return value;}
         public String getComments() { return comments;}
 
+    }
+
+    @FXML
+    public void setBackButton(ActionEvent event) {
+        GuiNavigator.loadGui(GuiNavigator.MAIN_MENU_GUI);
     }
 }
