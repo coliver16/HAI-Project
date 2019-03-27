@@ -18,7 +18,7 @@ import javafx.scene.text.Font;
 import userInterface.GuiNavigator;
 
 public class addItemsGuiController {
-    @FXML
-    private TextField
+    //@FXML
+    //private TextField
 
 }
