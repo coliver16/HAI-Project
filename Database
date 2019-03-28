@@ -21,7 +21,9 @@ CREATE TABLE Profile_454 (
     profile_email varchar(50) not null, -- The user's profile email
     profile_firstname varchar(50) not null, -- The user's first name
     profile_lastname varchar(50) not null, -- The user's last name
+    profile_phone_number int not null, -- The user's last name
     profile_password nvarchar(50) not null -- The user's profile password
+    CONSTRAINT CK_phone_number CHECK (profile_phone_number LIKE REPLICATE ('[0-9]',10)) -- Check to make sure the phone number is 10 digits, no more, no less
 	)
 
 CREATE TABLE Policy_454 (
@@ -30,7 +32,7 @@ CREATE TABLE Policy_454 (
     policy_company text not null, -- The company in which the user has a policy with
     policy_fax int not null, -- The company's fax number in which the user has a policy with
     policy_claims_email text not null, -- The company's claims email address in which the user has a policy with
-    CONSTRAINT CK_fax CHECK (policy_fax LIKE REPLICATE ('[0-9]',8)) -- Check to make sure the fax number is 9 digits, no more, no less
+    CONSTRAINT CK_fax CHECK (policy_fax LIKE REPLICATE ('[0-9]',10)) -- Check to make sure the fax number is 10 digits, no more, no less
 	)
 
 -- Creates the User Table of the database
