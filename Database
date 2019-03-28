@@ -21,7 +21,7 @@ CREATE TABLE Profile_454 (
     profile_email varchar(50) not null, -- The user's profile email
     profile_firstname varchar(50) not null, -- The user's first name
     profile_lastname varchar(50) not null, -- The user's last name
-    profile_phone_number int not null, -- The user's last name
+    profile_phone_number int not null, -- The user's phone number
     profile_password nvarchar(50) not null -- The user's profile password
     CONSTRAINT CK_phone_number CHECK (profile_phone_number LIKE REPLICATE ('[0-9]',10)) -- Check to make sure the phone number is 10 digits, no more, no less
 	)
