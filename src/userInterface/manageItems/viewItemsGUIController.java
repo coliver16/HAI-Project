@@ -2,7 +2,10 @@ package userInterface.manageItems;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -12,10 +15,15 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import userInterface.GuiNavigator;
+
+import java.io.IOException;
 
 public class viewItemsGUIController {
 
@@ -201,5 +209,41 @@ public class viewItemsGUIController {
     @FXML
     public void setBackButton(ActionEvent event) {
         GuiNavigator.loadGui(GuiNavigator.MAIN_MENU_GUI);
+    }
+
+    @FXML
+    public void setAddButton(ActionEvent event) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addItemsGUI.fxml"));
+        Parent parent = fxmlLoader.load();
+        addItemsGuiController addController = fxmlLoader.<addItemsGuiController>getController();
+        Scene scene = new Scene(parent, 520, 750);
+        scene.getStylesheets().setAll(getClass().getResource("../gui.css").toExternalForm());
+        Stage stage = new Stage();
+        stage.setMinWidth(520);
+        stage.setMaxWidth(520);
+        stage.setMinHeight(750);
+        stage.setMaxHeight(750);
+        stage.initModality(Modality.WINDOW_MODAL);
+        stage.setAlwaysOnTop(true);
+        stage.setScene(scene);
+        stage.showAndWait();
+
+        //addController.setAppMainObservableList()
+
+
+        /*Label addItemLabel = new Label("Add New Items");
+
+        StackPane addItemsLayout = new StackPane();
+        addItemsLayout.getChildren().add(addItemLabel);
+        Scene addItemScene = new Scene(addItemsLayout, 500,300);
+
+        // Setup new popout window
+        Stage addItemWindow = new Stage();
+        addItemWindow.setTitle("Add New");
+        addItemWindow.setScene(addItemScene);
+
+        addItemWindow.show();*/
+        //GuiNavigator.loadGui(GuiNavigator.VIEW_ITEMS_GUI)
     }
 }

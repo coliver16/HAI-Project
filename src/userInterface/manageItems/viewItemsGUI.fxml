@@ -62,7 +62,7 @@
                             <Insets top="10" right="10" bottom="10" left="10"></Insets>
                         </HBox.margin>
                     </Button>
-                    <Button fx:id="addButton" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
+                    <Button fx:id="addButton" onAction="#setAddButton" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
                         <HBox.margin>
                             <Insets top="10" right="10" bottom="10" left="10"></Insets>
                         </HBox.margin>
