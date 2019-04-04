@@ -20,8 +20,8 @@ if (isset($_POST['email']) and isset($_POST['password']))
    //Query database to confirm proper credentials
    $query = "SELECT * FROM `users` WHERE email='$email' and password='$password'";
 
-   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-   $count = mysqli_num_rows($result);
+   $result = sqlserv_query($conn, $query) or die(sqlserv_error($conn));
+   $count = sqlserv_num_rows($result);
 
    //If credentials are valid, email is sent
    if ($count >= 1){
@@ -36,10 +36,10 @@ if (isset($_POST['email']) and isset($_POST['password']))
              WHERE kitchen_items.user_email = '$email'";
 
      //Execute query
-     $result=mysqli_query($conn,$query);
+     $result=sqlserv_query($conn,$query);
 
      //Extract data from mysql_result object, ignoring emails and ending when null
-     while($row = mysqli_fetch_row($result))
+     while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)
      {
        $i = 0;
        while($row[$i] != NULL)
