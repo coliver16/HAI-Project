@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Added additional GUI layers - Nick">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/items/item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/items/item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/userInterface/manageItems/addItemsGuiController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/userInterface/manageItems/addItemsGuiController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/users/profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/users/profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/users/user.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/users/user.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -68,8 +66,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/items/item.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="126" column="5" selection-start-line="126" selection-start-column="5" selection-end-line="126" selection-end-column="5" />
+            <state relative-caret-position="204">
+              <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
               <folding>
                 <element signature="e#3648#3649#0" expanded="true" />
                 <element signature="e#3675#3676#0" expanded="true" />
@@ -102,16 +100,16 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/users/user.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
+            <state relative-caret-position="306">
+              <caret line="24" column="47" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/users/profile.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
@@ -201,10 +199,10 @@
         <option value="$PROJECT_DIR$/src/userInterface/manageItems/viewItemsGUIController.java" />
         <option value="$PROJECT_DIR$/src/userInterface/manageItems/viewItemsGUI.fxml" />
         <option value="$PROJECT_DIR$/src/userInterface/manageItems/addItemsGUI.fxml" />
-        <option value="$PROJECT_DIR$/src/users/user.java" />
         <option value="$PROJECT_DIR$/src/userInterface/manageItems/addItemsGuiController.java" />
         <option value="$PROJECT_DIR$/src/items/item.java" />
         <option value="$PROJECT_DIR$/src/users/profile.java" />
+        <option value="$PROJECT_DIR$/src/users/user.java" />
       </list>
     </option>
   </component>
@@ -238,25 +236,13 @@
               <item name="CIS_454_Project2" type="b2602c69:ProjectViewProjectNode" />
               <item name="CIS_454_Project2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="userInterface" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CIS_454_Project2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CIS_454_Project2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="userInterface" type="462c0819:PsiDirectoryNode" />
-              <item name="manageItems" type="462c0819:PsiDirectoryNode" />
+              <item name="items" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CIS_454_Project2" type="b2602c69:ProjectViewProjectNode" />
               <item name="CIS_454_Project2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="users" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="CIS_454_Project2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="CIS_454_Project2" type="462c0819:PsiDirectoryNode" />
-              <item name="Web Portal" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -420,7 +406,7 @@
       <workItem from="1554096667401" duration="5000" />
       <workItem from="1554162905685" duration="192000" />
       <workItem from="1554225916714" duration="169000" />
-      <workItem from="1554385402318" duration="4664000" />
+      <workItem from="1554385402318" duration="6064000" />
     </task>
     <task id="LOCAL-00001" summary="Initial IntelliJ Commit - Nick">
       <created>1553205910205</created>
@@ -492,11 +478,18 @@
       <option name="project" value="LOCAL" />
       <updated>1554388272829</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Added additional GUI layers - Nick">
+      <created>1554390136582</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1554390136582</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15632000" />
+    <option name="totallyTimeSpent" value="17032000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -511,7 +504,7 @@
     <frame x="-6" y="-6" width="1293" height="693" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.24615385" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.24615385" />
       <window_info id="Structure" order="1" weight="0.24939272" />
       <window_info id="Favorites" order="2" weight="0.32955465" />
       <window_info id="Designer" order="3" />
@@ -815,13 +808,6 @@
     <entry file="file://$PROJECT_DIR$/src/userInterface/manageItems/noImage.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/users/user.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="26" column="6" selection-start-line="26" selection-start-column="6" selection-end-line="26" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/userInterface/manageItems/addItemsGuiController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="328">
@@ -852,10 +838,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/users/profile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="114" column="5" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
+          <folding>
+            <element signature="e#3660#3661#0" expanded="true" />
+            <element signature="e#3687#3688#0" expanded="true" />
+            <element signature="e#3724#3725#0" expanded="true" />
+            <element signature="e#3756#3757#0" expanded="true" />
+            <element signature="e#3792#3793#0" expanded="true" />
+            <element signature="e#3823#3824#0" expanded="true" />
+            <element signature="e#3855#3856#0" expanded="true" />
+            <element signature="e#3883#3884#0" expanded="true" />
+            <element signature="e#3913#3914#0" expanded="true" />
+            <element signature="e#3938#3939#0" expanded="true" />
+            <element signature="e#3977#3978#0" expanded="true" />
+            <element signature="e#4011#4012#0" expanded="true" />
+            <element signature="e#4059#4060#0" expanded="true" />
+            <element signature="e#4102#4103#0" expanded="true" />
+            <element signature="e#4149#4150#0" expanded="true" />
+            <element signature="e#4191#4192#0" expanded="true" />
+            <element signature="e#4240#4241#0" expanded="true" />
+            <element signature="e#4284#4285#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/items/item.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="126" column="5" selection-start-line="126" selection-start-column="5" selection-end-line="126" selection-end-column="5" />
+        <state relative-caret-position="204">
+          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
           <folding>
             <element signature="e#3648#3649#0" expanded="true" />
             <element signature="e#3675#3676#0" expanded="true" />
@@ -887,30 +900,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/users/profile.java">
+    <entry file="file://$PROJECT_DIR$/src/users/user.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
-          <caret line="114" column="5" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
-          <folding>
-            <element signature="e#3660#3661#0" expanded="true" />
-            <element signature="e#3687#3688#0" expanded="true" />
-            <element signature="e#3724#3725#0" expanded="true" />
-            <element signature="e#3756#3757#0" expanded="true" />
-            <element signature="e#3792#3793#0" expanded="true" />
-            <element signature="e#3823#3824#0" expanded="true" />
-            <element signature="e#3855#3856#0" expanded="true" />
-            <element signature="e#3883#3884#0" expanded="true" />
-            <element signature="e#3913#3914#0" expanded="true" />
-            <element signature="e#3938#3939#0" expanded="true" />
-            <element signature="e#3977#3978#0" expanded="true" />
-            <element signature="e#4011#4012#0" expanded="true" />
-            <element signature="e#4059#4060#0" expanded="true" />
-            <element signature="e#4102#4103#0" expanded="true" />
-            <element signature="e#4149#4150#0" expanded="true" />
-            <element signature="e#4191#4192#0" expanded="true" />
-            <element signature="e#4240#4241#0" expanded="true" />
-            <element signature="e#4284#4285#0" expanded="true" />
-          </folding>
+          <caret line="24" column="47" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
         </state>
       </provider>
     </entry>
