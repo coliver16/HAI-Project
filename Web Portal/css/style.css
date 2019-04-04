@@ -62,5 +62,17 @@ div.title{
     height: 60px;
     border-radius: 20px;
     width: 105%;
+}
 
+/* Styling for the "Forgot password" text */
+span.psw {
+  padding-top: 16px;
+  font-family: cursive;
+  padding-left: 110px;
+  float: center;
+  font-size: 14px;
+}
+
+a{
+  color: white;
 }
