@@ -1,37 +1,35 @@
 -- DROP TABLE User_454
 -- DROP TABLE Item_454
 -- DROP TABLE Profile_454
--- DROP TABLE Policy_454
 
 -- Creates the Item Table of the database
 CREATE TABLE Item_454 (
     item_id int IDENTITY not null, -- An auto incremented value to give each item an unique identifier
     user_own int not null PRIMARY KEY, -- A column that says which user owns this item
-    item_price decimal(7,2) not null, -- Price of the item, (99,999.99) is the max price
     item_room varchar(50) not null, -- What room of the house the item is located in (Ex. Living Room, Kitchen, etc.)
     item_category varchar(50) not null, -- What category the item is a part of (Ex. Electronics, Jewelry, etc.)
-    item_image text not null, -- An image of the item or a close replica 
+    item_type varchar(50) not null,
+    item_make varchar(50) null,
+    item_model varchar(50) null,
     item_serial_num text null, -- The serial number of the item (some items won't have serial numbers so NULL is allowed)
+    item_receipt text not null,
+    item_image text not null, -- An image of the item or a close replicate
+    item_price decimal(7,2) not null, -- Price of the item, (99,999.99) is the max price
     item_comments text not null -- Any extra comments about the item the user wants to add
 	)
 
 CREATE TABLE Profile_454 (
     profile_id int IDENTITY not null, -- An auto incremented value to give each profile an unique identifier
     profile_user int not null PRIMARY KEY, -- A column that says which user this profile is for
-    profile_email varchar(50) not null, -- The user's profile email
     profile_firstname varchar(50) not null, -- The user's first name
     profile_lastname varchar(50) not null, -- The user's last name
-    profile_phone_number int not null, -- The user's phone number
+    profile_email varchar(50) not null, -- The user's profile email
     profile_password nvarchar(50) not null -- The user's profile password
-    CONSTRAINT CK_phone_number CHECK (profile_phone_number LIKE REPLICATE ('[0-9]',10)) -- Check to make sure the phone number is 10 digits, no more, no less
-	)
-
-CREATE TABLE Policy_454 (
-    policy_id int IDENTITY not null, -- An auto incremented value to give each policy an unique identifier
-    policy_user int not null PRIMARY KEY, -- A column that says which user this policy information is for
+    profile_phone_number int not null, -- The user's phone number
     policy_company text not null, -- The company in which the user has a policy with
     policy_fax int not null, -- The company's fax number in which the user has a policy with
     policy_claims_email text not null, -- The company's claims email address in which the user has a policy with
+    CONSTRAINT CK_phone_number CHECK (profile_phone_number LIKE REPLICATE ('[0-9]',10)) -- Check to make sure the phone number is 10 digits, no more, no less
     CONSTRAINT CK_fax CHECK (policy_fax LIKE REPLICATE ('[0-9]',10)) -- Check to make sure the fax number is 10 digits, no more, no less
 	)
 
