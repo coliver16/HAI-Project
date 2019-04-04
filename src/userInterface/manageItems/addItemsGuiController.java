@@ -198,17 +198,6 @@ public class addItemsGuiController {
         itemImage.setImage(cloud);
         imageReceipt.setImage(user);
 
-        /*
-
-        INSERT INTO dbo.Item_454 (user_own, item_price, item_room, item_category, item_image, item_ser_num, item_comments)
-            VALUES ('1',
-                    addNewItem.getValue(),
-                    addNewItem.getRoom(),
-                    addNewItem.getCategory(),
-                    addNewItem.getPhoto(),
-                    addNewItem.getSerial(),
-                    addNewItem.getComments() )
-        */
     }
     ;
 

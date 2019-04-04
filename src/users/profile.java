@@ -97,6 +97,23 @@ public class profile {
         profile = null;
     }
 
+    /*
+    //Add profile
+    public void profileAdd(profile newProfile, user user, String fname, String lname, String email, String pw, String phoneNumber, String insuranceCompanyName, String insuranceCompanyFax, String insuranceCompanyEmail)
+    {
+        INSERT INTO dbo.Profile_454 (profile_user, profile_firstname, profile_lastname, profile_email, profile_password, profile_phone_number, policy_company, policy_fax, policy_claims_email)
+            VALUES (user,
+                    fname,
+                    lname,
+                    email,
+                    pw,
+                    phoneNumber,
+                    insuranceCompanyName,
+                    insuranceCompanyFax,
+                    insuranceCompanyEmail
+            )
+    }
+     */
 
     //Getters
     public user getUser() {
