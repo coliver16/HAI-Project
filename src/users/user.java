@@ -18,4 +18,11 @@ public class user {
         return id;
     }
 
+    /*
+    //Add User
+    public void addUser()
+    {
+        INSERT INTO dbo.User_454
+    }
+    */
 }

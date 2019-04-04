@@ -108,6 +108,25 @@ public class item {
         }
     }
 
+    /*
+    //Add an item
+    public void addItem (item newItem, user user, room room, category category, type type, String make, String model, String serial, String receipt, String photo, float value, String comments)
+    {
+        INSERT INTO dbo.Item_454 (user_own, item_room, item_category, item_type, item_make, item_model, item_serial_num, item_receipt, item_image, item_price, item_comments)
+            VALUES (user,
+                    room,
+                    category,
+                    type,
+                    make,
+                    model,
+                    serial,
+                    receipt,
+                    photo,
+                    value,
+                    comments)
+    }
+     */
+
     //Delete an item
     public void itemDelete(item item) {
         item = null;
