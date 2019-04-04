@@ -2,6 +2,11 @@
 -- DROP TABLE Item_454
 -- DROP TABLE Profile_454
 
+-- Creates the User Table of the database
+CREATE TABLE User_454 (
+    id int IDENTITY not null PRIMARY KEY, -- An auto incremented value to give each user an unique identifier
+	)
+
 -- Creates the Item Table of the database
 CREATE TABLE Item_454 (
     item_id int IDENTITY not null, -- An auto incremented value to give each item an unique identifier
@@ -33,9 +38,4 @@ CREATE TABLE Profile_454 (
     CONSTRAINT CK_phone_number CHECK (profile_phone_number LIKE REPLICATE ('[0-9]',10)), -- Check to make sure the phone number is 10 digits, no more, no less
     CONSTRAINT CK_fax CHECK (policy_fax LIKE REPLICATE ('[0-9]',10)), -- Check to make sure the fax number is 10 digits, no more, no less
     CONSTRAINT FK_profile FOREIGN KEY (profile_user) REFERENCES User_454(id) -- This allows for each profile created to be attributed to a specific user
-	)
-
--- Creates the User Table of the database
-CREATE TABLE User_454 (
-    id int IDENTITY not null PRIMARY KEY, -- An auto incremented value to give each user an unique identifier
 	)
