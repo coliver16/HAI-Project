@@ -51,7 +51,7 @@
         <HBox maxWidth="1920" alignment="BOTTOM_CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="CENTER"
               GridPane.hgrow="ALWAYS">
             <VBox alignment="CENTER">
-                <TableView fx:id="itemList" prefWidth="1225">
+                <TableView fx:id="itemList" prefWidth="1275">
 
                 </TableView>
 
