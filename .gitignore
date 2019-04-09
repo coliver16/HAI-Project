@@ -3,7 +3,7 @@
 .idea/workspace.xml
 *.iml
 
-#Out folder
+# Out folder
 out/
 
 # Compiled class file
