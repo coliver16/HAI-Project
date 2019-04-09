@@ -27,7 +27,7 @@ if (isset($_POST['email']) and isset($_POST['password']))
    if ($count >= 1){
      //Build query to select items from each table belonging to given user
      //Once we have proper tables setup, need a join statement for each table
-     //queried, in order to ensure the items belong to given userˇ
+     //queried, in order to ensure the items belong to given user
      $query="SELECT * FROM kitchen_items
              JOIN bedroom_items
              ON kitchen_items.user_email = bedroom_items.user_email
