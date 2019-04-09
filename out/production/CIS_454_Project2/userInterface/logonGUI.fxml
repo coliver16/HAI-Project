@@ -1,0 +1,100 @@
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<StackPane fx:controller="userInterface.LogonGUIController"
+           xmlns:fx="http://javafx.com/fxml" alignment="center">
+    <GridPane hgap="10" vgap="10">
+        <padding><Insets top="0" right="40" bottom="40" left="40"/></padding>
+        <HBox maxWidth="Infinity" alignment="TOP_CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="CENTER"
+              GridPane.hgrow="ALWAYS">
+
+            <Label fx:id="whyHai" maxWidth="200" minWidth="200" alignment="CENTER_LEFT">
+            </Label>
+
+            <Label fx:id="custServPortal" maxWidth="200" minWidth="200" alignment="CENTER"> >
+            </Label>
+
+            <Label fx:id="contactUs" maxWidth="200" minWidth="200" alignment="CENTER_RIGHT"> >
+            </Label>
+
+        </HBox>
+
+        <HBox maxWidth="1920" alignment="TOP_CENTER" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.halignment="CENTER"
+              GridPane.hgrow="ALWAYS">
+            <GridPane>
+                <padding><Insets top="100" bottom="100"/></padding>
+                <ImageView fx:id="cloudLogo" layoutX="29" layoutY="44" fitHeight="121" fitWidth="202" pickOnBounds="true"
+                           preserveRatio="true" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="CENTER">
+                    <image>
+                        <Image url="@HAI_logo.png" />
+                    </image>
+                </ImageView>
+            </GridPane>
+        </HBox>
+
+        <HBox maxWidth="1920" alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="CENTER"
+              GridPane.hgrow="ALWAYS">
+            <ImageView fx:id="userLogo" fitHeight="250" fitWidth="200" pickOnBounds="true"
+                       preserveRatio="true">
+                <image>
+                    <Image url="@user_white.png"/>
+                </image>
+            </ImageView>
+            <VBox alignment="CENTER">
+
+                <TextField fx:id="username" prefHeight="40" prefWidth="300" promptText="User Email" visible="true">
+                    <VBox.margin>
+                        <Insets top="10" right="10" bottom="0" left="10"></Insets>
+                    </VBox.margin>
+                </TextField>
+
+                <PasswordField fx:id="password" prefHeight="40" prefWidth="300" promptText="User Password" visible="true">
+                    <VBox.margin>
+                        <Insets top="10" right="10" bottom="0" left="10"></Insets>
+                    </VBox.margin>
+                </PasswordField>
+                <Label fx:id="message" prefHeight="40" prefWidth="300" alignment="CENTER"/>
+
+                <HBox>
+                    <!-- Add Cancel Button -->
+                    <Button text="CANCEL" onAction="#cancelButton" textAlignment="CENTER"
+                            prefWidth="150" prefHeight="50" defaultButton="false"
+                            GridPane.columnIndex="0" GridPane.rowIndex="2"
+                            GridPane.rowSpan="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <HBox.margin>
+                            <Insets top="10" right="10" bottom="10" left="10"></Insets>
+                        </HBox.margin>
+                    </Button>
+                    <Button text="LOG IN" onAction="#loginButton" textAlignment="CENTER"
+                            prefWidth="150" prefHeight="50" defaultButton="true"
+                            GridPane.columnIndex="1" GridPane.rowIndex="2"
+                            GridPane.rowSpan="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <HBox.margin>
+                            <Insets top="10" right="10" bottom="10" left="10"></Insets>
+                        </HBox.margin>
+                    </Button>
+                </HBox>
+
+                <!-- Create New User -->
+                <Button fx:id="createUser" onAction="#createUser" textAlignment="CENTER"
+                        prefWidth="150" prefHeight="50" defaultButton="false">
+                    <HBox.margin>
+                        <Insets top="10" right="10" bottom="10" left="10"></Insets>
+                    </HBox.margin>
+                </Button>
+                <HBox>
+
+                </HBox>
+
+            </VBox>
+
+        </HBox>
+
+
+    </GridPane>
+</StackPane>

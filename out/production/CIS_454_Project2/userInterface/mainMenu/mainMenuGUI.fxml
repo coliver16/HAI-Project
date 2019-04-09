@@ -7,13 +7,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TableView?>
 <StackPane xmlns="http://javafx.com/javafx"
            xmlns:fx="http://javafx.com/fxml"
-           fx:controller="userInterface.manageItems.viewItemsGUIController"
-           alignment="center">
-
+           fx:controller="userInterface.mainMenu.MainMenuGUIController" alignment="CENTER">
     <GridPane hgap="10" vgap="10">
         <padding><Insets top="0" right="40" bottom="40" left="40"/></padding>
         <HBox maxWidth="Infinity" alignment="TOP_CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.halignment="CENTER"
@@ -48,31 +44,44 @@
             <Label fx:id="message"></Label>
         </HBox>
 
-        <HBox maxWidth="1920" alignment="BOTTOM_CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="CENTER"
+        <HBox maxWidth="1920" alignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="CENTER"
               GridPane.hgrow="ALWAYS">
+            <ImageView fx:id="userLogo" fitHeight="250" fitWidth="200" pickOnBounds="true"
+                       preserveRatio="true">
+                <image>
+                    <Image url="@../user_white.png"/>
+                </image>
+            </ImageView>
             <VBox alignment="CENTER">
-                <TableView fx:id="itemList" prefWidth="1275">
-
-                </TableView>
-
-
-                <HBox alignment="CENTER">
-                    <Button fx:id="backButton" onAction="#setBackButton" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
+                <HBox>
+                    <Button fx:id="viewProfile" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
                         <HBox.margin>
                             <Insets top="10" right="10" bottom="10" left="10"></Insets>
                         </HBox.margin>
                     </Button>
-                    <Button fx:id="addButton" onAction="#setAddButton" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
+                    <Button fx:id="viewItems" onAction="#setViewItems" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
+                        <HBox.margin>
+                            <Insets top="10" right="10" bottom="10" left="10"></Insets>
+                        </HBox.margin>
+                    </Button>
+                </HBox>
+                <HBox>
+                    <Button fx:id="logOut" onAction="#setLogOut" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
+                        <HBox.margin>
+                            <Insets top="10" right="10" bottom="10" left="10"></Insets>
+                        </HBox.margin>
+                    </Button>
+                    <Button fx:id="addItems" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
                         <HBox.margin>
                             <Insets top="10" right="10" bottom="10" left="10"></Insets>
                         </HBox.margin>
                     </Button>
                 </HBox>
             </VBox>
+
         </HBox>
 
 
-
     </GridPane>
-
 </StackPane>
+

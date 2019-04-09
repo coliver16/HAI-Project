@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?scenebuilder-stylesheet vista.css?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="userInterface.MainController">
+    <children>
+        <Label fx:id="headerLabel" maxWidth="Infinity" text="Homeowners Assistant for Insurance" VBox.vgrow="NEVER"
+               alignment="CENTER"></Label>
+        <StackPane fx:id="guiHolder" VBox.vgrow="ALWAYS"/>
+    </children>
+</VBox>

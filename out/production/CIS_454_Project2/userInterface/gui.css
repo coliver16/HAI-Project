@@ -1,0 +1,73 @@
+/**
+ * gui.css
+ */
+root {
+     -display: block;
+}
+.root {
+     -fx-background-image: url("background_1.jpg");
+}
+
+#headerLabel {
+    -fx-background-color: transparent;
+    -fx-text-fill: steelblue;
+    -fx-padding: 10px;
+    -fx-font-size: 30px;
+    -fx-font-weight: bold;
+    -fx-font-family: Arial;
+}
+
+#guiHolder {
+    -fx-background-color: transparent;
+}
+
+#mainGUI {
+    -fx-background-color: aliceblue;
+}
+
+#employeeGUI {
+    -fx-background-color: coral;
+}
+
+/**.button {
+    -fx-base: lightgrey;
+    -fx-font-size: 15px;
+}**/
+
+.button{
+    -fx-border-color: transparent, white;
+    -fx-border-width: 1,1;
+    -fx-border-style: solid, segments(1, 2);
+    -fx-border-radius: 30,30;
+    -fx-background-radius: 30,30;
+    -fx-border-insets: 1 1 1 1, 0;
+    -fx-background-color: rgba(75,0,75,.2);
+    -fx-font-family: Tahoma Bold;
+    -fx-font-size: 20;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow( one-pass-box, black, 8, 0.0, 2, 0)
+}
+
+.button:hover {
+-fx-background-color: rgba(255,0,255,.2);
+}
+
+.button:focused {
+    -fx-border-color: transparent, white;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1, 2);
+    -fx-border-radius: 30, 30;
+    -fx-border-insets: 1 1 1 1, 0;
+}
+
+.button:pressed {
+    -fx-background-color: purple;
+    -fx-text-fill: white;
+}
+
+#userLabel {
+    -fx-text-fill: black;
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-font-family: Arial;
+}

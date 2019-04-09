@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
@@ -98,40 +99,43 @@ public class viewItemsGUIController {
 
         cloudLogo.setImage(cloud);
 
-        TableColumn<String, Item> column1 = new TableColumn<>("Item No.");
-        column1.setCellValueFactory(new PropertyValueFactory<>("itemNo"));
-        TableColumn<String, Item> column2 = new TableColumn<>("Room");
-        column2.setCellValueFactory(new PropertyValueFactory<>("room"));
-        TableColumn<String, Item> column3 = new TableColumn<>("Category");
-        column3.setCellValueFactory(new PropertyValueFactory<>("category"));
-        TableColumn<String, Item> column4 = new TableColumn<>("Product Type");
-        column4.setCellValueFactory(new PropertyValueFactory<>("type"));
-        TableColumn<String, Item> column5 = new TableColumn<>("Make");
-        column5.setCellValueFactory(new PropertyValueFactory<>("make"));
-        TableColumn<String, Item> column6 = new TableColumn<>("Model");
-        column6.setCellValueFactory(new PropertyValueFactory<>("model"));
-        TableColumn<String, Item> column7 = new TableColumn<>("Serial");
-        column7.setCellValueFactory(new PropertyValueFactory<>("serial"));
-        TableColumn<String, Item> column8 = new TableColumn<>("Receipt");
-        column8.setCellValueFactory(new PropertyValueFactory<>("receipt"));
-        TableColumn<String, Item> column9 = new TableColumn<>("Photo");
-        column9.setCellValueFactory(new PropertyValueFactory<>("photo"));
-        TableColumn<String, Item> column10 = new TableColumn<>("Value");
-        column10.setCellValueFactory(new PropertyValueFactory<>("value"));
-        TableColumn<String, Item> column11 = new TableColumn<>("Misc Comments");
-        column11.setCellValueFactory(new PropertyValueFactory<>("comments"));
+        TableColumn<CheckBoxTableCell, Item> column1 = new TableColumn<>("Delete?");
+        column1.setCellValueFactory(new PropertyValueFactory<>("delete"));
+        TableColumn<String, Item> column2 = new TableColumn<>("Item No.");
+        column2.setCellValueFactory(new PropertyValueFactory<>("itemNo"));
+        TableColumn<String, Item> column3 = new TableColumn<>("Room");
+        column3.setCellValueFactory(new PropertyValueFactory<>("room"));
+        TableColumn<String, Item> column4 = new TableColumn<>("Category");
+        column4.setCellValueFactory(new PropertyValueFactory<>("category"));
+        TableColumn<String, Item> column5 = new TableColumn<>("Product Type");
+        column5.setCellValueFactory(new PropertyValueFactory<>("type"));
+        TableColumn<String, Item> column6 = new TableColumn<>("Make");
+        column6.setCellValueFactory(new PropertyValueFactory<>("make"));
+        TableColumn<String, Item> column7 = new TableColumn<>("Model");
+        column7.setCellValueFactory(new PropertyValueFactory<>("model"));
+        TableColumn<String, Item> column8 = new TableColumn<>("Serial");
+        column8.setCellValueFactory(new PropertyValueFactory<>("serial"));
+        TableColumn<String, Item> column9 = new TableColumn<>("Receipt");
+        column9.setCellValueFactory(new PropertyValueFactory<>("receipt"));
+        TableColumn<String, Item> column10 = new TableColumn<>("Photo");
+        column10.setCellValueFactory(new PropertyValueFactory<>("photo"));
+        TableColumn<String, Item> column11 = new TableColumn<>("Value");
+        column11.setCellValueFactory(new PropertyValueFactory<>("value"));
+        TableColumn<String, Item> column12 = new TableColumn<>("Misc Comments");
+        column12.setCellValueFactory(new PropertyValueFactory<>("comments"));
 
         column1.setMinWidth(50);
+        column2.setMinWidth(50);
         column2.setMinWidth(100);
-        column3.setMinWidth(100);
         column4.setMinWidth(100);
         column5.setMinWidth(100);
-        column6.setMinWidth(125);
-        column7.setMinWidth(100);
+        column6.setMinWidth(100);
+        column7.setMinWidth(125);
         column8.setMinWidth(100);
         column9.setMinWidth(100);
         column10.setMinWidth(100);
-        column11.setMinWidth(225);
+        column11.setMinWidth(100);
+        column12.setMinWidth(225);
 
 
 
@@ -147,16 +151,17 @@ public class viewItemsGUIController {
         itemList.getColumns().add(column9);
         itemList.getColumns().add(column10);
         itemList.getColumns().add(column11);
+        itemList.getColumns().add(column12);
 
-        itemList.getItems().add(new Item("00001", "Living Room", "Electronics", "Television", "Sony", "Bravia", "12345567", "receipt", "photo","$1200", "Netflix-n-chill"));
-        itemList.getItems().add(new Item("00005", "Living Room", "Electronics", "BluRay Player", "Sony", "Something", "5498138", "receipt", "photo","$200", "For watching smut"));
-        itemList.getItems().add(new Item("00027", "Living Room", "Furniture", "Couch", "Lazy Boy", "Black Panther", "NA", "receipt", "photo","$2000", "Unicorn Leather"));
-        itemList.getItems().add(new Item("00055", "Game Room", "Electronics", "Computer", "Apple", "MacBook", "66758", "receipt", "photo","$99900", "Cuz I'm hip"));
-        itemList.getItems().add(new Item("00068", "Game Room", "Electronics", "Speakers", "Dolby", "Atmos", "9875", "receipt", "photo","$400", "Eargasm"));
-        itemList.getItems().add(new Item("00075", "Kitchen", "Appliance", "Refrigerator", "GE", "Frigerator 2000", "64879531", "receipt", "photo","$800", "Keeping my shit cold since I 2018"));
-        itemList.getItems().add(new Item("00101", "Bed Room", "Electronics", "Television", "LG", "TVinator 21000", "16345", "receipt", "photo","$200", "Watching more smut"));
-        itemList.getItems().add(new Item("00112", "Bed Room", "Jewelry", "Necklace", "Pandora", "Disney Collection", "3468975", "receipt", "photo","$1200", "Fancy stuff"));
-        itemList.getItems().add(new Item("00162", "Garage", "Tools", "Tools", "Craftsman", "Carkit", "548768", "receipt", "photo","$400", "For fixing stuff"));
+        itemList.getItems().add(new Item(false,"00001", "Living Room", "Electronics", "Television", "Sony", "Bravia", "12345567", "receipt", "photo","$1200", "Netflix-n-chill"));
+        itemList.getItems().add(new Item(false, "00005", "Living Room", "Electronics", "BluRay Player", "Sony", "Something", "5498138", "receipt", "photo","$200", "For watching smut"));
+        itemList.getItems().add(new Item(false,"00027", "Living Room", "Furniture", "Couch", "Lazy Boy", "Black Panther", "NA", "receipt", "photo","$2000", "Unicorn Leather"));
+        itemList.getItems().add(new Item(false,"00055", "Game Room", "Electronics", "Computer", "Apple", "MacBook", "66758", "receipt", "photo","$99900", "Cuz I'm hip"));
+        itemList.getItems().add(new Item(false,"00068", "Game Room", "Electronics", "Speakers", "Dolby", "Atmos", "9875", "receipt", "photo","$400", "Eargasm"));
+        itemList.getItems().add(new Item(false,"00075", "Kitchen", "Appliance", "Refrigerator", "GE", "Frigerator 2000", "64879531", "receipt", "photo","$800", "Keeping my shit cold since I 2018"));
+        itemList.getItems().add(new Item(false,"00101", "Bed Room", "Electronics", "Television", "LG", "TVinator 21000", "16345", "receipt", "photo","$200", "Watching more smut"));
+        itemList.getItems().add(new Item(false,"00112", "Bed Room", "Jewelry", "Necklace", "Pandora", "Disney Collection", "3468975", "receipt", "photo","$1200", "Fancy stuff"));
+        itemList.getItems().add(new Item(false,"00162", "Garage", "Tools", "Tools", "Craftsman", "Carkit", "548768", "receipt", "photo","$400", "For fixing stuff"));
 
         backButton.setText("Back");
         addButton.setText("Add Item");
@@ -164,6 +169,7 @@ public class viewItemsGUIController {
     }
 
     public class Item {
+        private CheckBox delete = new CheckBox();
         private String itemNo;
         private String room;
         private String category;
@@ -178,7 +184,8 @@ public class viewItemsGUIController {
 
         public Item() {}
 
-        public Item(String item, String room, String cat, String type, String make, String model, String serial, String receipt, String photo, String value, String comment) {
+        public Item(boolean del,String item, String room, String cat, String type, String make, String model, String serial, String receipt, String photo, String value, String comment) {
+            this.delete.setSelected(false);
             this.itemNo = item;
             this.room = room;
             this.category = cat;
