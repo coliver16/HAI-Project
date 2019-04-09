@@ -1,6 +1,6 @@
 <?php
   //Background image; local path, needs to be changed depending on machine
-  include_once('/Users/coliver16/School/Spring 2019/CIS 454/Web Portal/background.html');
+  include_once('../background.html');
 
   //Connect to database (see connect.php to replace db credentials)
   require('connect.php');

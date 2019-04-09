@@ -2,7 +2,7 @@
   <?php
   //For a nice background on our page, to continue soothing the victim
   //need to change path when put onto server, this is my local path
-  include_once('/Users/coliver16/School/Spring 2019/CIS 454/Web Portal/background.html');
+  include_once('../background.html');
   ?>
 </head>
 
@@ -34,8 +34,8 @@ if (isset($_POST['email']) and isset($_POST['password']))
      //         JOIN dining_items
      //         ON dining_items.user_email = kitchen_items.user_email
      //         WHERE kitchen_items.user_email = '$email'
-     $query="SELECT * FROM Items_454
-             WHERE Items_454.email_own = '$email'";
+
+     $query="SELECT * FROM Items_454 WHERE Items_454.email_own = '$email'";
 
      //Execute query
      $result=sqlserv_query($conn,$query);
