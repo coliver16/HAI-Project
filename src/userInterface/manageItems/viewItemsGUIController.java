@@ -1,27 +1,24 @@
 package userInterface.manageItems;
 
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import userInterface.GuiNavigator;
 
 import java.io.IOException;
@@ -99,8 +96,9 @@ public class viewItemsGUIController {
 
         cloudLogo.setImage(cloud);
 
-        TableColumn<CheckBoxTableCell, Item> column1 = new TableColumn<>("Delete?");
+        TableColumn<Item, Boolean> column1 = new TableColumn<>("Delete?");
         column1.setCellValueFactory(new PropertyValueFactory<>("delete"));
+
         TableColumn<String, Item> column2 = new TableColumn<>("Item No.");
         column2.setCellValueFactory(new PropertyValueFactory<>("itemNo"));
         TableColumn<String, Item> column3 = new TableColumn<>("Room");
@@ -169,7 +167,7 @@ public class viewItemsGUIController {
     }
 
     public class Item {
-        private CheckBox delete = new CheckBox();
+        private boolean delete;
         private String itemNo;
         private String room;
         private String category;
@@ -185,7 +183,7 @@ public class viewItemsGUIController {
         public Item() {}
 
         public Item(boolean del,String item, String room, String cat, String type, String make, String model, String serial, String receipt, String photo, String value, String comment) {
-            this.delete.setSelected(false);
+            this.delete = del;
             this.itemNo = item;
             this.room = room;
             this.category = cat;
@@ -199,6 +197,7 @@ public class viewItemsGUIController {
             this.comments = comment;
         }
 
+        public boolean getDelete() { return delete;}
         public String getItemNo() { return itemNo;}
         public String getRoom() { return room;}
         public String getCategory() { return category;}
@@ -210,6 +209,10 @@ public class viewItemsGUIController {
         public String getPhoto() { return photo;}
         public String getValue() { return value;}
         public String getComments() { return comments;}
+
+        public void setDelete(boolean b) {
+            delete = b;
+        }
 
     }
 
