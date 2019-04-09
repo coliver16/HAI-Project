@@ -20,7 +20,7 @@ $conn = sqlsrv_connect($serverName, $connectionOptions) or DIE("Failed to connec
 
 
 //Check connection
-if ($conn)->connect_error) {
+if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 

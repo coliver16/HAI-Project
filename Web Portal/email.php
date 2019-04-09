@@ -18,7 +18,7 @@ if (isset($_POST['email']) and isset($_POST['password']))
    $password = $_POST['password'];
 
    //Query database to confirm proper credentials
-   $query = "SELECT * FROM `users` WHERE email='$email' and password='$password'";
+   $query = "SELECT * FROM `Profile_454` WHERE profile_email='$email' and profile_password='$password'";
 
    $result = sqlserv_query($conn, $query) or die(sqlserv_error($conn));
    $count = sqlserv_num_rows($result);
@@ -28,18 +28,20 @@ if (isset($_POST['email']) and isset($_POST['password']))
      //Build query to select items from each table belonging to given user
      //Once we have proper tables setup, need a join statement for each table
      //queried, in order to ensure the items belong to given user
-     $query="SELECT * FROM kitchen_items
-             JOIN bedroom_items
-             ON kitchen_items.user_email = bedroom_items.user_email
-             JOIN dining_items
-             ON dining_items.user_email = kitchen_items.user_email
-             WHERE kitchen_items.user_email = '$email'";
+     //SELECT * FROM kitchen_items
+     //         JOIN bedroom_items
+     //         ON kitchen_items.user_email = bedroom_items.user_email
+     //         JOIN dining_items
+     //         ON dining_items.user_email = kitchen_items.user_email
+     //         WHERE kitchen_items.user_email = '$email'
+     $query="SELECT * FROM Items_454
+             WHERE Items_454.email_own = '$email'";
 
      //Execute query
      $result=sqlserv_query($conn,$query);
 
      //Extract data from mysql_result object, ignoring emails and ending when null
-     while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)
+     while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
      {
        $i = 0;
        while($row[$i] != NULL)
