@@ -2,7 +2,7 @@
   <?php
   //For a nice background on our page, to continue soothing the victim
   //need to change path when put onto server, this is my local path
-  include_once('../background.html');
+  include_once('background.html');
   ?>
 </head>
 
@@ -18,13 +18,22 @@ if (isset($_POST['email']) and isset($_POST['password']))
    $password = $_POST['password'];
 
    //Query database to confirm proper credentials
-   $query = "SELECT * FROM `Profile_454` WHERE profile_email='$email' and profile_password='$password'";
+   $query = "SELECT * FROM Profile_454 WHERE profile_email='$email' and profile_password='$password'";
 
    $result = sqlserv_query($conn, $query) or die(sqlserv_error($conn));
    $count = sqlserv_num_rows($result);
 
+   //Error for invalid credentials + redirect to login
+   if($count == false)
+   {
+       echo "<script type ='text/javascript'>
+         var answer = window.alert('Invalid Credentials, Please Try again')
+         window.location = 'index.html'
+           </script>";
+   }
    //If credentials are valid, email is sent
-   if ($count >= 1){
+   else
+   {
      //Build query to select items from each table belonging to given user
      //Once we have proper tables setup, need a join statement for each table
      //queried, in order to ensure the items belong to given user
@@ -35,7 +44,7 @@ if (isset($_POST['email']) and isset($_POST['password']))
      //         ON dining_items.user_email = kitchen_items.user_email
      //         WHERE kitchen_items.user_email = '$email'
 
-     $query="SELECT * FROM Items_454 WHERE Items_454.email_own = '$email'";
+     $query="SELECT * FROM Items_454 WHERE email_own = '$email'";
 
      //Execute query
      $result=sqlserv_query($conn,$query);
@@ -67,13 +76,5 @@ if (isset($_POST['email']) and isset($_POST['password']))
      </script>";
 
    }
-   else
-   {
-     //Error for invalid credentials + redirect to login
-     echo "<script type ='text/javascript'>
-       var answer = window.alert('Invalid Credentials, Please Try again')
-       window.location = '../index.html'
-         </script>";
-    }
   }
 ?>
