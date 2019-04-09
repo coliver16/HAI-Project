@@ -24,7 +24,7 @@
       $msg = "Your password: ";
 
       //Extract data from mysql_result object, ignoring emails and ending when null
-      while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
+      while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_NUMERIC))
       {
         $i = 0;
         while($row[$i] != NULL)
