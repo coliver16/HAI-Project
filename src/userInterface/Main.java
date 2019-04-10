@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
+import database.*;
 import java.io.IOException;
 
 
@@ -54,7 +54,11 @@ public class Main extends Application {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        database inventory = new database();
+        inventory.Connect();
         launch(args);
+
+
     }
 }
