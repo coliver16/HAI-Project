@@ -68,14 +68,14 @@ public class database{
 
 
         // Sample of how to execute query
-        try {
+        /*try {
             stmt = conn.createStatement();
 
             String sql = "INSERT INTO Profile_454 (profile_user, profile_firstname, profile_lastname, profile_email, profile_password, profile_phone_number, policy_company, policy_fax, policy_claims_email) VALUES (2, 'Peter', 'Nincompoop', 'pnincompoop@gmail.com', '12345', '1234567890', 'insureco', '1234567890', 'insuranceCompanyEmail')";
             stmt.executeUpdate(sql);
         } catch (Exception x) {
             x.printStackTrace();
-        }
+        }*/
         String query = "select * " +
                 "from " + "Profile_454";
         try {

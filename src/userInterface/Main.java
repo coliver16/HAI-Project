@@ -7,6 +7,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import database.*;
 import java.io.IOException;
+import java.sql.Connection;
+
 
 
 /**
@@ -56,7 +58,7 @@ public class Main extends Application {
 
     public static void main(String[] args) throws Exception {
         database inventory = new database();
-        inventory.Connect();
+        Connection conn = inventory.Connect();
         launch(args);
 
 
