@@ -25,10 +25,17 @@ import userInterface.GuiNavigator;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
+import local.csvParser;
 
 public class viewItemsGUIController {
 
+    csvParser parser = new csvParser();
+
     private String name = "John Doe";
+
+    List<List<String>> itemImports;
 
     Boolean loggedIn = true;
 
@@ -60,7 +67,26 @@ public class viewItemsGUIController {
     private Button deleteButton;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws Exception{
+
+        try {
+            itemImports = parser.readFile();
+        }
+        catch (Exception e) {
+
+        }
+
+        int lineNo = 1;
+
+        for(List<String> line: itemImports) {
+            int columnNo = 1;
+            for (String value: line) {
+                System.out.println("Line " + lineNo + " Column " + columnNo + ": " + value);
+                columnNo++;
+            }
+            lineNo++;
+        }
+
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(5.0);
         dropShadow.setOffsetX(3.0);
@@ -172,7 +198,7 @@ public class viewItemsGUIController {
         itemList.getItems().add(new Item("00101", "Bed Room", "Electronics", "Television", "LG", "TVinator 21000", "16345", "receipt", "photo","$200", "Watching more smut"));
         itemList.getItems().add(new Item("00112", "Bed Room", "Jewelry", "Necklace", "Pandora", "Disney Collection", "3468975", "receipt", "photo","$1200", "Fancy stuff"));
         itemList.getItems().add(new Item("00162", "Garage", "Tools", "Tools", "Craftsman", "Carkit", "548768", "receipt", "photo","$400", "For fixing stuff"));
-
+        itemList.getItems().add(new Item( itemImports.get(0).get(0).toString(), itemImports.get(0).get(1).toString(), itemImports.get(0).get(2).toString(), itemImports.get(0).get(3).toString(), itemImports.get(0).get(4).toString(), itemImports.get(0).get(5).toString(), itemImports.get(0).get(6).toString(), itemImports.get(0).get(7).toString(), itemImports.get(0).get(8).toString(), itemImports.get(0).get(9).toString(), itemImports.get(0).get(10).toString() ));
         backButton.setText("Back");
         addButton.setText("Add Item");
         deleteButton.setText("Delete Item");
