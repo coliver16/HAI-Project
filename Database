@@ -11,11 +11,12 @@ CREATE TABLE User_454 (
 CREATE TABLE Item_454 (
     item_id int IDENTITY not null, -- An auto incremented value to give each item an unique identifier
     user_own int not null, -- A column that says which user owns this item
+    email_own varchar(50) not null, -- owner's email
     item_room varchar(50) not null, -- What room of the house the item is located in (Ex. Living Room, Kitchen, etc.)
     item_category varchar(50) not null, -- What category the item is a part of (Ex. Electronics, Jewelry, etc.)
     item_type varchar(50) not null, -- What type of item it is (Ex. Television, Couch, etc.)
     item_make varchar(50) null, -- What make the item is (Ex. Sony, LG, etc)
-    item_model varchar(50) null, -- What model the item is	
+    item_model varchar(50) null, -- What model the item is
     item_serial_num text null, -- The serial number of the item (some items won't have serial numbers so NULL is allowed)
     item_receipt text not null, -- An image of the receipt for purchase of item
     item_image text not null, -- An image of the item or a close replicate
@@ -30,7 +31,7 @@ CREATE TABLE Profile_454 (
     profile_firstname varchar(50) not null, -- The user's first name
     profile_lastname varchar(50) not null, -- The user's last name
     profile_email varchar(50) not null, -- The user's profile email
-    profile_password nvarchar(50) not null, -- The user's profile password
+    profile_password varchar(50) not null, -- The user's profile password
     profile_phone_number int not null, -- The user's phone number
     policy_company text not null, -- The company in which the user has a policy with
     policy_fax int not null, -- The company's fax number in which the user has a policy with
@@ -39,3 +40,31 @@ CREATE TABLE Profile_454 (
     CONSTRAINT CK_fax CHECK (policy_fax LIKE REPLICATE ('[0-9]',10)), -- Check to make sure the fax number is 10 digits, no more, no less
     CONSTRAINT FK_profile FOREIGN KEY (profile_user) REFERENCES User_454(id) -- This allows for each profile created to be attributed to a specific user
 	)
+
+
+--Dummy data for Web Portal tests
+
+INSERT INTO dbo.Item_454 (user_own, email_own, item_room, item_category, item_type, item_make, item_model, item_serial_num, item_receipt, item_image, item_price, item_comments)
+            VALUES (1,
+                    cmuney13@gmail.com,
+                    'library',
+                    'books',
+                    'book',
+                    'issa book',
+                    'book still',
+                    12345,
+                    'receipt',
+                    'photo',
+                    23.00,
+                    'this mah book')
+
+INSERT INTO dbo.Profile_454(profile_user, profile_firstname, profile_lastname, profile_email, profile_password, profile_phone_number, policy company, policy_fax, policy_claims_email)
+            VALUES(1,
+                  'Curtis',
+                  'Oliver',
+                  'cmuney13@gmail.com',
+                  'password',
+                  6666666969
+                  'company'
+                  fax,
+                  'email@email.com')

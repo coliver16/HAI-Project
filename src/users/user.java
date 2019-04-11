@@ -22,7 +22,7 @@ public class user {
     //Add User
     public void addUser()
     {
-        INSERT INTO dbo.User_454
+        INSERT INTO dbo.User_454 DEFAULT VALUES
     }
     */
 }
