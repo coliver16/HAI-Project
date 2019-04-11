@@ -8,7 +8,7 @@ $connectionOptions = array(
 
         "Database" => "Inventory",
 
-        "UID" => "haiadmin",
+        "Uid" => "haiadmin",
 
         "PWD" => "HAIpassw0rd"
 
