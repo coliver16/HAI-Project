@@ -18,13 +18,13 @@ if (isset($_POST['email']) and isset($_POST['password']))
    $password = $_POST['password'];
 
    //Query database to confirm proper credentials
-   $query = "SELECT * FROM Profile_454 WHERE profile_email='$email' and profile_password='$password'";
-
-   $result = sqlserv_query($conn, $query) or die(sqlserv_error($conn));
-   $count = sqlserv_num_rows($result);
+   $query = "SELECT * FROM Profile_454 WHERE profile_email='$email' AND PWDCOMPARE('$password', profile_password) = 1";
+   
+   $result = sqlsrv_query($conn, $query) or die(sqlserv_error($conn));
+   //$count = sqlserv_num_rows($result);
 
    //Error for invalid credentials + redirect to login
-   if($count == false || $count < 1)
+   if(!sqlsrv_has_rows($result))
    {
        echo "<script type ='text/javascript'>
          var answer = window.alert('Invalid Credentials, Please Try again')
@@ -50,7 +50,7 @@ if (isset($_POST['email']) and isset($_POST['password']))
      $result=sqlserv_query($conn,$query);
 
      //Extract data from mysql_result object, ignoring emails and ending when null
-     while(row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
+     while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
      {
        $msg = $msg . "Type: " . $row['item_type'] . "Price: " . $row['item_price'];
 
