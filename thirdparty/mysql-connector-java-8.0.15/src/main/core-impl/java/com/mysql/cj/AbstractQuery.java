@@ -57,7 +57,7 @@ public abstract class AbstractQuery implements Query {
     /** Used to identify this statement when profiling. */
     protected int statementId;
 
-    /** Should we profile? */
+    /** Should we Profile? */
     protected boolean profileSQL = false;
 
     protected RuntimeProperty<Integer> maxAllowedPacket;
@@ -78,7 +78,7 @@ public abstract class AbstractQuery implements Query {
 
     protected boolean useCursorFetch = false;
 
-    /** The type of this result set (scroll sensitive or in-sensitive) */
+    /** The Type of this result set (scroll sensitive or in-sensitive) */
     protected Resultset.Type resultSetType = Type.FORWARD_ONLY;
 
     /** The number of rows to fetch at a time (currently ignored) */

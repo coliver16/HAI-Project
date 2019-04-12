@@ -46,8 +46,8 @@ public class MessagesTest {
         assertEquals("Failed to parse the host:port pair 'host:123'.", Messages.getString("ConnectionString.3", new Object[] { "host:123" }));
         assertEquals("Malformed database URL, failed to parse the connection string near 'Test'.",
                 Messages.getString("ConnectionString.4", new Object[] { "Test" }));
-        assertEquals("Connector/J cannot handle a database URL of type 'Test'.", Messages.getString("ConnectionString.5", new Object[] { "Test" }));
-        assertEquals("Connector/J cannot handle a database URL of type 'Test' that takes 100 hosts.",
+        assertEquals("Connector/J cannot handle a database URL of Type 'Test'.", Messages.getString("ConnectionString.5", new Object[] { "Test" }));
+        assertEquals("Connector/J cannot handle a database URL of Type 'Test' that takes 100 hosts.",
                 Messages.getString("ConnectionString.6", new Object[] { "Test", 100 }));
         assertEquals("Malformed database URL, failed to parse the port '123' as a number.", Messages.getString("ConnectionString.7", new Object[] { 123 }));
         assertEquals("Illegal transformation to the 'Test' property. The value 'Ten' is not a valid number.",
@@ -91,7 +91,7 @@ public class MessagesTest {
                 Messages.getString("Blob.8"));
         assertEquals("BLOB data not found! Did primary keys change?", Messages.getString("Blob.9"));
 
-        assertEquals("Unknown type '0' in column '1' of '2' in binary-encoded result set.", Messages.getString("MysqlIO.97", new Object[] { 0, 1, 2 }));
+        assertEquals("Unknown Type '0' in column '1' of '2' in binary-encoded result set.", Messages.getString("MysqlIO.97", new Object[] { 0, 1, 2 }));
 
         assertEquals("No parameter named 'Test'", Messages.getString("CallableStatement.3", new Object[] { "Test" }));
         assertEquals("Parameter named 'Test' is not an OUT parameter", Messages.getString("CallableStatement.5", new Object[] { "Test" }));
@@ -124,7 +124,7 @@ public class MessagesTest {
 
         assertEquals("Syntax error while processing {fn convert (... , ...)} token, missing opening parenthesis in token 'Test'.",
                 Messages.getString("EscapeProcessor.4", new Object[] { "Test" }));
-        assertEquals("Unsupported conversion type 'Test' found while processing escape token.",
+        assertEquals("Unsupported conversion Type 'Test' found while processing escape token.",
                 Messages.getString("EscapeProcessor.7", new Object[] { "Test" }));
 
         assertEquals("Can't perform requested operation after getResult() has been called to write XML data", Messages.getString("MysqlSQLXML.1"));
@@ -143,9 +143,9 @@ public class MessagesTest {
         assertEquals("Can't call commit() on an XAConnection associated with a global transaction", Messages.getString("ConnectionWrapper.1"));
         assertEquals("Can't call rollback() on an XAConnection associated with a global transaction", Messages.getString("ConnectionWrapper.2"));
 
-        assertEquals("Illegal hour value '99' for java.sql.Time type in value 'Test'.", Messages.getString("TimeUtil.0", new Object[] { 99, "Test" }));
-        assertEquals("Illegal minute value '99' for java.sql.Time type in value 'Test'.", Messages.getString("TimeUtil.1", new Object[] { 99, "Test" }));
-        assertEquals("Illegal second value '99' for java.sql.Time type in value 'Test'.", Messages.getString("TimeUtil.2", new Object[] { 99, "Test" }));
+        assertEquals("Illegal hour value '99' for java.sql.Time Type in value 'Test'.", Messages.getString("TimeUtil.0", new Object[] { 99, "Test" }));
+        assertEquals("Illegal minute value '99' for java.sql.Time Type in value 'Test'.", Messages.getString("TimeUtil.1", new Object[] { 99, "Test" }));
+        assertEquals("Illegal second value '99' for java.sql.Time Type in value 'Test'.", Messages.getString("TimeUtil.2", new Object[] { 99, "Test" }));
 
         assertEquals("Can not call setNCharacterStream() when connection character set isn't UTF-8", Messages.getString("ServerPreparedStatement.28"));
         assertEquals("Can not call setNClob() when connection character set isn't UTF-8", Messages.getString("ServerPreparedStatement.29"));
@@ -154,7 +154,7 @@ public class MessagesTest {
         assertEquals("Can not call getNCharacterStream() when field's charset isn't UTF-8", Messages.getString("ResultSet.11"));
         assertEquals("Can not call getNClob() when field's charset isn't UTF-8", Messages.getString("ResultSet.12"));
         assertEquals("Can not call getNString() when field's charset isn't UTF-8", Messages.getString("ResultSet.14"));
-        assertEquals("Internal error - conversion method doesn't support this type", Messages.getString("ResultSet.15"));
+        assertEquals("Internal error - conversion method doesn't support this Type", Messages.getString("ResultSet.15"));
         assertEquals("Can not call updateNCharacterStream() when field's character set isn't UTF-8", Messages.getString("ResultSet.16"));
         assertEquals("Can not call updateNClob() when field's character set isn't UTF-8", Messages.getString("ResultSet.17"));
         assertEquals("Can not call updateNString() when field's character set isn't UTF-8", Messages.getString("ResultSet.18"));

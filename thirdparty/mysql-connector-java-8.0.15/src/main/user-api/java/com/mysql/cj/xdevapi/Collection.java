@@ -113,7 +113,7 @@ public interface Collection extends DatabaseObject {
      * Create a new statement defining the creation of an index on this collection.
      * <p>
      * Example: collection.createIndex("myIndex",
-     * "{\"fields\": [{\"field\": \"$.myGeoJsonField\", \"type\": \"GEOJSON\", \"required\": true, \"options\": 2, \"srid\": 4326}], \"type\":\"SPATIAL\"}");
+     * "{\"fields\": [{\"field\": \"$.myGeoJsonField\", \"Type\": \"GEOJSON\", \"required\": true, \"options\": 2, \"srid\": 4326}], \"Type\":\"SPATIAL\"}");
      * 
      * @param indexName
      *            index name
@@ -121,13 +121,13 @@ public interface Collection extends DatabaseObject {
      *            JSON document with the following fields:
      *            <ul>
      *            <li>fields: array of IndexField objects, each describing a single document member to be included in the index (see below)</li>
-     *            <li>type: string, (optional) the type of index. One of INDEX or SPATIAL (case insensitive). Default is INDEX and may be omitted.</li>
+     *            <li>Type: string, (optional) the Type of index. One of INDEX or SPATIAL (case insensitive). Default is INDEX and may be omitted.</li>
      *            </ul>
      *            where single IndexField description consists of the following fields:
      *            <ul>
      *            <li>field: string, the full document path to the document member or field to be indexed</li>
-     *            <li>type: string, one of the supported SQL column types to map the field into (see below for a list). For numeric types, the optional UNSIGNED
-     *            keyword may follow. For the TEXT type, the length to consider for indexing may be added. Type descriptions are case insensitive.</li>
+     *            <li>Type: string, one of the supported SQL column types to map the field into (see below for a list). For numeric types, the optional UNSIGNED
+     *            keyword may follow. For the TEXT Type, the length to consider for indexing may be added. Type descriptions are case insensitive.</li>
      *            <li>required: bool, (optional) true if the field is required to exist in the document. Defaults to false, except for GEOJSON where it defaults
      *            to true</li>
      *            <li>options: int, (optional) special option flags for use when decoding GEOJSON data</li>
@@ -141,7 +141,7 @@ public interface Collection extends DatabaseObject {
      * Create a new statement defining the creation of an index on this collection.
      * <p>
      * Example: collection.createIndex("myIndex",
-     * "{\"fields\": [{\"field\": \"$.myGeoJsonField\", \"type\": \"GEOJSON\", \"required\": true, \"options\": 2, \"srid\": 4326}], \"type\":\"SPATIAL\"}");
+     * "{\"fields\": [{\"field\": \"$.myGeoJsonField\", \"Type\": \"GEOJSON\", \"required\": true, \"options\": 2, \"srid\": 4326}], \"Type\":\"SPATIAL\"}");
      * 
      * @param indexName
      *            index name
@@ -149,13 +149,13 @@ public interface Collection extends DatabaseObject {
      *            JSON document with the following fields:
      *            <ul>
      *            <li>fields: array of IndexField objects, each describing a single document member to be included in the index (see below)</li>
-     *            <li>type: string, (optional) the type of index. One of INDEX or SPATIAL. Default is INDEX and may be omitted.</li>
+     *            <li>Type: string, (optional) the Type of index. One of INDEX or SPATIAL. Default is INDEX and may be omitted.</li>
      *            </ul>
      *            where single IndexField description consists of the following fields:
      *            <ul>
      *            <li>field: string, the full document path to the document member or field to be indexed</li>
-     *            <li>type: string, one of the supported SQL column types to map the field into (see below for a list). For numeric types, the optional UNSIGNED
-     *            keyword may follow. For the TEXT type, the length to consider for indexing may be added.</li>
+     *            <li>Type: string, one of the supported SQL column types to map the field into (see below for a list). For numeric types, the optional UNSIGNED
+     *            keyword may follow. For the TEXT Type, the length to consider for indexing may be added.</li>
      *            <li>required: bool, (optional) true if the field is required to exist in the document. Defaults to false, except for GEOJSON where it defaults
      *            to true</li>
      *            <li>options: int, (optional) special option flags for use when decoding GEOJSON data</li>

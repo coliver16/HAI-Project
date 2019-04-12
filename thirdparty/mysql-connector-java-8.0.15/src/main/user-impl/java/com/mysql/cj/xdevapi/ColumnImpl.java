@@ -135,7 +135,7 @@ public class ColumnImpl implements Column {
             default:
                 break;
         }
-        throw new IllegalArgumentException("Unknown type in metadata: " + this.field.getMysqlType());
+        throw new IllegalArgumentException("Unknown Type in metadata: " + this.field.getMysqlType());
     }
 
     public long getLength() {

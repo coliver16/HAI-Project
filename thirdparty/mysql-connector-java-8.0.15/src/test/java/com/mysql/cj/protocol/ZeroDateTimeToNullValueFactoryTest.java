@@ -57,7 +57,7 @@ public class ZeroDateTimeToNullValueFactoryTest extends CommonAsserts {
         assertEquals(LocalDateTime.ofEpochSecond(0, 0, ZoneOffset.UTC), vf.createFromTime(0, 0, 0, 0));
 
         assertThrows(DataReadException.class,
-                "The value '-1:0:0' is an invalid TIME value. JDBC Time objects represent a wall-clock time and not a duration as MySQL treats them. If you are treating this type as a duration, consider retrieving this value as a string and dealing with it according to your requirements.",
+                "The value '-1:0:0' is an invalid TIME value. JDBC Time objects represent a wall-clock time and not a duration as MySQL treats them. If you are treating this Type as a duration, consider retrieving this value as a string and dealing with it according to your requirements.",
                 new Callable<Void>() {
                     @Override
                     public Void call() throws Exception {
@@ -67,7 +67,7 @@ public class ZeroDateTimeToNullValueFactoryTest extends CommonAsserts {
                 });
 
         assertThrows(DataReadException.class,
-                "The value '44:0:0' is an invalid TIME value. JDBC Time objects represent a wall-clock time and not a duration as MySQL treats them. If you are treating this type as a duration, consider retrieving this value as a string and dealing with it according to your requirements.",
+                "The value '44:0:0' is an invalid TIME value. JDBC Time objects represent a wall-clock time and not a duration as MySQL treats them. If you are treating this Type as a duration, consider retrieving this value as a string and dealing with it according to your requirements.",
                 new Callable<Void>() {
                     @Override
                     public Void call() throws Exception {

@@ -2,7 +2,7 @@
 File: 	 basicDT.java
 Summary: This Microsoft JDBC Driver for SQL Server sample application
          demonstrates how to use result set getter methods to retrieve
-         basic SQL Server data type values, and how to use result set
+         basic SQL Server data Type values, and how to use result set
          update methods to update those values.
 ---------------------------------------------------------------------
 This file is part of the Microsoft JDBC Driver for SQL Server Code Samples.
@@ -121,17 +121,17 @@ public class basicDT {
    private static void displayRow(String title, ResultSet rs) {
       try {
          System.out.println(title);
-         System.out.println(rs.getInt(1) + " , " +  		// SQL integer type.
-               rs.getString(2) + " , " +            		// SQL char type.
-               rs.getString(3) + " , " +            		// SQL varchar type.
-               rs.getBoolean(4) + " , " +           		// SQL bit type.
-               rs.getDouble(5) + " , " +            		// SQL decimal type.
-               rs.getDouble(6) + " , " +            		// SQL money type.
-               rs.getTimestamp(7) + " , " +        		// SQL datetime type.
-               rs.getDate(8) + " , " +              		// SQL date type.
-               rs.getTime(9) + " , " +              		// SQL time type.
-               rs.getTimestamp(10) + " , " +            	// SQL datetime2 type.
-               ((SQLServerResultSet)rs).getDateTimeOffset(11)); // SQL datetimeoffset type. 
+         System.out.println(rs.getInt(1) + " , " +  		// SQL integer Type.
+               rs.getString(2) + " , " +            		// SQL char Type.
+               rs.getString(3) + " , " +            		// SQL varchar Type.
+               rs.getBoolean(4) + " , " +           		// SQL bit Type.
+               rs.getDouble(5) + " , " +            		// SQL decimal Type.
+               rs.getDouble(6) + " , " +            		// SQL money Type.
+               rs.getTimestamp(7) + " , " +        		// SQL datetime Type.
+               rs.getDate(8) + " , " +              		// SQL date Type.
+               rs.getTime(9) + " , " +              		// SQL time Type.
+               rs.getTimestamp(10) + " , " +            	// SQL datetime2 Type.
+               ((SQLServerResultSet)rs).getDateTimeOffset(11)); // SQL datetimeoffset Type.
          
          System.out.println();
       } catch (Exception e) {

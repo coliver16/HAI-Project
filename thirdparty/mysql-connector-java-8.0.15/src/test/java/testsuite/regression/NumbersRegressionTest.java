@@ -89,7 +89,7 @@ public class NumbersRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests correct type assignment for MySQL FLOAT and REAL datatypes.
+     * Tests correct Type assignment for MySQL FLOAT and REAL datatypes.
      * 
      * @throws Exception
      *             if the test fails.
@@ -173,11 +173,11 @@ public class NumbersRegressionTest extends BaseTestCase {
             this.rs = this.stmt.executeQuery("SELECT val FROM precisionAndScaleRegression");
 
             ResultSetMetaData rsmd = this.rs.getMetaData();
-            assertTrue("Precision returned incorrectly for type " + typeName + ", " + m + " != rsmd.getPrecision() = " + rsmd.getPrecision(1),
+            assertTrue("Precision returned incorrectly for Type " + typeName + ", " + m + " != rsmd.getPrecision() = " + rsmd.getPrecision(1),
                     rsmd.getPrecision(1) == m);
 
             if (d != -1) {
-                assertTrue("Scale returned incorrectly for type " + typeName + ", " + d + " != rsmd.getScale() = " + rsmd.getScale(1), rsmd.getScale(1) == d);
+                assertTrue("Scale returned incorrectly for Type " + typeName + ", " + d + " != rsmd.getScale() = " + rsmd.getScale(1), rsmd.getScale(1) == d);
             }
         } finally {
             if (this.rs != null) {

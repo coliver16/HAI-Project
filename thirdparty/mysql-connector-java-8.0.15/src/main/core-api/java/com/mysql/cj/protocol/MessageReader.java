@@ -64,12 +64,12 @@ public interface MessageReader<H extends MessageHeader, M extends Message> {
     /**
      * Read message from server into to the given {@link Message} instance or into the new one if not present.
      * For asynchronous channel it synchronously reads the next message in the stream, blocking until the message is read fully.
-     * Could throw WrongArgumentException if the expected message type is not the next message (exception will be thrown in *caller* context).
+     * Could throw WrongArgumentException if the expected message Type is not the next message (exception will be thrown in *caller* context).
      * 
      * @param reuse
      *            {@link Message} object to reuse. May be ignored by implementation.
      * @param expectedType
-     *            Expected type of message.
+     *            Expected Type of message.
      * @return {@link Message} instance
      * @throws IOException
      *             if an error occurs

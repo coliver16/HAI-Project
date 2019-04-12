@@ -41,10 +41,10 @@ public interface Row extends ProtocolEntity {
      * Retrieve a value for the given column. This is the main facility to access values from the Row
      * involving {@link ValueDecoder} and {@link ValueFactory} chain. Metadata <i>must</i> be set via
      * Row constructor or {@link #setMetadata(ColumnDefinition)} call before calling this method to allow
-     * correct columnIndex boundaries check and data type recognition.
+     * correct columnIndex boundaries check and data Type recognition.
      *
      * @param <T>
-     *            type to decode to
+     *            Type to decode to
      * @param columnIndex
      *            index of column to retrieve value from (0-indexed, not JDBC 1-indexed)
      * @param vf

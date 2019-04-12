@@ -89,8 +89,8 @@ public class SyncMessageReader implements MessageReader<XMessageHeader, XMessage
 
         try {
             /*
-             * Note that the "header" per-se is the size of all data following the header. This currently includes the message type tag (1 byte) and the
-             * message bytes. However since we know the type tag is present we also read it as part of the header. This may change in the future if session
+             * Note that the "header" per-se is the size of all data following the header. This currently includes the message Type tag (1 byte) and the
+             * message bytes. However since we know the Type tag is present we also read it as part of the header. This may change in the future if session
              * multiplexing is supported by the protocol. The protocol will be able to accommodate it but we will have to separate reading data after the
              * header (size).
              */

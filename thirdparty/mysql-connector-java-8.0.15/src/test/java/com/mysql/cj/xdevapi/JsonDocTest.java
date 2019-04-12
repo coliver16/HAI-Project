@@ -730,12 +730,12 @@ public class JsonDocTest {
             testRoutine.call();
         } catch (Throwable t) {
             if (!throwable.isAssignableFrom(t.getClass())) {
-                fail("Expected exception of type '" + throwable.getName() + "' but instead a exception of type '" + t.getClass().getName() + "' was thrown.");
+                fail("Expected exception of Type '" + throwable.getName() + "' but instead a exception of Type '" + t.getClass().getName() + "' was thrown.");
             }
 
             return throwable.cast(t);
         }
-        fail("Expected exception of type '" + throwable.getName() + "'.");
+        fail("Expected exception of Type '" + throwable.getName() + "'.");
 
         // never reaches here
         return null;
@@ -746,7 +746,7 @@ public class JsonDocTest {
             testRoutine.call();
         } catch (Throwable t) {
             if (!throwable.isAssignableFrom(t.getClass())) {
-                fail("Expected exception of type '" + throwable.getName() + "' but instead a exception of type '" + t.getClass().getName() + "' was thrown.");
+                fail("Expected exception of Type '" + throwable.getName() + "' but instead a exception of Type '" + t.getClass().getName() + "' was thrown.");
             }
 
             if (!t.getMessage().matches(msgMatchesRegex)) {
@@ -755,7 +755,7 @@ public class JsonDocTest {
 
             return throwable.cast(t);
         }
-        fail("Expected exception of type '" + throwable.getName() + "'.");
+        fail("Expected exception of Type '" + throwable.getName() + "'.");
 
         // never reaches here
         return null;

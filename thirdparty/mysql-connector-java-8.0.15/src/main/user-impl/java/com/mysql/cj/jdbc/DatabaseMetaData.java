@@ -175,7 +175,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     /**
-     * Parses and represents common data type information used by various
+     * Parses and represents common data Type information used by various
      * column/parameter methods.
      */
     class TypeDescriptor {
@@ -336,7 +336,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
 
             // if not defined explicitly take the max precision
             if (this.columnSize == null) {
-                // JDBC spec reserved only 'int' type for precision, thus we need to cut longer values
+                // JDBC spec reserved only 'int' Type for precision, thus we need to cut longer values
                 this.columnSize = this.mysqlType.getPrecision() > Integer.MAX_VALUE ? Integer.MAX_VALUE : this.mysqlType.getPrecision().intValue();
             }
 
@@ -482,9 +482,9 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
      * Helper/wrapper class to provide means of sorting objects by using a sorting key.
      * 
      * @param <K>
-     *            key type
+     *            key Type
      * @param <V>
-     *            value type
+     *            value Type
      */
     protected class ComparableWrapper<K extends Object & Comparable<? super K>, V> implements Comparable<ComparableWrapper<K, V>> {
         K key;
@@ -641,7 +641,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
 
     private static final int PKTABLE_SCHEM = 1;
 
-    /** The table type for generic tables that support foreign keys. */
+    /** The table Type for generic tables that support foreign keys. */
     private static final String SUPPORTS_FK = "SUPPORTS_FK";
 
     protected static final byte[] TABLE_AS_BYTES = "TABLE".getBytes();
@@ -856,7 +856,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
                 rowData[5] = null;
                 rowData[6] = s2b(proceduresRs.getString("comment"));
 
-                boolean isFunction = fromSelect ? "FUNCTION".equalsIgnoreCase(proceduresRs.getString("type")) : false;
+                boolean isFunction = fromSelect ? "FUNCTION".equalsIgnoreCase(proceduresRs.getString("Type")) : false;
                 rowData[7] = s2b(isFunction ? Integer.toString(procedureReturnsResult) : Integer.toString(procedureNoResult));
 
                 rowData[8] = s2b(procedureName);
@@ -922,7 +922,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     /**
-     * Determines the COLUMN_TYPE information based on parameter type (IN, OUT or INOUT) or function return parameter.
+     * Determines the COLUMN_TYPE information based on parameter Type (IN, OUT or INOUT) or function return parameter.
      * 
      * @param isOutParam
      *            Indicates whether it's an output parameter.
@@ -941,7 +941,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
     }
 
     /**
-     * Determines the COLUMN_TYPE information based on parameter type (IN, OUT or INOUT) or function return parameter.
+     * Determines the COLUMN_TYPE information based on parameter Type (IN, OUT or INOUT) or function return parameter.
      * 
      * @param isOutParam
      *            Indicates whether it's an output parameter.
@@ -1915,7 +1915,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
         fields[6] = new Field("", "PRIVILEGE", this.metadataCollationIndex, this.metadataEncoding, MysqlType.CHAR, 64);
         fields[7] = new Field("", "IS_GRANTABLE", this.metadataCollationIndex, this.metadataEncoding, MysqlType.CHAR, 3);
 
-        StringBuilder grantQueryBuf = new StringBuilder("SELECT c.host, c.db, t.grantor, c.user, c.table_name, c.column_name, c.column_priv");
+        StringBuilder grantQueryBuf = new StringBuilder("SELECT c.host, c.db, t.grantor, c.User, c.table_name, c.column_name, c.column_priv");
         grantQueryBuf.append(" FROM mysql.columns_priv c, mysql.tables_priv t");
         grantQueryBuf.append(" WHERE c.host = t.host AND c.db = t.db AND c.table_name = t.table_name");
         if (catalog != null) {
@@ -2111,7 +2111,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
                                     String collation = results.getString("Collation");
                                     int mbminlen = 1;
                                     if (collation != null) {
-                                        // not null collation could only be returned by server for character types, so we don't need to check type name
+                                        // not null collation could only be returned by server for character types, so we don't need to check Type name
                                         if (collation.indexOf("ucs2") > -1 || collation.indexOf("utf16") > -1) {
                                             mbminlen = 2;
                                         } else if (collation.indexOf("utf32") > -1) {
@@ -2551,7 +2551,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
 
     /**
      * Returns the DELETE and UPDATE foreign key actions from the given 'SHOW
-     * TABLE STATUS' string, with the DELETE action being the first item in the
+     * TABLE STATUS' string, with the DELETE action being the first Item in the
      * array, and the UPDATE action being the second.
      * 
      * @param commentString
@@ -3198,11 +3198,11 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
 
                 StringBuilder selectFromMySQLProcSQL = new StringBuilder();
 
-                selectFromMySQLProcSQL.append("SELECT name, type, comment FROM mysql.proc WHERE");
+                selectFromMySQLProcSQL.append("SELECT name, Type, comment FROM mysql.proc WHERE");
                 if (returnProcedures && !returnFunctions) {
-                    selectFromMySQLProcSQL.append(" type = 'PROCEDURE' AND ");
+                    selectFromMySQLProcSQL.append(" Type = 'PROCEDURE' AND ");
                 } else if (!returnProcedures && returnFunctions) {
-                    selectFromMySQLProcSQL.append(" type = 'FUNCTION' AND ");
+                    selectFromMySQLProcSQL.append(" Type = 'FUNCTION' AND ");
                 }
 
                 selectFromMySQLProcSQL.append(" db <=> ?");
@@ -3211,7 +3211,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
                     selectFromMySQLProcSQL.append(" AND name LIKE ?");
                 }
 
-                selectFromMySQLProcSQL.append(" ORDER BY name, type");
+                selectFromMySQLProcSQL.append(" ORDER BY name, Type");
 
                 java.sql.PreparedStatement proceduresStmt = prepareMetaDataSafeStatement(selectFromMySQLProcSQL.toString());
 
@@ -3485,7 +3485,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
         fields[5] = new Field("", "PRIVILEGE", this.metadataCollationIndex, this.metadataEncoding, MysqlType.CHAR, 64);
         fields[6] = new Field("", "IS_GRANTABLE", this.metadataCollationIndex, this.metadataEncoding, MysqlType.CHAR, 3);
 
-        StringBuilder grantQueryBuf = new StringBuilder("SELECT host,db,table_name,grantor,user,table_priv FROM mysql.tables_priv");
+        StringBuilder grantQueryBuf = new StringBuilder("SELECT host,db,table_name,grantor,User,table_priv FROM mysql.tables_priv");
 
         StringBuilder conditionBuf = new StringBuilder();
         if (catalog != null) {
@@ -3690,7 +3690,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
                             hasTableTypes = true;
                         } catch (SQLException sqlEx) {
 
-                            // We should probably check SQLState here, but that can change depending on the server version and user properties, however,
+                            // We should probably check SQLState here, but that can change depending on the server version and User properties, however,
                             // we'll get a 'true' SQLException when we actually try to find the 'Type' column
                             // 
                             try {
@@ -3862,8 +3862,8 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
         byte[][] rowVal = new byte[18][];
 
         rowVal[0] = s2b(mysqlTypeName);                                                     // Type name
-        rowVal[1] = Integer.toString(mt.getJdbcType()).getBytes();                          // JDBC Data type
-        // JDBC spec reserved only 'int' type for precision, thus we need to cut longer values
+        rowVal[1] = Integer.toString(mt.getJdbcType()).getBytes();                          // JDBC Data Type
+        // JDBC spec reserved only 'int' Type for precision, thus we need to cut longer values
         rowVal[2] = Integer.toString(mt.getPrecision() > Integer.MAX_VALUE ? Integer.MAX_VALUE : mt.getPrecision().intValue()).getBytes(); // Precision
         switch (mt) {
             case TINYBLOB:
@@ -3952,7 +3952,7 @@ public class DatabaseMetaData implements java.sql.DatabaseMetaData {
         ArrayList<Row> tuples = new ArrayList<>();
 
         /*
-         * The following are ordered by java.sql.Types, and then by how closely the MySQL type matches the JDBC Type (per spec)
+         * The following are ordered by java.sql.Types, and then by how closely the MySQL Type matches the JDBC Type (per spec)
          */
         tuples.add(new ByteArrayRow(getTypeInfo("BIT"), getExceptionInterceptor()));
         tuples.add(new ByteArrayRow(getTypeInfo("BOOL"), getExceptionInterceptor()));

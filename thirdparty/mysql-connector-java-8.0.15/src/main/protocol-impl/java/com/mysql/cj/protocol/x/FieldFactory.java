@@ -43,7 +43,7 @@ import com.mysql.cj.x.protobuf.MysqlxResultset.ColumnMetaData.FieldType;
 public class FieldFactory implements ProtocolEntityFactory<Field, XMessage> {
 
     /**
-     * Content-type used in type mapping.
+     * Content-Type used in Type mapping.
      * c.f. mysqlx_resultset.proto
      */
     private static final int XPROTOCOL_COLUMN_BYTES_CONTENT_TYPE_GEOMETRY = 0x0001;
@@ -171,18 +171,18 @@ public class FieldFactory implements ProtocolEntityFactory<Field, XMessage> {
                 return MysqlType.BIT;
             // TODO: longlong
         }
-        throw new WrongArgumentException("TODO: unknown field type: " + type);
+        throw new WrongArgumentException("TODO: unknown field Type: " + type);
     }
 
     /**
-     * Map a X Protocol type code from `ColumnMetaData.FieldType' to a MySQL type constant. These are the only types that will be present in
+     * Map a X Protocol Type code from `ColumnMetaData.FieldType' to a MySQL Type constant. These are the only types that will be present in
      * {@link XProtocolRow}
      * results.
      *
      * @param type
-     *            the type as the ColumnMetaData.FieldType
+     *            the Type as the ColumnMetaData.FieldType
      * @param contentType
-     *            the inner type
+     *            the inner Type
      * @return A <b>FIELD_TYPE</b> constant from {@link MysqlType} corresponding to the combination of input parameters.
      */
     private int xProtocolTypeToMysqlType(FieldType type, int contentType) {
@@ -220,6 +220,6 @@ public class FieldFactory implements ProtocolEntityFactory<Field, XMessage> {
                 return MysqlType.FIELD_TYPE_BIT;
             // TODO: longlong
         }
-        throw new WrongArgumentException("TODO: unknown field type: " + type);
+        throw new WrongArgumentException("TODO: unknown field Type: " + type);
     }
 }

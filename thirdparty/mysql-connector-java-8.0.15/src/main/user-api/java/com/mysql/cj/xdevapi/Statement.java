@@ -39,9 +39,9 @@ import java.util.stream.IntStream;
  * A statement is a query or state-affecting command against a database that returns a result.
  * 
  * @param <STMT_T>
- *            statement type
+ *            statement Type
  * @param <RES_T>
- *            result type
+ *            result Type
  */
 public interface Statement<STMT_T, RES_T> {
     /**

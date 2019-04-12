@@ -728,7 +728,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#4482, ResultSet.getObject() returns wrong type for
+     * Tests fix for BUG#4482, ResultSet.getObject() returns wrong Type for
      * strings when using prepared statements.
      * 
      * @throws Exception
@@ -782,7 +782,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#5032 -- ResultSet.getObject() doesn't return type
+     * Tests fix for BUG#5032 -- ResultSet.getObject() doesn't return Type
      * Boolean for pseudo-bit types from prepared statements on 4.1.x.
      * 
      * @throws Exception
@@ -1411,7 +1411,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#9437, IF() returns type of [B or java.lang.String
+     * Tests fix for BUG#9437, IF() returns Type of [B or java.lang.String
      * depending on platform. Fixed earlier, but in here to catch if it ever
      * regresses.
      * 
@@ -1562,7 +1562,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests bugfix for BUG#14562 - metadata/type for MEDIUMINT UNSIGNED is
+     * Tests bugfix for BUG#14562 - metadata/Type for MEDIUMINT UNSIGNED is
      * incorrect.
      * 
      * @throws Exception
@@ -1697,7 +1697,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#14609 - Exception thrown for new decimal type when
+     * Tests fix for BUG#14609 - Exception thrown for new decimal Type when
      * using updatable result sets.
      * 
      * @throws Exception
@@ -2119,48 +2119,48 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
                 if (!"BIT".equalsIgnoreCase(typeName)) {
                     assertEquals(false, rsToTest.getBoolean(i + 1));
-                    assertTrue("for type " + typeName, rsToTest.wasNull());
+                    assertTrue("for Type " + typeName, rsToTest.wasNull());
 
                     assertEquals(0, rsToTest.getDouble(i + 1), 0 /* delta */);
-                    assertTrue("for type " + typeName, rsToTest.wasNull());
+                    assertTrue("for Type " + typeName, rsToTest.wasNull());
                     assertEquals(0, rsToTest.getFloat(i + 1), 0 /* delta */);
-                    assertTrue("for type " + typeName, rsToTest.wasNull());
+                    assertTrue("for Type " + typeName, rsToTest.wasNull());
                     assertEquals(0, rsToTest.getInt(i + 1));
-                    assertTrue("for type " + typeName, rsToTest.wasNull());
+                    assertTrue("for Type " + typeName, rsToTest.wasNull());
                     assertEquals(0, rsToTest.getLong(i + 1));
-                    assertTrue("for type " + typeName, rsToTest.wasNull());
+                    assertTrue("for Type " + typeName, rsToTest.wasNull());
                     assertEquals(null, rsToTest.getObject(i + 1));
-                    assertTrue("for type " + typeName, rsToTest.wasNull());
+                    assertTrue("for Type " + typeName, rsToTest.wasNull());
                     assertEquals(null, rsToTest.getString(i + 1));
-                    assertTrue("for type " + typeName, rsToTest.wasNull());
+                    assertTrue("for Type " + typeName, rsToTest.wasNull());
                     assertEquals(null, rsToTest.getAsciiStream(i + 1));
-                    assertTrue("for type " + typeName, rsToTest.wasNull());
+                    assertTrue("for Type " + typeName, rsToTest.wasNull());
                     assertEquals(null, rsToTest.getBigDecimal(i + 1));
-                    assertTrue("for type " + typeName, rsToTest.wasNull());
+                    assertTrue("for Type " + typeName, rsToTest.wasNull());
                     assertEquals(null, rsToTest.getBinaryStream(i + 1));
-                    assertTrue("for type " + typeName, rsToTest.wasNull());
+                    assertTrue("for Type " + typeName, rsToTest.wasNull());
                     assertEquals(null, rsToTest.getBlob(i + 1));
-                    assertTrue("for type " + typeName, rsToTest.wasNull());
+                    assertTrue("for Type " + typeName, rsToTest.wasNull());
                     assertEquals(0, rsToTest.getByte(i + 1));
-                    assertTrue("for type " + typeName, rsToTest.wasNull());
+                    assertTrue("for Type " + typeName, rsToTest.wasNull());
                     assertEquals(null, rsToTest.getBytes(i + 1));
-                    assertTrue("for type " + typeName, rsToTest.wasNull());
+                    assertTrue("for Type " + typeName, rsToTest.wasNull());
                     assertEquals(null, rsToTest.getCharacterStream(i + 1));
-                    assertTrue("for type " + typeName, rsToTest.wasNull());
+                    assertTrue("for Type " + typeName, rsToTest.wasNull());
                     assertEquals(null, rsToTest.getClob(i + 1));
-                    assertTrue("for type " + typeName, rsToTest.wasNull());
+                    assertTrue("for Type " + typeName, rsToTest.wasNull());
                     assertEquals(null, rsToTest.getDate(i + 1));
-                    assertTrue("for type " + typeName, rsToTest.wasNull());
+                    assertTrue("for Type " + typeName, rsToTest.wasNull());
                     assertEquals(0, rsToTest.getShort(i + 1));
-                    assertTrue("for type " + typeName, rsToTest.wasNull());
+                    assertTrue("for Type " + typeName, rsToTest.wasNull());
                     assertEquals(null, rsToTest.getTime(i + 1));
-                    assertTrue("for type " + typeName, rsToTest.wasNull());
+                    assertTrue("for Type " + typeName, rsToTest.wasNull());
                     assertEquals(null, rsToTest.getTimestamp(i + 1));
-                    assertTrue("for type " + typeName, rsToTest.wasNull());
+                    assertTrue("for Type " + typeName, rsToTest.wasNull());
                     assertEquals(null, rsToTest.getUnicodeStream(i + 1));
-                    assertTrue("for type " + typeName, rsToTest.wasNull());
+                    assertTrue("for Type " + typeName, rsToTest.wasNull());
                     assertEquals(null, rsToTest.getURL(i + 1));
-                    assertTrue("for type " + typeName, rsToTest.wasNull());
+                    assertTrue("for Type " + typeName, rsToTest.wasNull());
                 }
             }
         }
@@ -3471,7 +3471,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
      * Tests fix for BUG#30664. Note that this fix only works for MySQL server
      * 5.0.25 and newer, since earlier versions didn't consistently return
      * correct metadata for functions, and thus results from subqueries and
-     * functions were indistinguishable from each other, leading to type-related
+     * functions were indistinguishable from each other, leading to Type-related
      * bugs.
      * 
      * @throws Exception
@@ -4359,7 +4359,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
         assertTrue(testRS.next());
 
-        String errorMessage = "Cannot determine value type from string ' '";
+        String errorMessage = "Cannot determine value Type from string ' '";
 
         assertThrows(SQLException.class, errorMessage, new Callable<Void>() {
             public Void call() throws Exception {
@@ -4663,7 +4663,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#80522 - Using useCursorFetch leads to data corruption in Connector/J for TIME type.
+     * Tests fix for Bug#80522 - Using useCursorFetch leads to data corruption in Connector/J for TIME Type.
      */
     public void testBug80522() throws Exception {
         createTable("testBug80522", "(t TIME, d DATE, s TEXT)");
@@ -5061,7 +5061,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
             assertEquals(testCase, BigInteger.valueOf(expectedNum), this.rs.getObject(2));
 
             final ResultSet testRs1 = this.rs;
-            assertThrows(SQLException.class, "Value '[01]+' is outside of valid range for type java.lang.Short", new Callable<Void>() {
+            assertThrows(SQLException.class, "Value '[01]+' is outside of valid range for Type java.lang.Short", new Callable<Void>() {
                 public Void call() throws Exception {
                     testRs1.getShort(3);
                     return null;
@@ -5092,13 +5092,13 @@ public class ResultSetRegressionTest extends BaseTestCase {
             assertEquals(testCase, BigInteger.valueOf(expectedNum), this.rs.getObject(5));
 
             final ResultSet testRs2 = this.rs;
-            assertThrows(SQLException.class, "Value '[01]+' is outside of valid range for type java.lang.Short", new Callable<Void>() {
+            assertThrows(SQLException.class, "Value '[01]+' is outside of valid range for Type java.lang.Short", new Callable<Void>() {
                 public Void call() throws Exception {
                     testRs2.getShort(6);
                     return null;
                 }
             });
-            assertThrows(SQLException.class, "Value '[01]+' is outside of valid range for type java.lang.Integer", new Callable<Void>() {
+            assertThrows(SQLException.class, "Value '[01]+' is outside of valid range for Type java.lang.Integer", new Callable<Void>() {
                 public Void call() throws Exception {
                     testRs2.getInt(6);
                     return null;
@@ -5128,13 +5128,13 @@ public class ResultSetRegressionTest extends BaseTestCase {
             assertEquals(testCase, BigInteger.valueOf(expectedNum), this.rs.getObject(8));
 
             final ResultSet testRs3 = this.rs;
-            assertThrows(SQLException.class, "Value '[01]+' is outside of valid range for type java.lang.Short", new Callable<Void>() {
+            assertThrows(SQLException.class, "Value '[01]+' is outside of valid range for Type java.lang.Short", new Callable<Void>() {
                 public Void call() throws Exception {
                     testRs3.getShort(9);
                     return null;
                 }
             });
-            assertThrows(SQLException.class, "Value '[01]+' is outside of valid range for type java.lang.Integer", new Callable<Void>() {
+            assertThrows(SQLException.class, "Value '[01]+' is outside of valid range for Type java.lang.Integer", new Callable<Void>() {
                 public Void call() throws Exception {
                     testRs3.getInt(9);
                     return null;
@@ -5151,7 +5151,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for Bug#80631 - ResultSet.getString return garbled result with json type data.
+     * Tests fix for Bug#80631 - ResultSet.getString return garbled result with json Type data.
      */
     public void testBug80631() throws Exception {
         if (!versionMeetsMinimum(5, 7, 9)) {
@@ -5709,49 +5709,49 @@ public class ResultSetRegressionTest extends BaseTestCase {
             assertEquals(i++, rs1.getInt("a"));
         }
 
-        assertThrows(SQLException.class, "Operation is not allowed for the result set with TYPE_FORWARD_ONLY type.", new Callable<Void>() {
+        assertThrows(SQLException.class, "Operation is not allowed for the result set with TYPE_FORWARD_ONLY Type.", new Callable<Void>() {
             public Void call() throws Exception {
                 rs1.absolute(1);
                 return null;
             }
         });
 
-        assertThrows(SQLException.class, "Operation is not allowed for the result set with TYPE_FORWARD_ONLY type.", new Callable<Void>() {
+        assertThrows(SQLException.class, "Operation is not allowed for the result set with TYPE_FORWARD_ONLY Type.", new Callable<Void>() {
             public Void call() throws Exception {
                 rs1.afterLast();
                 return null;
             }
         });
 
-        assertThrows(SQLException.class, "Operation is not allowed for the result set with TYPE_FORWARD_ONLY type.", new Callable<Void>() {
+        assertThrows(SQLException.class, "Operation is not allowed for the result set with TYPE_FORWARD_ONLY Type.", new Callable<Void>() {
             public Void call() throws Exception {
                 rs1.beforeFirst();
                 return null;
             }
         });
 
-        assertThrows(SQLException.class, "Operation is not allowed for the result set with TYPE_FORWARD_ONLY type.", new Callable<Void>() {
+        assertThrows(SQLException.class, "Operation is not allowed for the result set with TYPE_FORWARD_ONLY Type.", new Callable<Void>() {
             public Void call() throws Exception {
                 rs1.first();
                 return null;
             }
         });
 
-        assertThrows(SQLException.class, "Operation is not allowed for the result set with TYPE_FORWARD_ONLY type.", new Callable<Void>() {
+        assertThrows(SQLException.class, "Operation is not allowed for the result set with TYPE_FORWARD_ONLY Type.", new Callable<Void>() {
             public Void call() throws Exception {
                 rs1.last();
                 return null;
             }
         });
 
-        assertThrows(SQLException.class, "Operation is not allowed for the result set with TYPE_FORWARD_ONLY type.", new Callable<Void>() {
+        assertThrows(SQLException.class, "Operation is not allowed for the result set with TYPE_FORWARD_ONLY Type.", new Callable<Void>() {
             public Void call() throws Exception {
                 rs1.previous();
                 return null;
             }
         });
 
-        assertThrows(SQLException.class, "Operation is not allowed for the result set with TYPE_FORWARD_ONLY type.", new Callable<Void>() {
+        assertThrows(SQLException.class, "Operation is not allowed for the result set with TYPE_FORWARD_ONLY Type.", new Callable<Void>() {
             public Void call() throws Exception {
                 rs1.relative(1);
                 return null;
@@ -5861,7 +5861,7 @@ public class ResultSetRegressionTest extends BaseTestCase {
 
         // test 4 - fails! Combination of three factors:
         // 1. useServerPrepStmts=true
-        // 2. result set has column with mediumblob type
+        // 2. result set has column with mediumblob Type
         // 3. value of a last column in result set is NULL
         PreparedStatement pstm4 = conn2.prepareStatement("select id, val_one, val_blob, val_three from testBug25215008 where val_one = ?");
         pstm4.setString(1, VALUE_ONE);

@@ -3,7 +3,7 @@ File: 	 sqlxmlExample.java
 Summary: This Microsoft JDBC Driver for SQL Server sample application
          demonstrates how to store XML data in a relational database, 
          how to retrieve XML data from a database, and 
-         how to parse XML data with the SQLXML Java data type.
+         how to parse XML data with the SQLXML Java data Type.
 ---------------------------------------------------------------------
 This file is part of the Microsoft JDBC Driver for SQL Server Code Samples.
 Copyright (C) Microsoft Corporation.  All rights reserved.

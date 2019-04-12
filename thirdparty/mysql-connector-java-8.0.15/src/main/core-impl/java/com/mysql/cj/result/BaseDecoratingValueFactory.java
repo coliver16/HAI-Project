@@ -37,7 +37,7 @@ import java.math.BigInteger;
  * override one or more creation functions to override or augment the behavior of the underlying value factory.
  * 
  * @param <T>
- *            value type
+ *            value Type
  */
 public abstract class BaseDecoratingValueFactory<T> implements ValueFactory<T> {
     /**

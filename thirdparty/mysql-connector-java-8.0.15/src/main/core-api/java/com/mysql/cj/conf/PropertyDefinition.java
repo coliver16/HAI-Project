@@ -104,9 +104,9 @@ public interface PropertyDefinition<T> {
     String getSinceVersion();
 
     /**
-     * Returns the property category.
+     * Returns the property Category.
      * 
-     * @return property category
+     * @return property Category
      */
     String getCategory();
 

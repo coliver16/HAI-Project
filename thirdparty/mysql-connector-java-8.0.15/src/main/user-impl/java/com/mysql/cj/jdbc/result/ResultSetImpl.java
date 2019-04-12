@@ -614,7 +614,7 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
      * @param zeroDateTimeBehavior
      *            CONVERT_TO_NULL, EXCEPTION or ROUND
      * @param <T>
-     *            value type
+     *            value Type
      * @return value
      */
     private static <T> ValueFactory<T> decorateDateTimeValueFactory(ValueFactory<T> vf, PropertyDefinitions.ZeroDatetimeBehavior zeroDateTimeBehavior) {
@@ -640,7 +640,7 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
      * @param vf
      *            value factory
      * @param <T>
-     *            value type
+     *            value Type
      * @return value
      * @throws SQLException
      *             if an error occurs
@@ -648,7 +648,7 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
     private <T> T getNonStringValueFromRow(int columnIndex, ValueFactory<T> vf) throws SQLException {
         Field f = this.columnDefinition.getFields()[columnIndex - 1];
 
-        // interpret the string as necessary to create the a value of the requested type
+        // interpret the string as necessary to create the a value of the requested Type
         String encoding = f.getEncoding();
         StringConverter<T> stringConverter = new StringConverter<>(encoding, vf);
         stringConverter.setEventSink(this.eventSink);
@@ -664,7 +664,7 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
      * @param vf
      *            value factory
      * @param <T>
-     *            value type
+     *            value Type
      * @return value
      * @throws SQLException
      *             if an error occurs
@@ -1465,7 +1465,7 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
                 try {
                     return (T) getObject(columnIndex);
                 } catch (ClassCastException cce) {
-                    SQLException sqlEx = SQLError.createSQLException("Conversion not supported for type " + type.getName(),
+                    SQLException sqlEx = SQLError.createSQLException("Conversion not supported for Type " + type.getName(),
                             MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT, getExceptionInterceptor());
                     sqlEx.initCause(cce);
 
@@ -1473,7 +1473,7 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
                 }
             }
 
-            throw SQLError.createSQLException("Conversion not supported for type " + type.getName(), MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT,
+            throw SQLError.createSQLException("Conversion not supported for Type " + type.getName(), MysqlErrorNumbers.SQL_STATE_ILLEGAL_ARGUMENT,
                     getExceptionInterceptor());
         }
     }
@@ -2122,7 +2122,7 @@ public class ResultSetImpl extends NativeResultset implements ResultSetInternalM
     }
 
     /**
-     * Sets the result set type
+     * Sets the result set Type
      * 
      * @param typeFlag
      *            SCROLL_SENSITIVE or SCROLL_INSENSITIVE (we only support

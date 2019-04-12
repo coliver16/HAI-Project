@@ -185,7 +185,7 @@ public class XProtocolTest extends InternalXBaseTestCase {
 
     /**
      * This tests that all types are decoded correctly. We retrieve them all as strings which happens after the decoding step. This is an exhaustive types of
-     * type decoding and metadata from the server.
+     * Type decoding and metadata from the server.
      */
     @Test
     public void testDecodingAllTypes() {

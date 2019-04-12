@@ -61,12 +61,12 @@ public class NativeUtils {
     }
 
     /**
-     * Get the length of a binary-encoded value of the given type.
+     * Get the length of a binary-encoded value of the given Type.
      * 
      * @param type
-     *            type
+     *            Type
      * 
-     * @return the length (&gt;0), 0 for a length-prefixed type, or -1 for unknown
+     * @return the length (&gt;0), 0 for a length-prefixed Type, or -1 for unknown
      */
     public static int getBinaryEncodedLength(int type) {
         switch (type) {
@@ -101,7 +101,7 @@ public class NativeUtils {
             case MysqlType.FIELD_TYPE_NULL:
                 return 0;
         }
-        return -1; // unknown type
+        return -1; // unknown Type
     }
 
 }

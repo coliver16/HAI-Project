@@ -261,7 +261,7 @@ public class ServerPreparedQuery extends AbstractPreparedQuery<ServerPreparedQue
         // a) The query is a SELECT
         // b) The server supports it
         // c) We know it is forward-only (note this doesn't preclude updatable result sets)
-        // d) The user has set a fetch size
+        // d) The User has set a fetch size
         if (this.resultFields != null && this.resultFields.getFields() != null && this.useCursorFetch && this.resultSetType == Type.FORWARD_ONLY
                 && this.fetchSize > 0) {
             packet.writeInteger(IntegerDataType.INT1, OPEN_CURSOR_FLAG);
@@ -282,7 +282,7 @@ public class ServerPreparedQuery extends AbstractPreparedQuery<ServerPreparedQue
 
         byte[] nullBitsBuffer = new byte[nullCount];
 
-        /* In case if buffers (type) altered, indicate to server */
+        /* In case if buffers (Type) altered, indicate to server */
         packet.writeInteger(IntegerDataType.INT1, this.queryBindings.getSendTypesToServer().get() ? (byte) 1 : (byte) 0);
 
         if (this.queryBindings.getSendTypesToServer().get()) {
@@ -474,15 +474,15 @@ public class ServerPreparedQuery extends AbstractPreparedQuery<ServerPreparedQue
     }
 
     /**
-     * Sends stream-type data parameters to the server.
+     * Sends stream-Type data parameters to the server.
      * 
      * <pre>
      *  Long data handling:
      * 
-     *  - Server gets the long data in pieces with command type 'COM_LONG_DATA'.
+     *  - Server gets the long data in pieces with command Type 'COM_LONG_DATA'.
      *  - The packet received will have the format:
-     *    [COM_LONG_DATA:     1][STMT_ID:4][parameter_number:2][type:2][data]
-     *  - Checks if the type is specified by client, and if yes reads the type,
+     *    [COM_LONG_DATA:     1][STMT_ID:4][parameter_number:2][Type:2][data]
+     *  - Checks if the Type is specified by client, and if yes reads the Type,
      *    and  stores the data in that format.
      *  - It is up to the client to check for read data ended. The server does not
      *    care; and also server does not notify to the client that it got the
@@ -794,12 +794,12 @@ public class ServerPreparedQuery extends AbstractPreparedQuery<ServerPreparedQue
 
     @Override
     public <M extends Message> M fillSendPacket() {
-        return null; // we don't use this type of packet
+        return null; // we don't use this Type of packet
     }
 
     @Override
     public <M extends Message> M fillSendPacket(QueryBindings<?> bindings) {
-        return null; // we don't use this type of packet
+        return null; // we don't use this Type of packet
     }
 
 }

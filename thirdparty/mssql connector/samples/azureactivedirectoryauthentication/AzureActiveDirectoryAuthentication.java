@@ -92,13 +92,13 @@ public class AzureActiveDirectoryAuthentication {
                 System.out.println();
                 System.out.println("Connection established successfully.");
 
-                // Create and execute an SQL statement that returns user name.
+                // Create and execute an SQL statement that returns User name.
                 String SQL = "SELECT SUSER_SNAME()";
                 try (ResultSet rs = stmt.executeQuery(SQL)) {
 
                     // Iterate through the data in the result set and display it.
                     while (rs.next()) {
-                        System.out.println("user name: " + rs.getString(1));
+                        System.out.println("User name: " + rs.getString(1));
                     }
                 }
             }

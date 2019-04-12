@@ -47,7 +47,7 @@ public class UpdateSpec {
      * Constructor.
      * 
      * @param updateType
-     *            update operation type
+     *            update operation Type
      * @param source
      *            document path expression
      */
@@ -61,7 +61,7 @@ public class UpdateSpec {
     }
 
     /**
-     * Get X Protocol update type.
+     * Get X Protocol update Type.
      * 
      * @return X Protocol UpdateOperation.UpdateType
      */

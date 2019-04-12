@@ -72,7 +72,7 @@ public interface Column {
     /**
      * Get this column's {@link Type}.
      * 
-     * @return column type
+     * @return column Type
      */
     Type getType();
 
@@ -114,7 +114,7 @@ public interface Column {
     /**
      * Checks if the value has a padding.
      * 
-     * @return true if column flags contain FIELD_FLAG_ZEROFILL or field type is CHAR
+     * @return true if column flags contain FIELD_FLAG_ZEROFILL or field Type is CHAR
      */
     boolean isPadded();
 

@@ -88,22 +88,22 @@ public class CreateIndexParams {
         this.indexName = idxName;
 
         for (String key : indexDefinition.keySet()) {
-            if (!"type".equals(key) && !"fields".equals(key)) {
+            if (!"Type".equals(key) && !"fields".equals(key)) {
                 throw new XDevAPIError("The '" + key + "' field is not allowed in indexDefinition.");
             }
         }
 
-        JsonValue val = indexDefinition.get("type");
+        JsonValue val = indexDefinition.get("Type");
         if (val != null) {
             if (val instanceof JsonString) {
                 String type = ((JsonString) val).getString();
                 if ("INDEX".equalsIgnoreCase(type) || "SPATIAL".equalsIgnoreCase(type)) {
                     this.indexType = type;
                 } else {
-                    throw new XDevAPIError("Wrong index type '" + type + "'. Must be 'INDEX' or 'SPATIAL'.");
+                    throw new XDevAPIError("Wrong index Type '" + type + "'. Must be 'INDEX' or 'SPATIAL'.");
                 }
             } else {
-                throw new XDevAPIError("Index type must be a string.");
+                throw new XDevAPIError("Index Type must be a string.");
             }
         }
 
@@ -136,9 +136,9 @@ public class CreateIndexParams {
     }
 
     /**
-     * Get index type.
+     * Get index Type.
      * 
-     * @return index type
+     * @return index Type
      */
     public String getIndexType() {
         return this.indexType;
@@ -164,7 +164,7 @@ public class CreateIndexParams {
         /**
          * One of the supported SQL column types to map the field into.
          * For numeric types, the optional UNSIGNED keyword may follow. For
-         * the TEXT type, the length to consider for indexing may be added.
+         * the TEXT Type, the length to consider for indexing may be added.
          **/
         private String type;
 
@@ -184,8 +184,8 @@ public class CreateIndexParams {
          *            a special JSON document, part of indexDefinition document, consisting of the following fields:
          *            <ul>
          *            <li>field: string, the full document path to the document member or field to be indexed</li>
-         *            <li>type: string, one of the supported SQL column types to map the field into. For numeric types, the optional UNSIGNED
-         *            keyword may follow. For the TEXT type, the length to consider for indexing may be added. Type descriptions are case insensitive.</li>
+         *            <li>Type: string, one of the supported SQL column types to map the field into. For numeric types, the optional UNSIGNED
+         *            keyword may follow. For the TEXT Type, the length to consider for indexing may be added. Type descriptions are case insensitive.</li>
          *            <li>required: bool, (optional) true if the field is required to exist in the document. Defaults to false, except for GEOJSON where it
          *            defaults
          *            to true</li>
@@ -195,7 +195,7 @@ public class CreateIndexParams {
          */
         public IndexField(DbDoc indexField) {
             for (String key : indexField.keySet()) {
-                if (!"type".equals(key) && !"field".equals(key) && !"required".equals(key) && !"options".equals(key) && !"srid".equals(key)) {
+                if (!"Type".equals(key) && !"field".equals(key) && !"required".equals(key) && !"options".equals(key) && !"srid".equals(key)) {
                     throw new XDevAPIError("The '" + key + "' field is not allowed in indexField.");
                 }
             }
@@ -211,19 +211,19 @@ public class CreateIndexParams {
                 throw new XDevAPIError("Index field definition has no document path.");
             }
 
-            val = indexField.get("type");
+            val = indexField.get("Type");
             if (val != null) {
                 if (val instanceof JsonString) {
                     this.type = ((JsonString) val).getString();
-                    // TODO pure "TEXT" is not allowed as a type, server requires the length specification
+                    // TODO pure "TEXT" is not allowed as a Type, server requires the length specification
                     // we're waiting for clarification about whether we set some default on client side in that case, eg.:
-                    //    if ("TEXT".equals(this.type)) {this.type = "TEXT(64)";}
-                    // or we do nothing and user has to specify TEXT(n) always
+                    //    if ("TEXT".equals(this.Type)) {this.Type = "TEXT(64)";}
+                    // or we do nothing and User has to specify TEXT(n) always
                 } else {
-                    throw new XDevAPIError("Index type must be a string.");
+                    throw new XDevAPIError("Index Type must be a string.");
                 }
             } else {
-                throw new XDevAPIError("Index field definition has no field type.");
+                throw new XDevAPIError("Index field definition has no field Type.");
             }
 
             val = indexField.get("required");
@@ -274,9 +274,9 @@ public class CreateIndexParams {
         }
 
         /**
-         * Get column type.
+         * Get column Type.
          * 
-         * @return column type
+         * @return column Type
          */
         public String getType() {
             return this.type;

@@ -76,20 +76,20 @@ public interface Resultset extends ProtocolEntity {
 
     public enum Type {
         /**
-         * The constant indicating the type for a <code>Resultset</code> object
+         * The constant indicating the Type for a <code>Resultset</code> object
          * whose cursor may move only forward.
          */
         FORWARD_ONLY(java.sql.ResultSet.TYPE_FORWARD_ONLY),
 
         /**
-         * The constant indicating the type for a <code>Resultset</code> object
+         * The constant indicating the Type for a <code>Resultset</code> object
          * that is scrollable but generally not sensitive to changes to the data
          * that underlies the <code>Resultset</code>.
          */
         SCROLL_INSENSITIVE(java.sql.ResultSet.TYPE_SCROLL_INSENSITIVE),
 
         /**
-         * The constant indicating the type for a <code>Resultset</code> object
+         * The constant indicating the Type for a <code>Resultset</code> object
          * that is scrollable and generally sensitive to changes to the data
          * that underlies the <code>Resultset</code>.
          */

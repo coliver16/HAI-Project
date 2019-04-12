@@ -56,7 +56,7 @@ public class ExprUtil {
     private static SimpleDateFormat javaUtilDateFormat = TimeUtil.getSimpleDateFormat(null, "yyyy-MM-dd'T'HH:mm:ss.S", null, null);
 
     /**
-     * Protocol buffers helper to build a LITERAL Expr with a Scalar NULL type.
+     * Protocol buffers helper to build a LITERAL Expr with a Scalar NULL Type.
      * 
      * @return {@link Expr}
      */
@@ -65,7 +65,7 @@ public class ExprUtil {
     }
 
     /**
-     * Protocol buffers helper to build a LITERAL Expr with a Scalar DOUBLE type.
+     * Protocol buffers helper to build a LITERAL Expr with a Scalar DOUBLE Type.
      * 
      * @param d
      *            value
@@ -76,7 +76,7 @@ public class ExprUtil {
     }
 
     /**
-     * Protocol buffers helper to build a LITERAL Expr with a Scalar SINT (signed int) type.
+     * Protocol buffers helper to build a LITERAL Expr with a Scalar SINT (signed int) Type.
      * 
      * @param l
      *            value
@@ -87,7 +87,7 @@ public class ExprUtil {
     }
 
     /**
-     * Protocol buffers helper to build a LITERAL Expr with a Scalar STRING type.
+     * Protocol buffers helper to build a LITERAL Expr with a Scalar STRING Type.
      * 
      * @param str
      *            value
@@ -98,7 +98,7 @@ public class ExprUtil {
     }
 
     /**
-     * Protocol buffers helper to build a LITERAL Expr with a Scalar OCTETS type.
+     * Protocol buffers helper to build a LITERAL Expr with a Scalar OCTETS Type.
      * 
      * @param bytes
      *            value
@@ -109,7 +109,7 @@ public class ExprUtil {
     }
 
     /**
-     * Protocol buffers helper to build a LITERAL Expr with a Scalar BOOL type.
+     * Protocol buffers helper to build a LITERAL Expr with a Scalar BOOL Type.
      * 
      * @param b
      *            value
@@ -131,7 +131,7 @@ public class ExprUtil {
     }
 
     /**
-     * Protocol buffers helper to build a Scalar NULL type.
+     * Protocol buffers helper to build a Scalar NULL Type.
      * 
      * @return {@link Scalar}
      */
@@ -140,7 +140,7 @@ public class ExprUtil {
     }
 
     /**
-     * Protocol buffers helper to build a Scalar DOUBLE type.
+     * Protocol buffers helper to build a Scalar DOUBLE Type.
      * 
      * @param d
      *            value
@@ -151,7 +151,7 @@ public class ExprUtil {
     }
 
     /**
-     * Protocol buffers helper to build a Scalar SINT (signed int) type.
+     * Protocol buffers helper to build a Scalar SINT (signed int) Type.
      * 
      * @param l
      *            value
@@ -162,7 +162,7 @@ public class ExprUtil {
     }
 
     /**
-     * Protocol buffers helper to build a Scalar STRING type.
+     * Protocol buffers helper to build a Scalar STRING Type.
      * 
      * @param str
      *            value
@@ -174,7 +174,7 @@ public class ExprUtil {
     }
 
     /**
-     * Protocol buffers helper to build a Scalar OCTETS type.
+     * Protocol buffers helper to build a Scalar OCTETS Type.
      * 
      * @param bytes
      *            value
@@ -186,7 +186,7 @@ public class ExprUtil {
     }
 
     /**
-     * Protocol buffers helper to build a Scalar BOOL type.
+     * Protocol buffers helper to build a Scalar BOOL Type.
      * 
      * @param b
      *            value
@@ -236,7 +236,7 @@ public class ExprUtil {
     }
 
     /**
-     * Protocol buffers helper to build a Scalar type with any object.
+     * Protocol buffers helper to build a Scalar Type with any object.
      * 
      * @param value
      *            value
@@ -251,7 +251,7 @@ public class ExprUtil {
     }
 
     /**
-     * Protocol buffers helper to build an Any type with any object.
+     * Protocol buffers helper to build an Any Type with any object.
      * 
      * @param value
      *            value

@@ -134,7 +134,7 @@ public class AlwaysEncrypted
 
 		// Create a variable for the connection string.
 		String connectionUrl = "jdbc:sqlserver://localhost:1433;" +
-				"databaseName=ae;user=sa;password=********;";
+				"databaseName=ae;User=sa;password=********;";
 
 		return connectionUrl;
 	}

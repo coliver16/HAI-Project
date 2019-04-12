@@ -81,7 +81,7 @@ public final class MysqlxConnection {
    * a tuple of a ``name`` and a :protobuf:msg:`Mysqlx.Datatypes::Any`
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Connection.Capability}
+   * Protobuf Type {@code Mysqlx.Connection.Capability}
    */
   public  static final class Capability extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -429,7 +429,7 @@ public final class MysqlxConnection {
      * a tuple of a ``name`` and a :protobuf:msg:`Mysqlx.Datatypes::Any`
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Connection.Capability}
+     * Protobuf Type {@code Mysqlx.Connection.Capability}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -890,7 +890,7 @@ public final class MysqlxConnection {
    * Capabilities
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Connection.Capabilities}
+   * Protobuf Type {@code Mysqlx.Connection.Capabilities}
    */
   public  static final class Capabilities extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -1177,7 +1177,7 @@ public final class MysqlxConnection {
      * Capabilities
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Connection.Capabilities}
+     * Protobuf Type {@code Mysqlx.Connection.Capabilities}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -1668,7 +1668,7 @@ public final class MysqlxConnection {
    *   :returns: :protobuf:msg:`Mysqlx.Connection::Capabilities` or :protobuf:msg:`Mysqlx::Error`
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Connection.CapabilitiesGet}
+   * Protobuf Type {@code Mysqlx.Connection.CapabilitiesGet}
    */
   public  static final class CapabilitiesGet extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -1888,7 +1888,7 @@ public final class MysqlxConnection {
      *   :returns: :protobuf:msg:`Mysqlx.Connection::Capabilities` or :protobuf:msg:`Mysqlx::Error`
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Connection.CapabilitiesGet}
+     * Protobuf Type {@code Mysqlx.Connection.CapabilitiesGet}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -2106,7 +2106,7 @@ public final class MysqlxConnection {
    * :returns: :protobuf:msg:`Mysqlx::Ok` or :protobuf:msg:`Mysqlx::Error`
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Connection.CapabilitiesSet}
+   * Protobuf Type {@code Mysqlx.Connection.CapabilitiesSet}
    */
   public  static final class CapabilitiesSet extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -2389,7 +2389,7 @@ public final class MysqlxConnection {
      * :returns: :protobuf:msg:`Mysqlx::Ok` or :protobuf:msg:`Mysqlx::Error`
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Connection.CapabilitiesSet}
+     * Protobuf Type {@code Mysqlx.Connection.CapabilitiesSet}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -2738,7 +2738,7 @@ public final class MysqlxConnection {
    * :Returns: :protobuf:msg:`Mysqlx::Ok`
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Connection.Close}
+   * Protobuf Type {@code Mysqlx.Connection.Close}
    */
   public  static final class Close extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -2959,7 +2959,7 @@ public final class MysqlxConnection {
      * :Returns: :protobuf:msg:`Mysqlx::Ok`
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Connection.Close}
+     * Protobuf Type {@code Mysqlx.Connection.Close}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements

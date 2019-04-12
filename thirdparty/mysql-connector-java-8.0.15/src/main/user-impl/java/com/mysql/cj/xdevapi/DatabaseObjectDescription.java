@@ -30,7 +30,7 @@
 package com.mysql.cj.xdevapi;
 
 /**
- * Represents the item of XPLUGIN_STMT_LIST_OBJECTS operation result.
+ * Represents the Item of XPLUGIN_STMT_LIST_OBJECTS operation result.
  */
 public class DatabaseObjectDescription {
     private String objectName;
@@ -42,7 +42,7 @@ public class DatabaseObjectDescription {
      * @param name
      *            database object name
      * @param type
-     *            database object type, one of COLLECTION, TABLE, VIEW or COLLECTION_VIEW
+     *            database object Type, one of COLLECTION, TABLE, VIEW or COLLECTION_VIEW
      */
     public DatabaseObjectDescription(String name, String type) {
         this.objectName = name;
@@ -59,7 +59,7 @@ public class DatabaseObjectDescription {
     }
 
     /**
-     * Get database object type
+     * Get database object Type
      * 
      * @return {@link DatabaseObject.DbObjectType}
      */

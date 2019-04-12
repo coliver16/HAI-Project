@@ -90,7 +90,7 @@ public final class MysqlxSession {
    * :Returns: :protobuf:msg:`Mysqlx.Session::AuthenticateContinue`
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Session.AuthenticateStart}
+   * Protobuf Type {@code Mysqlx.Session.AuthenticateStart}
    */
   public  static final class AuthenticateStart extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -458,7 +458,7 @@ public final class MysqlxSession {
      * :Returns: :protobuf:msg:`Mysqlx.Session::AuthenticateContinue`
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Session.AuthenticateStart}
+     * Protobuf Type {@code Mysqlx.Session.AuthenticateStart}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -853,7 +853,7 @@ public final class MysqlxSession {
    * :Returns: :protobuf:msg:`Mysqlx.Session::AuthenticateContinue`
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Session.AuthenticateContinue}
+   * Protobuf Type {@code Mysqlx.Session.AuthenticateContinue}
    */
   public  static final class AuthenticateContinue extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -1118,7 +1118,7 @@ public final class MysqlxSession {
      * :Returns: :protobuf:msg:`Mysqlx.Session::AuthenticateContinue`
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Session.AuthenticateContinue}
+     * Protobuf Type {@code Mysqlx.Session.AuthenticateContinue}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -1380,7 +1380,7 @@ public final class MysqlxSession {
    * :param auth_data: authentication data
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Session.AuthenticateOk}
+   * Protobuf Type {@code Mysqlx.Session.AuthenticateOk}
    */
   public  static final class AuthenticateOk extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -1639,7 +1639,7 @@ public final class MysqlxSession {
      * :param auth_data: authentication data
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Session.AuthenticateOk}
+     * Protobuf Type {@code Mysqlx.Session.AuthenticateOk}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -1889,7 +1889,7 @@ public final class MysqlxSession {
    * :Returns: :protobuf:msg:`Mysqlx::Ok`
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Session.Reset}
+   * Protobuf Type {@code Mysqlx.Session.Reset}
    */
   public  static final class Reset extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -2109,7 +2109,7 @@ public final class MysqlxSession {
      * :Returns: :protobuf:msg:`Mysqlx::Ok`
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Session.Reset}
+     * Protobuf Type {@code Mysqlx.Session.Reset}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -2311,7 +2311,7 @@ public final class MysqlxSession {
    * :Returns: :protobuf:msg:`Mysqlx::Ok`
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Session.Close}
+   * Protobuf Type {@code Mysqlx.Session.Close}
    */
   public  static final class Close extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -2531,7 +2531,7 @@ public final class MysqlxSession {
      * :Returns: :protobuf:msg:`Mysqlx::Ok`
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Session.Close}
+     * Protobuf Type {@code Mysqlx.Session.Close}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements

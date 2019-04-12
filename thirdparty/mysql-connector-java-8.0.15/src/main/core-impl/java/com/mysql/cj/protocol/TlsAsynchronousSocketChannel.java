@@ -267,7 +267,7 @@ public class TlsAsynchronousSocketChannel extends AsynchronousSocketChannel impl
      * Internal class used for easy propagation of error to the {@link CompletionHandler}.
      * 
      * @param <V>
-     *            result type
+     *            result Type
      */
     private static class ErrorPropagatingCompletionHandler<V> implements CompletionHandler<V, Void> {
         private CompletionHandler<Long, ?> target;

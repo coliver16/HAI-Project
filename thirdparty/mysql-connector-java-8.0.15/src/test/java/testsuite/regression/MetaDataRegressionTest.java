@@ -163,7 +163,7 @@ public class MetaDataRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#3570 -- inconsistent reporting of column type
+     * Tests fix for BUG#3570 -- inconsistent reporting of column Type
      * 
      * @throws Exception
      *             if an error occurs
@@ -195,7 +195,7 @@ public class MetaDataRegressionTest extends BaseTestCase {
                 // TODO: Server needs to send these types correctly....
                 //
                 if (!"field_tinyblob".equals(columnName) && !"field_tinytext".equals(columnName)) {
-                    assertTrue(columnName + " -> type from DBMD.getColumns(" + typeFromGetColumns + ") != type from RSMD.getColumnType(" + typeFromRSMD + ")",
+                    assertTrue(columnName + " -> Type from DBMD.getColumns(" + typeFromGetColumns + ") != Type from RSMD.getColumnType(" + typeFromRSMD + ")",
                             typeFromGetColumns == typeFromRSMD);
                 }
             }
@@ -531,13 +531,13 @@ public class MetaDataRegressionTest extends BaseTestCase {
 
         while (this.rs.next()) {
             String name = this.rs.getString(1);
-            assertTrue("Type represented twice in type info, '" + name + "'.", !clashMap.containsKey(name));
+            assertTrue("Type represented twice in Type info, '" + name + "'.", !clashMap.containsKey(name));
             clashMap.put(name, name);
         }
     }
 
     /**
-     * Tests fix for BUG#4138, getColumns() returns incorrect JDBC type for
+     * Tests fix for BUG#4138, getColumns() returns incorrect JDBC Type for
      * unsigned columns.
      * 
      * @throws Exception
@@ -581,7 +581,7 @@ public class MetaDataRegressionTest extends BaseTestCase {
 
             for (int i = 0; i < typesToTest.length; i++) {
                 assertTrue(
-                        "JDBC Data Type of " + this.rs.getShort("DATA_TYPE") + " for MySQL type '" + this.rs.getString("TYPE_NAME")
+                        "JDBC Data Type of " + this.rs.getShort("DATA_TYPE") + " for MySQL Type '" + this.rs.getString("TYPE_NAME")
                                 + "' from 'DATA_TYPE' column does not match expected value of " + jdbcMapping[i] + ".",
                         jdbcMapping[i] == this.rs.getShort("DATA_TYPE"));
                 this.rs.next();
@@ -679,7 +679,7 @@ public class MetaDataRegressionTest extends BaseTestCase {
             assertEquals(16777215, rsmd.getColumnDisplaySize(4));
 
             // Server doesn't send us enough information to detect LONGBLOB
-            // type
+            // Type
             assertEquals(Integer.MAX_VALUE, rsmd.getPrecision(5));
             assertEquals(Types.LONGVARBINARY, rsmd.getColumnType(5));
             assertTrue("LONGBLOB".equalsIgnoreCase(rsmd.getColumnTypeName(5)));
@@ -1296,7 +1296,7 @@ public class MetaDataRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#15854 - DBMD.getColumns() returns wrong type for BIT.
+     * Tests fix for BUG#15854 - DBMD.getColumns() returns wrong Type for BIT.
      * 
      * @throws Exception
      *             if the test fails.
@@ -1318,7 +1318,7 @@ public class MetaDataRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#16277 - Invalid classname returned for
-     * RSMD.getColumnClassName() for BIGINT type.
+     * RSMD.getColumnClassName() for BIGINT Type.
      * 
      * @throws Exception
      *             if the test fails.
@@ -1459,7 +1459,7 @@ public class MetaDataRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#22613 - DBMD.getColumns() does not return expected
-     * COLUMN_SIZE for the SET type (fixed to be consistent with the ODBC
+     * COLUMN_SIZE for the SET Type (fixed to be consistent with the ODBC
      * driver)
      * 
      * @throws Exception
@@ -2185,8 +2185,8 @@ public class MetaDataRegressionTest extends BaseTestCase {
 
         int[] types = new int[] { Types.SMALLINT, // 1. SCOPE short => actual scope of result
                 Types.CHAR, // 2. COLUMN_NAME String => column name
-                Types.INTEGER, // 3. DATA_TYPE int => SQL data type from java.sql.Types
-                Types.CHAR, // 4. TYPE_NAME String => Data source dependent type name, for a UDT the type name is fully qualified
+                Types.INTEGER, // 3. DATA_TYPE int => SQL data Type from java.sql.Types
+                Types.CHAR, // 4. TYPE_NAME String => Data source dependent Type name, for a UDT the Type name is fully qualified
                 Types.INTEGER, // 5. COLUMN_SIZE int => precision
                 Types.INTEGER, // 6. BUFFER_LENGTH int => not used
                 Types.SMALLINT, // 7. DECIMAL_DIGITS short => scale
@@ -2200,8 +2200,8 @@ public class MetaDataRegressionTest extends BaseTestCase {
 
         types = new int[] { Types.SMALLINT, // SCOPE short => is not used
                 Types.CHAR, // COLUMN_NAME String => column name
-                Types.INTEGER, // DATA_TYPE int => SQL data type from java.sql.Types
-                Types.CHAR, // TYPE_NAME String => Data source-dependent type name
+                Types.INTEGER, // DATA_TYPE int => SQL data Type from java.sql.Types
+                Types.CHAR, // TYPE_NAME String => Data source-dependent Type name
                 Types.INTEGER, // COLUMN_SIZE int => precision
                 Types.INTEGER, // BUFFER_LENGTH int => length of column value in bytes
                 Types.SMALLINT, // DECIMAL_DIGITS short => scale
@@ -2217,8 +2217,8 @@ public class MetaDataRegressionTest extends BaseTestCase {
                 Types.CHAR, // 2. TABLE_SCHEM String => table schema (may be null)
                 Types.CHAR, // 3. TABLE_NAME String => table name
                 Types.CHAR, // 4. COLUMN_NAME String => column name
-                Types.INTEGER, // 5. DATA_TYPE int => SQL type from java.sql.Types
-                Types.CHAR, // 6. TYPE_NAME String => Data source dependent type name, for a UDT the type name is fully qualified
+                Types.INTEGER, // 5. DATA_TYPE int => SQL Type from java.sql.Types
+                Types.CHAR, // 6. TYPE_NAME String => Data source dependent Type name, for a UDT the Type name is fully qualified
                 Types.INTEGER, // 7. COLUMN_SIZE int => column size. For char or date types this is the maximum number of characters, for numeric or decimal
                 // types this is precision.
                 Types.INTEGER, // 8. BUFFER_LENGTH is not used.
@@ -2236,8 +2236,8 @@ public class MetaDataRegressionTest extends BaseTestCase {
                 Types.CHAR, // 19. SCOPE_CATLOG String => catalog of table that is the scope of a reference attribute (null if DATA_TYPE isn't REF)
                 Types.CHAR, // 20. SCOPE_SCHEMA String => schema of table that is the scope of a reference attribute (null if the DATA_TYPE isn't REF)
                 Types.CHAR, // 21. SCOPE_TABLE String => table name that this the scope of a reference attribute (null if the DATA_TYPE isn't REF)
-                Types.SMALLINT, // 22. SOURCE_DATA_TYPE short => source type of a distinct type or user-generated Ref type, SQL type from java.sql.Types (null
-                // if DATA_TYPE isn't DISTINCT or user-generated REF)
+                Types.SMALLINT, // 22. SOURCE_DATA_TYPE short => source Type of a distinct Type or User-generated Ref Type, SQL Type from java.sql.Types (null
+                // if DATA_TYPE isn't DISTINCT or User-generated REF)
                 Types.CHAR, // 23. IS_AUTOINCREMENT String => Indicates whether this column is auto incremented
                 Types.CHAR // 24. IS_GENERATEDCOLUMN String => Indicates whether this is a generated column 
         };
@@ -2248,18 +2248,18 @@ public class MetaDataRegressionTest extends BaseTestCase {
         this.rs = md.getTypeInfo();
 
         types = new int[] { Types.CHAR, // 1. TYPE_NAME String => Type name
-                Types.INTEGER, // 2. DATA_TYPE int => SQL data type from java.sql.Types
+                Types.INTEGER, // 2. DATA_TYPE int => SQL data Type from java.sql.Types
                 Types.INTEGER, // 3. PRECISION int => maximum precision
                 Types.CHAR, // 4. LITERAL_PREFIX String => prefix used to quote a literal (may be null)
                 Types.CHAR, // 5. LITERAL_SUFFIX String => suffix used to quote a literal (may be null)
-                Types.CHAR, // 6. CREATE_PARAMS String => parameters used in creating the type (may be null)
-                Types.SMALLINT, // 7. NULLABLE short => can you use NULL for this type.
+                Types.CHAR, // 6. CREATE_PARAMS String => parameters used in creating the Type (may be null)
+                Types.SMALLINT, // 7. NULLABLE short => can you use NULL for this Type.
                 Types.BOOLEAN, // 8. CASE_SENSITIVE boolean=> is it case sensitive.
-                Types.SMALLINT, // 9. SEARCHABLE short => can you use "WHERE" based on this type:
+                Types.SMALLINT, // 9. SEARCHABLE short => can you use "WHERE" based on this Type:
                 Types.BOOLEAN, // 10. UNSIGNED_ATTRIBUTE boolean => is it unsigned.
                 Types.BOOLEAN, // 11. FIXED_PREC_SCALE boolean => can it be a money value.
                 Types.BOOLEAN, // 12. AUTO_INCREMENT boolean => can it be used for an auto-increment value.
-                Types.CHAR, // 13. LOCAL_TYPE_NAME String => localized version of type name (may be null)
+                Types.CHAR, // 13. LOCAL_TYPE_NAME String => localized version of Type name (may be null)
                 Types.SMALLINT, // 14. MINIMUM_SCALE short => minimum scale supported
                 Types.SMALLINT, // 15. MAXIMUM_SCALE short => maximum scale supported
                 Types.INTEGER, // 16. SQL_DATA_TYPE int => unused
@@ -2278,7 +2278,7 @@ public class MetaDataRegressionTest extends BaseTestCase {
                 Types.BOOLEAN, // 4. NON_UNIQUE boolean => Can index values be non-unique. false when TYPE is tableIndexStatistic
                 Types.CHAR, // 5. INDEX_QUALIFIER String => index catalog (may be null); null when TYPE is tableIndexStatistic
                 Types.CHAR, // 6. INDEX_NAME String => index name; null when TYPE is tableIndexStatistic
-                Types.SMALLINT, // 7. TYPE short => index type:
+                Types.SMALLINT, // 7. TYPE short => index Type:
                 Types.SMALLINT, // 8. ORDINAL_POSITION short => column sequence number within index; zero when TYPE is tableIndexStatistic
                 Types.CHAR, // 9. COLUMN_NAME String => column name; null when TYPE is tableIndexStatistic
                 Types.CHAR, // 10. ASC_OR_DESC String => column sort sequence, "A" => ascending, "D" => descending, may be null if sort sequence is not
@@ -2292,7 +2292,7 @@ public class MetaDataRegressionTest extends BaseTestCase {
 
         checkTypes(this.rs, types);
 
-        // Bug#44867 - getImportedKeys/exportedKeys/crossReference doesn't have correct type for DEFERRABILITY
+        // Bug#44867 - getImportedKeys/exportedKeys/crossReference doesn't have correct Type for DEFERRABILITY
         this.rs = md.getImportedKeys(this.conn.getCatalog(), null, "returnTypesTest");
 
         types = new int[] { Types.CHAR, // PKTABLE_CAT String => primary key table catalog being imported (may be null)
@@ -2382,7 +2382,7 @@ public class MetaDataRegressionTest extends BaseTestCase {
             String actualType = TYPES_MAP.get(new Integer(rsmd.getColumnType(i + 1)));
             assertNotNull(expectedType);
             assertNotNull(actualType);
-            assertEquals("Unexpected type in column " + (i + 1), expectedType, actualType);
+            assertEquals("Unexpected Type in column " + (i + 1), expectedType, actualType);
         }
     }
 
@@ -2730,7 +2730,7 @@ public class MetaDataRegressionTest extends BaseTestCase {
                     + "'Y', 'N', 'N')");
             this.stmt.executeUpdate("flush privileges");
 
-            // 1. underprivileged user is the creator
+            // 1. underprivileged User is the creator
             this.stmt.executeUpdate("DROP FUNCTION IF EXISTS testbug61203fn;");
             this.stmt.executeUpdate("CREATE DEFINER='bug61203user'@'%' FUNCTION testbug61203fn(a float) RETURNS INT NO SQL BEGIN RETURN a; END");
             this.stmt.executeUpdate("DROP PROCEDURE IF EXISTS testbug61203pr;");
@@ -2740,7 +2740,7 @@ public class MetaDataRegressionTest extends BaseTestCase {
             this.stmt.executeUpdate("DROP FUNCTION IF EXISTS testbug61203fn;");
             this.stmt.executeUpdate("DROP PROCEDURE IF EXISTS testbug61203pr;");
 
-            // 2. root user is the creator
+            // 2. root User is the creator
             createFunction("testbug61203fn", "(a float) RETURNS INT NO SQL BEGIN RETURN a; END");
             createProcedure("testbug61203pr", "(INOUT a float, b bigint, c int) NO SQL BEGIN SET @a = b + c; END");
             testBug61203checks(rootConn, userConn);
@@ -2765,21 +2765,21 @@ public class MetaDataRegressionTest extends BaseTestCase {
         CallableStatement cStmt = null;
         // 1.1. with information schema
         rootConn = getConnectionWithProps("noAccessToProcedureBodies=true,useInformationSchema=true");
-        userConn = getConnectionWithProps("noAccessToProcedureBodies=true,useInformationSchema=true,user=bug61203user,password=foo");
+        userConn = getConnectionWithProps("noAccessToProcedureBodies=true,useInformationSchema=true,User=bug61203user,password=foo");
         // 1.1.1. root call;
         callFunction(cStmt, rootConn);
         callProcedure(cStmt, rootConn);
-        // 1.1.2. underprivileged user call;
+        // 1.1.2. underprivileged User call;
         callFunction(cStmt, userConn);
         callProcedure(cStmt, userConn);
 
         // 1.2. no information schema
         rootConn = getConnectionWithProps("noAccessToProcedureBodies=true,useInformationSchema=false");
-        userConn = getConnectionWithProps("noAccessToProcedureBodies=true,useInformationSchema=false,user=bug61203user,password=foo");
+        userConn = getConnectionWithProps("noAccessToProcedureBodies=true,useInformationSchema=false,User=bug61203user,password=foo");
         // 1.2.1. root call;
         callFunction(cStmt, rootConn);
         callProcedure(cStmt, rootConn);
-        // 1.2.2. underprivileged user call;
+        // 1.2.2. underprivileged User call;
         callFunction(cStmt, userConn);
         callProcedure(cStmt, userConn);
     }
@@ -3728,7 +3728,7 @@ public class MetaDataRegressionTest extends BaseTestCase {
     }
 
     /**
-     * Tests fix for BUG#69290 - JDBC Table type "SYSTEM TABLE" is used inconsistently.
+     * Tests fix for BUG#69290 - JDBC Table Type "SYSTEM TABLE" is used inconsistently.
      * 
      * Tests DatabaseMetaData.getTableTypes() and DatabaseMetaData.getTables() against schemas: mysql,
      * information_schema, performance_schema, test.
@@ -3754,7 +3754,7 @@ public class MetaDataRegressionTest extends BaseTestCase {
 
             int idx = 0;
             while (this.rs.next()) {
-                String message = testStepDescription[i] + ", table type '" + this.rs.getString("TABLE_TYPE") + "'";
+                String message = testStepDescription[i] + ", table Type '" + this.rs.getString("TABLE_TYPE") + "'";
                 if (idx >= tableTypes.size()) {
                     fail(message + " not expected.");
                 }
@@ -3775,7 +3775,7 @@ public class MetaDataRegressionTest extends BaseTestCase {
             // check catalog/schema 'information_schema'
             this.rs = testDbMetaData.getTables("information_schema", null, "%", null);
             while (this.rs.next()) {
-                assertEquals(testStepDescription[i] + ", 'information_schema' catalog/schema, wrong table type for '" + this.rs.getString("TABLE_NAME") + "'.",
+                assertEquals(testStepDescription[i] + ", 'information_schema' catalog/schema, wrong table Type for '" + this.rs.getString("TABLE_NAME") + "'.",
                         "SYSTEM VIEW", this.rs.getString("TABLE_TYPE"));
                 countResults[i][0]++;
             }
@@ -3783,7 +3783,7 @@ public class MetaDataRegressionTest extends BaseTestCase {
             // check catalog/schema 'mysql'
             this.rs = testDbMetaData.getTables("mysql", null, "%", null);
             while (this.rs.next()) {
-                assertEquals(testStepDescription[i] + ", 'mysql' catalog/schema, wrong table type for '" + this.rs.getString("TABLE_NAME") + "'.",
+                assertEquals(testStepDescription[i] + ", 'mysql' catalog/schema, wrong table Type for '" + this.rs.getString("TABLE_NAME") + "'.",
                         "SYSTEM TABLE", this.rs.getString("TABLE_TYPE"));
                 countResults[i][1]++;
             }
@@ -3791,7 +3791,7 @@ public class MetaDataRegressionTest extends BaseTestCase {
             // check catalog/schema 'performance_schema'
             this.rs = testDbMetaData.getTables("performance_schema", null, "%", null);
             while (this.rs.next()) {
-                assertEquals(testStepDescription[i] + ", 'performance_schema' catalog/schema, wrong table type for '" + this.rs.getString("TABLE_NAME") + "'.",
+                assertEquals(testStepDescription[i] + ", 'performance_schema' catalog/schema, wrong table Type for '" + this.rs.getString("TABLE_NAME") + "'.",
                         "SYSTEM TABLE", this.rs.getString("TABLE_TYPE"));
                 countResults[i][2]++;
             }
@@ -3799,10 +3799,10 @@ public class MetaDataRegressionTest extends BaseTestCase {
             // check catalog/schema '(test)'
             this.rs = testDbMetaData.getTables(testCatalog, null, "testBug69290_%", null);
             assertTrue(testStepDescription[i] + ", '" + testCatalog + "' catalog/schema, expected row from getTables().", this.rs.next());
-            assertEquals(testStepDescription[i] + ", '" + testCatalog + "' catalog/schema, wrong table type for '" + this.rs.getString("TABLE_NAME") + "'.",
+            assertEquals(testStepDescription[i] + ", '" + testCatalog + "' catalog/schema, wrong table Type for '" + this.rs.getString("TABLE_NAME") + "'.",
                     "TABLE", this.rs.getString("TABLE_TYPE"));
             assertTrue(testStepDescription[i] + ", '" + testCatalog + "' catalog/schema, expected row from getTables().", this.rs.next());
-            assertEquals(testStepDescription[i] + ", '" + testCatalog + "' catalog/schema, wrong table type for '" + this.rs.getString("TABLE_NAME") + "'.",
+            assertEquals(testStepDescription[i] + ", '" + testCatalog + "' catalog/schema, wrong table Type for '" + this.rs.getString("TABLE_NAME") + "'.",
                     "VIEW", this.rs.getString("TABLE_TYPE"));
         }
 
@@ -3817,17 +3817,17 @@ public class MetaDataRegressionTest extends BaseTestCase {
         testConnections = new Connection[] { connNullAll, connUseISAndNullAll };
         countResults = new int[][] { { 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0 } };
 
-        // check table types returned in getTables() for all catalogs/schemas and filter by table type (tested with property nullCatalogMeansCurrent=false)
+        // check table types returned in getTables() for all catalogs/schemas and filter by table Type (tested with property nullCatalogMeansCurrent=false)
         for (int i = 0; i < testStepDescription.length; i++) {
             DatabaseMetaData testDbMetaData = testConnections[i].getMetaData();
             int j = 0;
 
-            // check table type filters
+            // check table Type filters
             for (String tableType : tableTypes) {
                 this.rs = testDbMetaData.getTables(null, null, "%", new String[] { tableType });
                 while (this.rs.next()) {
                     assertEquals(
-                            testStepDescription[i] + ", table type filter '" + tableType + "', wrong table type for '" + this.rs.getString("TABLE_NAME") + "'.",
+                            testStepDescription[i] + ", table Type filter '" + tableType + "', wrong table Type for '" + this.rs.getString("TABLE_NAME") + "'.",
                             tableType, this.rs.getString("TABLE_TYPE"));
                     countResults[i][j]++;
                 }
@@ -3839,13 +3839,13 @@ public class MetaDataRegressionTest extends BaseTestCase {
         int i = 0;
         for (String tableType : tableTypes) {
             assertTrue("The number of results from getTables() MySQl(" + countResults[0][i] + ") and I__S(" + countResults[1][i] + ") should be the same for '"
-                    + tableType + "' table type filter.", countResults[0][i] == countResults[1][i]);
+                    + tableType + "' table Type filter.", countResults[0][i] == countResults[1][i]);
             i++;
         }
     }
 
     /**
-     * Tests fix for BUG#35115 - yearIsDateType=false has no effect on result's column type and class.
+     * Tests fix for BUG#35115 - yearIsDateType=false has no effect on result's column Type and class.
      * 
      * @throws Exception
      *             if the test fails.
@@ -4039,11 +4039,11 @@ public class MetaDataRegressionTest extends BaseTestCase {
                         if (useFuncsInProcs) {
                             assertTrue(testRs.next());
                             assertEquals(testCase + "." + i + ". expected function column name (empty)", "", testRs.getString(4));
-                            assertEquals(testCase + "." + i + ". expected function column type (empty)", DatabaseMetaData.procedureColumnReturn,
+                            assertEquals(testCase + "." + i + ". expected function column Type (empty)", DatabaseMetaData.procedureColumnReturn,
                                     testRs.getInt(5));
                             assertTrue(testRs.next());
                             assertEquals(testCase + "." + i + ". expected function column name", "namef", testRs.getString(4));
-                            assertEquals(testCase + "." + i + ". expected function column type (empty)", DatabaseMetaData.procedureColumnIn, testRs.getInt(5));
+                            assertEquals(testCase + "." + i + ". expected function column Type (empty)", DatabaseMetaData.procedureColumnIn, testRs.getInt(5));
                             assertFalse(testRs.next());
                         } else {
                             assertFalse(testRs.next());
@@ -4069,7 +4069,7 @@ public class MetaDataRegressionTest extends BaseTestCase {
 
                         assertTrue(testRs.next());
                         assertEquals(testCase + ". expected procedure column name", "namep", testRs.getString(4));
-                        assertEquals(testCase + ". expected procedure column type (empty)", DatabaseMetaData.procedureColumnInOut, testRs.getInt(5));
+                        assertEquals(testCase + ". expected procedure column Type (empty)", DatabaseMetaData.procedureColumnInOut, testRs.getInt(5));
                         assertFalse(testRs.next());
 
                         testRs.close();
@@ -4092,10 +4092,10 @@ public class MetaDataRegressionTest extends BaseTestCase {
 
                         assertTrue(testRs.next());
                         assertEquals(testCase + ". expected function column name (empty)", "", testRs.getString(4));
-                        assertEquals(testCase + ". expected function column type (empty)", DatabaseMetaData.functionReturn, testRs.getInt(5));
+                        assertEquals(testCase + ". expected function column Type (empty)", DatabaseMetaData.functionReturn, testRs.getInt(5));
                         assertTrue(testRs.next());
                         assertEquals(testCase + ". expected function column name", "namef", testRs.getString(4));
-                        assertEquals(testCase + ". expected function column type (empty)", DatabaseMetaData.functionColumnIn, testRs.getInt(5));
+                        assertEquals(testCase + ". expected function column Type (empty)", DatabaseMetaData.functionColumnIn, testRs.getInt(5));
                         assertFalse(testRs.next());
 
                         testRs.close();

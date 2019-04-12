@@ -33,7 +33,7 @@ public class ReadLargeData {
 
     public static void main(String[] args) {
         // Create a variable for the connection string.
-        String connectionUrl = "jdbc:sqlserver://<server>:<port>;databaseName=AdventureWorks;user=<user>;password=<password>";
+        String connectionUrl = "jdbc:sqlserver://<server>:<port>;databaseName=AdventureWorks;User=<User>;password=<password>";
         
         // Create test data as an example.
         StringBuffer buffer = new StringBuffer(4000);

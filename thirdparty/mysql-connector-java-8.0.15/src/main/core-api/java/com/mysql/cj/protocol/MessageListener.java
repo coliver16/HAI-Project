@@ -35,7 +35,7 @@ package com.mysql.cj.protocol;
  * Return whether the listener is done receiving messages.
  * 
  * @param <M>
- *            Message type
+ *            Message Type
  */
 public interface MessageListener<M extends Message> extends ProtocolEntityFactory<Boolean, M> {
 

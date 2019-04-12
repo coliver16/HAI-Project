@@ -70,7 +70,7 @@ public class CollectionImpl implements Collection {
 
     public DbObjectStatus existsInDatabase() {
         if (this.mysqlxSession.getDataStoreMetadata().tableExists(this.schema.getName(), this.name)) {
-            // TODO should also check that the table has a DbObjectType.COLLECTION type  
+            // TODO should also check that the table has a DbObjectType.COLLECTION Type
             return DbObjectStatus.EXISTS;
         }
         return DbObjectStatus.NOT_EXISTS;

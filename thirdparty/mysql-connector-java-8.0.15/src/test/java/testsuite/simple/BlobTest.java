@@ -108,7 +108,7 @@ public class BlobTest extends BaseTestCase {
              * to 10% of the redo log file size. The 5.7.5 patch addresses the bug without imposing a limitation.
              * As a result of the redo log BLOB write limit introduced for MySQL 5.6, innodb_log_file_size should be set to a value
              * greater than 10 times the largest BLOB data size found in the rows of your tables plus the length of other variable length
-             * fields (VARCHAR, VARBINARY, and TEXT type fields).
+             * fields (VARCHAR, VARBINARY, and TEXT Type fields).
              */
             this.rs = this.stmt.executeQuery("SHOW VARIABLES LIKE 'innodb_log_file_size'");
             this.rs.next();

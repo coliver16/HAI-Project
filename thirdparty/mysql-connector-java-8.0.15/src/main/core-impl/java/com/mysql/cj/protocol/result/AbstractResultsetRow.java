@@ -71,13 +71,13 @@ public abstract class AbstractResultsetRow implements ResultsetRow {
      * @param vf
      *            {@link ValueFactory}
      * @param <T>
-     *            value type
+     *            value Type
      * @return value
      */
     private <T> T decodeAndCreateReturnValue(int columnIndex, byte[] bytes, int offset, int length, ValueFactory<T> vf) {
         Field f = this.metadata.getFields()[columnIndex];
 
-        // First, figure out which decoder method to call basing on the protocol value type from metadata;
+        // First, figure out which decoder method to call basing on the protocol value Type from metadata;
         // it's the best way to find the appropriate decoder, we can't rely completely on MysqlType here
         // because the same MysqlType can be represented by different protocol types and also DatabaseMetaData methods,
         // eg. buildResultSet(), could imply unexpected conversions when substitutes RowData in ResultSet;
@@ -152,7 +152,7 @@ public abstract class AbstractResultsetRow implements ResultsetRow {
                 return vf.createFromNull();
         }
 
-        // If the protocol type isn't available then select decoder basing on MysqlType; that's for some internal
+        // If the protocol Type isn't available then select decoder basing on MysqlType; that's for some internal
         // code that creates rows without MySQL protocol types, only MysqlType types, including PS bindings as RS, DBMD
         switch (f.getMysqlType()) {
             case TINYINT:
@@ -238,7 +238,7 @@ public abstract class AbstractResultsetRow implements ResultsetRow {
      * @param vf
      *            value factory
      * @param <T>
-     *            value type
+     *            value Type
      * @return value
      */
     protected <T> T getValueFromBytes(int columnIndex, byte[] bytes, int offset, int length, ValueFactory<T> vf) {

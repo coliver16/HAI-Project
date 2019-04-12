@@ -56,9 +56,9 @@ import com.mysql.cj.util.Util;
 
 /**
  * A container for a database URL and a collection of given connection arguments.
- * The connection string is parsed and split by its components, each of which is then processed and fixed according to the needs of the connection type.
+ * The connection string is parsed and split by its components, each of which is then processed and fixed according to the needs of the connection Type.
  * This abstract class holds all common behavior to all connection string types. Its subclasses must implement their own specifics such as classifying hosts by
- * type or apply validation rules.
+ * Type or apply validation rules.
  */
 public abstract class ConnectionUrl implements DatabaseUrlContainer {
     private static final String DEFAULT_HOST = "localhost";
@@ -94,7 +94,7 @@ public abstract class ConnectionUrl implements DatabaseUrlContainer {
     }
 
     /**
-     * The database URL type which is determined by the scheme section of the connection string.
+     * The database URL Type which is determined by the scheme section of the connection string.
      */
     public enum Type {
         SINGLE_CONNECTION("jdbc:mysql:", HostsCardinality.SINGLE), //
@@ -498,9 +498,9 @@ public abstract class ConnectionUrl implements DatabaseUrlContainer {
     }
 
     /**
-     * Returns the default user. Usually the one provided in the method {@link DriverManager#getConnection(String, String, String)} or as connection argument.
+     * Returns the default User. Usually the one provided in the method {@link DriverManager#getConnection(String, String, String)} or as connection argument.
      * 
-     * @return the default user
+     * @return the default User
      */
     public String getDefaultUser() {
         String user = this.properties.get(PropertyKey.USER.getKeyName());
@@ -534,9 +534,9 @@ public abstract class ConnectionUrl implements DatabaseUrlContainer {
     }
 
     /**
-     * Returns this connection URL type.
+     * Returns this connection URL Type.
      * 
-     * @return the connection URL type
+     * @return the connection URL Type
      */
     public Type getType() {
         return this.type;
@@ -633,7 +633,7 @@ public abstract class ConnectionUrl implements DatabaseUrlContainer {
      * @param port
      *            the port
      * @param user
-     *            the user name
+     *            the User name
      * @param password
      *            the password
      * @param isDefaultPwd
@@ -711,7 +711,7 @@ public abstract class ConnectionUrl implements DatabaseUrlContainer {
     @Override
     public String toString() {
         StringBuilder asStr = new StringBuilder(super.toString());
-        asStr.append(String.format(" :: {type: \"%s\", hosts: %s, database: \"%s\", properties: %s, propertiesTransformer: %s}", this.type, this.hosts,
+        asStr.append(String.format(" :: {Type: \"%s\", hosts: %s, database: \"%s\", properties: %s, propertiesTransformer: %s}", this.type, this.hosts,
                 this.originalDatabase, this.properties, this.propertiesTransformer));
         return asStr.toString();
     }

@@ -57,7 +57,7 @@ public class Field {
 
     private long length; // Internal length of the field;
 
-    private int mysqlTypeId = -1; // the MySQL type ID in legacy protocol
+    private int mysqlTypeId = -1; // the MySQL Type ID in legacy protocol
 
     private MysqlType mysqlType = MysqlType.UNKNOWN;
 

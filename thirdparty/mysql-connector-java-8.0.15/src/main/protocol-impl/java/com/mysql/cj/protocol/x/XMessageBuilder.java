@@ -216,7 +216,7 @@ public class XMessageBuilder implements MessageBuilder<XMessage> {
      * List the objects in the given schema. Returns a table as so:
      *
      * <pre>
-     * | name                | type       |
+     * | name                | Type       |
      * |---------------------+------------|
      * | CollectionTest      | COLLECTION |
      * | some_view           | VIEW       |
@@ -293,14 +293,14 @@ public class XMessageBuilder implements MessageBuilder<XMessage> {
                 .addFld(ObjectField.newBuilder().setKey("schema").setValue(ExprUtil.buildAny(schemaName)))
                 .addFld(ObjectField.newBuilder().setKey("unique").setValue(ExprUtil.buildAny(false)));
         if (params.getIndexType() != null) {
-            builder.addFld(ObjectField.newBuilder().setKey("type").setValue(ExprUtil.buildAny(params.getIndexType())));
+            builder.addFld(ObjectField.newBuilder().setKey("Type").setValue(ExprUtil.buildAny(params.getIndexType())));
         }
 
         com.mysql.cj.x.protobuf.MysqlxDatatypes.Array.Builder abuilder = com.mysql.cj.x.protobuf.MysqlxDatatypes.Array.newBuilder();
         for (IndexField indexField : params.getFields()) {
             com.mysql.cj.x.protobuf.MysqlxDatatypes.Object.Builder fld = com.mysql.cj.x.protobuf.MysqlxDatatypes.Object.newBuilder()
                     .addFld(ObjectField.newBuilder().setKey("member").setValue(ExprUtil.buildAny(indexField.getField())))
-                    .addFld(ObjectField.newBuilder().setKey("type").setValue(ExprUtil.buildAny(indexField.getType())))
+                    .addFld(ObjectField.newBuilder().setKey("Type").setValue(ExprUtil.buildAny(indexField.getType())))
                     .addFld(ObjectField.newBuilder().setKey("required").setValue(ExprUtil.buildAny(indexField.isRequired())));
             if ("GEOJSON".equalsIgnoreCase(indexField.getType())) {
                 if (indexField.getOptions() != null) {
@@ -536,7 +536,7 @@ public class XMessageBuilder implements MessageBuilder<XMessage> {
             public void handle(Callback[] callbacks) throws UnsupportedCallbackException {
                 for (Callback c : callbacks) {
                     if (NameCallback.class.isAssignableFrom(c.getClass())) {
-                        // TODO ((NameCallback) c).setName(user);
+                        // TODO ((NameCallback) c).setName(User);
                         throw new UnsupportedCallbackException(c);
                     } else if (PasswordCallback.class.isAssignableFrom(c.getClass())) {
                         // TODO ((PasswordCallback) c).setPassword(password.toCharArray());

@@ -61,7 +61,7 @@ import com.mysql.cj.util.Util;
  * fetch size has been set to Integer.MIN_VALUE (rows are read one by one).
  * 
  * @param <T>
- *            ProtocolEntity type
+ *            ProtocolEntity Type
  */
 public class ResultsetRowsStreaming<T extends ProtocolEntity> extends AbstractResultsetRows implements ResultsetRows {
 

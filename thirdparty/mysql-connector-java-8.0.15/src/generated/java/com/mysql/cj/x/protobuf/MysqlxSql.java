@@ -117,12 +117,12 @@ public final class MysqlxSql {
    * :param namespace: namespace of the statement to be executed
    * :param stmt: statement that shall be executed.
    * :param args: values for wildcard replacements
-   * :param compact_metadata: send only type information for :protobuf:msg:`Mysqlx.Resultset::ColumnMetadata`, skipping names and others
+   * :param compact_metadata: send only Type information for :protobuf:msg:`Mysqlx.Resultset::ColumnMetadata`, skipping names and others
    * :returns:
    *    * zero or one :protobuf:msg:`Mysqlx.Resultset::` followed by :protobuf:msg:`Mysqlx.Sql::StmtExecuteOk`
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Sql.StmtExecute}
+   * Protobuf Type {@code Mysqlx.Sql.StmtExecute}
    */
   public  static final class StmtExecute extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -561,12 +561,12 @@ public final class MysqlxSql {
      * :param namespace: namespace of the statement to be executed
      * :param stmt: statement that shall be executed.
      * :param args: values for wildcard replacements
-     * :param compact_metadata: send only type information for :protobuf:msg:`Mysqlx.Resultset::ColumnMetadata`, skipping names and others
+     * :param compact_metadata: send only Type information for :protobuf:msg:`Mysqlx.Resultset::ColumnMetadata`, skipping names and others
      * :returns:
      *    * zero or one :protobuf:msg:`Mysqlx.Resultset::` followed by :protobuf:msg:`Mysqlx.Sql::StmtExecuteOk`
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Sql.StmtExecute}
+     * Protobuf Type {@code Mysqlx.Sql.StmtExecute}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -1233,7 +1233,7 @@ public final class MysqlxSql {
    * statement executed successful
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Sql.StmtExecuteOk}
+   * Protobuf Type {@code Mysqlx.Sql.StmtExecuteOk}
    */
   public  static final class StmtExecuteOk extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -1452,7 +1452,7 @@ public final class MysqlxSql {
      * statement executed successful
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Sql.StmtExecuteOk}
+     * Protobuf Type {@code Mysqlx.Sql.StmtExecuteOk}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements

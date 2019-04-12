@@ -224,7 +224,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
      */
     public void testBug3554() throws Exception {
         try {
-            new NonRegisteringDriver().connect("jdbc:mysql://localhost:3306/?user=root&password=root", new Properties());
+            new NonRegisteringDriver().connect("jdbc:mysql://localhost:3306/?User=root&password=root", new Properties());
         } catch (SQLException sqlEx) {
             assertTrue(sqlEx.getMessage().indexOf("Malformed") == -1);
         }
@@ -493,7 +493,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
                     newUrlToTestPortNum.append("?");
 
                     if (user != null) {
-                        newUrlToTestPortNum.append("user=").append(user);
+                        newUrlToTestPortNum.append("User=").append(user);
 
                         if (password != null) {
                             newUrlToTestPortNum.append("&");
@@ -561,7 +561,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
                     newUrlToTestFailover.append("?");
 
                     if (user != null) {
-                        newUrlToTestFailover.append("user=").append(user);
+                        newUrlToTestFailover.append("User=").append(user);
 
                         if (password != null) {
                             newUrlToTestFailover.append("&");
@@ -1326,7 +1326,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
      * doesn't transfer connection context correctly when transitioning between
      * the same read-only states.
      * 
-     * (note, this test will fail if the test user doesn't have permission to
+     * (note, this test will fail if the test User doesn't have permission to
      * "USE 'mysql'".
      * 
      * @throws Exception
@@ -1552,7 +1552,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         propertyNames.add("password");
         propertyNames.add("portNumber");
         propertyNames.add("serverName");
-        propertyNames.add("user");
+        propertyNames.add("User");
         // propertyNames.add("dataSourceName"); // TODO not supported
         // propertyNames.add("networkProtocol"); // TODO not supported
         // propertyNames.add("roleName"); // TODO not supported
@@ -2387,7 +2387,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
     private ReplicationGroupManagerMBean getReplicationMBean() throws Exception {
         MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
 
-        ObjectName mbeanName = new ObjectName("com.mysql.cj.jdbc.jmx:type=ReplicationGroupManager");
+        ObjectName mbeanName = new ObjectName("com.mysql.cj.jdbc.jmx:Type=ReplicationGroupManager");
         return MBeanServerInvocationHandler.newProxyInstance(mbs, mbeanName, ReplicationGroupManagerMBean.class, false);
 
     }
@@ -3941,7 +3941,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
      * and RSA encryption enabled.
      * 
      * To run this test please add this variable to ant call:
-     * -Dcom.mysql.cj.testsuite.url.openssl=jdbc:mysql://localhost:3307/test?user=root&password=pwd
+     * -Dcom.mysql.cj.testsuite.url.openssl=jdbc:mysql://localhost:3307/test?User=root&password=pwd
      * 
      * @throws Exception
      */
@@ -4013,7 +4013,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
                 if (gplWithRSA) {
                     assertCurrentUser(null, propsAllowRetrieval, "wl5602user", false);
                 } else {
-                    assertThrows(SQLException.class, "Access denied for user 'wl5602user'.*", new Callable<Void>() {
+                    assertThrows(SQLException.class, "Access denied for User 'wl5602user'.*", new Callable<Void>() {
                         public Void call() throws Exception {
                             getConnectionWithProps(propsAllowRetrieval);
                             return null;
@@ -4030,13 +4030,13 @@ public class ConnectionRegressionTest extends BaseTestCase {
                 propsAllowRetrieval.setProperty(PropertyKey.serverRSAPublicKeyFile.getKeyName(), "src/test/config/ssl-test-certs/mykey.pub");
                 propsAllowRetrievalNoPassword.setProperty(PropertyKey.serverRSAPublicKeyFile.getKeyName(), "src/test/config/ssl-test-certs/mykey.pub");
 
-                assertThrows(SQLException.class, "Access denied for user 'wl5602user'.*", new Callable<Void>() {
+                assertThrows(SQLException.class, "Access denied for User 'wl5602user'.*", new Callable<Void>() {
                     public Void call() throws Exception {
                         getConnectionWithProps(propsNoRetrieval);
                         return null;
                     }
                 });
-                assertThrows(SQLException.class, "Access denied for user 'wl5602user'.*", new Callable<Void>() {
+                assertThrows(SQLException.class, "Access denied for User 'wl5602user'.*", new Callable<Void>() {
                     public Void call() throws Exception {
                         getConnectionWithProps(propsAllowRetrieval);
                         return null;
@@ -4089,7 +4089,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
             }
 
             try {
-                // create user with long password and sha256_password auth
+                // create User with long password and sha256_password auth
                 if (!((JdbcConnection) this.sha256Conn).getSession().versionMeetsMinimum(8, 0, 5)) {
                     this.sha256Stmt.executeUpdate("SET @current_old_passwords = @@global.old_passwords");
                 }
@@ -4892,7 +4892,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
                         testRs = testSt.executeQuery("SHOW VARIABLES LIKE 'disconnect_on_expired_password'");
                         assertTrue(testRs.next());
 
-                        // change user
+                        // change User
                         try {
                             ((JdbcConnection) testConn).changeUser("must_change2", "aha");
                             fail("SQLException expected due to password expired");
@@ -5771,7 +5771,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
      * default-authentication-plugin=sha256_password and RSA encryption enabled.
      * 
      * To run this test please add this variable to ant call:
-     * -Dcom.mysql.cj.testsuite.url.openssl=jdbc:mysql://localhost:3307/test?user=root&password=pwd
+     * -Dcom.mysql.cj.testsuite.url.openssl=jdbc:mysql://localhost:3307/test?User=root&password=pwd
      * 
      * @throws Exception
      */
@@ -5788,7 +5788,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
             }
 
             try {
-                // create user with long password and sha256_password auth
+                // create User with long password and sha256_password auth
                 String pwd = sha256Sess.versionMeetsMinimum(8, 0, 4) || sha256Sess.versionMeetsMinimum(5, 7, 21) && !sha256Sess.versionMeetsMinimum(8, 0, 0)
                         || sha256Sess.versionMeetsMinimum(5, 6, 39) && !sha256Sess.versionMeetsMinimum(5, 7, 0)
                                 ? "aaaaaaaaaabbbbbbbbbbccccccccccddddddddddeeeeeeeeeeaaaaaaaaaabbbbbbbbbbccccccccccdddddddddd"
@@ -6205,7 +6205,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         assertThrows(Exception.class, "ExceptionInterceptor.init\\(\\) called 1 time\\(s\\)", new Callable<Void>() {
             public Void call() throws Exception {
                 getConnectionWithProps(
-                        "exceptionInterceptors=testsuite.regression.ConnectionRegressionTest$TestBug71850ExceptionInterceptor," + "user=unexistent_user");
+                        "exceptionInterceptors=testsuite.regression.ConnectionRegressionTest$TestBug71850ExceptionInterceptor," + "User=unexistent_user");
                 return null;
             }
         });
@@ -6358,7 +6358,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
      * default-authentication-plugin=sha256_password and RSA encryption enabled.
      * 
      * To run this test please add this variable to ant call:
-     * -Dcom.mysql.cj.testsuite.url.openssl=jdbc:mysql://localhost:3307/test?user=root&password=pwd
+     * -Dcom.mysql.cj.testsuite.url.openssl=jdbc:mysql://localhost:3307/test?User=root&password=pwd
      * 
      * @throws Exception
      */
@@ -7383,7 +7383,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
                         String testStep = "";
                         try {
-                            testStep = "create user";
+                            testStep = "create User";
                             testBug20825727CreateUser(testDbUrl, "testBug20825727", simplePwd, encoding, pluginName, pwdHashingMethod);
                             testStep = "login with simple password";
                             testBug20825727TestLogin(testDbUrl, testConn.getPropertySet().getStringProperty(PropertyKey.characterEncoding).getValue(),
@@ -7598,7 +7598,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
                         this.rs.close();
                         testStmt.close();
                     } else {
-                        assertThrows(SQLException.class, "Access denied for user 'testBug20825727'@.*", new Callable<Void>() {
+                        assertThrows(SQLException.class, "Access denied for User 'testBug20825727'@.*", new Callable<Void>() {
                             @SuppressWarnings("synthetic-access")
                             public Void call() throws Exception {
                                 getConnectionWithProps(testDbUrl, props);
@@ -7702,7 +7702,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
                                 } else if (expectedAccessDeniedFail) {
                                     // connection will fail due to wrong password
-                                    assertThrows(SQLException.class, "Access denied for user '" + user + "'@.*", new Callable<Void>() {
+                                    assertThrows(SQLException.class, "Access denied for User '" + user + "'@.*", new Callable<Void>() {
                                         @SuppressWarnings("synthetic-access")
                                         public Void call() throws Exception {
                                             getConnectionWithProps(sha256Url, props);
@@ -7721,7 +7721,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
                                     this.rs.close();
                                     testStmt.close();
 
-                                    // change user using same credentials will succeed
+                                    // change User using same credentials will succeed
                                     System.out.printf("%25s : %-18s : %-25s : %-25s : %s%n", "| ChangeUser (same)", allowPubKeyRetrieval, user, pwd, "Ok");
                                     ((JdbcConnection) testConn).changeUser(user, user);
                                     testStmt = testConn.createStatement();
@@ -7732,7 +7732,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
                                     this.rs.close();
                                     testStmt.close();
 
-                                    // change user using different credentials
+                                    // change User using different credentials
                                     final String swapUser = user.indexOf("_sha") == -1 ? "bug75670user_sha" : "bug75670user_mnp";
                                     expectedPubKeyRetrievalFail = (swapUser.endsWith("_sha")
                                             || swapUser.endsWith("_mnp") && defAuthPlugin.equals(Sha256PasswordPlugin.class)) && !allowPubKeyRetrieval;
@@ -7740,7 +7740,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
                                             expectedPubKeyRetrievalFail ? "Fail [Pub. Key retrieval]" : "Ok");
 
                                     if (expectedPubKeyRetrievalFail) {
-                                        // change user will fail due to public key retrieval failure
+                                        // change User will fail due to public key retrieval failure
                                         assertThrows(SQLException.class, "Public Key Retrieval is not allowed", new Callable<Void>() {
                                             public Void call() throws Exception {
                                                 ((JdbcConnection) testConn).changeUser(swapUser, swapUser);
@@ -7748,7 +7748,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
                                             }
                                         });
                                     } else {
-                                        // change user will succeed
+                                        // change User will succeed
                                         ((JdbcConnection) testConn).changeUser(swapUser, swapUser);
                                         testStmt = testConn.createStatement();
                                         this.rs = testStmt.executeQuery("SELECT USER(), CURRENT_USER()");
@@ -9968,7 +9968,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
      * as "sha256_password_private_key_path" and "sha256_password_public_key_path" respectively.
      * 
      * To run this test, please add this variable to the ant call:
-     * -Dcom.mysql.cj.testsuite.url.openssl=jdbc:mysql://localhost:3307/test?user=root&password=pwd
+     * -Dcom.mysql.cj.testsuite.url.openssl=jdbc:mysql://localhost:3307/test?User=root&password=pwd
      * 
      * @throws Exception
      */
@@ -10039,7 +10039,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
                 if (gplWithRSA) {
                     assertCurrentUser(null, propsAllowRetrieval, "wl11060user", false);
                 } else {
-                    assertThrows(SQLException.class, "Access denied for user 'wl11060user'.*", new Callable<Void>() {
+                    assertThrows(SQLException.class, "Access denied for User 'wl11060user'.*", new Callable<Void>() {
                         public Void call() throws Exception {
                             getConnectionWithProps(propsAllowRetrieval);
                             return null;
@@ -10059,13 +10059,13 @@ public class ConnectionRegressionTest extends BaseTestCase {
 
                 this.stmt.executeUpdate("flush privileges"); // to ensure that we'll go through the full authentication 
 
-                assertThrows(SQLException.class, "Access denied for user 'wl11060user'.*", new Callable<Void>() {
+                assertThrows(SQLException.class, "Access denied for User 'wl11060user'.*", new Callable<Void>() {
                     public Void call() throws Exception {
                         getConnectionWithProps(propsNoRetrieval);
                         return null;
                     }
                 });
-                assertThrows(SQLException.class, "Access denied for user 'wl11060user'.*", new Callable<Void>() {
+                assertThrows(SQLException.class, "Access denied for User 'wl11060user'.*", new Callable<Void>() {
                     public Void call() throws Exception {
                         getConnectionWithProps(propsAllowRetrieval);
                         return null;
@@ -10139,7 +10139,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
             }
 
             try {
-                // create user with long password and caching_sha2_password auth
+                // create User with long password and caching_sha2_password auth
                 if (!((JdbcConnection) this.sha256Conn).getSession().versionMeetsMinimum(8, 0, 5)) {
                     this.sha256Stmt.executeUpdate("SET @current_old_passwords = @@global.old_passwords");
                 }
@@ -10731,9 +10731,9 @@ public class ConnectionRegressionTest extends BaseTestCase {
      *             if an error occurs.
      */
     public void testBug26089880() throws Exception {
-        assertThrows(SQLException.class, "No suitable driver found for mysqlx://localhost:33060/test\\?user=usr&password=pwd", new Callable<Void>() {
+        assertThrows(SQLException.class, "No suitable driver found for mysqlx://localhost:33060/test\\?User=usr&password=pwd", new Callable<Void>() {
             public Void call() throws Exception {
-                DriverManager.getConnection("mysqlx://localhost:33060/test?user=usr&password=pwd", null);
+                DriverManager.getConnection("mysqlx://localhost:33060/test?User=usr&password=pwd", null);
                 return null;
             }
         });
@@ -10776,7 +10776,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         assertEquals(ZeroDatetimeBehavior.CONVERT_TO_NULL,
                 con.getPropertySet().<ZeroDatetimeBehavior> getEnumProperty(PropertyKey.zeroDateTimeBehavior).getValue());
 
-        con = (JdbcConnection) getConnectionWithProps("jdbc:mysql://(port=" + getPortFromTestsuiteUrl() + ",user=" + mainConnectionUrl.getDefaultUser()
+        con = (JdbcConnection) getConnectionWithProps("jdbc:mysql://(port=" + getPortFromTestsuiteUrl() + ",User=" + mainConnectionUrl.getDefaultUser()
                 + ",password=" + mainConnectionUrl.getDefaultPassword() + ",zeroDateTimeBehavior=convertToNull)/" + this.dbName,
                 appendRequiredProperties(null));
         assertEquals(ZeroDatetimeBehavior.CONVERT_TO_NULL,
@@ -10795,10 +10795,10 @@ public class ConnectionRegressionTest extends BaseTestCase {
         connStr.add(dbUrl + "&sessionVariables=sql_mode='IGNORE_SPACE,ANSI',FOREIGN_KEY_CHECKS=0&connectionCollation=utf8mb4_unicode_ci");
         connStr.add(dbUrl + "&connectionCollation=utf8mb4_unicode_ci&sessionVariables=sql_mode='IGNORE_SPACE,ANSI',FOREIGN_KEY_CHECKS=0");
         connStr.add(String.format(
-                "jdbc:mysql://address=(host=%1$s)(port=%2$d)(connectionCollation=utf8mb4_unicode_ci)(sessionVariables=sql_mode='IGNORE_SPACE,ANSI',FOREIGN_KEY_CHECKS=0)(user=%3$s)(password=%4$s)/%5$s",
+                "jdbc:mysql://address=(host=%1$s)(port=%2$d)(connectionCollation=utf8mb4_unicode_ci)(sessionVariables=sql_mode='IGNORE_SPACE,ANSI',FOREIGN_KEY_CHECKS=0)(User=%3$s)(password=%4$s)/%5$s",
                 getEncodedHostFromTestsuiteUrl(), getPortFromTestsuiteUrl(), hostInfo.getUser(), hostInfo.getPassword(), hostInfo.getDatabase()));
         connStr.add(String.format(
-                "jdbc:mysql://(host=%1$s,port=%2$d,connectionCollation=utf8mb4_unicode_ci,sessionVariables=sql_mode='IGNORE_SPACE%3$sANSI'%3$sFOREIGN_KEY_CHECKS=0,user=%4$s,password=%5$s)/%6$s",
+                "jdbc:mysql://(host=%1$s,port=%2$d,connectionCollation=utf8mb4_unicode_ci,sessionVariables=sql_mode='IGNORE_SPACE%3$sANSI'%3$sFOREIGN_KEY_CHECKS=0,User=%4$s,password=%5$s)/%6$s",
                 getEncodedHostFromTestsuiteUrl(), getPortFromTestsuiteUrl(), "%2C", hostInfo.getUser(), hostInfo.getPassword(), hostInfo.getDatabase()));
 
         for (String cs : connStr) {
@@ -11142,7 +11142,7 @@ public class ConnectionRegressionTest extends BaseTestCase {
         System.out.println("1. Original database [" + origDb + "]");
 
         try {
-            // create user with required password and sha256_password auth
+            // create User with required password and sha256_password auth
             if (!sess.versionMeetsMinimum(8, 0, 5)) {
                 s1.executeUpdate("SET @current_old_passwords = @@global.old_passwords");
                 s1.executeUpdate("SET GLOBAL old_passwords= 2");
@@ -11164,12 +11164,12 @@ public class ConnectionRegressionTest extends BaseTestCase {
             assertEquals(origDb, this.rs.getString(1)); // was returning null for database name
             this.rs = s2.executeQuery("show tables"); // was failing with exception
 
-            // create user with required password and caching_sha2_password auth
+            // create User with required password and caching_sha2_password auth
             if (sess.versionMeetsMinimum(8, 0, 3)) {
                 if (!pluginIsActive(s1, "caching_sha2_password")) {
                     fail("caching_sha2_password required to run this test");
                 }
-                // create user with required password and sha256_password auth
+                // create User with required password and sha256_password auth
                 createUser(s1, "'Bug25642226u2'@'%'", "identified WITH caching_sha2_password");
                 s1.executeUpdate("grant all on *.* to 'Bug25642226u2'@'%'");
                 s1.executeUpdate(sess.versionMeetsMinimum(5, 7, 6) ? "ALTER USER 'Bug25642226u2'@'%' IDENTIFIED BY '" + pwd + "'"

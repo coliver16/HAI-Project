@@ -4,7 +4,7 @@ Summary: This Microsoft JDBC Driver for SQL Server sample application
          that demonstrates how to establish constrained delegation connection.
          An intermediate service is necessary to impersonate the client. 
 		 This service needs to be configured with the options:
-		 1. "Trust this user for delegation to specified services only"
+		 1. "Trust this User for delegation to specified services only"
 		 2. "Use any authentication protocol"
 ---------------------------------------------------------------------
 This file is part of the Microsoft JDBC Driver for SQL Server Code Samples.
@@ -76,7 +76,7 @@ public class ConstrainedDelegation {
     public static void main(String... args) throws Exception {
         System.out.println("Service subject: " + doInitialLogin());
 
-        // Get impersonated user credentials thanks S4U2self mechanism
+        // Get impersonated User credentials thanks S4U2self mechanism
         GSSCredential impersonatedUserCreds = impersonate();
         System.out.println("Credentials for " + TARGET_USER_NAME + ": " + impersonatedUserCreds);
 
@@ -137,7 +137,7 @@ public class ConstrainedDelegation {
     }
 
     /**
-     * Generate the impersonated user credentials thanks to the S4U2self mechanism
+     * Generate the impersonated User credentials thanks to the S4U2self mechanism
      *
      * @return the client impersonated GSSCredential
      * @throws PrivilegedActionException
@@ -158,7 +158,7 @@ public class ConstrainedDelegation {
      * Obtains a connection using an impersonated credential
      *
      * @param impersonatedUserCredential
-     *        impersonated user credentials
+     *        impersonated User credentials
      * @return a connection to the SQL Server opened using the given impersonated credential
      * @throws PrivilegedActionException
      *         in case of failure

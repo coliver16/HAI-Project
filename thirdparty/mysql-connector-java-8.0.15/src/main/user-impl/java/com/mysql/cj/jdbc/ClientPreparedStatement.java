@@ -99,12 +99,12 @@ import com.mysql.cj.util.Util;
  * A SQL Statement is pre-compiled and stored in a PreparedStatement object. This object can then be used to efficiently execute this statement multiple times.
  * 
  * <p>
- * <B>Note:</B> The setXXX methods for setting IN parameter values must specify types that are compatible with the defined SQL type of the input parameter. For
- * instance, if the IN parameter has SQL type Integer, then setInt should be used.
+ * <B>Note:</B> The setXXX methods for setting IN parameter values must specify types that are compatible with the defined SQL Type of the input parameter. For
+ * instance, if the IN parameter has SQL Type Integer, then setInt should be used.
  * </p>
  * 
  * <p>
- * If arbitrary parameter type conversions are required, then the setObject method should be used with a target SQL type.
+ * If arbitrary parameter Type conversions are required, then the setObject method should be used with a target SQL Type.
  * </p>
  */
 public class ClientPreparedStatement extends com.mysql.cj.jdbc.StatementImpl implements JdbcPreparedStatement {

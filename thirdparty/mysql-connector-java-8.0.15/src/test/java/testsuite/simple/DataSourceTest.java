@@ -326,7 +326,7 @@ public class DataSourceTest extends BaseTestCase {
                 assertEquals(sname + ": ", testEnum, (String) getter.invoke(ds, new Object[] {}));
 
             } else {
-                fail("Unknown " + def.getName() + " property type.");
+                fail("Unknown " + def.getName() + " property Type.");
             }
         }
     }

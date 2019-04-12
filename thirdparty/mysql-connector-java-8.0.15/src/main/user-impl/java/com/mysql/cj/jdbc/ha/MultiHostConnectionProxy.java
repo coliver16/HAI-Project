@@ -208,10 +208,10 @@ public abstract class MultiHostConnectionProxy implements InvocationHandler {
     }
 
     /**
-     * If the given return type is or implements a JDBC interface, proxies the given object so that we can catch SQL errors and fire a connection switch.
+     * If the given return Type is or implements a JDBC interface, proxies the given object so that we can catch SQL errors and fire a connection switch.
      * 
      * @param returnType
-     *            The type the object instance to proxy is supposed to be.
+     *            The Type the object instance to proxy is supposed to be.
      * @param toProxy
      *            The object instance to proxy.
      * @return

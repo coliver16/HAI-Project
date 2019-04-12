@@ -53,7 +53,7 @@ import com.mysql.cj.exceptions.WrongArgumentException;
 public class TimeUtil {
     static final TimeZone GMT_TIMEZONE = TimeZone.getTimeZone("GMT");
 
-    // Mappings from TimeZone identifications (prefixed by type: Windows, TZ name, MetaZone, TZ alias, ...), to standard TimeZone Ids
+    // Mappings from TimeZone identifications (prefixed by Type: Windows, TZ name, MetaZone, TZ alias, ...), to standard TimeZone Ids
     private static final String TIME_ZONE_MAPPINGS_RESOURCE = "/com/mysql/cj/util/TimeZoneMapping.properties";
 
     private static Properties timeZoneMappings = null;
@@ -142,7 +142,7 @@ public class TimeUtil {
      *            value in the range from 0 to 6 specifying fractional seconds precision
      * @param serverRoundFracSecs
      *            Flag indicating whether rounding or truncation occurs on server when inserting a TIME, DATE, or TIMESTAMP value with a fractional seconds part
-     *            into a column having the same type but fewer fractional digits: true means rounding, false means truncation. The proper value should be
+     *            into a column having the same Type but fewer fractional digits: true means rounding, false means truncation. The proper value should be
      *            detected by analyzing sql_mode server variable for TIME_TRUNCATE_FRACTIONAL presence.
      * @return A new Timestamp object cloned from original ones and then rounded or truncated according to required fsp value
      */

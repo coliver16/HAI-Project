@@ -174,7 +174,7 @@ public class RetrievalPerfTest extends BaseTestCase {
     }
 
     /**
-     * Tests retrieval speed from MyISAM type tables
+     * Tests retrieval speed from MyISAM Type tables
      * 
      * @throws Exception
      *             if an error occurs

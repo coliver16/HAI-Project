@@ -36,7 +36,7 @@ public interface ProfilerEvent {
     public static final byte TYPE_WARN = 0;
 
     /**
-     * Profiler creating object type event
+     * Profiler creating object Type event
      */
     public static final byte TYPE_OBJECT_CREATION = 1;
 
@@ -66,9 +66,9 @@ public interface ProfilerEvent {
     public static final byte TYPE_SLOW_QUERY = 6;
 
     /**
-     * Returns the event type flag
+     * Returns the event Type flag
      * 
-     * @return the event type flag
+     * @return the event Type flag
      */
     byte getEventType();
 

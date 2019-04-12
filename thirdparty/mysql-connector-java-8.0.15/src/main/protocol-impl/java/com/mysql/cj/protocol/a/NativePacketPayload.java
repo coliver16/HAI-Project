@@ -43,7 +43,7 @@ import com.mysql.cj.util.StringUtils;
  * PacketPayload is the content of a full single packet (independent from
  * on-wire splitting) communicated with the server. We can manipulate the
  * packet's underlying buffer when sending commands with writeInteger(),
- * writeBytes(), etc. We can check the packet type with isEOFPacket(), etc
+ * writeBytes(), etc. We can check the packet Type with isEOFPacket(), etc
  * predicates.
  * 
  * A position is maintained for reading/writing data. A payload length is
@@ -257,7 +257,7 @@ public class NativePacketPayload implements Message {
     }
 
     /**
-     * Write data according to provided Integer type.
+     * Write data according to provided Integer Type.
      * 
      * @param type
      *            {@link IntegerDataType}
@@ -347,7 +347,7 @@ public class NativePacketPayload implements Message {
     }
 
     /**
-     * Read data according to provided Integer type.
+     * Read data according to provided Integer Type.
      * 
      * @param type
      *            {@link IntegerDataType}
@@ -402,7 +402,7 @@ public class NativePacketPayload implements Message {
      * Write all bytes from given byte array into internal buffer starting with current buffer position.
      * 
      * @param type
-     *            on-wire data type
+     *            on-wire data Type
      * @param b
      *            from byte array
      */
@@ -414,7 +414,7 @@ public class NativePacketPayload implements Message {
      * Write all bytes from given byte array into internal buffer starting with current buffer position.
      * 
      * @param type
-     *            on-wire data type
+     *            on-wire data Type
      * @param b
      *            from byte array
      */
@@ -427,7 +427,7 @@ public class NativePacketPayload implements Message {
      * Read starts from given offset, write starts with current buffer position.
      * 
      * @param type
-     *            on-wire data type
+     *            on-wire data Type
      * @param b
      *            from byte array
      * @param offset
@@ -462,7 +462,7 @@ public class NativePacketPayload implements Message {
      * Read starts from given offset, write starts with current buffer position.
      * 
      * @param type
-     *            on-wire data type
+     *            on-wire data Type
      * @param b
      *            from byte array
      * @param offset

@@ -114,7 +114,7 @@ public class createUserGUIController {
         dropShadow.setOffsetY(3.0);
         dropShadow.setColor(Color.BLACK);
 
-        message.setText("HAI! There new user. Please create your profile below!");
+        message.setText("HAI! There new User. Please create your Profile below!");
         message.setFont(Font.font("Tahoma",35));
         message.setTextFill(Color.rgb(255,255,255));
         message.setEffect(dropShadow);
@@ -199,7 +199,7 @@ public class createUserGUIController {
         SnapshotParameters parameters = new SnapshotParameters();
         parameters.setFill(Color.TRANSPARENT);
         WritableImage cloud = cloudLogo.snapshot(parameters, null);
-  //      WritableImage user = userLogo.snapshot(parameters,null);
+  //      WritableImage User = userLogo.snapshot(parameters,null);
 
         cloudLogo.setClip(null);
         cloudLogo.setEffect((new DropShadow(20, Color.BLACK)));
@@ -207,7 +207,7 @@ public class createUserGUIController {
 //        userLogo.setClip(null);
 //        userLogo.setEffect((new DropShadow(20,Color.BLACK)));
         cloudLogo.setImage(cloud);
-    //    userLogo.setImage(user);
+    //    userLogo.setImage(User);
 
         cancelProfile.setText("Cancel User");
         createProfile.setText("Create User");

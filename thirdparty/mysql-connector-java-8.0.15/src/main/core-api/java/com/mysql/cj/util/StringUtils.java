@@ -105,7 +105,7 @@ public class StringUtils {
      */
     public static final Set<SearchMode> SEARCH_MODE__NONE = Collections.unmodifiableSet(EnumSet.noneOf(SearchMode.class));
 
-    // length of MySQL version reference in comments of type '/*![00000] */'
+    // length of MySQL version reference in comments of Type '/*![00000] */'
     private static final int NON_COMMENTS_MYSQL_VERSION_REF_LENGTH = 5;
 
     //private static final int BYTE_RANGE = (1 + Byte.MAX_VALUE) - Byte.MIN_VALUE;
@@ -1377,7 +1377,7 @@ public class StringUtils {
      *            characters which delimit the "close" of a string, in
      *            counterpart order to <code>stringOpens</code>
      * @param slashStarComments
-     *            strip slash-star type "C" style comments
+     *            strip slash-star Type "C" style comments
      * @param slashSlashComments
      *            strip slash-slash C++ style comments to end-of-line
      * @param hashComments

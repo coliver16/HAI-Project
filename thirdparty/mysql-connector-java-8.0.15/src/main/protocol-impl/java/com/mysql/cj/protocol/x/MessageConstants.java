@@ -73,23 +73,23 @@ import com.mysql.cj.x.protobuf.MysqlxSql.StmtExecuteOk;
  */
 public class MessageConstants {
     /**
-     * Store a mapping of "ServerMessages" class to message parsers. This is used to get the de-serializer after reading the type tag.
+     * Store a mapping of "ServerMessages" class to message parsers. This is used to get the de-serializer after reading the Type tag.
      */
     public static final Map<Class<? extends GeneratedMessageV3>, Parser<? extends GeneratedMessageV3>> MESSAGE_CLASS_TO_PARSER;
 
     /**
-     * Map of class to "ServerMessages" type tag for validation of parsed message class.
+     * Map of class to "ServerMessages" Type tag for validation of parsed message class.
      */
     // TODO Find a clever way to generate both maps with a single set of input pairs.
     public static final Map<Class<? extends GeneratedMessageV3>, Integer> MESSAGE_CLASS_TO_TYPE;
 
     /**
-     * Map of "ServerMessages" type tag to class.
+     * Map of "ServerMessages" Type tag to class.
      */
     public static final Map<Integer, Class<? extends GeneratedMessageV3>> MESSAGE_TYPE_TO_CLASS;
 
     /**
-     * Store a mapping of message class to "ClientMessages" type tag. This is used to generate the header when sending a message.
+     * Store a mapping of message class to "ClientMessages" Type tag. This is used to generate the header when sending a message.
      */
     public static final Map<Class<? extends MessageLite>, Integer> MESSAGE_CLASS_TO_CLIENT_MESSAGE_TYPE;
 
@@ -112,7 +112,7 @@ public class MessageConstants {
         messageClassToParser.put(Frame.class, Frame.getDefaultInstance().getParserForType());
         messageClassToParser.put(Row.class, Row.getDefaultInstance().getParserForType());
         messageClassToParser.put(StmtExecuteOk.class, StmtExecuteOk.getDefaultInstance().getParserForType());
-        // embedded notices (no type tags)
+        // embedded notices (no Type tags)
         messageClassToParser.put(SessionStateChanged.class, SessionStateChanged.getDefaultInstance().getParserForType());
         messageClassToParser.put(SessionVariableChanged.class, SessionVariableChanged.getDefaultInstance().getParserForType());
         messageClassToParser.put(Warning.class, Warning.getDefaultInstance().getParserForType());
@@ -157,11 +157,11 @@ public class MessageConstants {
     }
 
     /**
-     * Lookup the "ClientMessages" type tag for a Protocol buffers message class.
+     * Lookup the "ClientMessages" Type tag for a Protocol buffers message class.
      * 
      * @param msgClass
      *            message class extending {@link MessageLite}
-     * @return type tag for this message class
+     * @return Type tag for this message class
      */
     public static int getTypeForMessageClass(Class<? extends MessageLite> msgClass) {
         Integer tag = MESSAGE_CLASS_TO_CLIENT_MESSAGE_TYPE.get(msgClass);
@@ -176,7 +176,7 @@ public class MessageConstants {
         if (messageClass == null) {
             // check if there's a mapping that we don't explicitly handle
             ServerMessages.Type serverMessageMapping = ServerMessages.Type.forNumber(type);
-            throw AssertionFailedException.shouldNotHappen("Unknown message type: " + type + " (server messages mapping: " + serverMessageMapping + ")");
+            throw AssertionFailedException.shouldNotHappen("Unknown message Type: " + type + " (server messages mapping: " + serverMessageMapping + ")");
         }
         return messageClass;
     }

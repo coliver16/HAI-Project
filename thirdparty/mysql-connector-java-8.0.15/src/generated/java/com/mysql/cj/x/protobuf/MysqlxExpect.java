@@ -89,7 +89,7 @@ public final class MysqlxExpect {
    * :returns: :protobuf:msg:`Mysqlx::Ok` on success, :protobuf:msg:`Mysqlx::Error` on error
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Expect.Open}
+   * Protobuf Type {@code Mysqlx.Expect.Open}
    */
   public  static final class Open extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -277,7 +277,7 @@ public final class MysqlxExpect {
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this Type.");
         }
         return VALUES[desc.getIndex()];
       }
@@ -323,7 +323,7 @@ public final class MysqlxExpect {
       com.mysql.cj.x.protobuf.MysqlxExpect.Open.Condition.ConditionOperation getOp();
     }
     /**
-     * Protobuf type {@code Mysqlx.Expect.Open.Condition}
+     * Protobuf Type {@code Mysqlx.Expect.Open.Condition}
      */
     public  static final class Condition extends
         com.google.protobuf.GeneratedMessageV3 implements
@@ -527,7 +527,7 @@ public final class MysqlxExpect {
             com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
           if (desc.getType() != getDescriptor()) {
             throw new java.lang.IllegalArgumentException(
-              "EnumValueDescriptor is not for this type.");
+              "EnumValueDescriptor is not for this Type.");
           }
           return VALUES[desc.getIndex()];
         }
@@ -637,7 +637,7 @@ public final class MysqlxExpect {
             com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
           if (desc.getType() != getDescriptor()) {
             throw new java.lang.IllegalArgumentException(
-              "EnumValueDescriptor is not for this type.");
+              "EnumValueDescriptor is not for this Type.");
           }
           return VALUES[desc.getIndex()];
         }
@@ -896,7 +896,7 @@ public final class MysqlxExpect {
         return builder;
       }
       /**
-       * Protobuf type {@code Mysqlx.Expect.Open.Condition}
+       * Protobuf Type {@code Mysqlx.Expect.Open.Condition}
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -1466,7 +1466,7 @@ public final class MysqlxExpect {
      * :returns: :protobuf:msg:`Mysqlx::Ok` on success, :protobuf:msg:`Mysqlx::Error` on error
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Expect.Open}
+     * Protobuf Type {@code Mysqlx.Expect.Open}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -2007,7 +2007,7 @@ public final class MysqlxExpect {
    * :returns: :protobuf:msg:`Mysqlx::Ok` on success, :protobuf:msg:`Mysqlx::Error` on error
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Expect.Close}
+   * Protobuf Type {@code Mysqlx.Expect.Close}
    */
   public  static final class Close extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -2229,7 +2229,7 @@ public final class MysqlxExpect {
      * :returns: :protobuf:msg:`Mysqlx::Ok` on success, :protobuf:msg:`Mysqlx::Error` on error
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Expect.Close}
+     * Protobuf Type {@code Mysqlx.Expect.Close}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements

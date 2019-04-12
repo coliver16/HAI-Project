@@ -49,11 +49,11 @@ public final class MysqlxNotice {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required uint32 type = 1;</code>
+     * <code>required uint32 Type = 1;</code>
      */
     boolean hasType();
     /**
-     * <code>required uint32 type = 1;</code>
+     * <code>required uint32 Type = 1;</code>
      */
     int getType();
 
@@ -79,18 +79,18 @@ public final class MysqlxNotice {
    * <pre>
    * Common Frame for all Notices
    * ===================================================== =====
-   * .type                                                 value
+   * .Type                                                 value
    * ===================================================== =====
    * :protobuf:msg:`Mysqlx.Notice::Warning`                1
    * :protobuf:msg:`Mysqlx.Notice::SessionVariableChanged` 2
    * :protobuf:msg:`Mysqlx.Notice::SessionStateChanged`    3
    * ===================================================== =====
-   * :param type: the type of the payload
+   * :param Type: the Type of the payload
    * :param payload: the payload of the notification
    * :param scope: global or local notification
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Notice.Frame}
+   * Protobuf Type {@code Mysqlx.Notice.Frame}
    */
   public  static final class Frame extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -261,7 +261,7 @@ public final class MysqlxNotice {
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this Type.");
         }
         return VALUES[desc.getIndex()];
       }
@@ -369,7 +369,7 @@ public final class MysqlxNotice {
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this Type.");
         }
         return VALUES[desc.getIndex()];
       }
@@ -387,13 +387,13 @@ public final class MysqlxNotice {
     public static final int TYPE_FIELD_NUMBER = 1;
     private int type_;
     /**
-     * <code>required uint32 type = 1;</code>
+     * <code>required uint32 Type = 1;</code>
      */
     public boolean hasType() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required uint32 type = 1;</code>
+     * <code>required uint32 Type = 1;</code>
      */
     public int getType() {
       return type_;
@@ -631,18 +631,18 @@ public final class MysqlxNotice {
      * <pre>
      * Common Frame for all Notices
      * ===================================================== =====
-     * .type                                                 value
+     * .Type                                                 value
      * ===================================================== =====
      * :protobuf:msg:`Mysqlx.Notice::Warning`                1
      * :protobuf:msg:`Mysqlx.Notice::SessionVariableChanged` 2
      * :protobuf:msg:`Mysqlx.Notice::SessionStateChanged`    3
      * ===================================================== =====
-     * :param type: the type of the payload
+     * :param Type: the Type of the payload
      * :param payload: the payload of the notification
      * :param scope: global or local notification
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Notice.Frame}
+     * Protobuf Type {@code Mysqlx.Notice.Frame}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -818,19 +818,19 @@ public final class MysqlxNotice {
 
       private int type_ ;
       /**
-       * <code>required uint32 type = 1;</code>
+       * <code>required uint32 Type = 1;</code>
        */
       public boolean hasType() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required uint32 type = 1;</code>
+       * <code>required uint32 Type = 1;</code>
        */
       public int getType() {
         return type_;
       }
       /**
-       * <code>required uint32 type = 1;</code>
+       * <code>required uint32 Type = 1;</code>
        */
       public Builder setType(int value) {
         bitField0_ |= 0x00000001;
@@ -839,7 +839,7 @@ public final class MysqlxNotice {
         return this;
       }
       /**
-       * <code>required uint32 type = 1;</code>
+       * <code>required uint32 Type = 1;</code>
        */
       public Builder clearType() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -1023,7 +1023,7 @@ public final class MysqlxNotice {
    * ========================================== =======================
    * :protobuf:msg:`Mysqlx.Notice::Frame` field value
    * ========================================== =======================
-   * ``.type``                                  1
+   * ``.Type``                                  1
    * ``.scope``                                 ``local`` or ``global``
    * ========================================== =======================
    * :param level: warning level: Note or Warning
@@ -1031,7 +1031,7 @@ public final class MysqlxNotice {
    * :param msg: warning message
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Notice.Warning}
+   * Protobuf Type {@code Mysqlx.Notice.Warning}
    */
   public  static final class Warning extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -1212,7 +1212,7 @@ public final class MysqlxNotice {
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this Type.");
         }
         return VALUES[desc.getIndex()];
       }
@@ -1515,7 +1515,7 @@ public final class MysqlxNotice {
      * ========================================== =======================
      * :protobuf:msg:`Mysqlx.Notice::Frame` field value
      * ========================================== =======================
-     * ``.type``                                  1
+     * ``.Type``                                  1
      * ``.scope``                                 ``local`` or ``global``
      * ========================================== =======================
      * :param level: warning level: Note or Warning
@@ -1523,7 +1523,7 @@ public final class MysqlxNotice {
      * :param msg: warning message
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Notice.Warning}
+     * Protobuf Type {@code Mysqlx.Notice.Warning}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -1939,7 +1939,7 @@ public final class MysqlxNotice {
    * ========================================== =========
    * :protobuf:msg:`Mysqlx.Notice::Frame` field value
    * ========================================== =========
-   * ``.type``                                  2
+   * ``.Type``                                  2
    * ``.scope``                                 ``local``
    * ========================================== =========
    * :param namespace: namespace that param belongs to
@@ -1947,7 +1947,7 @@ public final class MysqlxNotice {
    * :param value: the changed value of param
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Notice.SessionVariableChanged}
+   * Protobuf Type {@code Mysqlx.Notice.SessionVariableChanged}
    */
   public  static final class SessionVariableChanged extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -2296,7 +2296,7 @@ public final class MysqlxNotice {
      * ========================================== =========
      * :protobuf:msg:`Mysqlx.Notice::Frame` field value
      * ========================================== =========
-     * ``.type``                                  2
+     * ``.Type``                                  2
      * ``.scope``                                 ``local``
      * ========================================== =========
      * :param namespace: namespace that param belongs to
@@ -2304,7 +2304,7 @@ public final class MysqlxNotice {
      * :param value: the changed value of param
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Notice.SessionVariableChanged}
+     * Protobuf Type {@code Mysqlx.Notice.SessionVariableChanged}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -2774,14 +2774,14 @@ public final class MysqlxNotice {
    * ========================================== =========
    * :protobuf:msg:`Mysqlx.Notice::Frame` field value
    * ========================================== =========
-   * ``.type``                                  3
+   * ``.Type``                                  3
    * ``.scope``                                 ``local``
    * ========================================== =========
    * :param param: parameter key
    * :param value: updated value
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Notice.SessionStateChanged}
+   * Protobuf Type {@code Mysqlx.Notice.SessionStateChanged}
    */
   public  static final class SessionStateChanged extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -3042,7 +3042,7 @@ public final class MysqlxNotice {
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this Type.");
         }
         return VALUES[desc.getIndex()];
       }
@@ -3298,14 +3298,14 @@ public final class MysqlxNotice {
      * ========================================== =========
      * :protobuf:msg:`Mysqlx.Notice::Frame` field value
      * ========================================== =========
-     * ``.type``                                  3
+     * ``.Type``                                  3
      * ``.scope``                                 ``local``
      * ========================================== =========
      * :param param: parameter key
      * :param value: updated value
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Notice.SessionStateChanged}
+     * Protobuf Type {@code Mysqlx.Notice.SessionStateChanged}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -3842,11 +3842,11 @@ public final class MysqlxNotice {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required uint32 type = 1;</code>
+     * <code>required uint32 Type = 1;</code>
      */
     boolean hasType();
     /**
-     * <code>required uint32 type = 1;</code>
+     * <code>required uint32 Type = 1;</code>
      */
     int getType();
 
@@ -3870,14 +3870,14 @@ public final class MysqlxNotice {
    * ========================================== ==========
    * :protobuf:msg:`Mysqlx.Notice::Frame` field value
    * ========================================== ==========
-   * ``.type``                                  4
+   * ``.Type``                                  4
    * ``.scope``                                 ``global``
    * ========================================== ==========
-   * :param type: type of group replication event
+   * :param Type: Type of group replication event
    * :param view_id: view identifier
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Notice.GroupReplicationStateChanged}
+   * Protobuf Type {@code Mysqlx.Notice.GroupReplicationStateChanged}
    */
   public  static final class GroupReplicationStateChanged extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -4054,7 +4054,7 @@ public final class MysqlxNotice {
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this Type.");
         }
         return VALUES[desc.getIndex()];
       }
@@ -4072,13 +4072,13 @@ public final class MysqlxNotice {
     public static final int TYPE_FIELD_NUMBER = 1;
     private int type_;
     /**
-     * <code>required uint32 type = 1;</code>
+     * <code>required uint32 Type = 1;</code>
      */
     public boolean hasType() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required uint32 type = 1;</code>
+     * <code>required uint32 Type = 1;</code>
      */
     public int getType() {
       return type_;
@@ -4312,14 +4312,14 @@ public final class MysqlxNotice {
      * ========================================== ==========
      * :protobuf:msg:`Mysqlx.Notice::Frame` field value
      * ========================================== ==========
-     * ``.type``                                  4
+     * ``.Type``                                  4
      * ``.scope``                                 ``global``
      * ========================================== ==========
-     * :param type: type of group replication event
+     * :param Type: Type of group replication event
      * :param view_id: view identifier
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Notice.GroupReplicationStateChanged}
+     * Protobuf Type {@code Mysqlx.Notice.GroupReplicationStateChanged}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -4488,19 +4488,19 @@ public final class MysqlxNotice {
 
       private int type_ ;
       /**
-       * <code>required uint32 type = 1;</code>
+       * <code>required uint32 Type = 1;</code>
        */
       public boolean hasType() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required uint32 type = 1;</code>
+       * <code>required uint32 Type = 1;</code>
        */
       public int getType() {
         return type_;
       }
       /**
-       * <code>required uint32 type = 1;</code>
+       * <code>required uint32 Type = 1;</code>
        */
       public Builder setType(int value) {
         bitField0_ |= 0x00000001;
@@ -4509,7 +4509,7 @@ public final class MysqlxNotice {
         return this;
       }
       /**
-       * <code>required uint32 type = 1;</code>
+       * <code>required uint32 Type = 1;</code>
        */
       public Builder clearType() {
         bitField0_ = (bitField0_ & ~0x00000001);

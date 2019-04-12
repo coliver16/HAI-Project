@@ -58,7 +58,7 @@ public interface JdbcStatement extends java.sql.Statement, Query {
     void enableStreamingResults() throws SQLException;
 
     /**
-     * Resets this statements fetch size and result set type to the values
+     * Resets this statements fetch size and result set Type to the values
      * they had before enableStreamingResults() was called.
      * 
      * @throws SQLException

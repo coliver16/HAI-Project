@@ -41,10 +41,10 @@ import com.mysql.cj.util.StringUtils;
 
 /**
  * A string converter facilitates "indirect" conversions of values from strings to other non-string types. A byte array is interpreted as a string in the given
- * character set and then inspected to guess that the actual type may be. After this, it is decoded as that type and sent to the value factory.
+ * character set and then inspected to guess that the actual Type may be. After this, it is decoded as that Type and sent to the value factory.
  * 
  * @param <T>
- *            value type
+ *            value Type
  */
 public class StringConverter<T> extends BaseDecoratingValueFactory<T> {
     private String encoding;

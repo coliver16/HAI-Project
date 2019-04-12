@@ -50,7 +50,7 @@ import com.mysql.cj.result.RowList;
  * Base class for data set results.
  * 
  * @param <T>
- *            Result entry type
+ *            Result entry Type
  */
 public abstract class AbstractDataResult<T> implements ResultStreamer, Iterator<T> {
 

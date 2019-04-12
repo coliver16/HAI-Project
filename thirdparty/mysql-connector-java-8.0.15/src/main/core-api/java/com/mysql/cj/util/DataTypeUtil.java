@@ -30,7 +30,7 @@
 package com.mysql.cj.util;
 
 /**
- * Utilities to manipulate internal data type formats.
+ * Utilities to manipulate internal data Type formats.
  */
 public class DataTypeUtil {
 

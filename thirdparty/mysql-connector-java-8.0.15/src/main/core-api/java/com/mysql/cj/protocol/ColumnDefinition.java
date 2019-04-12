@@ -77,9 +77,9 @@ public interface ColumnDefinition extends ProtocolEntity {
     int findColumn(String columnName, boolean useColumnNamesInFindColumn, int indexBase);
 
     /**
-     * Check if fields with type BLOB, MEDIUMBLOB, LONGBLOB, TEXT, MEDIUMTEXT or LONGTEXT exist in this ColumnDefinition.
+     * Check if fields with Type BLOB, MEDIUMBLOB, LONGBLOB, TEXT, MEDIUMTEXT or LONGTEXT exist in this ColumnDefinition.
      * 
-     * @return true if fields with type BLOB, MEDIUMBLOB, LONGBLOB, TEXT, MEDIUMTEXT or LONGTEXT exist in this ColumnDefinition.
+     * @return true if fields with Type BLOB, MEDIUMBLOB, LONGBLOB, TEXT, MEDIUMTEXT or LONGTEXT exist in this ColumnDefinition.
      */
     boolean hasLargeFields();
 }

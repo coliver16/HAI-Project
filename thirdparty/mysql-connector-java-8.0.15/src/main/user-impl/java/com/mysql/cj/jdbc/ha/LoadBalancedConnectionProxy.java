@@ -287,7 +287,7 @@ public class LoadBalancedConnectionProxy extends MultiHostConnectionProxy implem
     }
 
     /**
-     * Always returns 'true' as there are no "masters" and "slaves" in this type of connection.
+     * Always returns 'true' as there are no "masters" and "slaves" in this Type of connection.
      */
     @Override
     boolean isMasterConnection() {

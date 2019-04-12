@@ -103,7 +103,7 @@ public class NamedPipeSocketFactory implements SocketFactory {
     }
 
     /**
-     * Enables OutputStream-type functionality for a RandomAccessFile
+     * Enables OutputStream-Type functionality for a RandomAccessFile
      */
     class RandomAccessFileInputStream extends InputStream {
         RandomAccessFile raFile;
@@ -154,7 +154,7 @@ public class NamedPipeSocketFactory implements SocketFactory {
     }
 
     /**
-     * Enables OutputStream-type functionality for a RandomAccessFile
+     * Enables OutputStream-Type functionality for a RandomAccessFile
      */
     class RandomAccessFileOutputStream extends OutputStream {
         RandomAccessFile raFile;

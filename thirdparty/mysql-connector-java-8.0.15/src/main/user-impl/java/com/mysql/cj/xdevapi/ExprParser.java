@@ -133,7 +133,7 @@ public class ExprParser {
     }
 
     /**
-     * Token. Includes type and string value of the token.
+     * Token. Includes Type and string value of the token.
      */
     static class Token {
         TokenType type;
@@ -448,7 +448,7 @@ public class ExprParser {
     }
 
     /**
-     * Assert that the token at <i>pos</i> is of type <i>type</i>.
+     * Assert that the token at <i>pos</i> is of Type <i>Type</i>.
      * 
      * @param pos
      *            The current position in the string
@@ -460,12 +460,12 @@ public class ExprParser {
             throw new WrongArgumentException("No more tokens when expecting " + type + " at token pos " + pos);
         }
         if (this.tokens.get(pos).type != type) {
-            throw new WrongArgumentException("Expected token type " + type + " at token pos " + pos);
+            throw new WrongArgumentException("Expected token Type " + type + " at token pos " + pos);
         }
     }
 
     /**
-     * Does the current token have type `t'?
+     * Does the current token have Type `t'?
      * 
      * @param t
      *            {@link TokenType}
@@ -476,7 +476,7 @@ public class ExprParser {
     }
 
     /**
-     * Does the next token have type `t'?
+     * Does the next token have Type `t'?
      * 
      * @param t
      *            {@link TokenType}
@@ -487,7 +487,7 @@ public class ExprParser {
     }
 
     /**
-     * Does the token at position `pos' have type `t'?
+     * Does the token at position `pos' have Type `t'?
      * 
      * @param pos
      *            The current position in the string
@@ -589,7 +589,7 @@ public class ExprParser {
             consumeToken(TokenType.LSTRING);
             memberName = t.value;
         } else {
-            throw new WrongArgumentException("Expected token type IDENT or LSTRING in JSON path at token pos " + this.tokenPos);
+            throw new WrongArgumentException("Expected token Type IDENT or LSTRING in JSON path at token pos " + this.tokenPos);
         }
         DocumentPathItem.Builder item = DocumentPathItem.newBuilder();
         item.setType(DocumentPathItem.Type.MEMBER);
@@ -618,7 +618,7 @@ public class ExprParser {
             consumeToken(TokenType.RSQBRACKET);
             return builder.setType(DocumentPathItem.Type.ARRAY_INDEX).setIndex(v).build();
         } else {
-            throw new WrongArgumentException("Expected token type STAR or LNUM_INT in JSON path array index at token pos " + this.tokenPos);
+            throw new WrongArgumentException("Expected token Type STAR or LNUM_INT in JSON path array index at token pos " + this.tokenPos);
         }
     }
 
@@ -798,7 +798,7 @@ public class ExprParser {
                 builder.addParam(expr());
                 consumeToken(TokenType.AS);
                 StringBuilder typeStr = new StringBuilder(this.tokens.get(this.tokenPos).value.toUpperCase());
-                // ensure next token is a valid type argument to CAST
+                // ensure next token is a valid Type argument to CAST
                 if (currentTokenTypeEquals(TokenType.DECIMAL)) {
                     this.tokenPos++;
                     if (currentTokenTypeEquals(TokenType.LPAREN)) {
@@ -820,14 +820,14 @@ public class ExprParser {
                 } else if (currentTokenTypeEquals(TokenType.UNSIGNED) || currentTokenTypeEquals(TokenType.SIGNED)) {
                     this.tokenPos++;
                     if (currentTokenTypeEquals(TokenType.INTEGER)) {
-                        // don't add optional INTEGER to type string argument
+                        // don't add optional INTEGER to Type string argument
                         consumeToken(TokenType.INTEGER);
                     }
                 } else if (currentTokenTypeEquals(TokenType.JSON) || currentTokenTypeEquals(TokenType.DATE) || currentTokenTypeEquals(TokenType.DATETIME)
                         || currentTokenTypeEquals(TokenType.TIME)) {
                     this.tokenPos++;
                 } else {
-                    throw new WrongArgumentException("Expected valid CAST type argument at " + this.tokenPos);
+                    throw new WrongArgumentException("Expected valid CAST Type argument at " + this.tokenPos);
                 }
                 consumeToken(TokenType.RPAREN);
                 // TODO charset?
@@ -1087,7 +1087,7 @@ public class ExprParser {
      * Utility method to wrap a parser of a list of elements separated by comma.
      *
      * @param <T>
-     *            the type of element to be parsed
+     *            the Type of element to be parsed
      * @param elementParser
      *            the single element parser
      * @return a list of elements parsed

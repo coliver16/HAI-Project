@@ -39,7 +39,7 @@ import com.mysql.cj.exceptions.ExceptionFactory;
  * This interface provides a facility for sending messages to server. The destination, transmission method, etc are determined by the implementation.
  * 
  * @param <M>
- *            Message type
+ *            Message Type
  */
 public interface MessageSender<M extends Message> {
 

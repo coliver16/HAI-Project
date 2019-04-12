@@ -84,7 +84,7 @@ public enum MysqlType implements SQLType {
      * These types are synonyms for TINYINT(1). A value of zero is considered false. Nonzero values are considered true
      * 
      * BOOLEAN is converted to TINYINT(1) during DDL execution i.e. it has the same precision=3. Thus we have to
-     * look at full data type name and convert TINYINT to BOOLEAN (or BIT) if it has "(1)" length specification.
+     * look at full data Type name and convert TINYINT to BOOLEAN (or BIT) if it has "(1)" length specification.
      * 
      * Protocol: FIELD_TYPE_TINY = 1
      */
@@ -134,8 +134,8 @@ public enum MysqlType implements SQLType {
      * Additionally:
      * FLOAT(p) [UNSIGNED] [ZEROFILL]
      * A floating-point number. p represents the precision in bits, but MySQL uses this value only to determine whether
-     * to use FLOAT or DOUBLE for the resulting data type. If p is from 0 to 24, the data type becomes FLOAT with no M or D values.
-     * If p is from 25 to 53, the data type becomes DOUBLE with no M or D values. The range of the resulting column is the same as
+     * to use FLOAT or DOUBLE for the resulting data Type. If p is from 0 to 24, the data Type becomes FLOAT with no M or D values.
+     * If p is from 25 to 53, the data Type becomes DOUBLE with no M or D values. The range of the resulting column is the same as
      * for the single-precision FLOAT or double-precision DOUBLE data types.
      */
     FLOAT("FLOAT", Types.REAL, Float.class, MysqlType.FIELD_FLAG_ZEROFILL, MysqlType.IS_DECIMAL, 12L, "[(M,D)] [UNSIGNED] [ZEROFILL]"),
@@ -279,7 +279,7 @@ public enum MysqlType implements SQLType {
     VARCHAR("VARCHAR", Types.VARCHAR, String.class, 0, MysqlType.IS_NOT_DECIMAL, 65535L, "(M) [CHARACTER SET charset_name] [COLLATE collation_name]"),
     /**
      * VARBINARY(M)
-     * The VARBINARY type is similar to the VARCHAR type, but stores binary byte strings rather than nonbinary
+     * The VARBINARY Type is similar to the VARCHAR Type, but stores binary byte strings rather than nonbinary
      * character strings. M represents the maximum column length in bytes.
      * 
      * Protocol: FIELD_TYPE_VARCHAR = 15
@@ -288,7 +288,7 @@ public enum MysqlType implements SQLType {
     VARBINARY("VARBINARY", Types.VARBINARY, null, 0, MysqlType.IS_NOT_DECIMAL, 65535L, "(M)"),
     /**
      * BIT[(M)]
-     * A bit-field type. M indicates the number of bits per value, from 1 to 64. The default is 1 if M is omitted.
+     * A bit-field Type. M indicates the number of bits per value, from 1 to 64. The default is 1 if M is omitted.
      * Protocol: FIELD_TYPE_BIT = 16
      */
     BIT("BIT", Types.BIT, Boolean.class, 0, MysqlType.IS_DECIMAL, 1L, "[(M)]"), // TODO maybe precision=8 ?
@@ -378,8 +378,8 @@ public enum MysqlType implements SQLType {
      * BLOB[(M)]
      * A BLOB column with a maximum length of 65,535 (216 - 1) bytes. Each BLOB value is stored using
      * a 2-byte length prefix that indicates the number of bytes in the value.
-     * An optional length M can be given for this type. If this is done, MySQL creates the column as
-     * the smallest BLOB type large enough to hold values M bytes long.
+     * An optional length M can be given for this Type. If this is done, MySQL creates the column as
+     * the smallest BLOB Type large enough to hold values M bytes long.
      * 
      * Protocol: FIELD_TYPE_BLOB = 252
      */
@@ -389,8 +389,8 @@ public enum MysqlType implements SQLType {
      * A TEXT column with a maximum length of 65,535 (216 - 1) characters. The effective maximum length
      * is less if the value contains multibyte characters. Each TEXT value is stored using a 2-byte length
      * prefix that indicates the number of bytes in the value.
-     * An optional length M can be given for this type. If this is done, MySQL creates the column as
-     * the smallest TEXT type large enough to hold values M characters long.
+     * An optional length M can be given for this Type. If this is done, MySQL creates the column as
+     * the smallest TEXT Type large enough to hold values M characters long.
      * 
      * Protocol: FIELD_TYPE_BLOB = 252
      */
@@ -405,7 +405,7 @@ public enum MysqlType implements SQLType {
      * to define that a CHAR column should use some predefined character set. MySQL 4.1 and up uses utf8
      * as this predefined character set.
      * 
-     * MySQL permits you to create a column of type CHAR(0). This is useful primarily when you have to be compliant
+     * MySQL permits you to create a column of Type CHAR(0). This is useful primarily when you have to be compliant
      * with old applications that depend on the existence of a column but that do not actually use its value.
      * CHAR(0) is also quite nice when you need a column that can take only two values: A column that is defined
      * as CHAR(0) NULL occupies only one bit and can take only the values NULL and '' (the empty string).
@@ -415,12 +415,12 @@ public enum MysqlType implements SQLType {
     CHAR("CHAR", Types.CHAR, String.class, 0, MysqlType.IS_NOT_DECIMAL, 255L, "[(M)] [CHARACTER SET charset_name] [COLLATE collation_name]"),
     /**
      * BINARY(M)
-     * The BINARY type is similar to the CHAR type, but stores binary byte strings rather than nonbinary character strings.
+     * The BINARY Type is similar to the CHAR Type, but stores binary byte strings rather than nonbinary character strings.
      * M represents the column length in bytes.
      * 
-     * The CHAR BYTE data type is an alias for the BINARY data type.
+     * The CHAR BYTE data Type is an alias for the BINARY data Type.
      * 
-     * Protocol: no concrete type on the wire TODO: really?
+     * Protocol: no concrete Type on the wire TODO: really?
      */
     BINARY("BINARY", Types.BINARY, null, 0, MysqlType.IS_NOT_DECIMAL, 255L, "(M)"),
     /**
@@ -430,7 +430,7 @@ public enum MysqlType implements SQLType {
      */
     GEOMETRY("GEOMETRY", Types.BINARY, null, 0, MysqlType.IS_NOT_DECIMAL, 65535L, ""), // TODO check precision, it isn't well documented, only mentioned that WKB format is represented by BLOB 
     /**
-     * Fall-back type for those MySQL data types which c/J can't recognize.
+     * Fall-back Type for those MySQL data types which c/J can't recognize.
      * Handled the same as BLOB.
      * 
      * Has no protocol ID.
@@ -438,11 +438,11 @@ public enum MysqlType implements SQLType {
     UNKNOWN("UNKNOWN", Types.OTHER, null, 0, MysqlType.IS_NOT_DECIMAL, 65535L, "");
 
     /**
-     * Get MysqlType matching the full MySQL type name, for example "DECIMAL(5,3) UNSIGNED ZEROFILL".
-     * Distinct *_UNSIGNED type will be returned if "UNSIGNED" is present in fullMysqlTypeName.
+     * Get MysqlType matching the full MySQL Type name, for example "DECIMAL(5,3) UNSIGNED ZEROFILL".
+     * Distinct *_UNSIGNED Type will be returned if "UNSIGNED" is present in fullMysqlTypeName.
      * 
      * @param fullMysqlTypeName
-     *            full MySQL type name
+     *            full MySQL Type name
      * @return MysqlType
      */
     public static MysqlType getByName(String fullMysqlTypeName) {
@@ -511,7 +511,7 @@ public enum MysqlType implements SQLType {
                                                                            * || StringUtils.indexOfIgnoreCase(name, "FLOAT4") != -1 is caught by
                                                                            * "FLOAT" check
                                                                            */) {
-            // TODO FLOAT(p) [UNSIGNED] [ZEROFILL]. If p is from 0 to 24, the data type becomes FLOAT with no M or D values. If p is from 25 to 53, the data type becomes DOUBLE with no M or D values.
+            // TODO FLOAT(p) [UNSIGNED] [ZEROFILL]. If p is from 0 to 24, the data Type becomes FLOAT with no M or D values. If p is from 25 to 53, the data Type becomes DOUBLE with no M or D values.
             return StringUtils.indexOfIgnoreCase(fullMysqlTypeName, "UNSIGNED") != -1 ? FLOAT_UNSIGNED : FLOAT;
 
         } else if (StringUtils.indexOfIgnoreCase(typeName, "NULL") != -1) {
@@ -662,11 +662,11 @@ public enum MysqlType implements SQLType {
                 return VARCHAR;
 
             case Types.REF_CURSOR:
-                throw new FeatureNotAvailableException("REF_CURSOR type is not supported");
+                throw new FeatureNotAvailableException("REF_CURSOR Type is not supported");
             case Types.TIME_WITH_TIMEZONE:
-                throw new FeatureNotAvailableException("TIME_WITH_TIMEZONE type is not supported");
+                throw new FeatureNotAvailableException("TIME_WITH_TIMEZONE Type is not supported");
             case Types.TIMESTAMP_WITH_TIMEZONE:
-                throw new FeatureNotAvailableException("TIMESTAMP_WITH_TIMEZONE type is not supported");
+                throw new FeatureNotAvailableException("TIMESTAMP_WITH_TIMEZONE Type is not supported");
 
                 // TODO check next types
             case Types.ARRAY:
@@ -685,9 +685,9 @@ public enum MysqlType implements SQLType {
      * Is CONVERT between the given SQL types supported?
      * 
      * @param fromType
-     *            the type to convert from
+     *            the Type to convert from
      * @param toType
-     *            the type to convert to
+     *            the Type to convert to
      * @return true if so
      * @see Types
      */
@@ -733,7 +733,7 @@ public enum MysqlType implements SQLType {
                 }
 
                 /*
-                 * We don't handle the BIT type yet.
+                 * We don't handle the BIT Type yet.
                  */
             case java.sql.Types.BIT:
                 return false;
@@ -773,7 +773,7 @@ public enum MysqlType implements SQLType {
                         return false;
                 }
 
-                /* MySQL doesn't support a NULL type. */
+                /* MySQL doesn't support a NULL Type. */
             case java.sql.Types.NULL:
                 return false;
 
@@ -989,7 +989,7 @@ public enum MysqlType implements SQLType {
         return this.jdbcType;
     }
 
-    // Protocol field type numbers
+    // Protocol field Type numbers
     public static final int FIELD_TYPE_DECIMAL = 0;
     public static final int FIELD_TYPE_TINY = 1;
     public static final int FIELD_TYPE_SHORT = 2;

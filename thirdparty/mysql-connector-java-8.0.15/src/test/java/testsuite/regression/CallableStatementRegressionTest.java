@@ -775,10 +775,10 @@ public class CallableStatementRegressionTest extends BaseTestCase {
                         + "\n /*\n ,    -- Generic result parameter"
                         + "\n out _PERIOD_ID int,         -- Returns the period_id. Useful when using @PREDEFLINK to return which is the last period"
                         + "\n   _SONGS_LIST varchar(8000),\n  _COMPOSERID int,\n  _PUBLISHERID int,"
-                        + "\n   _PREDEFLINK int        -- If the user is accessing through a predefined link: 0=none  1=last period\n */) BEGIN SELECT 1; END");
+                        + "\n   _PREDEFLINK int        -- If the User is accessing through a predefined link: 0=none  1=last period\n */) BEGIN SELECT 1; END");
 
-        createProcedure("testBug26959_1", "(`/*id*/` /* before type 1 */ varchar(20),"
-                + "/* after type 1 */ OUT result2 DECIMAL(/*size1*/10,/*size2*/2) /* p2 */)BEGIN SELECT action, result; END");
+        createProcedure("testBug26959_1", "(`/*id*/` /* before Type 1 */ varchar(20),"
+                + "/* after Type 1 */ OUT result2 DECIMAL(/*size1*/10,/*size2*/2) /* p2 */)BEGIN SELECT action, result; END");
 
         this.conn.prepareCall("{call testBug26959(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}").close();
         this.rs = this.conn.getMetaData().getProcedureColumns(this.conn.getCatalog(), null, "testBug26959", "%");
@@ -1363,7 +1363,7 @@ public class CallableStatementRegressionTest extends BaseTestCase {
                 String.format("{CALL %s.`testBug79561`(?)}", dbName1), String.format("{CALL `%s`.`testBug79561`(?)}", dbName1) };
 
         for (int i = 0; i < sql.length; i++) {
-            for (int m = 0; m < 4; m++) { // Method call type: 0) by index; 1) by name; 2) by invalid index; 3) by invalid name;
+            for (int m = 0; m < 4; m++) { // Method call Type: 0) by index; 1) by name; 2) by invalid index; 3) by invalid name;
                 final String testCase = String.format("Case: [sql: %d, method: %d ]", i, m);
                 final CallableStatement cstmt = this.conn.prepareCall(sql[i]);
                 boolean dataExpected = true;

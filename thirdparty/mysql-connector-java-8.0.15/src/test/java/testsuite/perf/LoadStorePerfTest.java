@@ -41,7 +41,7 @@ import testsuite.BaseTestCase;
  * Simple performance testing unit test.
  */
 public class LoadStorePerfTest extends BasePerfTest {
-    /** The table type to use (only for MySQL), 'HEAP' by default */
+    /** The table Type to use (only for MySQL), 'HEAP' by default */
     private String tableType = "HEAP";
 
     private boolean takeMeasurements = false;
@@ -66,7 +66,7 @@ public class LoadStorePerfTest extends BasePerfTest {
         if ((newTableType != null) && (newTableType.length() > 0)) {
             this.tableType = newTableType;
 
-            System.out.println("Using specified table type of '" + this.tableType + "'");
+            System.out.println("Using specified table Type of '" + this.tableType + "'");
         }
     }
 
@@ -171,7 +171,7 @@ public class LoadStorePerfTest extends BasePerfTest {
     }
 
     /**
-     * Tests and times 1000 load/store type transactions
+     * Tests and times 1000 load/store Type transactions
      * 
      * @throws Exception
      *             if an error occurs

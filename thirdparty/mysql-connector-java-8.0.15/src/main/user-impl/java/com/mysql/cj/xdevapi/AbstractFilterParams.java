@@ -86,7 +86,7 @@ public abstract class AbstractFilterParams implements FilterParams {
     }
 
     public Object getOrder() {
-        // type is reserved as hidden knowledge, don't expose protobuf internals
+        // Type is reserved as hidden knowledge, don't expose protobuf internals
         return this.order;
     }
 

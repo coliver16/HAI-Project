@@ -720,84 +720,84 @@ public class ResultSetTest extends BaseTestCase {
         assertTrue(this.rs.next());
 
         final ResultSet rsTmp = this.rs;
-        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL type: TIME_WITH_TIMEZONE", new Callable<Void>() {
+        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL Type: TIME_WITH_TIMEZONE", new Callable<Void>() {
             @Override
             public Void call() throws Exception {
                 rsTmp.updateObject(2, LocalTime.now(), JDBCType.TIME_WITH_TIMEZONE);
                 return null;
             }
         });
-        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL type: TIME_WITH_TIMEZONE", new Callable<Void>() {
+        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL Type: TIME_WITH_TIMEZONE", new Callable<Void>() {
             @Override
             public Void call() throws Exception {
                 rsTmp.updateObject(2, LocalTime.now(), JDBCType.TIME_WITH_TIMEZONE, 8);
                 return null;
             }
         });
-        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL type: TIME_WITH_TIMEZONE", new Callable<Void>() {
+        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL Type: TIME_WITH_TIMEZONE", new Callable<Void>() {
             @Override
             public Void call() throws Exception {
                 rsTmp.updateObject("col", LocalTime.now(), JDBCType.TIME_WITH_TIMEZONE);
                 return null;
             }
         });
-        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL type: TIME_WITH_TIMEZONE", new Callable<Void>() {
+        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL Type: TIME_WITH_TIMEZONE", new Callable<Void>() {
             @Override
             public Void call() throws Exception {
                 rsTmp.updateObject("col", LocalTime.now(), JDBCType.TIME_WITH_TIMEZONE, 8);
                 return null;
             }
         });
-        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL type: TIMESTAMP_WITH_TIMEZONE", new Callable<Void>() {
+        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL Type: TIMESTAMP_WITH_TIMEZONE", new Callable<Void>() {
             @Override
             public Void call() throws Exception {
                 rsTmp.updateObject(2, LocalDateTime.now(), JDBCType.TIMESTAMP_WITH_TIMEZONE);
                 return null;
             }
         });
-        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL type: TIMESTAMP_WITH_TIMEZONE", new Callable<Void>() {
+        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL Type: TIMESTAMP_WITH_TIMEZONE", new Callable<Void>() {
             @Override
             public Void call() throws Exception {
                 rsTmp.updateObject(2, LocalDateTime.now(), JDBCType.TIMESTAMP_WITH_TIMEZONE, 20);
                 return null;
             }
         });
-        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL type: TIMESTAMP_WITH_TIMEZONE", new Callable<Void>() {
+        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL Type: TIMESTAMP_WITH_TIMEZONE", new Callable<Void>() {
             @Override
             public Void call() throws Exception {
                 rsTmp.updateObject("col", LocalDateTime.now(), JDBCType.TIMESTAMP_WITH_TIMEZONE);
                 return null;
             }
         });
-        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL type: TIMESTAMP_WITH_TIMEZONE", new Callable<Void>() {
+        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL Type: TIMESTAMP_WITH_TIMEZONE", new Callable<Void>() {
             @Override
             public Void call() throws Exception {
                 rsTmp.updateObject("col", LocalDateTime.now(), JDBCType.TIMESTAMP_WITH_TIMEZONE, 20);
                 return null;
             }
         });
-        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL type: REF_CURSOR", new Callable<Void>() {
+        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL Type: REF_CURSOR", new Callable<Void>() {
             @Override
             public Void call() throws Exception {
                 rsTmp.updateObject(2, new Object(), JDBCType.REF_CURSOR);
                 return null;
             }
         });
-        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL type: REF_CURSOR", new Callable<Void>() {
+        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL Type: REF_CURSOR", new Callable<Void>() {
             @Override
             public Void call() throws Exception {
                 rsTmp.updateObject(2, new Object(), JDBCType.REF_CURSOR, 32);
                 return null;
             }
         });
-        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL type: REF_CURSOR", new Callable<Void>() {
+        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL Type: REF_CURSOR", new Callable<Void>() {
             @Override
             public Void call() throws Exception {
                 rsTmp.updateObject("col", new Object(), JDBCType.REF_CURSOR);
                 return null;
             }
         });
-        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL type: REF_CURSOR", new Callable<Void>() {
+        assertThrows(SQLFeatureNotSupportedException.class, "Unsupported SQL Type: REF_CURSOR", new Callable<Void>() {
             @Override
             public Void call() throws Exception {
                 rsTmp.updateObject("col", new Object(), JDBCType.REF_CURSOR, 32);

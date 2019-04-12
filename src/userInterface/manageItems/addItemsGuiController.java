@@ -110,12 +110,12 @@ public class addItemsGuiController {
         roomLabel.setEffect(dropShadow);
 
 
-        //room = new ComboBox(FXCollections
+        //Room = new ComboBox(FXCollections
         //        .observableArrayList(rooms));
-        //room = new ComboBox(roomOptions);
+        //Room = new ComboBox(roomOptions);
         room.setItems(roomOptions);
-        //room.getItems().setAll(rooms);
-        //room.getItems().addAll("Living Room", "Dining Room", "Bed Room (Master)", "Bedroom (Child)", "Bedroom (Guest)", "Kitchen", "Garage", "Attic", "Basement", "Other");
+        //Room.getItems().setAll(rooms);
+        //Room.getItems().addAll("Living Room", "Dining Room", "Bed Room (Master)", "Bedroom (Child)", "Bedroom (Guest)", "Kitchen", "Garage", "Attic", "Basement", "Other");
         room.setEditable(true);
 
         categoryLabel.setText("Category");
@@ -123,10 +123,10 @@ public class addItemsGuiController {
         categoryLabel.setTextFill(Color.rgb(255,255,255));
         categoryLabel.setEffect(dropShadow);
 
-        //category = new ComboBox(FXCollections
+        //Category = new ComboBox(FXCollections
         //        .observableArrayList(categories));
-        //category.getItems().addAll("Antiques", "Appliances", "Automotive", "Clothing", "Collectibles", "Furniture", "Electronic", "Jewelry", "Musical Instruments", "tools", "Other");
-        //category = new ComboBox(categoryOptions);
+        //Category.getItems().addAll("Antiques", "Appliances", "Automotive", "Clothing", "Collectibles", "Furniture", "Electronic", "Jewelry", "Musical Instruments", "tools", "Other");
+        //Category = new ComboBox(categoryOptions);
         category.setItems(categoryOptions);
         category.setEditable(true);
 

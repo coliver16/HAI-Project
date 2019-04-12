@@ -49,7 +49,7 @@ public class ReplicationGroupManager implements ReplicationGroupManagerMBean {
         }
         MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
         try {
-            ObjectName name = new ObjectName("com.mysql.cj.jdbc.jmx:type=ReplicationGroupManager");
+            ObjectName name = new ObjectName("com.mysql.cj.jdbc.jmx:Type=ReplicationGroupManager");
             mbs.registerMBean(this, name);
             this.isJmxRegistered = true;
         } catch (Exception e) {

@@ -85,7 +85,7 @@ public class EscapeProcessingTest extends BaseTestCase {
     }
 
     /**
-     * JDBC-4.0 spec will allow either SQL_ or not for type in {fn convert ...}
+     * JDBC-4.0 spec will allow either SQL_ or not for Type in {fn convert ...}
      * 
      * @throws Exception
      *             if the test fails

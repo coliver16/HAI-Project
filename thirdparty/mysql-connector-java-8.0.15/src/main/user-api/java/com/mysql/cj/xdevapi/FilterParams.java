@@ -38,7 +38,7 @@ import com.mysql.cj.exceptions.WrongArgumentException;
 public interface FilterParams {
 
     /**
-     * The type of row lock.
+     * The Type of row lock.
      */
     public enum RowLock {
         /**
@@ -57,9 +57,9 @@ public interface FilterParams {
         }
 
         /**
-         * Get the row lock type id.
+         * Get the row lock Type id.
          * 
-         * @return row lock type id
+         * @return row lock Type id
          */
         public int asNumber() {
             return rowLock;

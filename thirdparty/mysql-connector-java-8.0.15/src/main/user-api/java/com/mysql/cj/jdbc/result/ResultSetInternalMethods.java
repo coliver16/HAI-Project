@@ -48,13 +48,13 @@ import com.mysql.cj.protocol.ResultsetRowsOwner;
 public interface ResultSetInternalMethods extends java.sql.ResultSet, ResultsetRowsOwner, Resultset {
 
     /**
-     * Functions like ResultSet.getObject(), but using the given SQL type
+     * Functions like ResultSet.getObject(), but using the given SQL Type
      * (as registered during CallableStatement.registerOutParameter()).
      * 
      * @param columnIndex
      *            1-based column index
      * @param desiredSqlType
-     *            desired column type, one of {@link Types}
+     *            desired column Type, one of {@link Types}
      * @return object
      * @throws SQLException
      *             if an error occurs
@@ -62,7 +62,7 @@ public interface ResultSetInternalMethods extends java.sql.ResultSet, ResultsetR
     Object getObjectStoredProc(int columnIndex, int desiredSqlType) throws SQLException;
 
     /**
-     * Functions like ResultSet.getObject(), but using the given SQL type
+     * Functions like ResultSet.getObject(), but using the given SQL Type
      * (as registered during CallableStatement.registerOutParameter()).
      * 
      * @param i
@@ -70,7 +70,7 @@ public interface ResultSetInternalMethods extends java.sql.ResultSet, ResultsetR
      * @param map
      *            map
      * @param desiredSqlType
-     *            desired column type, one of {@link Types}
+     *            desired column Type, one of {@link Types}
      * @return object
      * @throws SQLException
      *             if an error occurs
@@ -78,13 +78,13 @@ public interface ResultSetInternalMethods extends java.sql.ResultSet, ResultsetR
     Object getObjectStoredProc(int i, java.util.Map<Object, Object> map, int desiredSqlType) throws SQLException;
 
     /**
-     * Functions like ResultSet.getObject(), but using the given SQL type
+     * Functions like ResultSet.getObject(), but using the given SQL Type
      * (as registered during CallableStatement.registerOutParameter()).
      * 
      * @param columnName
      *            column name
      * @param desiredSqlType
-     *            desired column type, one of {@link Types}
+     *            desired column Type, one of {@link Types}
      * @return object
      * @throws SQLException
      *             if an error occurs
@@ -92,7 +92,7 @@ public interface ResultSetInternalMethods extends java.sql.ResultSet, ResultsetR
     Object getObjectStoredProc(String columnName, int desiredSqlType) throws SQLException;
 
     /**
-     * Functions like ResultSet.getObject(), but using the given SQL type
+     * Functions like ResultSet.getObject(), but using the given SQL Type
      * (as registered during CallableStatement.registerOutParameter()).
      * 
      * @param colName
@@ -100,7 +100,7 @@ public interface ResultSetInternalMethods extends java.sql.ResultSet, ResultsetR
      * @param map
      *            map
      * @param desiredSqlType
-     *            desired column type, one of {@link Types}
+     *            desired column Type, one of {@link Types}
      * @return object
      * @throws SQLException
      *             if an error occurs

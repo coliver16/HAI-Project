@@ -102,7 +102,7 @@ public class AddMethods {
                 addSetter(clazz, pname, "java.lang.String", "setEnumRuntimeProperty");
 
             } else {
-                throw new Exception("Unknown " + def.getName() + " property type.");
+                throw new Exception("Unknown " + def.getName() + " property Type.");
             }
         }
     }

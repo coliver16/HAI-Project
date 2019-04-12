@@ -78,7 +78,7 @@ public class ServerPreparedQueryBindValue extends ClientPreparedQueryBindValue i
     }
 
     /**
-     * Reset a bind value to be used for a new value of the given type.
+     * Reset a bind value to be used for a new value of the given Type.
      * 
      * @param bufType
      *            MysqlType.FIELD_TYPE_*
@@ -93,7 +93,7 @@ public class ServerPreparedQueryBindValue extends ClientPreparedQueryBindValue i
         reset();
 
         if (bufType == MysqlType.FIELD_TYPE_NULL && this.bufferType != 0) {
-            // preserve the previous type to (possibly) avoid sending types at execution time
+            // preserve the previous Type to (possibly) avoid sending types at execution time
         } else if (this.bufferType != bufType) {
             sendTypesToServer = true;
             this.bufferType = bufType;

@@ -39,7 +39,7 @@ import com.mysql.cj.exceptions.NumberOutOfRange;
  * A decorating value factory to enforce integer range limits.
  * 
  * @param <T>
- *            value type
+ *            value Type
  */
 public class IntegerBoundsEnforcer<T> extends BaseDecoratingValueFactory<T> {
     private long min;

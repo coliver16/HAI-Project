@@ -113,7 +113,7 @@ public class ProfilerEventImpl implements ProfilerEvent {
      * Creates a new profiler event
      * 
      * @param eventType
-     *            the event type (from the constants TYPE_????)
+     *            the event Type (from the constants TYPE_????)
      * @param hostName
      *            the hostname where the event occurs
      * @param catalog
@@ -129,7 +129,7 @@ public class ProfilerEventImpl implements ProfilerEvent {
      * @param eventDuration
      *            how long did the event last?
      * @param durationUnits
-     *            time units user for eventDuration
+     *            time units User for eventDuration
      * @param eventCreationPointDesc
      *            event creation point as a string
      * @param eventCreationPoint

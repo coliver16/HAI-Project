@@ -53,7 +53,7 @@ public class LoadBalanceConnectionGroupManager implements LoadBalanceConnectionG
         }
         MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
         try {
-            ObjectName name = new ObjectName("com.mysql.cj.jdbc.jmx:type=LoadBalanceConnectionGroupManager");
+            ObjectName name = new ObjectName("com.mysql.cj.jdbc.jmx:Type=LoadBalanceConnectionGroupManager");
             mbs.registerMBean(this, name);
             this.isJmxRegistered = true;
         } catch (Exception e) {

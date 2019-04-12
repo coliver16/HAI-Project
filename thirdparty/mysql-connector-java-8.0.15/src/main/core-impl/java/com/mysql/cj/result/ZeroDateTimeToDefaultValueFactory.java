@@ -34,7 +34,7 @@ package com.mysql.cj.result;
  * returned as 0001-01-01.
  * 
  * @param <T>
- *            value type
+ *            value Type
  */
 public class ZeroDateTimeToDefaultValueFactory<T> extends BaseDecoratingValueFactory<T> {
     public ZeroDateTimeToDefaultValueFactory(ValueFactory<T> targetVf) {

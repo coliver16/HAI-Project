@@ -159,26 +159,26 @@ public class CollectionTest extends BaseCollectionTestCase {
 
         // FR1_1 Create an index on a single field.
         this.collection.createIndex("myIndex", new DbDocImpl().add("fields", new JsonArray()
-                .addValue(new DbDocImpl().add("field", new JsonString().setValue("$.myField")).add("type", new JsonString().setValue("TEXT(200)")))));
+                .addValue(new DbDocImpl().add("field", new JsonString().setValue("$.myField")).add("Type", new JsonString().setValue("TEXT(200)")))));
         validateIndex("myIndex", this.collectionName, "t200", false, false, false, 1, 200);
         this.collection.dropIndex("myIndex");
 
         // FR1_2 Create an index on a single field with all the possibles options.
-        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"TEXT(5)\", \"required\": true}]}");
+        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"TEXT(5)\", \"required\": true}]}");
         validateIndex("myIndex", this.collectionName, "t5", false, true, false, 1, 5);
         this.collection.dropIndex("myIndex");
 
         // FR1_3 Create an index on multiple fields.
-        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"TEXT(20)\"},"
-                + " {\"field\": \"$.myField2\", \"type\": \"TEXT(10)\"}, {\"field\": \"$.myField3\", \"type\": \"INT\"}]}");
+        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"TEXT(20)\"},"
+                + " {\"field\": \"$.myField2\", \"Type\": \"TEXT(10)\"}, {\"field\": \"$.myField3\", \"Type\": \"INT\"}]}");
         validateIndex("myIndex", this.collectionName, "t20", false, false, false, 1, 20);
         validateIndex("myIndex", this.collectionName, "t10", false, false, false, 2, 10);
         validateIndex("myIndex", this.collectionName, "i", false, false, false, 3, null);
         this.collection.dropIndex("myIndex");
 
         // FR1_4 Create an index on multiple fields with all the possibles options.
-        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"TEXT(20)\"},"
-                + " {\"field\": \"$.myField2\", \"type\": \"TEXT(10)\", \"required\": true}, {\"field\": \"$.myField3\", \"type\": \"INT UNSIGNED\", \"required\": false}]}");
+        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"TEXT(20)\"},"
+                + " {\"field\": \"$.myField2\", \"Type\": \"TEXT(10)\", \"required\": true}, {\"field\": \"$.myField3\", \"Type\": \"INT UNSIGNED\", \"required\": false}]}");
         validateIndex("myIndex", this.collectionName, "t20", false, false, false, 1, 20);
         validateIndex("myIndex", this.collectionName, "t10", false, true, false, 2, 10);
         validateIndex("myIndex", this.collectionName, "i_u", false, false, true, 3, null);
@@ -186,91 +186,91 @@ public class CollectionTest extends BaseCollectionTestCase {
 
         // FR1_5 Create an index using a geojson datatype field.
         this.collection.createIndex("myIndex",
-                "{\"fields\": [{\"field\": \"$.myGeoJsonField\", \"type\": \"GEOJSON\", \"required\": true}], \"type\":\"SPATIAL\"}");
+                "{\"fields\": [{\"field\": \"$.myGeoJsonField\", \"Type\": \"GEOJSON\", \"required\": true}], \"Type\":\"SPATIAL\"}");
         validateIndex("myIndex", this.collectionName, "gj", false, true, false, 1, 32);
         this.collection.dropIndex("myIndex");
 
         // FR1_6 Create an index using a geojson datatype field with all the possibles options.
         this.collection.createIndex("myIndex",
-                "{\"fields\": [{\"field\": \"$.myGeoJsonField\", \"type\": \"GEOJSON\", \"required\": true, \"options\": 2, \"srid\": 4326}], \"type\":\"SPATIAL\"}");
+                "{\"fields\": [{\"field\": \"$.myGeoJsonField\", \"Type\": \"GEOJSON\", \"required\": true, \"options\": 2, \"srid\": 4326}], \"Type\":\"SPATIAL\"}");
         validateIndex("myIndex", this.collectionName, "gj", false, true, false, 1, 32);
         this.collection.dropIndex("myIndex");
 
         // FR1_7 Create an index using a datetime field.
-        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"DATETIME\"}]}");
+        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"DATETIME\"}]}");
         validateIndex("myIndex", this.collectionName, "dd", false, false, false, 1, null);
         this.collection.dropIndex("myIndex");
 
         // FR1_8 Create an index using a timestamp field.
-        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"TIMESTAMP\"}]}");
+        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"TIMESTAMP\"}]}");
         validateIndex("myIndex", this.collectionName, "ds", false, false, false, 1, null);
         this.collection.dropIndex("myIndex");
 
         // FR1_9 Create an index using a time field.
-        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"TIME\"}]}");
+        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"TIME\"}]}");
         validateIndex("myIndex", this.collectionName, "dt", false, false, false, 1, null);
         this.collection.dropIndex("myIndex");
 
         // FR1_10 Create an index using a date field.
-        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"DATE\"}]}");
+        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"DATE\"}]}");
         validateIndex("myIndex", this.collectionName, "d", false, false, false, 1, null);
         this.collection.dropIndex("myIndex");
 
         // FR1_11 Create an index using a numeric field.
-        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"NUMERIC UNSIGNED\"}]}");
+        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"NUMERIC UNSIGNED\"}]}");
         validateIndex("myIndex", this.collectionName, "xn_u", false, false, true, 1, null);
         this.collection.dropIndex("myIndex");
 
         // FR1_12 Create an index using a decimal field.
-        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"DECIMAL\"}]}");
+        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"DECIMAL\"}]}");
         validateIndex("myIndex", this.collectionName, "xd", false, false, false, 1, null);
         this.collection.dropIndex("myIndex");
 
         // FR1_13 Create an index using a double field.
-        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"DOUBLE UNSIGNED\"}]}");
+        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"DOUBLE UNSIGNED\"}]}");
         validateIndex("myIndex", this.collectionName, "fd_u", false, false, true, 1, null);
         this.collection.dropIndex("myIndex");
 
         // FR1_14 Create an index using a float field.
-        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"FLOAT UNSIGNED\"}]}");
+        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"FLOAT UNSIGNED\"}]}");
         validateIndex("myIndex", this.collectionName, "f_u", false, false, true, 1, null);
         this.collection.dropIndex("myIndex");
 
         // FR1_15 Create an index using a real field.
-        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"REAL UNSIGNED\"}]}");
+        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"REAL UNSIGNED\"}]}");
         validateIndex("myIndex", this.collectionName, "fr_u", false, false, true, 1, null);
         this.collection.dropIndex("myIndex");
 
         // FR1_16 Create an index using a bigint field.
-        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"BIGINT UNSIGNED\"}]}");
+        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"BIGINT UNSIGNED\"}]}");
         validateIndex("myIndex", this.collectionName, "ib_u", false, false, true, 1, null);
         this.collection.dropIndex("myIndex");
 
         // FR1_17 Create an index using a integer field.
-        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"INTEGER UNSIGNED\"}]}");
+        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"INTEGER UNSIGNED\"}]}");
         validateIndex("myIndex", this.collectionName, "i_u", false, false, true, 1, null);
         this.collection.dropIndex("myIndex");
 
         // FR1_18 Create an index using a mediumint field.
-        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"MEDIUMINT UNSIGNED\"}]}");
+        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"MEDIUMINT UNSIGNED\"}]}");
         validateIndex("myIndex", this.collectionName, "im_u", false, false, true, 1, null);
         this.collection.dropIndex("myIndex");
 
         // FR1_19 Create an index using a smallint field.
-        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"SMALLINT UNSIGNED\"}]}");
+        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"SMALLINT UNSIGNED\"}]}");
         validateIndex("myIndex", this.collectionName, "is_u", false, false, true, 1, null);
         this.collection.dropIndex("myIndex");
 
         // FR1_20 Create an index using a tinyint field.
-        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"TINYINT UNSIGNED\"}]}");
+        this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"TINYINT UNSIGNED\"}]}");
         validateIndex("myIndex", this.collectionName, "it_u", false, false, true, 1, null);
         this.collection.dropIndex("myIndex");
 
         // FR5_2 Create an index with the name of an index that already exists.
-        CollectionTest.this.collection.createIndex("myUniqueIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"INT\"}]}");
+        CollectionTest.this.collection.createIndex("myUniqueIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"INT\"}]}");
         assertThrows(XProtocolError.class, "ERROR 1061 \\(42000\\) Duplicate key name 'myUniqueIndex'", new Callable<Void>() {
             public Void call() throws Exception {
-                CollectionTest.this.collection.createIndex("myUniqueIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"INT\"}]}");
+                CollectionTest.this.collection.createIndex("myUniqueIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"INT\"}]}");
                 return null;
             }
         });
@@ -279,7 +279,7 @@ public class CollectionTest extends BaseCollectionTestCase {
         // FR5_4 Create an index where its definition is a JSON document but its structure is not valid.
         assertThrows(XDevAPIError.class, "Index definition does not contain fields.", new Callable<Void>() {
             public Void call() throws Exception {
-                CollectionTest.this.collection.createIndex("myIndex", "{\"type\": \"INDEX\"}");
+                CollectionTest.this.collection.createIndex("myIndex", "{\"Type\": \"INDEX\"}");
                 return null;
             }
         });
@@ -297,7 +297,7 @@ public class CollectionTest extends BaseCollectionTestCase {
         });
         assertThrows(XDevAPIError.class, "Index field definition has no document path.", new Callable<Void>() {
             public Void call() throws Exception {
-                CollectionTest.this.collection.createIndex("myIndex", "{\"fields\": [{\"type\": 123}]}");
+                CollectionTest.this.collection.createIndex("myIndex", "{\"fields\": [{\"Type\": 123}]}");
                 return null;
             }
         });
@@ -307,48 +307,48 @@ public class CollectionTest extends BaseCollectionTestCase {
                 return null;
             }
         });
-        assertThrows(XDevAPIError.class, "Index field definition has no field type.", new Callable<Void>() {
+        assertThrows(XDevAPIError.class, "Index field definition has no field Type.", new Callable<Void>() {
             public Void call() throws Exception {
                 CollectionTest.this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\"}]}");
                 return null;
             }
         });
-        assertThrows(XDevAPIError.class, "Index type must be a string.", new Callable<Void>() {
+        assertThrows(XDevAPIError.class, "Index Type must be a string.", new Callable<Void>() {
             public Void call() throws Exception {
-                CollectionTest.this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": 123}]}");
+                CollectionTest.this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": 123}]}");
                 return null;
             }
         });
         assertThrows(XDevAPIError.class, "Index field 'required' member must be boolean.", new Callable<Void>() {
             public Void call() throws Exception {
                 CollectionTest.this.collection.createIndex("myIndex",
-                        "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"TEXT(5)\", \"required\": \"yes\"}]}");
+                        "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"TEXT(5)\", \"required\": \"yes\"}]}");
                 return null;
             }
         });
         assertThrows(XDevAPIError.class, "Index field 'options' member must be integer.", new Callable<Void>() {
             public Void call() throws Exception {
                 CollectionTest.this.collection.createIndex("myIndex",
-                        "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"GEOJSON\", \"options\": \"qqq\"}]}");
+                        "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"GEOJSON\", \"options\": \"qqq\"}]}");
                 return null;
             }
         });
         assertThrows(XDevAPIError.class, "Index field 'srid' member must be integer.", new Callable<Void>() {
             public Void call() throws Exception {
                 CollectionTest.this.collection.createIndex("myIndex",
-                        "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"GEOJSON\", \"options\": 2, \"srid\": \"qqq\"}]}");
+                        "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"GEOJSON\", \"options\": 2, \"srid\": \"qqq\"}]}");
                 return null;
             }
         });
-        assertThrows(XDevAPIError.class, "Wrong index type 'SPTIAL'. Must be 'INDEX' or 'SPATIAL'.", new Callable<Void>() {
+        assertThrows(XDevAPIError.class, "Wrong index Type 'SPTIAL'. Must be 'INDEX' or 'SPATIAL'.", new Callable<Void>() {
             public Void call() throws Exception {
-                CollectionTest.this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"TEXT(5)\"}], \"type\":\"SPTIAL\"}");
+                CollectionTest.this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"TEXT(5)\"}], \"Type\":\"SPTIAL\"}");
                 return null;
             }
         });
-        assertThrows(XDevAPIError.class, "Index type must be a string.", new Callable<Void>() {
+        assertThrows(XDevAPIError.class, "Index Type must be a string.", new Callable<Void>() {
             public Void call() throws Exception {
-                CollectionTest.this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"TEXT(5)\"}], \"type\":123}");
+                CollectionTest.this.collection.createIndex("myIndex", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"TEXT(5)\"}], \"Type\":123}");
                 return null;
             }
         });
@@ -357,51 +357,51 @@ public class CollectionTest extends BaseCollectionTestCase {
         assertThrows(XProtocolError.class, "ERROR 5117 \\(HY000\\) GEOJSON index requires 'constraint.required: TRUE", new Callable<Void>() {
             public Void call() throws Exception {
                 CollectionTest.this.collection.createIndex("myIndex",
-                        "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"GEOJSON\", \"required\": false, \"options\": 2, \"srid\": 4326}], \"type\":\"SPATIAL\"}");
+                        "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"GEOJSON\", \"required\": false, \"options\": 2, \"srid\": 4326}], \"Type\":\"SPATIAL\"}");
                 return null;
             }
         });
 
-        // FR5_8 Create an index specifying geojson options for non geojson data type.
+        // FR5_8 Create an index specifying geojson options for non geojson data Type.
         assertThrows(XDevAPIError.class, "Index field 'options' member should not be used for field types other than GEOJSON.", new Callable<Void>() {
             public Void call() throws Exception {
                 CollectionTest.this.collection.createIndex("myIndex",
-                        "{\"fields\": [{\"field\": \"$.myGeoJsonField\", \"type\": \"TEXT(10)\", \"required\": true, \"options\": 2, \"srid\": 4326}]}");
+                        "{\"fields\": [{\"field\": \"$.myGeoJsonField\", \"Type\": \"TEXT(10)\", \"required\": true, \"options\": 2, \"srid\": 4326}]}");
                 return null;
             }
         });
         assertThrows(XDevAPIError.class, "Index field 'srid' member should not be used for field types other than GEOJSON.", new Callable<Void>() {
             public Void call() throws Exception {
                 CollectionTest.this.collection.createIndex("myIndex",
-                        "{\"fields\": [{\"field\": \"$.myGeoJsonField\", \"type\": \"TEXT(10)\", \"required\": true, \"srid\": 4326}]}");
+                        "{\"fields\": [{\"field\": \"$.myGeoJsonField\", \"Type\": \"TEXT(10)\", \"required\": true, \"srid\": 4326}]}");
                 return null;
             }
         });
 
-        // ET_2 Create an index specifying SPATIAL as the index type for a non spatial data type
+        // ET_2 Create an index specifying SPATIAL as the index Type for a non spatial data Type
         assertThrows(XProtocolError.class, "ERROR 3106 \\(HY000\\) 'Spatial index on virtual generated column' is not supported for generated columns.",
                 new Callable<Void>() {
                     public Void call() throws Exception {
                         CollectionTest.this.collection.createIndex("myIndex",
-                                "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"TEXT(10)\"}], \"type\":\"SPATIAL\"}");
+                                "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"TEXT(10)\"}], \"Type\":\"SPATIAL\"}");
                         return null;
                     }
                 });
 
         if (mysqlVersionMeetsMinimum(ServerVersion.parseVersion("8.0.12"))) {
             this.collection.createIndex("myIndex",
-                    "{\"fields\": [{\"field\": \"$.myGeoJsonField\", \"type\": \"GEOJSON\", \"required\": true, \"options\": 2, \"srid\": 4326}],"
-                            + " \"type\":\"INDEX\"}");
+                    "{\"fields\": [{\"field\": \"$.myGeoJsonField\", \"Type\": \"GEOJSON\", \"required\": true, \"options\": 2, \"srid\": 4326}],"
+                            + " \"Type\":\"INDEX\"}");
             validateIndex("myIndex", this.collectionName, "gj", false, true, false, 1, 32);
             this.collection.dropIndex("myIndex");
         } else {
-            // ET_3 Create an index specifying INDEX as the index type for a spatial data type
+            // ET_3 Create an index specifying INDEX as the index Type for a spatial data Type
             assertThrows(XProtocolError.class, "ERROR 1170 \\(42000\\) BLOB/TEXT column .+_gj_r_.+ used in key specification without a key length",
                     new Callable<Void>() {
                         public Void call() throws Exception {
                             CollectionTest.this.collection.createIndex("myIndex",
-                                    "{\"fields\": [{\"field\": \"$.myGeoJsonField\", \"type\": \"GEOJSON\", \"required\": true, \"options\": 2, \"srid\": 4326}],"
-                                            + " \"type\":\"INDEX\"}");
+                                    "{\"fields\": [{\"field\": \"$.myGeoJsonField\", \"Type\": \"GEOJSON\", \"required\": true, \"options\": 2, \"srid\": 4326}],"
+                                            + " \"Type\":\"INDEX\"}");
                             return null;
                         }
                     });
@@ -410,13 +410,13 @@ public class CollectionTest extends BaseCollectionTestCase {
         // NPE checks
         assertThrows(XDevAPIError.class, "Parameter 'indexName' must not be null or empty.", new Callable<Void>() {
             public Void call() throws Exception {
-                CollectionTest.this.collection.createIndex(null, "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"TEXT(200)\"}]}");
+                CollectionTest.this.collection.createIndex(null, "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"TEXT(200)\"}]}");
                 return null;
             }
         });
         assertThrows(XDevAPIError.class, "Parameter 'indexName' must not be null or empty.", new Callable<Void>() {
             public Void call() throws Exception {
-                CollectionTest.this.collection.createIndex(" ", "{\"fields\": [{\"field\": \"$.myField\", \"type\": \"TEXT(200)\"}]}");
+                CollectionTest.this.collection.createIndex(" ", "{\"fields\": [{\"field\": \"$.myField\", \"Type\": \"TEXT(200)\"}]}");
                 return null;
             }
         });
@@ -454,7 +454,7 @@ public class CollectionTest extends BaseCollectionTestCase {
         assertThrows(XDevAPIError.class, "The 'unique' field is not allowed in indexDefinition.", new Callable<Void>() {
             public Void call() throws Exception {
                 CollectionTest.this.collection.createIndex("myIndex",
-                        "{\"fields\": [{\"field\": \"$.intField\", \"type\": \"INT\", \"required\": true}], \"unique\":true, \"type\":\"INDEX\"}");
+                        "{\"fields\": [{\"field\": \"$.intField\", \"Type\": \"INT\", \"required\": true}], \"unique\":true, \"Type\":\"INDEX\"}");
                 return null;
             }
         });

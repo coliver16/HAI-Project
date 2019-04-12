@@ -59,7 +59,7 @@ public final class Mysqlx {
    *   * check for uniqueness
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.ClientMessages}
+   * Protobuf Type {@code Mysqlx.ClientMessages}
    */
   public  static final class ClientMessages extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -339,7 +339,7 @@ public final class Mysqlx {
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this Type.");
         }
         return VALUES[desc.getIndex()];
       }
@@ -507,7 +507,7 @@ public final class Mysqlx {
      *   * check for uniqueness
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.ClientMessages}
+     * Protobuf Type {@code Mysqlx.ClientMessages}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -712,7 +712,7 @@ public final class Mysqlx {
    *   * check for uniqueness
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.ServerMessages}
+   * Protobuf Type {@code Mysqlx.ServerMessages}
    */
   public  static final class ServerMessages extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -964,7 +964,7 @@ public final class Mysqlx {
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this Type.");
         }
         return VALUES[desc.getIndex()];
       }
@@ -1132,7 +1132,7 @@ public final class Mysqlx {
      *   * check for uniqueness
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.ServerMessages}
+     * Protobuf Type {@code Mysqlx.ServerMessages}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -1347,7 +1347,7 @@ public final class Mysqlx {
    * generic Ok message
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Ok}
+   * Protobuf Type {@code Mysqlx.Ok}
    */
   public  static final class Ok extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -1632,7 +1632,7 @@ public final class Mysqlx {
      * generic Ok message
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Ok}
+     * Protobuf Type {@code Mysqlx.Ok}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -1979,7 +1979,7 @@ public final class Mysqlx {
    * :param msg: human readable error message
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Error}
+   * Protobuf Type {@code Mysqlx.Error}
    */
   public  static final class Error extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -2158,7 +2158,7 @@ public final class Mysqlx {
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this Type.");
         }
         return VALUES[desc.getIndex()];
       }
@@ -2521,7 +2521,7 @@ public final class Mysqlx {
      * :param msg: human readable error message
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Error}
+     * Protobuf Type {@code Mysqlx.Error}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements

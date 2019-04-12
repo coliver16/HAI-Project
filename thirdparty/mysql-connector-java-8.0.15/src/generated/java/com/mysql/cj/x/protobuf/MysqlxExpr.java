@@ -49,11 +49,11 @@ public final class MysqlxExpr {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required .Mysqlx.Expr.Expr.Type type = 1;</code>
+     * <code>required .Mysqlx.Expr.Expr.Type Type = 1;</code>
      */
     boolean hasType();
     /**
-     * <code>required .Mysqlx.Expr.Expr.Type type = 1;</code>
+     * <code>required .Mysqlx.Expr.Expr.Type Type = 1;</code>
      */
     com.mysql.cj.x.protobuf.MysqlxExpr.Expr.Type getType();
 
@@ -169,13 +169,13 @@ public final class MysqlxExpr {
    *       : variable |
    *       : `literal` |
    *       : placeholder
-   * If expression type is PLACEHOLDER then it refers to the value of a parameter
+   * If expression Type is PLACEHOLDER then it refers to the value of a parameter
    * specified when executing a statement (see `args` field of `StmtExecute` command).
    * Field `position` (which must be present for such an expression) gives 0-based
    * position of the parameter in the parameter list.
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Expr.Expr}
+   * Protobuf Type {@code Mysqlx.Expr.Expr}
    */
   public  static final class Expr extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -479,7 +479,7 @@ public final class MysqlxExpr {
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this Type.");
         }
         return VALUES[desc.getIndex()];
       }
@@ -497,13 +497,13 @@ public final class MysqlxExpr {
     public static final int TYPE_FIELD_NUMBER = 1;
     private int type_;
     /**
-     * <code>required .Mysqlx.Expr.Expr.Type type = 1;</code>
+     * <code>required .Mysqlx.Expr.Expr.Type Type = 1;</code>
      */
     public boolean hasType() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required .Mysqlx.Expr.Expr.Type type = 1;</code>
+     * <code>required .Mysqlx.Expr.Expr.Type Type = 1;</code>
      */
     public com.mysql.cj.x.protobuf.MysqlxExpr.Expr.Type getType() {
       @SuppressWarnings("deprecation")
@@ -1032,13 +1032,13 @@ public final class MysqlxExpr {
      *       : variable |
      *       : `literal` |
      *       : placeholder
-     * If expression type is PLACEHOLDER then it refers to the value of a parameter
+     * If expression Type is PLACEHOLDER then it refers to the value of a parameter
      * specified when executing a statement (see `args` field of `StmtExecute` command).
      * Field `position` (which must be present for such an expression) gives 0-based
      * position of the parameter in the parameter list.
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Expr.Expr}
+     * Protobuf Type {@code Mysqlx.Expr.Expr}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -1354,13 +1354,13 @@ public final class MysqlxExpr {
 
       private int type_ = 1;
       /**
-       * <code>required .Mysqlx.Expr.Expr.Type type = 1;</code>
+       * <code>required .Mysqlx.Expr.Expr.Type Type = 1;</code>
        */
       public boolean hasType() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required .Mysqlx.Expr.Expr.Type type = 1;</code>
+       * <code>required .Mysqlx.Expr.Expr.Type Type = 1;</code>
        */
       public com.mysql.cj.x.protobuf.MysqlxExpr.Expr.Type getType() {
         @SuppressWarnings("deprecation")
@@ -1368,7 +1368,7 @@ public final class MysqlxExpr {
         return result == null ? com.mysql.cj.x.protobuf.MysqlxExpr.Expr.Type.IDENT : result;
       }
       /**
-       * <code>required .Mysqlx.Expr.Expr.Type type = 1;</code>
+       * <code>required .Mysqlx.Expr.Expr.Type Type = 1;</code>
        */
       public Builder setType(com.mysql.cj.x.protobuf.MysqlxExpr.Expr.Type value) {
         if (value == null) {
@@ -1380,7 +1380,7 @@ public final class MysqlxExpr {
         return this;
       }
       /**
-       * <code>required .Mysqlx.Expr.Expr.Type type = 1;</code>
+       * <code>required .Mysqlx.Expr.Expr.Type Type = 1;</code>
        */
       public Builder clearType() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -2297,7 +2297,7 @@ public final class MysqlxExpr {
    *             : string
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Expr.Identifier}
+   * Protobuf Type {@code Mysqlx.Expr.Identifier}
    */
   public  static final class Identifier extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -2653,7 +2653,7 @@ public final class MysqlxExpr {
      *             : string
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Expr.Identifier}
+     * Protobuf Type {@code Mysqlx.Expr.Identifier}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -3031,11 +3031,11 @@ public final class MysqlxExpr {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required .Mysqlx.Expr.DocumentPathItem.Type type = 1;</code>
+     * <code>required .Mysqlx.Expr.DocumentPathItem.Type Type = 1;</code>
      */
     boolean hasType();
     /**
-     * <code>required .Mysqlx.Expr.DocumentPathItem.Type type = 1;</code>
+     * <code>required .Mysqlx.Expr.DocumentPathItem.Type Type = 1;</code>
      */
     com.mysql.cj.x.protobuf.MysqlxExpr.DocumentPathItem.Type getType();
 
@@ -3072,7 +3072,7 @@ public final class MysqlxExpr {
    *    array_index  : "[" number "]" | "[" "*" "]"
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Expr.DocumentPathItem}
+   * Protobuf Type {@code Mysqlx.Expr.DocumentPathItem}
    */
   public  static final class DocumentPathItem extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -3311,7 +3311,7 @@ public final class MysqlxExpr {
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this Type.");
         }
         return VALUES[desc.getIndex()];
       }
@@ -3329,13 +3329,13 @@ public final class MysqlxExpr {
     public static final int TYPE_FIELD_NUMBER = 1;
     private int type_;
     /**
-     * <code>required .Mysqlx.Expr.DocumentPathItem.Type type = 1;</code>
+     * <code>required .Mysqlx.Expr.DocumentPathItem.Type Type = 1;</code>
      */
     public boolean hasType() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required .Mysqlx.Expr.DocumentPathItem.Type type = 1;</code>
+     * <code>required .Mysqlx.Expr.DocumentPathItem.Type Type = 1;</code>
      */
     public com.mysql.cj.x.protobuf.MysqlxExpr.DocumentPathItem.Type getType() {
       @SuppressWarnings("deprecation")
@@ -3605,7 +3605,7 @@ public final class MysqlxExpr {
      *    array_index  : "[" number "]" | "[" "*" "]"
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Expr.DocumentPathItem}
+     * Protobuf Type {@code Mysqlx.Expr.DocumentPathItem}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -3783,13 +3783,13 @@ public final class MysqlxExpr {
 
       private int type_ = 1;
       /**
-       * <code>required .Mysqlx.Expr.DocumentPathItem.Type type = 1;</code>
+       * <code>required .Mysqlx.Expr.DocumentPathItem.Type Type = 1;</code>
        */
       public boolean hasType() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required .Mysqlx.Expr.DocumentPathItem.Type type = 1;</code>
+       * <code>required .Mysqlx.Expr.DocumentPathItem.Type Type = 1;</code>
        */
       public com.mysql.cj.x.protobuf.MysqlxExpr.DocumentPathItem.Type getType() {
         @SuppressWarnings("deprecation")
@@ -3797,7 +3797,7 @@ public final class MysqlxExpr {
         return result == null ? com.mysql.cj.x.protobuf.MysqlxExpr.DocumentPathItem.Type.MEMBER : result;
       }
       /**
-       * <code>required .Mysqlx.Expr.DocumentPathItem.Type type = 1;</code>
+       * <code>required .Mysqlx.Expr.DocumentPathItem.Type Type = 1;</code>
        */
       public Builder setType(com.mysql.cj.x.protobuf.MysqlxExpr.DocumentPathItem.Type value) {
         if (value == null) {
@@ -3809,7 +3809,7 @@ public final class MysqlxExpr {
         return this;
       }
       /**
-       * <code>required .Mysqlx.Expr.DocumentPathItem.Type type = 1;</code>
+       * <code>required .Mysqlx.Expr.DocumentPathItem.Type Type = 1;</code>
        */
       public Builder clearType() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -4066,7 +4066,7 @@ public final class MysqlxExpr {
    *    doubleAsterisk = "**"
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Expr.ColumnIdentifier}
+   * Protobuf Type {@code Mysqlx.Expr.ColumnIdentifier}
    */
   public  static final class ColumnIdentifier extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -4559,7 +4559,7 @@ public final class MysqlxExpr {
      *    doubleAsterisk = "**"
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Expr.ColumnIdentifier}
+     * Protobuf Type {@code Mysqlx.Expr.ColumnIdentifier}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -5351,7 +5351,7 @@ public final class MysqlxExpr {
    *   function_call: `identifier` "(" [ `expr` ["," `expr` ]* ] ")"
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Expr.FunctionCall}
+   * Protobuf Type {@code Mysqlx.Expr.FunctionCall}
    */
   public  static final class FunctionCall extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -5699,7 +5699,7 @@ public final class MysqlxExpr {
      *   function_call: `identifier` "(" [ `expr` ["," `expr` ]* ] ")"
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Expr.FunctionCall}
+     * Protobuf Type {@code Mysqlx.Expr.FunctionCall}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -6451,7 +6451,7 @@ public final class MysqlxExpr {
    *   operator: `name` "(" [ `expr` ["," `expr` ]* ] ")"
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Expr.Operator}
+   * Protobuf Type {@code Mysqlx.Expr.Operator}
    */
   public  static final class Operator extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -6887,7 +6887,7 @@ public final class MysqlxExpr {
      *   operator: `name` "(" [ `expr` ["," `expr` ]* ] ")"
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Expr.Operator}
+     * Protobuf Type {@code Mysqlx.Expr.Operator}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -7493,7 +7493,7 @@ public final class MysqlxExpr {
    * an object (with expression values)
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Expr.Object}
+   * Protobuf Type {@code Mysqlx.Expr.Object}
    */
   public  static final class Object extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -7608,7 +7608,7 @@ public final class MysqlxExpr {
       com.mysql.cj.x.protobuf.MysqlxExpr.ExprOrBuilder getValueOrBuilder();
     }
     /**
-     * Protobuf type {@code Mysqlx.Expr.Object.ObjectField}
+     * Protobuf Type {@code Mysqlx.Expr.Object.ObjectField}
      */
     public  static final class ObjectField extends
         com.google.protobuf.GeneratedMessageV3 implements
@@ -7951,7 +7951,7 @@ public final class MysqlxExpr {
         return builder;
       }
       /**
-       * Protobuf type {@code Mysqlx.Expr.Object.ObjectField}
+       * Protobuf Type {@code Mysqlx.Expr.Object.ObjectField}
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -8583,7 +8583,7 @@ public final class MysqlxExpr {
      * an object (with expression values)
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Expr.Object}
+     * Protobuf Type {@code Mysqlx.Expr.Object}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -9097,7 +9097,7 @@ public final class MysqlxExpr {
    * a Array of expressions
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Expr.Array}
+   * Protobuf Type {@code Mysqlx.Expr.Array}
    */
   public  static final class Array extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -9384,7 +9384,7 @@ public final class MysqlxExpr {
      * a Array of expressions
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Expr.Array}
+     * Protobuf Type {@code Mysqlx.Expr.Array}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements

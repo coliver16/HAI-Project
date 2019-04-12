@@ -49,11 +49,11 @@ public final class MysqlxDatatypes {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required .Mysqlx.Datatypes.Scalar.Type type = 1;</code>
+     * <code>required .Mysqlx.Datatypes.Scalar.Type Type = 1;</code>
      */
     boolean hasType();
     /**
-     * <code>required .Mysqlx.Datatypes.Scalar.Type type = 1;</code>
+     * <code>required .Mysqlx.Datatypes.Scalar.Type Type = 1;</code>
      */
     com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.Type getType();
 
@@ -145,7 +145,7 @@ public final class MysqlxDatatypes {
    * a scalar
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Datatypes.Scalar}
+   * Protobuf Type {@code Mysqlx.Datatypes.Scalar}
    */
   public  static final class Scalar extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -414,7 +414,7 @@ public final class MysqlxDatatypes {
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this Type.");
         }
         return VALUES[desc.getIndex()];
       }
@@ -455,7 +455,7 @@ public final class MysqlxDatatypes {
      * a string with a charset/collation
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Datatypes.Scalar.String}
+     * Protobuf Type {@code Mysqlx.Datatypes.Scalar.String}
      */
     public  static final class String extends
         com.google.protobuf.GeneratedMessageV3 implements
@@ -755,7 +755,7 @@ public final class MysqlxDatatypes {
        * a string with a charset/collation
        * </pre>
        *
-       * Protobuf type {@code Mysqlx.Datatypes.Scalar.String}
+       * Protobuf Type {@code Mysqlx.Datatypes.Scalar.String}
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -1067,7 +1067,7 @@ public final class MysqlxDatatypes {
      * See ``Mysqlx.Resultset.ContentType_BYTES`` for list of known values.
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Datatypes.Scalar.Octets}
+     * Protobuf Type {@code Mysqlx.Datatypes.Scalar.Octets}
      */
     public  static final class Octets extends
         com.google.protobuf.GeneratedMessageV3 implements
@@ -1367,7 +1367,7 @@ public final class MysqlxDatatypes {
        * See ``Mysqlx.Resultset.ContentType_BYTES`` for list of known values.
        * </pre>
        *
-       * Protobuf type {@code Mysqlx.Datatypes.Scalar.Octets}
+       * Protobuf Type {@code Mysqlx.Datatypes.Scalar.Octets}
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -1655,13 +1655,13 @@ public final class MysqlxDatatypes {
     public static final int TYPE_FIELD_NUMBER = 1;
     private int type_;
     /**
-     * <code>required .Mysqlx.Datatypes.Scalar.Type type = 1;</code>
+     * <code>required .Mysqlx.Datatypes.Scalar.Type Type = 1;</code>
      */
     public boolean hasType() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required .Mysqlx.Datatypes.Scalar.Type type = 1;</code>
+     * <code>required .Mysqlx.Datatypes.Scalar.Type Type = 1;</code>
      */
     public com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.Type getType() {
       @SuppressWarnings("deprecation")
@@ -2100,7 +2100,7 @@ public final class MysqlxDatatypes {
      * a scalar
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Datatypes.Scalar}
+     * Protobuf Type {@code Mysqlx.Datatypes.Scalar}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -2349,13 +2349,13 @@ public final class MysqlxDatatypes {
 
       private int type_ = 1;
       /**
-       * <code>required .Mysqlx.Datatypes.Scalar.Type type = 1;</code>
+       * <code>required .Mysqlx.Datatypes.Scalar.Type Type = 1;</code>
        */
       public boolean hasType() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required .Mysqlx.Datatypes.Scalar.Type type = 1;</code>
+       * <code>required .Mysqlx.Datatypes.Scalar.Type Type = 1;</code>
        */
       public com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.Type getType() {
         @SuppressWarnings("deprecation")
@@ -2363,7 +2363,7 @@ public final class MysqlxDatatypes {
         return result == null ? com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.Type.V_SINT : result;
       }
       /**
-       * <code>required .Mysqlx.Datatypes.Scalar.Type type = 1;</code>
+       * <code>required .Mysqlx.Datatypes.Scalar.Type Type = 1;</code>
        */
       public Builder setType(com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.Type value) {
         if (value == null) {
@@ -2375,7 +2375,7 @@ public final class MysqlxDatatypes {
         return this;
       }
       /**
-       * <code>required .Mysqlx.Datatypes.Scalar.Type type = 1;</code>
+       * <code>required .Mysqlx.Datatypes.Scalar.Type Type = 1;</code>
        */
       public Builder clearType() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -2901,7 +2901,7 @@ public final class MysqlxDatatypes {
    * a object
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Datatypes.Object}
+   * Protobuf Type {@code Mysqlx.Datatypes.Object}
    */
   public  static final class Object extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -3016,7 +3016,7 @@ public final class MysqlxDatatypes {
       com.mysql.cj.x.protobuf.MysqlxDatatypes.AnyOrBuilder getValueOrBuilder();
     }
     /**
-     * Protobuf type {@code Mysqlx.Datatypes.Object.ObjectField}
+     * Protobuf Type {@code Mysqlx.Datatypes.Object.ObjectField}
      */
     public  static final class ObjectField extends
         com.google.protobuf.GeneratedMessageV3 implements
@@ -3359,7 +3359,7 @@ public final class MysqlxDatatypes {
         return builder;
       }
       /**
-       * Protobuf type {@code Mysqlx.Datatypes.Object.ObjectField}
+       * Protobuf Type {@code Mysqlx.Datatypes.Object.ObjectField}
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -3991,7 +3991,7 @@ public final class MysqlxDatatypes {
      * a object
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Datatypes.Object}
+     * Protobuf Type {@code Mysqlx.Datatypes.Object}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -4505,7 +4505,7 @@ public final class MysqlxDatatypes {
    * a Array
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Datatypes.Array}
+   * Protobuf Type {@code Mysqlx.Datatypes.Array}
    */
   public  static final class Array extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -4792,7 +4792,7 @@ public final class MysqlxDatatypes {
      * a Array
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Datatypes.Array}
+     * Protobuf Type {@code Mysqlx.Datatypes.Array}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -5278,11 +5278,11 @@ public final class MysqlxDatatypes {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required .Mysqlx.Datatypes.Any.Type type = 1;</code>
+     * <code>required .Mysqlx.Datatypes.Any.Type Type = 1;</code>
      */
     boolean hasType();
     /**
-     * <code>required .Mysqlx.Datatypes.Any.Type type = 1;</code>
+     * <code>required .Mysqlx.Datatypes.Any.Type Type = 1;</code>
      */
     com.mysql.cj.x.protobuf.MysqlxDatatypes.Any.Type getType();
 
@@ -5330,7 +5330,7 @@ public final class MysqlxDatatypes {
    * a helper to allow all field types
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Datatypes.Any}
+   * Protobuf Type {@code Mysqlx.Datatypes.Any}
    */
   public  static final class Any extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -5537,7 +5537,7 @@ public final class MysqlxDatatypes {
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this Type.");
         }
         return VALUES[desc.getIndex()];
       }
@@ -5555,13 +5555,13 @@ public final class MysqlxDatatypes {
     public static final int TYPE_FIELD_NUMBER = 1;
     private int type_;
     /**
-     * <code>required .Mysqlx.Datatypes.Any.Type type = 1;</code>
+     * <code>required .Mysqlx.Datatypes.Any.Type Type = 1;</code>
      */
     public boolean hasType() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required .Mysqlx.Datatypes.Any.Type type = 1;</code>
+     * <code>required .Mysqlx.Datatypes.Any.Type Type = 1;</code>
      */
     public com.mysql.cj.x.protobuf.MysqlxDatatypes.Any.Type getType() {
       @SuppressWarnings("deprecation")
@@ -5867,7 +5867,7 @@ public final class MysqlxDatatypes {
      * a helper to allow all field types
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Datatypes.Any}
+     * Protobuf Type {@code Mysqlx.Datatypes.Any}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -6094,13 +6094,13 @@ public final class MysqlxDatatypes {
 
       private int type_ = 1;
       /**
-       * <code>required .Mysqlx.Datatypes.Any.Type type = 1;</code>
+       * <code>required .Mysqlx.Datatypes.Any.Type Type = 1;</code>
        */
       public boolean hasType() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required .Mysqlx.Datatypes.Any.Type type = 1;</code>
+       * <code>required .Mysqlx.Datatypes.Any.Type Type = 1;</code>
        */
       public com.mysql.cj.x.protobuf.MysqlxDatatypes.Any.Type getType() {
         @SuppressWarnings("deprecation")
@@ -6108,7 +6108,7 @@ public final class MysqlxDatatypes {
         return result == null ? com.mysql.cj.x.protobuf.MysqlxDatatypes.Any.Type.SCALAR : result;
       }
       /**
-       * <code>required .Mysqlx.Datatypes.Any.Type type = 1;</code>
+       * <code>required .Mysqlx.Datatypes.Any.Type Type = 1;</code>
        */
       public Builder setType(com.mysql.cj.x.protobuf.MysqlxDatatypes.Any.Type value) {
         if (value == null) {
@@ -6120,7 +6120,7 @@ public final class MysqlxDatatypes {
         return this;
       }
       /**
-       * <code>required .Mysqlx.Datatypes.Any.Type type = 1;</code>
+       * <code>required .Mysqlx.Datatypes.Any.Type Type = 1;</code>
        */
       public Builder clearType() {
         bitField0_ = (bitField0_ & ~0x00000001);

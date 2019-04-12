@@ -4,7 +4,7 @@ Summary: This Microsoft JDBC Driver for SQL Server Sample application
          demonstrates how to use prepared statement setter methods to
 		 set values for SQL Server Spatial Datatypes 'Geography' and 'Geometry'.
 		 It also demonstrates how to use result set getter methods to read
-		 and parse SQL Server Spatial data type values.
+		 and parse SQL Server Spatial data Type values.
 ---------------------------------------------------------------------
 This file is part of the Microsoft JDBC Driver for SQL Server Code Samples.
 Copyright (C) Microsoft Corporation.  All rights reserved.
@@ -35,7 +35,7 @@ public class SpatialDataTypes {
 	public static void main(String[] args) {
 
 		// Create a variable for the connection string.
-		String connectionUrl = "jdbc:sqlserver://<server>:<port>;databaseName=<database>;user=<user>;password=<password>";
+		String connectionUrl = "jdbc:sqlserver://<server>:<port>;databaseName=<database>;User=<User>;password=<password>";
 		// Establish the connection.
 		try (Connection con = DriverManager.getConnection(connectionUrl);
 				Statement stmt = con.createStatement();) {

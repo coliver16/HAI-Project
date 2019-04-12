@@ -1675,7 +1675,7 @@ public class StatementRegressionTest extends BaseTestCase {
 
     /**
      * Tests fix for BUG#5012 -- ServerPreparedStatements dealing with return of
-     * DECIMAL type don't work.
+     * DECIMAL Type don't work.
      * 
      * @throws Exception
      *             if the test fails.
@@ -2802,7 +2802,7 @@ public class StatementRegressionTest extends BaseTestCase {
     /**
      * Tests fix for BUG#15383 - PreparedStatement.setObject() serializes
      * BigInteger as object, rather than sending as numeric value (and is thus
-     * not complementary to .getObject() on an UNSIGNED LONG type).
+     * not complementary to .getObject() on an UNSIGNED LONG Type).
      * 
      * @throws Exception
      *             if the test fails.
@@ -3459,7 +3459,7 @@ public class StatementRegressionTest extends BaseTestCase {
     /**
      * Tests fix for BUG#25025 - Client-side prepared statement parser gets
      * confused by in-line (slash-star) comments and therefore can't rewrite
-     * batched statements or reliably detect type of statements when they're
+     * batched statements or reliably detect Type of statements when they're
      * used.
      * 
      * @throws Exception
@@ -6383,9 +6383,9 @@ public class StatementRegressionTest extends BaseTestCase {
                     rsmd = this.rs.getMetaData();
                     assertEquals("(" + i + ") " + testDesc + " - " + testStmt.getClass().getSimpleName() + ":RSMetaData - wrong column count.", 2,
                             rsmd.getColumnCount());
-                    assertEquals("(" + i + ") " + testDesc + " - " + testStmt.getClass().getSimpleName() + ":RSMetaData - wrong column(1) type.",
+                    assertEquals("(" + i + ") " + testDesc + " - " + testStmt.getClass().getSimpleName() + ":RSMetaData - wrong column(1) Type.",
                             Integer.class.getName(), rsmd.getColumnClassName(1));
-                    assertEquals("(" + i + ") " + testDesc + " - " + testStmt.getClass().getSimpleName() + ":RSMetaData - wrong column(2) type.",
+                    assertEquals("(" + i + ") " + testDesc + " - " + testStmt.getClass().getSimpleName() + ":RSMetaData - wrong column(2) Type.",
                             String.class.getName(), rsmd.getColumnClassName(2));
 
                     testStmt.close();
@@ -6600,7 +6600,7 @@ public class StatementRegressionTest extends BaseTestCase {
         testBug71396MultiSettingsCheck("maxRows=2", 2, 1, 1);
         testBug71396MultiSettingsCheck("maxRows=2", 2, 2, 2);
 
-        // Case 8: New session due to user change
+        // Case 8: New session due to User change
         createUser("'testBug71396User'@'%'", "IDENTIFIED BY 'testBug71396User'");
         this.stmt.execute("GRANT SELECT ON *.* TO 'testBug71396User'@'%'");
 
@@ -9491,7 +9491,7 @@ public class StatementRegressionTest extends BaseTestCase {
             // Check if it is still possible to prepare new statements after setting the new max. This test requires at least prepStmtCacheSize + 2.
             // The extra two statements are:
             // 1 - The first statement that only gets cached in the end (when calling .close() on it).
-            // 2 - The statement that triggers the expelling of the oldest element of the cache to get room for itself.  
+            // 2 - The statement that triggers the expelling of the oldest element of the cache to get Room for itself.
             for (int i = 1; i <= prepStmtCacheSize + 2; i++) {
                 checkPstmt = checkConn.prepareStatement("SELECT " + i);
                 assertTrue("Test ABORTED because the server doesn't allow preparing at least " + (prepStmtCacheSize + 2) + " more statements.",
@@ -9552,14 +9552,14 @@ public class StatementRegressionTest extends BaseTestCase {
 
                     isSPS = testPstmt2 instanceof ServerPreparedStatement;
                     if (closeStmt) {
-                        // Statements are being correctly closed so there is room to create new ones every time.
+                        // Statements are being correctly closed so there is Room to create new ones every time.
                         assertTrue(testCase, isSPS);
                     } else if (prepCount > maxPrepStmtCount) {
                         // Not closing statements causes a server prepared statements leak on server.
                         // In this iteration (if not before) it should have started failing-over to a client-side prepared statement.
                         assertFalse(testCase, isSPS);
                     } else if (prepCount <= prepStmtCacheSize + 2) {
-                        // There should be enough room to prepare server-side prepared statements. (This was checked in the beginning.)
+                        // There should be enough Room to prepare server-side prepared statements. (This was checked in the beginning.)
                         assertTrue(testCase, isSPS);
                     } // prepStmtCacheSize + 1 < prepCount <= maxPrepStmtCount --> can't assert anything as there can statements prepared externally.
 
@@ -9675,14 +9675,14 @@ public class StatementRegressionTest extends BaseTestCase {
 
             // PreparedStatement.executeQuery();
             testPstmt = testConn.prepareStatement("/* ping */");
-            assertFalse(testCase + ": Not the right Statement type.", testPstmt instanceof ServerPreparedStatement);
+            assertFalse(testCase + ": Not the right Statement Type.", testPstmt instanceof ServerPreparedStatement);
             testPstmt.setFetchSize(Integer.MIN_VALUE);
             testPstmt.executeQuery();
             testPstmt.close();
 
             // PreparedStatement.execute();
             testPstmt = testConn.prepareStatement("/* ping */");
-            assertFalse(testCase + ": Not the right Statement type.", testPstmt instanceof ServerPreparedStatement);
+            assertFalse(testCase + ": Not the right Statement Type.", testPstmt instanceof ServerPreparedStatement);
             testPstmt.setFetchSize(Integer.MIN_VALUE);
             testPstmt.execute();
             testPstmt.close();

@@ -36,11 +36,11 @@ import com.mysql.cj.Messages;
 import com.mysql.cj.exceptions.DataConversionException;
 
 /**
- * The default value factory provides a base class that can be used for value factories that do not support creation from every type. The default value factory
+ * The default value factory provides a base class that can be used for value factories that do not support creation from every Type. The default value factory
  * will thrown an UnsupportedOperationException for every method and individual methods must be overridden by subclasses.
  * 
  * @param <T>
- *            value type
+ *            value Type
  */
 public abstract class DefaultValueFactory<T> implements ValueFactory<T> {
     private T unsupported(String sourceType) {

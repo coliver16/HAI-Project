@@ -373,7 +373,7 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
         int errno = 2000;
 
         NativePacketPayload buf = msg;
-        buf.setPosition(1); // skip the packet type
+        buf.setPosition(1); // skip the packet Type
         errno = (int) buf.readInteger(IntegerDataType.INT2);
 
         String serverErrorMessage = "";
@@ -1364,10 +1364,10 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
     }
 
     /**
-     * Re-authenticates as the given user and password
+     * Re-authenticates as the given User and password
      * 
      * @param user
-     *            user name
+     *            User name
      * @param password
      *            password
      * @param database
@@ -1629,12 +1629,12 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
                 return MysqlType.LONGBLOB;
 
             case MysqlType.FIELD_TYPE_BLOB:
-                // Sometimes MySQL uses this protocol-level type for all possible BLOB variants,
-                // we can divine what the actual type is by the length reported
+                // Sometimes MySQL uses this protocol-level Type for all possible BLOB variants,
+                // we can divine what the actual Type is by the length reported
 
                 int newMysqlTypeId = mysqlTypeId;
 
-                // fixing initial type according to length
+                // fixing initial Type according to length
                 if (length <= MysqlType.TINYBLOB.getPrecision()) {
                     newMysqlTypeId = MysqlType.FIELD_TYPE_TINY_BLOB;
 
@@ -2235,7 +2235,7 @@ public class NativeProtocol extends AbstractProtocol<NativePacketPayload> implem
         String canonicalTimezone = getPropertySet().getStringProperty(PropertyKey.serverTimezone).getValue();
 
         if (configuredTimeZoneOnServer != null) {
-            // user can override this with driver properties, so don't detect if that's the case
+            // User can override this with driver properties, so don't detect if that's the case
             if (canonicalTimezone == null || StringUtils.isEmptyOrWhitespaceOnly(canonicalTimezone)) {
                 try {
                     canonicalTimezone = TimeUtil.getCanonicalTimezone(configuredTimeZoneOnServer, getExceptionInterceptor());

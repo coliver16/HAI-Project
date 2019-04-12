@@ -376,7 +376,7 @@ class EscapeProcessor {
     }
 
     /**
-     * Re-writes {fn convert (expr, type)} as cast(expr AS type)
+     * Re-writes {fn convert (expr, Type)} as cast(expr AS Type)
      * 
      * @param functionToken
      *            token

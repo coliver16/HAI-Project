@@ -36,7 +36,7 @@ import java.util.List;
  * A set of elements from a query command.
  *
  * @param <T>
- *            the type of element returned from the query (doc or row)
+ *            the Type of element returned from the query (doc or row)
  */
 public interface FetchResult<T> extends Iterator<T>, Iterable<T> {
     /**
@@ -52,7 +52,7 @@ public interface FetchResult<T> extends Iterator<T>, Iterable<T> {
     /**
      * Fetch the next element.
      * 
-     * @return element of type T
+     * @return element of Type T
      */
     default T fetchOne() {
         if (hasNext()) {

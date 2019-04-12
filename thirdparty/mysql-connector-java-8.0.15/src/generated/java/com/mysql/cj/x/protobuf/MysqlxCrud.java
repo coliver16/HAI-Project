@@ -124,7 +124,7 @@ public final class MysqlxCrud {
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
         throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
+          "EnumValueDescriptor is not for this Type.");
       }
       return VALUES[desc.getIndex()];
     }
@@ -251,7 +251,7 @@ public final class MysqlxCrud {
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
         throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
+          "EnumValueDescriptor is not for this Type.");
       }
       return VALUES[desc.getIndex()];
     }
@@ -268,7 +268,7 @@ public final class MysqlxCrud {
   /**
    * <pre>
    * ViewSqlSecurity defines the security context in which the view is going to be
-   * executed, this means that VIEW can be executed with current user permissions or
+   * executed, this means that VIEW can be executed with current User permissions or
    * with permissions of the uses who defined the VIEW
    * </pre>
    *
@@ -347,7 +347,7 @@ public final class MysqlxCrud {
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
         throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
+          "EnumValueDescriptor is not for this Type.");
       }
       return VALUES[desc.getIndex()];
     }
@@ -458,7 +458,7 @@ public final class MysqlxCrud {
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
         throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
+          "EnumValueDescriptor is not for this Type.");
       }
       return VALUES[desc.getIndex()];
     }
@@ -533,7 +533,7 @@ public final class MysqlxCrud {
    * column definition
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Crud.Column}
+   * Protobuf Type {@code Mysqlx.Crud.Column}
    */
   public  static final class Column extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -949,7 +949,7 @@ public final class MysqlxCrud {
      * column definition
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Crud.Column}
+     * Protobuf Type {@code Mysqlx.Crud.Column}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -1646,7 +1646,7 @@ public final class MysqlxCrud {
    *              the source string as default)
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Crud.Projection}
+   * Protobuf Type {@code Mysqlx.Crud.Projection}
    */
   public  static final class Projection extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -1993,7 +1993,7 @@ public final class MysqlxCrud {
      *              the source string as default)
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Crud.Projection}
+     * Protobuf Type {@code Mysqlx.Crud.Projection}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -2455,7 +2455,7 @@ public final class MysqlxCrud {
    * collection
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Crud.Collection}
+   * Protobuf Type {@code Mysqlx.Crud.Collection}
    */
   public  static final class Collection extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -2808,7 +2808,7 @@ public final class MysqlxCrud {
      * collection
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Crud.Collection}
+     * Protobuf Type {@code Mysqlx.Crud.Collection}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -3210,7 +3210,7 @@ public final class MysqlxCrud {
    * :param offset: maximum rows to skip before applying the row_count
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Crud.Limit}
+   * Protobuf Type {@code Mysqlx.Crud.Limit}
    */
   public  static final class Limit extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -3513,7 +3513,7 @@ public final class MysqlxCrud {
      * :param offset: maximum rows to skip before applying the row_count
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Crud.Limit}
+     * Protobuf Type {@code Mysqlx.Crud.Limit}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -3825,7 +3825,7 @@ public final class MysqlxCrud {
    * sort order
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Crud.Order}
+   * Protobuf Type {@code Mysqlx.Crud.Order}
    */
   public  static final class Order extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -3997,7 +3997,7 @@ public final class MysqlxCrud {
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this Type.");
         }
         return VALUES[desc.getIndex()];
       }
@@ -4239,7 +4239,7 @@ public final class MysqlxCrud {
      * sort order
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Crud.Order}
+     * Protobuf Type {@code Mysqlx.Crud.Order}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -4666,14 +4666,14 @@ public final class MysqlxCrud {
    * <pre>
    * update operations
    * :param source: specification of the value to be updated
-   *      if data_model is TABLE, a column name may be specified and also a document path, if the column has type JSON
+   *      if data_model is TABLE, a column name may be specified and also a document path, if the column has Type JSON
    *      if data_model is DOCUMENT, only document paths are allowed
    *      in both cases, schema and table must be not set
-   * :param operation: the type of operation to be performed
+   * :param operation: the Type of operation to be performed
    * :param value: an expression to be computed as the new value for the operation
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Crud.UpdateOperation}
+   * Protobuf Type {@code Mysqlx.Crud.UpdateOperation}
    */
   public  static final class UpdateOperation extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -4976,7 +4976,7 @@ public final class MysqlxCrud {
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this Type.");
         }
         return VALUES[desc.getIndex()];
       }
@@ -5264,14 +5264,14 @@ public final class MysqlxCrud {
      * <pre>
      * update operations
      * :param source: specification of the value to be updated
-     *      if data_model is TABLE, a column name may be specified and also a document path, if the column has type JSON
+     *      if data_model is TABLE, a column name may be specified and also a document path, if the column has Type JSON
      *      if data_model is DOCUMENT, only document paths are allowed
      *      in both cases, schema and table must be not set
-     * :param operation: the type of operation to be performed
+     * :param operation: the Type of operation to be performed
      * :param value: an expression to be computed as the new value for the operation
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Crud.UpdateOperation}
+     * Protobuf Type {@code Mysqlx.Crud.UpdateOperation}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -5998,7 +5998,7 @@ public final class MysqlxCrud {
    * :Returns: :protobuf:msg:`Mysqlx.Resultset::`
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Crud.Find}
+   * Protobuf Type {@code Mysqlx.Crud.Find}
    */
   public  static final class Find extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -6303,7 +6303,7 @@ public final class MysqlxCrud {
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this Type.");
         }
         return VALUES[desc.getIndex()];
       }
@@ -6409,7 +6409,7 @@ public final class MysqlxCrud {
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this Type.");
         }
         return VALUES[desc.getIndex()];
       }
@@ -7075,7 +7075,7 @@ public final class MysqlxCrud {
      * :Returns: :protobuf:msg:`Mysqlx.Resultset::`
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Crud.Find}
+     * Protobuf Type {@code Mysqlx.Crud.Find}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -9241,7 +9241,7 @@ public final class MysqlxCrud {
    * :Returns: :protobuf:msg:`Mysqlx.Resultset::`
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Crud.Insert}
+   * Protobuf Type {@code Mysqlx.Crud.Insert}
    */
   public  static final class Insert extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -9411,7 +9411,7 @@ public final class MysqlxCrud {
           int index);
     }
     /**
-     * Protobuf type {@code Mysqlx.Crud.Insert.TypedRow}
+     * Protobuf Type {@code Mysqlx.Crud.Insert.TypedRow}
      */
     public  static final class TypedRow extends
         com.google.protobuf.GeneratedMessageV3 implements
@@ -9694,7 +9694,7 @@ public final class MysqlxCrud {
         return builder;
       }
       /**
-       * Protobuf type {@code Mysqlx.Crud.Insert.TypedRow}
+       * Protobuf Type {@code Mysqlx.Crud.Insert.TypedRow}
        */
       public static final class Builder extends
           com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -10604,7 +10604,7 @@ public final class MysqlxCrud {
      * :Returns: :protobuf:msg:`Mysqlx.Resultset::`
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Crud.Insert}
+     * Protobuf Type {@code Mysqlx.Crud.Insert}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -12027,7 +12027,7 @@ public final class MysqlxCrud {
    * :Returns: :protobuf:msg:`Mysqlx.Resultset::`
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Crud.Update}
+   * Protobuf Type {@code Mysqlx.Crud.Update}
    */
   public  static final class Update extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -12672,7 +12672,7 @@ public final class MysqlxCrud {
      * :Returns: :protobuf:msg:`Mysqlx.Resultset::`
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Crud.Update}
+     * Protobuf Type {@code Mysqlx.Crud.Update}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -14311,7 +14311,7 @@ public final class MysqlxCrud {
    * :Returns: :protobuf:msg:`Mysqlx.Resultset::`
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Crud.Delete}
+   * Protobuf Type {@code Mysqlx.Crud.Delete}
    */
   public  static final class Delete extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -14888,7 +14888,7 @@ public final class MysqlxCrud {
      * :Returns: :protobuf:msg:`Mysqlx.Resultset::`
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Crud.Delete}
+     * Protobuf Type {@code Mysqlx.Crud.Delete}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -16228,7 +16228,7 @@ public final class MysqlxCrud {
     boolean getReplaceExisting();
   }
   /**
-   * Protobuf type {@code Mysqlx.Crud.CreateView}
+   * Protobuf Type {@code Mysqlx.Crud.CreateView}
    */
   public  static final class CreateView extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -16857,7 +16857,7 @@ public final class MysqlxCrud {
       return builder;
     }
     /**
-     * Protobuf type {@code Mysqlx.Crud.CreateView}
+     * Protobuf Type {@code Mysqlx.Crud.CreateView}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -17804,7 +17804,7 @@ public final class MysqlxCrud {
     com.mysql.cj.x.protobuf.MysqlxCrud.FindOrBuilder getStmtOrBuilder();
   }
   /**
-   * Protobuf type {@code Mysqlx.Crud.ModifyView}
+   * Protobuf Type {@code Mysqlx.Crud.ModifyView}
    */
   public  static final class ModifyView extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -18393,7 +18393,7 @@ public final class MysqlxCrud {
       return builder;
     }
     /**
-     * Protobuf type {@code Mysqlx.Crud.ModifyView}
+     * Protobuf Type {@code Mysqlx.Crud.ModifyView}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -19234,7 +19234,7 @@ public final class MysqlxCrud {
     boolean getIfExists();
   }
   /**
-   * Protobuf type {@code Mysqlx.Crud.DropView}
+   * Protobuf Type {@code Mysqlx.Crud.DropView}
    */
   public  static final class DropView extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -19547,7 +19547,7 @@ public final class MysqlxCrud {
       return builder;
     }
     /**
-     * Protobuf type {@code Mysqlx.Crud.DropView}
+     * Protobuf Type {@code Mysqlx.Crud.DropView}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements

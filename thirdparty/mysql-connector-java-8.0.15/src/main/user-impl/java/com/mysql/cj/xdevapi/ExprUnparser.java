@@ -66,7 +66,7 @@ public class ExprUnparser {
     //         case SCALAR:
     //             return scalarToString(e.getScalar());
     //         default:
-    //             throw new IllegalArgumentException("Unknown type tag: " + e.getType());
+    //             throw new IllegalArgumentException("Unknown Type tag: " + e.getType());
     //     }
     // }
 
@@ -92,7 +92,7 @@ public class ExprUnparser {
             case V_NULL:
                 return "NULL";
             default:
-                throw new IllegalArgumentException("Unknown type tag: " + e.getType());
+                throw new IllegalArgumentException("Unknown Type tag: " + e.getType());
         }
     }
 
@@ -315,7 +315,7 @@ public class ExprUnparser {
             case OBJECT:
                 return objectToString(e.getObject());
             default:
-                throw new IllegalArgumentException("Unknown type tag: " + e.getType());
+                throw new IllegalArgumentException("Unknown Type tag: " + e.getType());
         }
     }
 }

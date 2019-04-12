@@ -48,7 +48,7 @@ public final class MysqlxResultset {
    * <pre>
    * a hint about the higher-level encoding of a BYTES field
    * ====== ====== ===========
-   * type   value  description
+   * Type   value  description
    * ====== ====== ===========
    * BYTES  0x0001 GEOMETRY (WKB encoding)
    * BYTES  0x0002 JSON (text encoding)
@@ -146,7 +146,7 @@ public final class MysqlxResultset {
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
         throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
+          "EnumValueDescriptor is not for this Type.");
       }
       return VALUES[desc.getIndex()];
     }
@@ -164,7 +164,7 @@ public final class MysqlxResultset {
    * <pre>
    * a hint about the higher-level encoding of a DATETIME field
    * ======   ====== ===========
-   * type     value  description
+   * Type     value  description
    * ======== ====== ===========
    * DATE     0x0001 DATETIME contains only date part
    * DATETIME 0x0002 DATETIME contains both date and time parts
@@ -246,7 +246,7 @@ public final class MysqlxResultset {
         com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
       if (desc.getType() != getDescriptor()) {
         throw new java.lang.IllegalArgumentException(
-          "EnumValueDescriptor is not for this type.");
+          "EnumValueDescriptor is not for this Type.");
       }
       return VALUES[desc.getIndex()];
     }
@@ -269,7 +269,7 @@ public final class MysqlxResultset {
    * resultsets are finished, OUT paramset is next
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Resultset.FetchDoneMoreOutParams}
+   * Protobuf Type {@code Mysqlx.Resultset.FetchDoneMoreOutParams}
    */
   public  static final class FetchDoneMoreOutParams extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -488,7 +488,7 @@ public final class MysqlxResultset {
      * resultsets are finished, OUT paramset is next
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Resultset.FetchDoneMoreOutParams}
+     * Protobuf Type {@code Mysqlx.Resultset.FetchDoneMoreOutParams}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -689,7 +689,7 @@ public final class MysqlxResultset {
    * resultset and out-params are finished, but more resultsets available
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Resultset.FetchDoneMoreResultsets}
+   * Protobuf Type {@code Mysqlx.Resultset.FetchDoneMoreResultsets}
    */
   public  static final class FetchDoneMoreResultsets extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -908,7 +908,7 @@ public final class MysqlxResultset {
      * resultset and out-params are finished, but more resultsets available
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Resultset.FetchDoneMoreResultsets}
+     * Protobuf Type {@code Mysqlx.Resultset.FetchDoneMoreResultsets}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -1109,7 +1109,7 @@ public final class MysqlxResultset {
    * all resultsets are finished
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Resultset.FetchDone}
+   * Protobuf Type {@code Mysqlx.Resultset.FetchDone}
    */
   public  static final class FetchDone extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -1328,7 +1328,7 @@ public final class MysqlxResultset {
      * all resultsets are finished
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Resultset.FetchDone}
+     * Protobuf Type {@code Mysqlx.Resultset.FetchDone}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -1529,7 +1529,7 @@ public final class MysqlxResultset {
      * datatype of the field in a row
      * </pre>
      *
-     * <code>required .Mysqlx.Resultset.ColumnMetaData.FieldType type = 1;</code>
+     * <code>required .Mysqlx.Resultset.ColumnMetaData.FieldType Type = 1;</code>
      */
     boolean hasType();
     /**
@@ -1537,7 +1537,7 @@ public final class MysqlxResultset {
      * datatype of the field in a row
      * </pre>
      *
-     * <code>required .Mysqlx.Resultset.ColumnMetaData.FieldType type = 1;</code>
+     * <code>required .Mysqlx.Resultset.ColumnMetaData.FieldType Type = 1;</code>
      */
     com.mysql.cj.x.protobuf.MysqlxResultset.ColumnMetaData.FieldType getType();
 
@@ -1655,12 +1655,12 @@ public final class MysqlxResultset {
    *     if .original_table is empty and .table is not empty:
    *       .original_table = .table
    * .. note::
-   *   ``compact metadata format`` can be requested by the client. In that case only ``.type`` is set and
+   *   ``compact metadata format`` can be requested by the client. In that case only ``.Type`` is set and
    *   all other fields are empty.
-   * :param type:
+   * :param Type:
    *   .. table:: Expected Datatype of Mysqlx.Resultset.Row per SQL Type for non NULL values
    *     ================= ============ ======= ========== ====== ========
-   *     SQL Type          .type        .length .frac_dig  .flags .charset
+   *     SQL Type          .Type        .length .frac_dig  .flags .charset
    *     ================= ============ ======= ========== ====== ========
    *     TINY              SINT         x
    *     TINY UNSIGNED     UINT         x                  x
@@ -1691,11 +1691,11 @@ public final class MysqlxResultset {
    *   .. seealso:: protobuf encoding of primitive datatypes are decribed in https://developers.google.com/protocol-buffers/docs/encoding
    *   SINT
    *     ``.length``
-   *       maximum number of displayable decimal digits (including minus sign) of the type
+   *       maximum number of displayable decimal digits (including minus sign) of the Type
    *       .. note::
    *         valid range is 0-255, but usually you'll see 1-20
    *       =============== ==
-   *       SQL Type        max digits per type
+   *       SQL Type        max digits per Type
    *       =============== ==
    *       TINY SIGNED      4
    *       SHORT SIGNED     6
@@ -1710,11 +1710,11 @@ public final class MysqlxResultset {
    *     ``.flags &amp; 1`` (zerofill)
    *       the client has to left pad with 0's up to .length
    *     ``.length``
-   *       maximum number of displayable decimal digits of the type
+   *       maximum number of displayable decimal digits of the Type
    *       .. note::
    *         valid range is 0-255, but usually you'll see 1-20
    *       ================= ==
-   *       SQL Type          max digits per type
+   *       SQL Type          max digits per Type
    *       ================= ==
    *       TINY UNSIGNED      3
    *       SHORT UNSIGNED     5
@@ -1728,7 +1728,7 @@ public final class MysqlxResultset {
    *   BIT
    *     ``.length``
    *       maximum number of displayable binary digits
-   *       .. note:: valid range for M of the ``BIT`` type is 1 - 64
+   *       .. note:: valid range for M of the ``BIT`` Type is 1 - 64
    *       .. seealso:: https://dev.mysql.com/doc/refman/8.0/en/numeric-type-overview.html
    *     ``value``
    *       variable length encoded unsigned 64 integer
@@ -1754,7 +1754,7 @@ public final class MysqlxResultset {
    *       * CHAR, BINARY
    *       * ENUM
    *     ``.length``
-   *       the maximum length of characters of the underlying type
+   *       the maximum length of characters of the underlying Type
    *     ``.flags &amp; 1`` (rightpad)
    *       if the length of the field is less than ``.length``, the receiver is
    *       supposed to add padding characters to the right end of the string.
@@ -1837,7 +1837,7 @@ public final class MysqlxResultset {
    *         * ``[0]`` - the NULL value
    *         * ``[1] 0x00`` - a set containing a blank string ''
    *         * ``[1] 0x01`` - this would be an invalid value, but is to be treated as the empty set
-   *         * ``[2] 0x01 0x00`` - a set with a single item, which is the '&#92;0' character
+   *         * ``[2] 0x01 0x00`` - a set with a single Item, which is the '&#92;0' character
    *         * ``[8] 0x03 F O O 0x03 B A R`` - a set with 2 items: FOO,BAR
    * :param name: name of the column
    * :param original_name: name of the column before an alias was applied
@@ -1850,11 +1850,11 @@ public final class MysqlxResultset {
    *     as there is current no support for catalogs in MySQL, don't expect this field to be set.
    *     In the MySQL C/S protocol the field had the value ``def`` all the time.
    * :param fractional_digits: displayed factional decimal digits for floating point and fixed point numbers
-   * :param length: maximum count of displayable characters of .type
+   * :param length: maximum count of displayable characters of .Type
    * :param flags:
-   *   ``.type`` specific flags
+   *   ``.Type`` specific flags
    *   ======= ====== ===========
-   *   type    value  description
+   *   Type    value  description
    *   ======= ====== ===========
    *   UINT    0x0001 zerofill
    *   DOUBLE  0x0001 unsigned
@@ -1877,7 +1877,7 @@ public final class MysqlxResultset {
    *   please refer to Mysqlx.Resultset.ContentType_BYTES enum.
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Resultset.ColumnMetaData}
+   * Protobuf Type {@code Mysqlx.Resultset.ColumnMetaData}
    */
   public  static final class ColumnMetaData extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -2183,7 +2183,7 @@ public final class MysqlxResultset {
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
           throw new java.lang.IllegalArgumentException(
-            "EnumValueDescriptor is not for this type.");
+            "EnumValueDescriptor is not for this Type.");
         }
         return VALUES[desc.getIndex()];
       }
@@ -2205,7 +2205,7 @@ public final class MysqlxResultset {
      * datatype of the field in a row
      * </pre>
      *
-     * <code>required .Mysqlx.Resultset.ColumnMetaData.FieldType type = 1;</code>
+     * <code>required .Mysqlx.Resultset.ColumnMetaData.FieldType Type = 1;</code>
      */
     public boolean hasType() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
@@ -2215,7 +2215,7 @@ public final class MysqlxResultset {
      * datatype of the field in a row
      * </pre>
      *
-     * <code>required .Mysqlx.Resultset.ColumnMetaData.FieldType type = 1;</code>
+     * <code>required .Mysqlx.Resultset.ColumnMetaData.FieldType Type = 1;</code>
      */
     public com.mysql.cj.x.protobuf.MysqlxResultset.ColumnMetaData.FieldType getType() {
       @SuppressWarnings("deprecation")
@@ -2744,12 +2744,12 @@ public final class MysqlxResultset {
      *     if .original_table is empty and .table is not empty:
      *       .original_table = .table
      * .. note::
-     *   ``compact metadata format`` can be requested by the client. In that case only ``.type`` is set and
+     *   ``compact metadata format`` can be requested by the client. In that case only ``.Type`` is set and
      *   all other fields are empty.
-     * :param type:
+     * :param Type:
      *   .. table:: Expected Datatype of Mysqlx.Resultset.Row per SQL Type for non NULL values
      *     ================= ============ ======= ========== ====== ========
-     *     SQL Type          .type        .length .frac_dig  .flags .charset
+     *     SQL Type          .Type        .length .frac_dig  .flags .charset
      *     ================= ============ ======= ========== ====== ========
      *     TINY              SINT         x
      *     TINY UNSIGNED     UINT         x                  x
@@ -2780,11 +2780,11 @@ public final class MysqlxResultset {
      *   .. seealso:: protobuf encoding of primitive datatypes are decribed in https://developers.google.com/protocol-buffers/docs/encoding
      *   SINT
      *     ``.length``
-     *       maximum number of displayable decimal digits (including minus sign) of the type
+     *       maximum number of displayable decimal digits (including minus sign) of the Type
      *       .. note::
      *         valid range is 0-255, but usually you'll see 1-20
      *       =============== ==
-     *       SQL Type        max digits per type
+     *       SQL Type        max digits per Type
      *       =============== ==
      *       TINY SIGNED      4
      *       SHORT SIGNED     6
@@ -2799,11 +2799,11 @@ public final class MysqlxResultset {
      *     ``.flags &amp; 1`` (zerofill)
      *       the client has to left pad with 0's up to .length
      *     ``.length``
-     *       maximum number of displayable decimal digits of the type
+     *       maximum number of displayable decimal digits of the Type
      *       .. note::
      *         valid range is 0-255, but usually you'll see 1-20
      *       ================= ==
-     *       SQL Type          max digits per type
+     *       SQL Type          max digits per Type
      *       ================= ==
      *       TINY UNSIGNED      3
      *       SHORT UNSIGNED     5
@@ -2817,7 +2817,7 @@ public final class MysqlxResultset {
      *   BIT
      *     ``.length``
      *       maximum number of displayable binary digits
-     *       .. note:: valid range for M of the ``BIT`` type is 1 - 64
+     *       .. note:: valid range for M of the ``BIT`` Type is 1 - 64
      *       .. seealso:: https://dev.mysql.com/doc/refman/8.0/en/numeric-type-overview.html
      *     ``value``
      *       variable length encoded unsigned 64 integer
@@ -2843,7 +2843,7 @@ public final class MysqlxResultset {
      *       * CHAR, BINARY
      *       * ENUM
      *     ``.length``
-     *       the maximum length of characters of the underlying type
+     *       the maximum length of characters of the underlying Type
      *     ``.flags &amp; 1`` (rightpad)
      *       if the length of the field is less than ``.length``, the receiver is
      *       supposed to add padding characters to the right end of the string.
@@ -2926,7 +2926,7 @@ public final class MysqlxResultset {
      *         * ``[0]`` - the NULL value
      *         * ``[1] 0x00`` - a set containing a blank string ''
      *         * ``[1] 0x01`` - this would be an invalid value, but is to be treated as the empty set
-     *         * ``[2] 0x01 0x00`` - a set with a single item, which is the '&#92;0' character
+     *         * ``[2] 0x01 0x00`` - a set with a single Item, which is the '&#92;0' character
      *         * ``[8] 0x03 F O O 0x03 B A R`` - a set with 2 items: FOO,BAR
      * :param name: name of the column
      * :param original_name: name of the column before an alias was applied
@@ -2939,11 +2939,11 @@ public final class MysqlxResultset {
      *     as there is current no support for catalogs in MySQL, don't expect this field to be set.
      *     In the MySQL C/S protocol the field had the value ``def`` all the time.
      * :param fractional_digits: displayed factional decimal digits for floating point and fixed point numbers
-     * :param length: maximum count of displayable characters of .type
+     * :param length: maximum count of displayable characters of .Type
      * :param flags:
-     *   ``.type`` specific flags
+     *   ``.Type`` specific flags
      *   ======= ====== ===========
-     *   type    value  description
+     *   Type    value  description
      *   ======= ====== ===========
      *   UINT    0x0001 zerofill
      *   DOUBLE  0x0001 unsigned
@@ -2966,7 +2966,7 @@ public final class MysqlxResultset {
      *   please refer to Mysqlx.Resultset.ContentType_BYTES enum.
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Resultset.ColumnMetaData}
+     * Protobuf Type {@code Mysqlx.Resultset.ColumnMetaData}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
@@ -3227,7 +3227,7 @@ public final class MysqlxResultset {
        * datatype of the field in a row
        * </pre>
        *
-       * <code>required .Mysqlx.Resultset.ColumnMetaData.FieldType type = 1;</code>
+       * <code>required .Mysqlx.Resultset.ColumnMetaData.FieldType Type = 1;</code>
        */
       public boolean hasType() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
@@ -3237,7 +3237,7 @@ public final class MysqlxResultset {
        * datatype of the field in a row
        * </pre>
        *
-       * <code>required .Mysqlx.Resultset.ColumnMetaData.FieldType type = 1;</code>
+       * <code>required .Mysqlx.Resultset.ColumnMetaData.FieldType Type = 1;</code>
        */
       public com.mysql.cj.x.protobuf.MysqlxResultset.ColumnMetaData.FieldType getType() {
         @SuppressWarnings("deprecation")
@@ -3249,7 +3249,7 @@ public final class MysqlxResultset {
        * datatype of the field in a row
        * </pre>
        *
-       * <code>required .Mysqlx.Resultset.ColumnMetaData.FieldType type = 1;</code>
+       * <code>required .Mysqlx.Resultset.ColumnMetaData.FieldType Type = 1;</code>
        */
       public Builder setType(com.mysql.cj.x.protobuf.MysqlxResultset.ColumnMetaData.FieldType value) {
         if (value == null) {
@@ -3265,7 +3265,7 @@ public final class MysqlxResultset {
        * datatype of the field in a row
        * </pre>
        *
-       * <code>required .Mysqlx.Resultset.ColumnMetaData.FieldType type = 1;</code>
+       * <code>required .Mysqlx.Resultset.ColumnMetaData.FieldType Type = 1;</code>
        */
       public Builder clearType() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -3719,11 +3719,11 @@ public final class MysqlxResultset {
    *   a row is represented as a list of fields encoded as byte blobs.
    *   Blob of size 0 represents the NULL value. Otherwise, if it contains at least
    *   one byte, it encodes a non-null value of the field using encoding appropriate for the
-   *   type of the value given by ``ColumnMetadata``, as specified
+   *   Type of the value given by ``ColumnMetadata``, as specified
    *   in the :protobuf:msg:`Mysqlx.Resultset::ColumnMetaData` description.
    * </pre>
    *
-   * Protobuf type {@code Mysqlx.Resultset.Row}
+   * Protobuf Type {@code Mysqlx.Resultset.Row}
    */
   public  static final class Row extends
       com.google.protobuf.GeneratedMessageV3 implements
@@ -3996,11 +3996,11 @@ public final class MysqlxResultset {
      *   a row is represented as a list of fields encoded as byte blobs.
      *   Blob of size 0 represents the NULL value. Otherwise, if it contains at least
      *   one byte, it encodes a non-null value of the field using encoding appropriate for the
-     *   type of the value given by ``ColumnMetadata``, as specified
+     *   Type of the value given by ``ColumnMetadata``, as specified
      *   in the :protobuf:msg:`Mysqlx.Resultset::ColumnMetaData` description.
      * </pre>
      *
-     * Protobuf type {@code Mysqlx.Resultset.Row}
+     * Protobuf Type {@code Mysqlx.Resultset.Row}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements

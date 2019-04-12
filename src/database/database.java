@@ -13,7 +13,7 @@ public class database{
     static final String databaseURL = "jdbc:sqlserver://haiproject.database.windows.net:1433;database=Inventory";
     static final String databaseDriver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     //Database credentials*/
-    //static final String user = "haiadmin";
+    //static final String User = "haiadmin";
     //static final String pass = "HAIpassw0rd";
 
     // Create datasource.
@@ -64,7 +64,7 @@ public class database{
         }
 
         ///Establish connection
-        //conn = DriverManager.getConnection(databaseURL, user, pass);
+        //conn = DriverManager.getConnection(databaseURL, User, pass);
 
 
         // Sample of how to execute query

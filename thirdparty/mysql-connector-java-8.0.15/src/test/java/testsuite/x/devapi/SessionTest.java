@@ -113,7 +113,7 @@ public class SessionTest extends DevApiBaseTestCase {
         }
 
         try {
-            // Create user with mysql_native_password authentication plugin as it can be used with any of the authentication mechanisms.
+            // Create User with mysql_native_password authentication plugin as it can be used with any of the authentication mechanisms.
             this.session.sql("CREATE USER IF NOT EXISTS 'testUserN'@'%' IDENTIFIED WITH mysql_native_password BY 'testUserN'").execute();
             this.session.sql("GRANT SELECT ON *.* TO 'testUserN'@'%'").execute();
 
@@ -169,7 +169,7 @@ public class SessionTest extends DevApiBaseTestCase {
         }
 
         try {
-            // Create user with mysql_native_password authentication plugin as it can be used with any of the authentication mechanisms.
+            // Create User with mysql_native_password authentication plugin as it can be used with any of the authentication mechanisms.
             this.session.sql("CREATE USER IF NOT EXISTS 'testUserN'@'%' IDENTIFIED WITH mysql_native_password BY 'testUserN'").execute();
             this.session.sql("GRANT SELECT ON *.* TO 'testUserN'@'%'").execute();
 
@@ -223,7 +223,7 @@ public class SessionTest extends DevApiBaseTestCase {
         }
 
         try {
-            // Create user with mysql_native_password authentication plugin as it can be used with any of the authentication mechanisms.
+            // Create User with mysql_native_password authentication plugin as it can be used with any of the authentication mechanisms.
             this.session.sql("CREATE USER IF NOT EXISTS 'testUserN'@'%' IDENTIFIED WITH mysql_native_password BY 'testUserN'").execute();
             this.session.sql("GRANT SELECT ON *.* TO 'testUserN'@'%'").execute();
 
@@ -363,7 +363,7 @@ public class SessionTest extends DevApiBaseTestCase {
 
             Properties props = new Properties();
             props.putAll(this.testProperties);
-            props.setProperty("user", "bug21690043user1");
+            props.setProperty("User", "bug21690043user1");
             props.setProperty("password", "");
             new SessionFactory().getSession(props);
         } catch (Throwable t) {
@@ -556,7 +556,7 @@ public class SessionTest extends DevApiBaseTestCase {
         props.clear();
         props.setProperty("host", getTestHost());
         props.setProperty("port", String.valueOf(getTestPort()));
-        props.setProperty("user", getTestUser());
+        props.setProperty("User", getTestUser());
         props.setProperty("password", getTestPassword());
         props.setProperty("dbname", getTestDatabase());
 
@@ -1119,7 +1119,7 @@ public class SessionTest extends DevApiBaseTestCase {
                 if (e instanceof CJCommunicationsException && e.getCause() != null && e.getCause() instanceof FileNotFoundException
                         && ((path == null ? "\\\\.\\pipe\\MySQL" : path) + " (The system cannot find the file specified)").equals(e.getCause().getMessage())) {
                     continue;
-                } else if (e instanceof XProtocolError && "ASSERTION FAILED: Unknown message type: 10 (server messages mapping: null)".equals(e.getMessage())) {
+                } else if (e instanceof XProtocolError && "ASSERTION FAILED: Unknown message Type: 10 (server messages mapping: null)".equals(e.getMessage())) {
                     // if named pipes are enabled on server then we expect this error because the pipe is bound to legacy protocol
                     continue;
                 }

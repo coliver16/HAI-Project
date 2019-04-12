@@ -230,7 +230,7 @@ public class BinaryBufferRow extends AbstractBufferRow {
     public <T> T getValue(int columnIndex, ValueFactory<T> vf) {
         findAndSeekToOffset(columnIndex);
 
-        // field length is type-specific in binary-encoded results
+        // field length is Type-specific in binary-encoded results
         int type = this.metadata.getFields()[columnIndex].getMysqlTypeId();
         int length = NativeUtils.getBinaryEncodedLength(type);
         if (!getNull(columnIndex)) {
@@ -276,7 +276,7 @@ public class BinaryBufferRow extends AbstractBufferRow {
             } else {
                 // write leading zeroes if value length < required length
                 if (length != value.length) {
-                    throw ExceptionFactory.createException(WrongArgumentException.class, "Value length doesn't match the expected one for type " + type,
+                    throw ExceptionFactory.createException(WrongArgumentException.class, "Value length doesn't match the expected one for Type " + type,
                             this.exceptionInterceptor);
                 }
                 // write value

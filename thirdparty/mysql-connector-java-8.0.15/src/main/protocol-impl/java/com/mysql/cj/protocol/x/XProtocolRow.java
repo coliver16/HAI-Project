@@ -123,7 +123,7 @@ public class XProtocolRow implements com.mysql.cj.result.Row {
                 return XProtocolDecoder.instance.decodeByteArray(byteString.toByteArray(), 0, byteString.size(), vf);
 
             default:
-                throw new DataReadException("Unknown MySQL type constant: " + f.getMysqlTypeId());
+                throw new DataReadException("Unknown MySQL Type constant: " + f.getMysqlTypeId());
         }
 
         //            DecoderFunction decoderFunction = XProtocolDecoder.MYSQL_TYPE_TO_DECODER_FUNCTION.get(f.getMysqlTypeId());
@@ -131,7 +131,7 @@ public class XProtocolRow implements com.mysql.cj.result.Row {
         //                this.wasNull = false;
         //                return decoderFunction.apply(CodedInputStream.newInstance(byteString.toByteArray()), vf);
         //            }
-        //            throw new DataReadException("Unknown MySQL type constant: " + f.getMysqlTypeId());
+        //            throw new DataReadException("Unknown MySQL Type constant: " + f.getMysqlTypeId());
         //} catch (IOException ex) {
         // if reading the protobuf fields fails (CodedInputStream)
         //    throw new DataReadException(ex);

@@ -46,7 +46,7 @@ import com.mysql.cj.protocol.WatchableOutputStream;
 import com.mysql.cj.protocol.WatchableStream;
 
 /**
- * The representation (mapping) in the JavaTM programming language of an SQL BLOB value. An SQL BLOB is a built-in type that stores a Binary Large Object
+ * The representation (mapping) in the JavaTM programming language of an SQL BLOB value. An SQL BLOB is a built-in Type that stores a Binary Large Object
  * as a column value in a row of a database table. The driver implements Blob using an SQL locator(BLOB), which means that a Blob object contains a logical
  * pointer to the SQL BLOB data rather than the data itself. A Blob object is valid for the duration of the transaction in which is was created. Methods in
  * the interfaces ResultSet, CallableStatement, and PreparedStatement, such as getBlob and setBlob allow a programmer to access an SQL BLOB value. The Blob

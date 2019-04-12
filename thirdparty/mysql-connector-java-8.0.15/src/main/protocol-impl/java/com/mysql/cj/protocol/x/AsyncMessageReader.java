@@ -64,14 +64,14 @@ import com.mysql.cj.x.protobuf.MysqlxNotice.Frame;
  * Asynchronous low-level message reader for Protocol buffers encoded messages delivered by X Protocol.
  * The <i>MessageReader</i> will generally be used in one of two ways (See note regarding exceptions for Error messages):
  * <ul>
- * <li>The next message type is known and it's an error to read any other type of message. The caller will generally call the reader like so:
+ * <li>The next message Type is known and it's an error to read any other Type of message. The caller will generally call the reader like so:
  * 
  * <pre>
  * MessageType msg = reader.readPayload(null, 0, ServerMessages.Type.THE_TYPE_VALUE);
  * </pre>
  * 
  * </li>
- * <li>The next message type is not known and the caller must conditionally decide what to do based on the type of the next message. The {@link
+ * <li>The next message Type is not known and the caller must conditionally decide what to do based on the Type of the next message. The {@link
  * #readHeader()} method supports this use case. The caller will generally call the reader like so:
  * 
  * <pre>
@@ -367,7 +367,7 @@ public class AsyncMessageReader implements MessageReader<XMessageHeader, XMessag
             // we must ensure that the message has been delivered and the pending message is cleared atomically under the pending message lock. otherwise the
             // pending message may still be seen after the message has been delivered but before the pending message is cleared
             //
-            // t1-nio-thread                                         | t2-user-thread
+            // t1-nio-thread                                         | t2-User-thread
             // ------------------------------------------------------+------------------------------------------------------
             // pendingMsgClass exposed - no current listener         |
             //                                                       | listener added
@@ -421,7 +421,7 @@ public class AsyncMessageReader implements MessageReader<XMessageHeader, XMessag
     }
 
     /**
-     * Peek into the pending message for it's class/type. This method blocks until a message is available. A message will not become available to peek until
+     * Peek into the pending message for it's class/Type. This method blocks until a message is available. A message will not become available to peek until
      * there are no pending message listeners on this reader.
      *
      * @return the header of the next message to be delivered
@@ -489,7 +489,7 @@ public class AsyncMessageReader implements MessageReader<XMessageHeader, XMessag
      * Synchronously read a single message and propagate any errors to the current thread.
      * 
      * @param <T>
-     *            GeneratedMessage type
+     *            GeneratedMessage Type
      */
     private static final class SyncXMessageListener<T extends GeneratedMessageV3> implements MessageListener<XMessage> {
         private CompletableFuture<XMessage> future;

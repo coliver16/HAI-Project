@@ -1,8 +1,6 @@
 package userInterface.manageItems;
 
-import items.type;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ObservableValue;
+import com.google.common.eventbus.Subscribe;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,17 +18,16 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import userInterface.GuiNavigator;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import local.csvParser;
+import local.CSVParser;
 
 public class viewItemsGUIController {
-    csvParser parser = new csvParser();
+    CSVParser parser = new CSVParser();
 
     private String name = "John Doe";
 
@@ -65,10 +62,21 @@ public class viewItemsGUIController {
     @FXML
     private Button deleteButton;
 
+    @Subscribe
+    public void parseEvent(List<Item> event) {
+        itemImports = (List) event;
+        System.out.println("Event: " + event.toString());
+        for (Object i : itemImports) {
+            itemList.getItems().add(i);
+        }
+    }
+
     @FXML
     public void initialize() throws Exception{
-        csvParser csvparser = new csvParser();
-        itemImports = (List) csvparser.readFile();
+        CSVParser csvparser = new CSVParser();
+        //itemImports = (List) csvparser.readFile();
+        csvparser.readFile();
+
 
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(5.0);
@@ -117,11 +125,11 @@ public class viewItemsGUIController {
         TableColumn<String, Item> column1 = new TableColumn<>("Item No.");
         column1.setCellValueFactory(new PropertyValueFactory<>("itemNo"));
         TableColumn<String, Item> column2 = new TableColumn<>("Room");
-        column2.setCellValueFactory(new PropertyValueFactory<>("room"));
+        column2.setCellValueFactory(new PropertyValueFactory<>("Room"));
         TableColumn<String, Item> column3 = new TableColumn<>("Category");
-        column3.setCellValueFactory(new PropertyValueFactory<>("category"));
+        column3.setCellValueFactory(new PropertyValueFactory<>("Category"));
         TableColumn<String, Item> column4 = new TableColumn<>("Product Type");
-        column4.setCellValueFactory(new PropertyValueFactory<>("type"));
+        column4.setCellValueFactory(new PropertyValueFactory<>("Type"));
         TableColumn<String, Item> column5 = new TableColumn<>("Make");
         column5.setCellValueFactory(new PropertyValueFactory<>("make"));
         TableColumn<String, Item> column6 = new TableColumn<>("Model");
@@ -184,9 +192,9 @@ public class viewItemsGUIController {
         itemList.getItems().add(new Item("00162", "Garage", "Tools", "Tools", "Craftsman", "Carkit", "548768", "receipt", "photo","$400", "For fixing stuff"));
         */
 
-        for (Object i : itemImports) {
+/*        for (Object i : itemImports) {
             itemList.getItems().add(i);
-        }
+        }*/
 
         backButton.setText("Back");
         addButton.setText("Add Item");

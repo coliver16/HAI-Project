@@ -47,7 +47,7 @@ import com.mysql.cj.result.RowList;
  * A protocol provides the facilities to communicate with a MySQL server.
  * 
  * @param <M>
- *            Message type
+ *            Message Type
  */
 public interface Protocol<M extends Message> {
 
@@ -100,9 +100,9 @@ public interface Protocol<M extends Message> {
      * Create a new session. This generally happens once at the beginning of a connection.
      * 
      * @param user
-     *            DB user name
+     *            DB User name
      * @param password
-     *            DB user password
+     *            DB User password
      * @param database
      *            database name
      */
@@ -117,12 +117,12 @@ public interface Protocol<M extends Message> {
     void changeDatabase(String database);
 
     /**
-     * Re-authenticates as the given user and password
+     * Re-authenticates as the given User and password
      * 
      * @param user
-     *            DB user name
+     *            DB User name
      * @param password
-     *            DB user password
+     *            DB User password
      * @param database
      *            database name
      * 

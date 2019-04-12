@@ -29,7 +29,7 @@ public class ConnectDataSource {
 
         // Create datasource.
         SQLServerDataSource ds = new SQLServerDataSource();
-        ds.setUser("<user>");
+        ds.setUser("<User>");
         ds.setPassword("<password>");
         ds.setServerName("<server>");
         ds.setPortNumber(Integer.parseInt("<port>"));

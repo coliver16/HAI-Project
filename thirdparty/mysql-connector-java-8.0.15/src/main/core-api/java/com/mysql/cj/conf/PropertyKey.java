@@ -39,9 +39,9 @@ public enum PropertyKey {
     /*
      * Properties individually managed after parsing connection string. These property keys are case insensitive.
      */
-    /** The database user name. */
-    USER("user", false),
-    /** The database user password. */
+    /** The database User name. */
+    USER("User", false),
+    /** The database User password. */
     PASSWORD("password", false),
     /** The hostname value from the properties instance passed to the driver. */
     HOST("host", false),
@@ -51,8 +51,8 @@ public enum PropertyKey {
     PROTOCOL("protocol", false),
     /** The name pipes path to use when "protocol=pipe'. */
     PATH("path", "namedPipePath", false),
-    /** The server type in a replication setup. Possible values: "master" and "slave". */
-    TYPE("type", false),
+    /** The server Type in a replication setup. Possible values: "master" and "slave". */
+    TYPE("Type", false),
     /** The address value ("host:port") from the properties instance passed to the driver. */
     ADDRESS("address", false),
     /** The host priority in a list of hosts. */
@@ -241,7 +241,7 @@ public enum PropertyKey {
     xdevapiConnectTimeout("xdevapi.connect-timeout", "xdevapiConnectTimeout", true), //
     xdevapiSSLMode("xdevapi.ssl-mode", "xdevapiSSLMode", true), //
     xdevapiSSLTrustStoreUrl("xdevapi.ssl-truststore", "xdevapiSSLTruststore", true), //
-    xdevapiSSLTrustStoreType("xdevapi.ssl-truststore-type", "xdevapiSSLTruststoreType", true), //
+    xdevapiSSLTrustStoreType("xdevapi.ssl-truststore-Type", "xdevapiSSLTruststoreType", true), //
     xdevapiSSLTrustStorePassword("xdevapi.ssl-truststore-password", "xdevapiSSLTruststorePassword", true), //
     xdevapiUseAsyncProtocol("xdevapi.useAsyncProtocol", "xdevapiUseAsyncProtocol", true), //
 

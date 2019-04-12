@@ -73,7 +73,7 @@ public class SyncMessageSender implements MessageSender<XMessage>, PacketSentTim
                     throw new CJPacketTooBigException(Messages.getString("PacketTooBigException.1", new Object[] { size, this.maxAllowedPacket }));
                 }
                 // for debugging
-                // System.err.println("Initiating write of message (size=" + size + ", tag=" + ClientMessages.Type.valueOf(type) + ")");
+                // System.err.println("Initiating write of message (size=" + size + ", tag=" + ClientMessages.Type.valueOf(Type) + ")");
                 byte[] sizeHeader = ByteBuffer.allocate(4).order(ByteOrder.LITTLE_ENDIAN).putInt(size).array();
                 this.outputStream.write(sizeHeader);
                 this.outputStream.write(type);

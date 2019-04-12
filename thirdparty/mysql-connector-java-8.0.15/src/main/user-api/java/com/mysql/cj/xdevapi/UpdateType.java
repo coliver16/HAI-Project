@@ -30,7 +30,7 @@
 package com.mysql.cj.xdevapi;
 
 /**
- * Update operation type.
+ * Update operation Type.
  */
 public enum UpdateType {
     // these must mirror exactly the names of UpdateOperation.UpdateType in mysqlx_crud.proto

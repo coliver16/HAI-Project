@@ -973,7 +973,7 @@ public abstract class BaseTestCase extends TestCase {
             testRoutine.call();
         } catch (Throwable t) {
             if (!throwable.isAssignableFrom(t.getClass())) {
-                fail(message + "expected exception of type '" + throwable.getName() + "' but instead a exception of type '" + t.getClass().getName()
+                fail(message + "expected exception of Type '" + throwable.getName() + "' but instead a exception of Type '" + t.getClass().getName()
                         + "' was thrown.");
             }
 
@@ -983,7 +983,7 @@ public abstract class BaseTestCase extends TestCase {
 
             return throwable.cast(t);
         }
-        fail(message + "expected exception of type '" + throwable.getName() + "'.");
+        fail(message + "expected exception of Type '" + throwable.getName() + "'.");
 
         // never reaches here
         return null;
@@ -1221,7 +1221,7 @@ public abstract class BaseTestCase extends TestCase {
         }
 
         public String getAddress(boolean withTrailingPort) {
-            return "address=(protocol=tcp)(host=" + this.hostName + ")(port=" + this.port + ")(type=" + this.serverType + ")"
+            return "address=(protocol=tcp)(host=" + this.hostName + ")(port=" + this.port + ")(Type=" + this.serverType + ")"
                     + (withTrailingPort ? (":" + this.port) : "");
         }
 
