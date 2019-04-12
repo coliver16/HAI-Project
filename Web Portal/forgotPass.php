@@ -14,28 +14,18 @@
     //Query database to confirm email exists
     $query = "SELECT * FROM Profile_454 WHERE profile_email='$email' and profile_password='$password'";
 
-    $result = sqlserv_query($conn, $query) or die(sqlserv_error($conn));
-    $count = sqlserv_num_rows($result);
+    $result = sqlsrv_query($conn, $query) or die(sqlsrv_error($conn));
 
     //If email exists, email sends
-    if ($count >= 1)
+    if (sqlsrv_has_rows($result))
     {
       //Set beginning of message, to have password added
       $msg = "Your password: ";
 
       //Extract data from mysql_result object, ignoring emails and ending when null
-      while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_NUMERIC))
+      while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC))
       {
-        $i = 0;
-        while($row[$i] != NULL)
-        {
-          if($row[$i] != $email)
-          {
-            $msg = $msg . " " . $row[$i];
-            $i++;
-          }
-          else { $i++; }
-         }
+        $msg = $msg . $row['profile_password'];
       }
     }
 

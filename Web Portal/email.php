@@ -19,20 +19,12 @@ if (isset($_POST['email']) and isset($_POST['password']))
 
    //Query database to confirm proper credentials
    $query = "SELECT * FROM Profile_454 WHERE profile_email='$email' AND PWDCOMPARE('$password', profile_password) = 1";
-   
-   $result = sqlsrv_query($conn, $query) or die(sqlserv_error($conn));
-   //$count = sqlserv_num_rows($result);
 
-   //Error for invalid credentials + redirect to login
-   if(!sqlsrv_has_rows($result))
-   {
-       echo "<script type ='text/javascript'>
-         var answer = window.alert('Invalid Credentials, Please Try again')
-         window.location = 'index.html'
-           </script>";
-   }
+   $result = sqlsrv_query($conn, $query) or die(sqlserv_error($conn));
+   $count = sqlsrv_num_rows($result);
+
    //If credentials are valid, email is sent
-   else
+   if($count >= 1)
    {
      //Build query to select items from each table belonging to given user
      //Once we have proper tables setup, need a join statement for each table
@@ -75,7 +67,14 @@ if (isset($_POST['email']) and isset($_POST['password']))
      echo "<script type ='text/javascript'>
      window.alert('Email Sent!')
      </script>";
-
+   }
+  //Error for invalid credentials + redirect to login
+   else
+   {
+     echo "<script type ='text/javascript'>
+       var answer = window.alert('Invalid Credentials, Please Try again')
+       window.location = 'index.html'
+         </script>";
    }
   }
 ?>
