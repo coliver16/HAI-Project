@@ -29,11 +29,8 @@
       }
     }
 
-    //Use wordwrap() if lines are longer than 70 characters
-    $msg = wordwrap($msg,70);
-
     //Send email
-    mail($email,"Your insurance list",$msg);
+    mail($email,"Did you forget something?",$msg);
 
     //Alert box with success message
     echo "<script type ='text/javascript'>

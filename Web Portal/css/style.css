@@ -8,15 +8,27 @@ body{
 	background-repeat: no-repeat;
   font-family: Tahoma Bold;
 }
+
+div.forgotPass{
+  font-size: 150%;
+  text-align: center;
+  margin-top: 18%;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  color: white;
+
+}
+
 /* Style for title div*/
 div.title{
-    font-size: 150%;
+    font-size: 140%;
     text-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
     padding-left: 10px;
     color: white;
 }
+
 /*General style for login div*/
 .login{
     width: 320px;
@@ -25,6 +37,31 @@ div.title{
     color: #0f0;
     box-sizing: border-box;
     margin: 0 auto
+}
+
+/* Email box specific styling */
+.forgotPass input[type="email"]{
+    color: black;
+    font-size: 15px;
+    background: white;
+    outline: none;
+    height: 60px;
+    padding-left: 10px;
+    width: 20%;
+    border-radius: 20px
+}
+/* Submission button specific styling */
+.forgotPass input[type="submit"]{
+    width: 10%;
+    cursor: pointer;
+    font-size: 20px;
+    border-style: solid, segments(1, 2);
+    background: rgba(75,0,75,.8);
+    outline: none;
+    color: white;
+    font-weight: bold;
+    height: 60px;
+    border-radius: 20px;
 }
 
 /* Set width */
@@ -81,7 +118,7 @@ a{
 
 /*Styling for logo*/
 img{
-  margin-top: 8%;
+  margin: 5%;
   height: auto;
   display: block;
   margin-left: auto;

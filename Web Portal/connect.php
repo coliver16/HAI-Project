@@ -1,27 +1,18 @@
 <?php
-
-//Server info
+//Server name
 $serverName = "haiproject.database.windows.net";
 
-//Database info
-$connectionOptions = array(
+//Array containing db info
+$connOptions = array
+(
+  "Database" => "Inventory",
+  "Uid" => "haiadmin",
+  "PWD" => "HAIpassw0rd"
+);
 
-        "Database" => "Inventory",
+//Establish connection
+$conn = sqlsrv_connect($serverName, $connOptions) or DIE("Failed to connect to database");
 
-        "Uid" => "haiadmin",
-
-        "PWD" => "HAIpassw0rd"
-
-                );
-
-
-//Create connection
-$conn = sqlsrv_connect($serverName, $connectionOptions) or DIE("Failed to connect to database");
-
-
-//Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
+//Doublecheck connection
+if($conn === false){ die( print_r( sqlsrv_errors(), true)); }
 ?>
