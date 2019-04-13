@@ -18,6 +18,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import local.CSVWriter;
 import userInterface.GuiNavigator;
 
 import java.io.IOException;
@@ -28,6 +29,7 @@ import local.CSVParser;
 
 public class viewItemsGUIController {
     CSVParser parser = new CSVParser();
+    CSVWriter csvWriter = new CSVWriter();
 
     private String name = "John Doe";
 
@@ -74,8 +76,10 @@ public class viewItemsGUIController {
     @FXML
     public void initialize() throws Exception{
         CSVParser csvparser = new CSVParser();
-        //itemImports = (List) csvparser.readFile();
-        csvparser.readFile();
+        itemImports = (List) csvparser.readFile();
+        csvWriter.writeCSV((List) itemImports);
+        //csvparser.readFile();
+
 
 
         DropShadow dropShadow = new DropShadow();
@@ -192,7 +196,7 @@ public class viewItemsGUIController {
         itemList.getItems().add(new Item("00162", "Garage", "Tools", "Tools", "Craftsman", "Carkit", "548768", "receipt", "photo","$400", "For fixing stuff"));
         */
 
-/*        for (Object i : itemImports) {
+       /* for (Object i : itemImports) {
             itemList.getItems().add(i);
         }*/
 

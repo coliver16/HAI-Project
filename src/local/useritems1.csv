@@ -1,0 +1,10 @@
+itemNo,Room,Category,Type,make,model,serial,receipt,photo,value,comments,lastupdate,delete
+0,items.Room@620daf25,items.Category@30ffe29,items.Type@3ed3078b,Sony,Bravia,123456789,receipt,photo,1200.0,netflix-stuff,java.text.SimpleDateFormat@f17b4ca5
+5,items.Room@25d11989,items.Category@2aaaee91,items.Type@5628a35b,Sony,Something,5498138,receipt,photo,200.0,For watching smut,java.text.SimpleDateFormat@f17b4ca5
+27,items.Room@7061194a,items.Category@5dd14b9e,items.Type@2072f8d3,Lazy Boy,Black Panther,NA,receipt,photo,2000.0,Unicorn Leather,java.text.SimpleDateFormat@f17b4ca5
+55,items.Room@3353b5fd,items.Category@4b005194,items.Type@1c5a7ed1,Apple,MacBook,66758,receipt,photo,999.0,Cuz I'm hip,java.text.SimpleDateFormat@f17b4ca5
+68,items.Room@2b59a9e9,items.Category@50b1d22,items.Type@4c4e60e6,Dolby,Atmos,9875,receipt,photo,400.0,Eargasm,java.text.SimpleDateFormat@f17b4ca5
+75,items.Room@32d2348,items.Category@655dd425,items.Type@38e237a1,GE,Frigerator 2000,64879531,receipt,photo,800.0,Keeping my shit cold since I 2018,java.text.SimpleDateFormat@f17b4ca5
+101,items.Room@714290b,items.Category@6d496dc2,items.Type@663e70b2,LG,TVinator 21000,16345,receipt,photo,200.0,Watching more smut,java.text.SimpleDateFormat@f17b4ca5
+112,items.Room@4f481ceb,items.Category@69323878,items.Type@4fb36fe1,Pandora,Disney Collection,3468975,receipt,photo,1200.0,Fancy stuff,java.text.SimpleDateFormat@f17b4ca5
+162,items.Room@5a9d2d45,items.Category@553dcdb9,items.Type@2d34ce9e,Craftsman,Carkit,548768,receipt,photo,400.0,For fixing stuff,java.text.SimpleDateFormat@f17b4ca5

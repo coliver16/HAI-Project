@@ -64,7 +64,7 @@ public class CSVParser {
             ParseEvent pEvent = new ParseEvent(itemList);
             //eventBus.register(new ParseEvent);
 
-            eventBus.post(pEvent);
+//            eventBus.post(pEvent);
 
 
             return itemList;
