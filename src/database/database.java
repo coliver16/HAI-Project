@@ -37,34 +37,14 @@ public class database{
     public Connection Connect() throws Exception
 
     {
-        /*try (Connection con = ds.getConnection();
-             CallableStatement cstmt = con.prepareCall("{call dbo.uspGetEmployeeManagers(?)}")) {
-            // Execute a stored procedure that returns some data.
-            cstmt.setInt(1, 50);
-            ResultSet rs = cstmt.executeQuery();
-
-            // Iterate through the data in the result set and display it.
-            while (rs.next()) {
-                System.out.println("EMPLOYEE: " + rs.getString("LastName") + ", " + rs.getString("FirstName"));
-                System.out.println("MANAGER: " + rs.getString("ManagerLastName") + ", " + rs.getString("ManagerFirstName"));
-                System.out.println();
-            }
-        }
-        // Handle any errors that may have occurred.
-        catch (SQLException e) {
-            e.printStackTrace();
-        }*/
 
         try {
-            //Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
             conn = ds.getConnection();
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
-        ///Establish connection
-        //conn = DriverManager.getConnection(databaseURL, User, pass);
 
 
         // Sample of how to execute query
@@ -87,7 +67,6 @@ public class database{
             }
         } catch (SQLException e ) {
             e.printStackTrace();
-            //JDBCTutorialUtilities.printSQLException(e);
         } finally {
             if (stmt != null) { stmt.close(); }
         }

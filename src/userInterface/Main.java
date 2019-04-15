@@ -58,7 +58,7 @@ public class Main extends Application {
 
     public static void main(String[] args) throws Exception {
         database inventory = new database();
-        Connection conn = inventory.Connect();
+        Connection CONN = inventory.Connect();
         launch(args);
 
 

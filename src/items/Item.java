@@ -3,7 +3,7 @@ import users.User;
 
 public class Item {
     public int itemNo;
-    public User user;
+    public User username;
     public Room room;
     public Category category;
     public Type type;
@@ -18,7 +18,7 @@ public class Item {
     //Constructor to create an Item
     public Item(int item, User user, Room room, Category category, Type type, String make, String model, String serial, String receipt, String photo, float value, String comments) {
         this.itemNo = item;
-        this.user = user;
+        this.username = user;
         this.room = room;
         this.category = category;
         this.type = type;
@@ -35,10 +35,10 @@ public class Item {
     public void itemUpdate(Item oldItem, User user, Room room, Category category, Type type, String make, String model, String serial, String receipt, String photo, float value, String comments) {
         // If any field is not provided, the Item's old inputs will be used.
         if (user == null) {
-            this.user = oldItem.getUser();
+            this.username = oldItem.getUser();
         }
         else {
-            this.user = user;
+            this.username = user;
         }
 
         if (room == null) {
@@ -108,24 +108,9 @@ public class Item {
         }
     }
 
-    /*
-    //Add an Item
-    public void addItem (Item newItem, User User, Room Room, Category Category, Type Type, String make, String model, String serial, String receipt, String photo, float value, String comments)
-    {
-        INSERT INTO dbo.Item_454 (user_own, item_room, item_category, item_type, item_make, item_model, item_serial_num, item_receipt, item_image, item_price, item_comments)
-            VALUES (User,
-                    Room,
-                    Category,
-                    Type,
-                    make,
-                    model,
-                    serial,
-                    receipt,
-                    photo,
-                    value,
-                    comments)
-    }
-     */
+
+
+
 
     //Delete an Item
     public void itemDelete(Item item) {
@@ -138,7 +123,7 @@ public class Item {
     }
 
     public User getUser() {
-        return user;
+        return username;
     }
 
     public Room getRoom() {

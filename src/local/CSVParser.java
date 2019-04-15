@@ -18,7 +18,7 @@ import local.ParseEvent;
 
 public class CSVParser {
 
-        public List<Item> readFile() throws Exception {
+        static public List<Item> readFile() throws Exception {
 
             //Item Item = new Item();
             List<Item>  itemList = new ArrayList<>();
