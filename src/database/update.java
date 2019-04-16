@@ -51,6 +51,7 @@ public class update{
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 int itemNo = Integer.valueOf(rs.getString("item_id"));
+                User user = new User(Integer.valueOf(rs.getString("user_name")));
                 Room room = new Room(rs.getString("item_room"));
                 Category category = new Category(rs.getString("item_category"));
                 Type type = new Type(rs.getString("item_type"));
@@ -61,7 +62,6 @@ public class update{
                 String photo = rs.getString("item_image");
                 float value = Float.valueOf(rs.getString("item_price"));
                 String comments = rs.getString("item_comments");
-                User user = new User(123456);
                 Item item = new Item(itemNo, user, room, category, type, make, model, serial, receipt, photo, value, comments);
                 itemList.add(item);
             }

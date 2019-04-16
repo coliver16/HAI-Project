@@ -3,7 +3,7 @@ import users.User;
 
 public class Item {
     public int itemNo;
-    public User username;
+    public User userno;
     public Room room;
     public Category category;
     public Type type;
@@ -18,7 +18,7 @@ public class Item {
     //Constructor to create an Item
     public Item(int item, User user, Room room, Category category, Type type, String make, String model, String serial, String receipt, String photo, float value, String comments) {
         this.itemNo = item;
-        this.username = user;
+        this.userno = user;
         this.room = room;
         this.category = category;
         this.type = type;
@@ -35,10 +35,10 @@ public class Item {
     public void itemUpdate(Item oldItem, User user, Room room, Category category, Type type, String make, String model, String serial, String receipt, String photo, float value, String comments) {
         // If any field is not provided, the Item's old inputs will be used.
         if (user == null) {
-            this.username = oldItem.getUser();
+            this.userno = oldItem.getUser();
         }
         else {
-            this.username = user;
+            this.userno = user;
         }
 
         if (room == null) {
@@ -123,7 +123,7 @@ public class Item {
     }
 
     public User getUser() {
-        return username;
+        return userno;
     }
 
     public Room getRoom() {
