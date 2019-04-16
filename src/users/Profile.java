@@ -1,8 +1,7 @@
 package users;
 
 public class Profile {
-    //
-    public User user;
+    //public User user;
     private String firstName;
     private String lastName;
     public String email;
@@ -13,8 +12,8 @@ public class Profile {
     private String insuranceCompanyEmail;
 
     //Constructer to create a new Profile
-    public Profile(User user, String fname, String lname, String email, String pw, String phoneNumber, String insuranceCompanyName, String insuranceCompanyFax, String insuranceCompanyEmail) {
-        this.user = user;
+    public Profile(/*User user,*/ String fname, String lname, String email, String pw, String phoneNumber, String insuranceCompanyName, String insuranceCompanyFax, String insuranceCompanyEmail) {
+        //this.user = user;
         this.firstName = fname;
         this.lastName = lname;
         this.email = email;
@@ -25,13 +24,13 @@ public class Profile {
         this.insuranceCompanyFax = insuranceCompanyFax;
     }
 
-    public void profileUpdate(Profile oldProfile, User user, String fname, String lname, String email, String pw, String phoneNumber, String insuranceCompanyName, String insuranceCompanyFax, String insuranceCompanyEmail) {
-        if (user == null) {
+    public void profileUpdate(Profile oldProfile, /*User user,*/ String fname, String lname, String email, String pw, String phoneNumber, String insuranceCompanyName, String insuranceCompanyFax, String insuranceCompanyEmail) {
+        /*if (user == null) {
             this.user = oldProfile.getUser();
         }
         else {
         this.user = user;
-        }
+        }*/
 
         if (fname.equals("")) {
             this.firstName = oldProfile.getFirstName();
@@ -114,9 +113,9 @@ public class Profile {
      */
 
     //Getters
-    public User getUser() {
+    /*public User getUser() {
         return user;
-    }
+    }*/
 
     private String getFirstName() {
         return firstName;

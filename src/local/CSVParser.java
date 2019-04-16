@@ -13,7 +13,7 @@ import items.Item;
 import items.Room;
 import items.Type;
 import org.apache.commons.csv.*;
-import users.User;
+//import users.User;
 import local.ParseEvent;
 
 public class CSVParser {
@@ -51,8 +51,8 @@ public class CSVParser {
                 String photo = record.get("photo");
                 float value = Float.valueOf(record.get("value"));
                 String comments = record.get("comments");
-                User user = new User(123456);
-                Item item = new Item(itemNo, user, room, category, type, make, model, serial, receipt, photo, value, comments);
+                //User user = new User(123456);
+                Item item = new Item(itemNo, /*user,*/ room, category, type, make, model, serial, receipt, photo, value, comments);
                 itemList.add(item);
                 //System.out.println(itemNo);
             }
