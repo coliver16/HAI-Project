@@ -1,7 +1,7 @@
 -- DROP TABLE User_454
 -- DROP TABLE Item_454
 -- DROP TABLE Profile_454
--- DROP TABLE ItemsDeleted_454
+-- DROP TABLE DeletedItems_454
 
 -- Creates the User Table of the database
 CREATE TABLE User_454 (
