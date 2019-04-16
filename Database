@@ -22,8 +22,26 @@ CREATE TABLE Item_454 (
     item_image text not null, -- An image of the item or a close replicate
     item_price decimal(7,2) not null, -- Price of the item, (99,999.99) is the max price
     item_comments text not null, -- Any extra comments about the item the user wants to add
+    item_deleted bit not null, -- A boolean to check if an item has been deleted ('true' converted to 1,'false' converted to 0)
     CONSTRAINT FK_items FOREIGN KEY (user_own) REFERENCES User_454(id) -- This allows for each item added to be attributed to a specific user
 	)
+
+-- Creates the Deleted Items Table of the databae
+CREATE TABLE DeletedItems_454 (item_id int FORIEGN KEY not null, -- Identifier from Item_454 table
+    user_own int not null, -- A column that says which user owns this item
+    email_own varchar(50) not null, -- owner's email
+    item_room varchar(50) not null, -- What room of the house the item is located in (Ex. Living Room, Kitchen, etc.)
+    item_category varchar(50) not null, -- What category the item is a part of (Ex. Electronics, Jewelry, etc.)
+    item_type varchar(50) not null, -- What type of item it is (Ex. Television, Couch, etc.)
+    item_make varchar(50) null, -- What make the item is (Ex. Sony, LG, etc)
+    item_model varchar(50) null, -- What model the item is
+    item_serial_num text null, -- The serial number of the item (some items won't have serial numbers so NULL is allowed)
+    item_receipt text not null, -- An image of the receipt for purchase of item
+    item_image text not null, -- An image of the item or a close replicate
+    item_price decimal(7,2) not null, -- Price of the item, (99,999.99) is the max price
+    item_comments text not null, -- Any extra comments about the item the user wants to add
+    CONSTRAINT FK_items FOREIGN KEY (user_own) REFERENCES User_454(id) -- This allows for each item added to be attributed to a specific user
+    )
 
 CREATE TABLE Profile_454 (
     profile_id int IDENTITY not null, -- An auto incremented value to give each profile an unique identifier
