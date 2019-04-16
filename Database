@@ -1,16 +1,17 @@
 -- DROP TABLE User_454
 -- DROP TABLE Item_454
 -- DROP TABLE Profile_454
+-- DROP TABLE DeletedItems_454
 
 -- Creates the User Table of the database
-CREATE TABLE User_454 (
-    id int IDENTITY not null PRIMARY KEY, -- An auto incremented value to give each user an unique identifier
-	)
+-- CREATE TABLE User_454 (
+   -- id int IDENTITY not null PRIMARY KEY, -- An auto incremented value to give each user an unique identifier
+	-- )
 
 -- Creates the Item Table of the database
 CREATE TABLE Item_454 (
     item_id int IDENTITY not null, -- An auto incremented value to give each item an unique identifier
-    user_own int not null, -- A column that says which user owns this item
+    -- user_own int not null, -- A column that says which user owns this item
     email_own varchar(50) not null, -- owner's email
     item_room varchar(50) not null, -- What room of the house the item is located in (Ex. Living Room, Kitchen, etc.)
     item_category varchar(50) not null, -- What category the item is a part of (Ex. Electronics, Jewelry, etc.)
@@ -22,12 +23,31 @@ CREATE TABLE Item_454 (
     item_image text not null, -- An image of the item or a close replicate
     item_price decimal(7,2) not null, -- Price of the item, (99,999.99) is the max price
     item_comments text not null, -- Any extra comments about the item the user wants to add
-    CONSTRAINT FK_items FOREIGN KEY (user_own) REFERENCES User_454(id) -- This allows for each item added to be attributed to a specific user
+    item_deleted bit not null, -- A boolean to check if an item has been deleted ('true' converted to 1,'false' converted to 0)
+    -- CONSTRAINT FK_items FOREIGN KEY (user_own) REFERENCES User_454(id) -- This allows for each item added to be attributed to a specific user
 	)
+
+-- Creates the Deleted Items Table of the databae
+CREATE TABLE DeletedItems_454 (
+    item_id int FORIEGN KEY not null, -- Identifier from Item_454 table
+    -- user_own int not null, -- A column that says which user owns this item
+    email_own varchar(50) not null, -- owner's email
+    item_room varchar(50) not null, -- What room of the house the item is located in (Ex. Living Room, Kitchen, etc.)
+    item_category varchar(50) not null, -- What category the item is a part of (Ex. Electronics, Jewelry, etc.)
+    item_type varchar(50) not null, -- What type of item it is (Ex. Television, Couch, etc.)
+    item_make varchar(50) null, -- What make the item is (Ex. Sony, LG, etc)
+    item_model varchar(50) null, -- What model the item is
+    item_serial_num text null, -- The serial number of the item (some items won't have serial numbers so NULL is allowed)
+    item_receipt text not null, -- An image of the receipt for purchase of item
+    item_image text not null, -- An image of the item or a close replicate
+    item_price decimal(7,2) not null, -- Price of the item, (99,999.99) is the max price
+    item_comments text not null, -- Any extra comments about the item the user wants to add
+    -- CONSTRAINT FK_items FOREIGN KEY (user_own) REFERENCES User_454(id) -- This allows for each item added to be attributed to a specific user
+    )
 
 CREATE TABLE Profile_454 (
     profile_id int IDENTITY not null, -- An auto incremented value to give each profile an unique identifier
-    profile_user int not null PRIMARY KEY, -- A column that says which user this profile is for
+    -- profile_user int not null PRIMARY KEY, -- A column that says which user this profile is for
     profile_firstname varchar(50) not null, -- The user's first name
     profile_lastname varchar(50) not null, -- The user's last name
     profile_email varchar(50) not null, -- The user's profile email
@@ -38,7 +58,7 @@ CREATE TABLE Profile_454 (
     policy_claims_email text not null, -- The company's claims email address in which the user has a policy with
     CONSTRAINT CK_phone_number CHECK (profile_phone_number LIKE REPLICATE ('[0-9]',10)), -- Check to make sure the phone number is 10 digits, no more, no less
     CONSTRAINT CK_fax CHECK (policy_fax LIKE REPLICATE ('[0-9]',10)), -- Check to make sure the fax number is 10 digits, no more, no less
-    CONSTRAINT FK_profile FOREIGN KEY (profile_user) REFERENCES User_454(id) -- This allows for each profile created to be attributed to a specific user
+    -- CONSTRAINT FK_profile FOREIGN KEY (profile_user) REFERENCES User_454(id) -- This allows for each profile created to be attributed to a specific user
 	)
 
 
