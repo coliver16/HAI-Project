@@ -26,7 +26,7 @@ public class Profile {
     private String insuranceCompanyEmail;
 
     //Constructer to create a new Profile
-    private Profile(/*User user,*/ String fname, String lname, String email, String pw, String phoneNumber, String insuranceCompanyName, String insuranceCompanyFax, String insuranceCompanyEmail) {
+    public Profile(/*User user,*/ String fname, String lname, String email, String pw, String phoneNumber, String insuranceCompanyName, String insuranceCompanyFax, String insuranceCompanyEmail) {
         //this.user = user;
         this.firstName = fname;
         this.lastName = lname;
