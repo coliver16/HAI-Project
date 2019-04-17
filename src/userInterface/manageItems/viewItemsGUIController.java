@@ -1,6 +1,7 @@
 package userInterface.manageItems;
 
 import com.google.common.eventbus.Subscribe;
+import items.ItemEvent;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import local.CSVWriter;
+import local.ParseEvent;
 import userInterface.GuiNavigator;
 
 import java.io.IOException;
@@ -33,7 +35,7 @@ public class viewItemsGUIController {
 
     private String name = "John Doe";
 
-    List<Item> itemImports;
+    List<items.Item> itemImports;
 
     Boolean loggedIn = true;
 
@@ -65,7 +67,8 @@ public class viewItemsGUIController {
     private Button deleteButton;
 
     @Subscribe
-    public void parseEvent(List<Item> event) {
+    public void parseEvent(ParseEvent event) {
+        System.out.println("Made it to event");
         itemImports = (List) event;
         System.out.println("Event: " + event.toString());
         for (Object i : itemImports) {
@@ -73,11 +76,32 @@ public class viewItemsGUIController {
         }
     }
 
+    @Subscribe
+    public void itemEvent(ItemEvent event) {
+        itemImports.add(event.getMessage());
+    }
+
     @FXML
     public void initialize() throws Exception{
-        CSVParser csvparser = new CSVParser();
-        itemImports = (List) csvparser.readFile();
-        csvWriter.writeCSV((List) itemImports);
+        //CSVParser csvparser = new CSVParser();
+        CSVParser.readFile();
+
+        Thread thread = new Thread(){
+            public void run() {
+                try {
+                    CSVParser.readFile();
+                    System.out.println("parsed file");
+                } catch (Exception e) {
+                    System.out.println("Error");
+                    e.printStackTrace();
+
+                    System.out.println(e);
+                }
+            }
+        };
+        thread.start();
+//        itemImports = (List) csvparser.readFile();
+//        csvWriter.writeCSV((List) itemImports);
         //csvparser.readFile();
 
 

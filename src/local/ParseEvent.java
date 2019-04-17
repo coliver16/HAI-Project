@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParseEvent {
-    private final List<Item> message;
+
+    private List<Item> message;
 
     public ParseEvent(List<Item> message) {
         this.message = message;
