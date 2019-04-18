@@ -162,7 +162,6 @@ public class Item {
     public boolean Compare(Item two) {
         Float f1 = new Float(this.getValue());
         Float f2 = new Float(two.getValue());
-        //
         if (!this.getRoom().equals(two.getRoom())) {
             return false;
         }
