@@ -26,8 +26,8 @@ public class update{
         }
     }
 
-    public void Update(){
-        List<Item> remote = Download();
+    public void update(){
+        List<Item> remote = Download("Item_454");
         try {
             List<Item> local = CSVParser.readFile();
             List<Item> up = compare(local,remote);
@@ -37,22 +37,28 @@ public class update{
         }
     }
 
+    public void restore(){
+        List<Item> remote = Download("DeletedItems_454");
+
+    }
+
     public void Upload(List<Item> out ){
         try {
             List<Item> input = new ArrayList<>(out);//set new List<Item> = local .CSV file
             while (!input.isEmpty()){//upload to database one item at a time
                 Item entry = input.remove(0);
-                addItem(entry);
+                if(entry.isDeleted()){addDeleted(entry);}
+                else {addItem(entry);}
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public List<Item> Download(){
+    public List<Item> Download(String db){
 
         List<Item> itemList = new ArrayList<>();
-        String query = "SELECT * FROM Item_454 WHERE profile_email = 'cmuney13@gmail.com' ";
+        String query = "SELECT * FROM db WHERE profile_email = 'cmuney13@gmail.com' ";
         Statement stmt = null;
         try {
             stmt = conn.createStatement();
@@ -91,6 +97,19 @@ public class update{
             }
         }
         return itemList;
+    }
+
+    public void addDeleted (Item newItem){
+        try {
+            Statement stmt = conn.createStatement();
+            String query = "DELETE FROM DeletedItems_454 WHERE item_no = newItem.itemNo";
+            stmt.executeQuery(query);
+            query = "INSERT INTO DeletedItems_454 (item_no, /*user_own,*/ item_room, item_category, item_type, item_make, item_model, item_serial_num, item_receipt, item_image, item_price, item_comments)" +
+                "VALUES (newItem.itemNo, /*newItem.username,*/ newItem.room, newItem.category, newItem.type, newItem.make, newItem.model, newItem.serial, newItem.receipt, newItem.photo, newItem.value, newItem.comments)";
+            stmt.executeQuery(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     //Add an Item
