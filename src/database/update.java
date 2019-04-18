@@ -26,6 +26,17 @@ public class update{
         }
     }
 
+    public void Update(){
+        List<Item> remote = Download();
+        try {
+            List<Item> local = CSVParser.readFile();
+            List<Item> up = compare(local,remote);
+            Upload(up);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public void Upload(List<Item> out ){
         try {
             List<Item> input = new ArrayList<>(out);//set new List<Item> = local .CSV file
