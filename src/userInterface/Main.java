@@ -67,8 +67,6 @@ public class Main extends Application {
         EventBusFactory.getEventBus().register(new EventListener());
         ItemList itemList = new ItemList();
 
-        database inventory = new database();
-        Connection CONN = inventory.Connect();
         Thread thread = new Thread() {
             public void run() {
                 try {

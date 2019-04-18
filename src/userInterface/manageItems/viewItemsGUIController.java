@@ -270,8 +270,9 @@ public class viewItemsGUIController {
 
         for (Object i : items) {
             itemList.getItems().remove(i);
-
         }
+
+
 
     }
 
