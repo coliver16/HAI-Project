@@ -3,10 +3,25 @@ package eventBus;
 import com.google.common.eventbus.*;
 import items.Item;
 import items.ItemEvent;
+import local.ParseEvent;
+
+import java.util.List;
 
 public class EventListener {
-    public int lastMessage = 0;
-    public Item itemMessage;
+    private int lastMessage = 0;
+    private Item itemMessage;
+    private List<Item> list;
+
+    @Subscribe
+    public void parseEvent(ParseEvent event) {
+        System.out.println("Made it to event");
+        //itemImports = (List) event.getMessage();
+        System.out.println("Event: " + event.toString());
+        list = event.getMessage();
+        //for (Object i : itemImports) {
+        //    itemList.getItems().add(i);
+        //}
+    }
 
     @Subscribe
     public void listen(ItemEvent event) {

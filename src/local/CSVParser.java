@@ -8,12 +8,13 @@ import java.util.EventListener;
 import java.util.List;
 
 import com.google.common.eventbus.EventBus;
+import eventBus.EventBusFactory;
 import items.Category;
 import items.Item;
 import items.Room;
 import items.Type;
 import org.apache.commons.csv.*;
-import users.User;
+//import users.User;
 import local.ParseEvent;
 
 public class CSVParser {
@@ -51,20 +52,26 @@ public class CSVParser {
                 String photo = record.get("photo");
                 float value = Float.valueOf(record.get("value"));
                 String comments = record.get("comments");
-                User user = new User(123456);
-                Item item = new Item(itemNo, user, room, category, type, make, model, serial, receipt, photo, value, comments);
+                //User user = new User(123456);
+                Item item = new Item(itemNo, /*user,*/ room, category, type, make, model, serial, receipt, photo, value, comments);
                 itemList.add(item);
                 //System.out.println(itemNo);
             }
 
            // return itemList;
 
-            EventBus eventBus = new EventBus("parse");
+            //EventBus eventBus = new EventBus("parse");
             //EventListener listener = new EventListener();
-            ParseEvent pEvent = new ParseEvent(itemList);
-            //eventBus.register(new ParseEvent);
+           // ParseEvent pEvent = new ParseEvent(itemList);
+            //eventBus.register(new ParseEvent(itemList));
+            //EventBus eventBus = new EventBus();
+            System.out.println("Parsed, attempting to push event");
+            EventBus eventBus = EventBusFactory.getEventBus();
+            ParseEvent pevent = new ParseEvent(itemList);
+            eventBus.register(pevent);
+            eventBus.post(pevent);
 
-//            eventBus.post(pEvent);
+            //eventBus.post(pEvent);
 
 
             return itemList;

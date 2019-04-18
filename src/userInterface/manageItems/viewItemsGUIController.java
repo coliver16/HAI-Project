@@ -1,6 +1,11 @@
 package userInterface.manageItems;
 
+import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
+import eventBus.EventBusFactory;
+import eventBus.EventListener;
+import items.ItemEvent;
+import items.ItemListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +24,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import local.CSVWriter;
+import local.ParseEvent;
 import userInterface.GuiNavigator;
 
 import java.io.IOException;
@@ -28,12 +34,13 @@ import java.util.List;
 import local.CSVParser;
 
 public class viewItemsGUIController {
+    EventBus eventBus = EventBusFactory.getEventBus();
     CSVParser parser = new CSVParser();
     CSVWriter csvWriter = new CSVWriter();
 
     private String name = "John Doe";
 
-    List<Item> itemImports;
+    List<items.Item> itemImports;
 
     Boolean loggedIn = true;
 
@@ -64,20 +71,72 @@ public class viewItemsGUIController {
     @FXML
     private Button deleteButton;
 
-    @Subscribe
-    public void parseEvent(List<Item> event) {
-        itemImports = (List) event;
-        System.out.println("Event: " + event.toString());
-        for (Object i : itemImports) {
-            itemList.getItems().add(i);
+    public class EventHandler {
+        @Subscribe
+        public void parseEvent(ParseEvent event) {
+            System.out.println("Made it to event");
+            itemImports = (List) event.getMessage();
+            System.out.println("Event: " + event.toString());
+            System.out.println(itemImports.get(0).make);
+            for (Object i : itemImports) {
+                itemList.getItems().add(i);
+            }
         }
+    }
+
+    @Subscribe
+    public void itemEvent(ItemEvent event) {
+        itemImports.add(event.getMessage());
+    }
+
+    public void registerListener() {
+        ItemListener listener = new ItemListener();
+        eventBus.register(listener);
+
+
     }
 
     @FXML
     public void initialize() throws Exception{
-        CSVParser csvparser = new CSVParser();
-        itemImports = (List) csvparser.readFile();
-        csvWriter.writeCSV((List) itemImports);
+        EventHandler handler = new EventHandler();
+        eventBus.register(handler);
+        registerListener();
+
+        if (itemImports == null) {
+            Thread thread = new Thread() {
+                public void run() {
+                    try {
+                        CSVParser.readFile();
+                        System.out.println("parsed file");
+                    } catch (Exception e) {
+                        System.out.println("Error");
+                        e.printStackTrace();
+
+                        System.out.println(e);
+                    }
+                }
+            };
+            thread.start();
+        }
+        //CSVParser csvparser = new CSVParser();
+       // CSVParser.readFile();
+
+        /*Thread thread = new Thread(){
+            public void run() {
+                try {
+                    CSVParser.readFile();
+                    System.out.println("parsed file");
+                } catch (Exception e) {
+                    System.out.println("Error");
+                    e.printStackTrace();
+
+                    System.out.println(e);
+                }
+            }
+        };
+        thread.start();*/
+//        itemImports = (List) csvparser.readFile();
+//        csvWriter.writeCSV((List) itemImports);
         //csvparser.readFile();
 
 

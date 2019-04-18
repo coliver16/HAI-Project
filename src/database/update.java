@@ -2,7 +2,7 @@ package database;
 import local.*;
 import userInterface.Main;
 import items.*;
-import users.User;
+//import users.User;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -20,16 +20,16 @@ public class update{
 
     {
         try {
-            conn = inventory.Connect();
+            conn = inventory.Connect();//establish database connection
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void Upload(){
+    public void Upload(List<Item> out ){
         try {
-            List<Item> input = CSVParser.readFile();
-            while (!input.isEmpty()){
+            List<Item> input = new ArrayList<>(out);//set new List<Item> = local .CSV file
+            while (!input.isEmpty()){//upload to database one item at a time
                 Item entry = input.remove(0);
                 addItem(entry);
             }
@@ -51,7 +51,7 @@ public class update{
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 int itemNo = Integer.valueOf(rs.getString("item_id"));
-                User user = new User(Integer.valueOf(rs.getString("user_name")));
+                //User user = new User(Integer.valueOf(rs.getString("user_name")));
                 Room room = new Room(rs.getString("item_room"));
                 Category category = new Category(rs.getString("item_category"));
                 Type type = new Type(rs.getString("item_type"));
@@ -62,14 +62,15 @@ public class update{
                 String photo = rs.getString("item_image");
                 float value = Float.valueOf(rs.getString("item_price"));
                 String comments = rs.getString("item_comments");
-                Item item = new Item(itemNo, user, room, category, type, make, model, serial, receipt, photo, value, comments);
+                Item item = new Item(itemNo, /*user,*/ room, category, type, make, model, serial, receipt, photo, value, comments);
                 itemList.add(item);
             }
-            try {
+            /*try {
                 CSVWriter.writeCSV(itemList);
-            } catch (IOException e) {
-                e.printStackTrace();
             }
+            catch (IOException e) {
+                e.printStackTrace();
+            }*/
         } catch (SQLException e ) {
             e.printStackTrace();
         } finally {
@@ -81,7 +82,6 @@ public class update{
                 }
             }
         }
-
     }
 
     //Add an Item
@@ -89,16 +89,12 @@ public class update{
     {
         try {
             Statement stmt = conn.createStatement();
-            String query = "INSERT INTO Item_454 (item_id, user_own, item_room, item_category, item_type, item_make, item_model, item_serial_num, item_receipt, item_image, item_price, item_comments)" +
-                    "VALUES (newItem.itemNo, newItem.username, newItem.room, newItem.category, newItem.type, newItem.make, newItem.model, newItem.serial, newItem.receipt, newItem.photo, newItem.value, newItem.comments)";
+            String query = "INSERT INTO Item_454 (item_id, /*user_own,*/ item_room, item_category, item_type, item_make, item_model, item_serial_num, item_receipt, item_image, item_price, item_comments)" +
+                    "VALUES (newItem.itemNo, /*newItem.username,*/ newItem.room, newItem.category, newItem.type, newItem.make, newItem.model, newItem.serial, newItem.receipt, newItem.photo, newItem.value, newItem.comments)";
             stmt.executeQuery(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-
-
     }
 
 
