@@ -255,6 +255,7 @@ public class viewItemsGUIController {
         backButton.setText("Back");
         addButton.setText("Add Item");
         deleteButton.setText("Delete Item");
+        updateButton.setText("Sync Items");
 
     }
 
@@ -277,6 +278,11 @@ public class viewItemsGUIController {
     @FXML
     public void setBackButton(ActionEvent event) {
         GuiNavigator.loadGui(GuiNavigator.MAIN_MENU_GUI);
+    }
+
+    @FXML
+    public void setUpdateButton(ActionEvent event) {
+        // Jon use this area
     }
 
     @FXML
