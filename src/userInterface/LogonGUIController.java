@@ -14,6 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import users.Login;
 
 public class LogonGUIController {
     Boolean loggedIn = false;
@@ -116,8 +117,9 @@ public class LogonGUIController {
     private void loginButton(ActionEvent event) {
         final  String user = username.getText();
         final String pass = password.getText();
+        Login log = new Login();
 
-        if (user.equals("John Doe") && pass.equals("password1234")) {
+        if (log.Log(user,pass)) {
             message.setText("Your Password is confirmed!");
             message.setTextFill(Color.rgb(0,0,0));
             //username.clear();

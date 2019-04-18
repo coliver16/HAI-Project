@@ -162,36 +162,32 @@ public class Profile {
         return user;
     }*/
 
-    public String setFirstName() {
-        return firstName;
+    public void setFirstName(String f) {
+        firstName = f;
     }
 
-    public String setLastName() {
-        return lastName;
+    public void setLastName(String l) { lastName = l; }
+
+    public void setEmail(String e) {
+        email = e;
     }
 
-    public String setEmail() {
-        return email;
+    public void setPw(String pws) {
+        pw = pws;
     }
 
-    public String setPw() {
-        return pw;
+    public void setPhoneNumber(String pn) { phoneNumber = pn; }
+
+    public void setInsuranceCompanyName(String nam) {
+        insuranceCompanyName = nam;
     }
 
-    public String setPhoneNumber() {
-        return phoneNumber;
+    public void setInsuranceCompanyFax(String fax) {
+        insuranceCompanyFax = fax;
     }
 
-    public String setInsuranceCompanyName() {
-        return insuranceCompanyName;
-    }
-
-    public String setInsuranceCompanyFax() {
-        return insuranceCompanyFax;
-    }
-
-    public String setInsuranceCompanyEmail() {
-        return insuranceCompanyEmail;
+    public void setInsuranceCompanyEmail(String ce) {
+        insuranceCompanyEmail = ce;
     }
 
 }

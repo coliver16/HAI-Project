@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
+import users.Login;
 
 public class database{
     /*//Driver, Host + URL
@@ -56,14 +57,16 @@ public class database{
         } catch (Exception x) {
             x.printStackTrace();
         }*/
-        String query = "select * " +
-                "from " + "Profile_454";
+
+        String query = "select * " + "from " + "Profile_454";
         try {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 String fname = rs.getString("profile_firstname");
+                String pw = rs.getString("profile_password");
                 System.out.println(fname + "\t");
+                System.out.println(pw);
             }
         } catch (SQLException e ) {
             e.printStackTrace();
