@@ -2,6 +2,7 @@ package userInterface;
 
 import eventBus.EventBusFactory;
 import eventBus.EventListener;
+import items.ItemList;
 import items.ItemListener;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +15,7 @@ import local.ParseEvent;
 
 import java.io.IOException;
 import java.sql.Connection;
-
+import java.util.List;
 
 
 /**
@@ -64,9 +65,26 @@ public class Main extends Application {
 
     public static void main(String[] args) throws Exception {
         EventBusFactory.getEventBus().register(new EventListener());
+        ItemList itemList = new ItemList();
 
         database inventory = new database();
         Connection CONN = inventory.Connect();
+        Thread thread = new Thread() {
+            public void run() {
+                try {
+                    itemList.setItemList(CSVParser.readFile());
+                    System.out.println("parsed file");
+                    return;
+                } catch (Exception e) {
+                    System.out.println("Error");
+                    e.printStackTrace();
+
+                    System.out.println(e);
+                }
+                return;
+            }
+        };
+        thread.start();
         launch(args);
 
 
