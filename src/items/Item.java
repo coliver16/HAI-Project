@@ -1,4 +1,5 @@
 package items;
+import java.lang.*;
 //import users.User;
 
 public class Item {
@@ -44,57 +45,49 @@ public class Item {
 
         if (room == null) {
             this.room = oldItem.getRoom();
-        }
-        else {
+        } else {
             this.room = room;
         }
 
         if (category == null) {
             this.category = oldItem.getCategory();
-        }
-        else {
+        } else {
             this.category = category;
         }
 
         if (type == null) {
             this.type = oldItem.getType();
-        }
-        else {
+        } else {
             this.type = type;
         }
 
         if (make.equals("")) {
             this.make = oldItem.getMake();
-        }
-        else {
+        } else {
             this.make = make;
         }
 
         if (model.equals("")) {
             this.model = oldItem.getModel();
-        }
-        else {
+        } else {
             this.model = model;
         }
 
         if (serial.equals("")) {
             this.serial = oldItem.getSerial();
-        }
-        else {
+        } else {
             this.serial = serial;
         }
 
         if (receipt.equals("")) {
             this.receipt = oldItem.getReceipt();
-        }
-        else {
+        } else {
             this.receipt = receipt;
         }
 
         if (photo.equals("")) {
             this.photo = oldItem.getPhoto();
-        }
-        else {
+        } else {
             this.photo = photo;
         }
 
@@ -103,17 +96,12 @@ public class Item {
 
         if (comments.equals("")) {
             this.comments = oldItem.getComments();
-        }
-        else {
+        } else {
             this.comments = comments;
         }
         //
 
     }
-
-
-
-
 
 
     //Delete an Item
@@ -131,7 +119,7 @@ public class Item {
     }*/
 
     public Room getRoom() {
-    return room;
+        return room;
     }
 
     public Category getCategory() {
@@ -168,5 +156,43 @@ public class Item {
 
     public String getComments() {
         return comments;
+    }
+
+
+    public boolean Compare(Item two) {
+        Float f1 = new Float(this.getValue());
+        Float f2 = new Float(two.getValue());
+        boolean equals = true;
+        if (!this.getRoom().equals(two.getRoom())) {
+            equals = false;
+        }
+        if (!this.getCategory().equals(two.getCategory())) {
+            equals = false;
+        }
+        if (!this.getType().equals(two.getType())) {
+            equals = false;
+        }
+        if (!this.getMake().equals(two.getMake())) {
+            equals = false;
+        }
+        if (!this.getModel().equals(two.getModel())) {
+            equals = false;
+        }
+        if (!this.getSerial().equals(two.getSerial())) {
+            equals = false;
+        }
+        if (!this.getReceipt().equals(two.getReceipt())) {
+            equals = false;
+        }
+        if (!this.getPhoto().equals(two.getPhoto())) {
+            equals = false;
+        }
+        if (Float.compare(f1, f2) != 0) {
+            equals = false;
+        }
+        if (!this.getComments().equals(two.getComments())) {
+            equals = false;
+        }
+        return equals;
     }
 }
