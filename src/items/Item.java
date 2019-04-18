@@ -158,6 +158,8 @@ public class Item {
         return comments;
     }
 
+    public Boolean isDeleted(){return deleted;}
+
 
     public boolean Compare(Item two) {
         Float f1 = new Float(this.getValue());
