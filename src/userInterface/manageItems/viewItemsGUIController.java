@@ -4,7 +4,9 @@ import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import eventBus.EventBusFactory;
 import eventBus.EventListener;
+import items.Item;
 import items.ItemEvent;
+import items.ItemList;
 import items.ItemListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -40,7 +42,8 @@ public class viewItemsGUIController {
 
     private String name = "John Doe";
 
-    List<items.Item> itemImports;
+
+    List<Item> itemImports = ItemList.getItemList();
 
     Boolean loggedIn = true;
 
@@ -71,13 +74,16 @@ public class viewItemsGUIController {
     @FXML
     private Button deleteButton;
 
+    @FXML
+    private Button updateButton;
+
     public class EventHandler {
         @Subscribe
         public void parseEvent(ParseEvent event) {
             System.out.println("Made it to event");
             itemImports = (List) event.getMessage();
             System.out.println("Event: " + event.toString());
-            System.out.println(itemImports.get(0).make);
+            System.out.println(itemImports.get(0).getMake());
             for (Object i : itemImports) {
                 itemList.getItems().add(i);
             }
@@ -102,24 +108,11 @@ public class viewItemsGUIController {
         eventBus.register(handler);
         registerListener();
 
-        if (itemImports == null) {
-            Thread thread = new Thread() {
-                public void run() {
-                    try {
-                        CSVParser.readFile();
-                        System.out.println("parsed file");
-                    } catch (Exception e) {
-                        System.out.println("Error");
-                        e.printStackTrace();
+       // if (itemImports == null) {
 
-                        System.out.println(e);
-                    }
-                }
-            };
-            thread.start();
-        }
-        //CSVParser csvparser = new CSVParser();
-       // CSVParser.readFile();
+       // }
+       // CSVParser csvparser = new CSVParser();
+        //CSVParser.readFile();
 
         /*Thread thread = new Thread(){
             public void run() {
@@ -135,8 +128,8 @@ public class viewItemsGUIController {
             }
         };
         thread.start();*/
-//        itemImports = (List) csvparser.readFile();
-//        csvWriter.writeCSV((List) itemImports);
+       // itemImports = (List) csvparser.readFile();
+        //csvWriter.writeCSV((List) itemImports);
         //csvparser.readFile();
 
 
@@ -255,63 +248,17 @@ public class viewItemsGUIController {
         itemList.getItems().add(new Item("00162", "Garage", "Tools", "Tools", "Craftsman", "Carkit", "548768", "receipt", "photo","$400", "For fixing stuff"));
         */
 
-       /* for (Object i : itemImports) {
+        for (Object i : itemImports) {
             itemList.getItems().add(i);
-        }*/
+        }
 
         backButton.setText("Back");
         addButton.setText("Add Item");
         deleteButton.setText("Delete Item");
+        updateButton.setText("Sync Items");
 
     }
 
-    public class Item {
-        //private boolean delete;
-        private String itemNo;
-        private String room;
-        private String category;
-        private String type;
-        private String make;
-        private String model;
-        private String serial;
-        private String receipt;
-        private String photo;
-        private String value;
-        private String comments;
-
-        public Item() {}
-
-        public Item(String item, String room, String cat, String type, String make, String model, String serial, String receipt, String photo, String value, String comment) {
-            //this.delete = del;
-            this.itemNo = item;
-            this.room = room;
-            this.category = cat;
-            this.type = type;
-            this.make = make;
-            this.model = model;
-            this.serial = serial;
-            this.receipt = receipt;
-            this.photo = photo;
-            this.value = value;
-            this.comments = comment;
-        }
-
-       // public boolean getDelete() { return delete;}
-        public String getItemNo() { return itemNo;}
-        public String getRoom() { return room;}
-        public String getCategory() { return category;}
-        public String getType() { return type;}
-        public String getMake() { return make;}
-        public String getModel() { return model;}
-        public String getSerial() { return serial;}
-        public String getReceipt() { return receipt;}
-        public String getPhoto() { return photo;}
-        public String getValue() { return value;}
-        public String getComments() { return comments;}
-
-        //public void setDelete(boolean b) { delete = b; }
-
-    }
 
     @FXML
     public void setDeleteButton(ActionEvent event) {
@@ -323,14 +270,20 @@ public class viewItemsGUIController {
 
         for (Object i : items) {
             itemList.getItems().remove(i);
-
         }
+
+
 
     }
 
     @FXML
     public void setBackButton(ActionEvent event) {
         GuiNavigator.loadGui(GuiNavigator.MAIN_MENU_GUI);
+    }
+
+    @FXML
+    public void setUpdateButton(ActionEvent event) {
+        // Jon use this area
     }
 
     @FXML
