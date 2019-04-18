@@ -65,9 +65,10 @@ public class CSVParser {
            // ParseEvent pEvent = new ParseEvent(itemList);
             //eventBus.register(new ParseEvent(itemList));
             //EventBus eventBus = new EventBus();
+            System.out.println("Parsed, attempting to push event");
             EventBus eventBus = EventBusFactory.getEventBus();
             ParseEvent pevent = new ParseEvent(itemList);
-
+            eventBus.register(pevent);
             eventBus.post(pevent);
 
             //eventBus.post(pEvent);

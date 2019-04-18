@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import database.*;
+import local.CSVParser;
 import local.ParseEvent;
 
 import java.io.IOException;
@@ -63,9 +64,11 @@ public class Main extends Application {
 
     public static void main(String[] args) throws Exception {
         EventBusFactory.getEventBus().register(new EventListener());
+
         database inventory = new database();
         Connection CONN = inventory.Connect();
         launch(args);
+
 
 
     }
