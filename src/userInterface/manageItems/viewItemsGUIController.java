@@ -83,7 +83,7 @@ public class viewItemsGUIController {
             System.out.println("Made it to event");
             itemImports = (List) event.getMessage();
             System.out.println("Event: " + event.toString());
-            System.out.println(itemImports.get(0).make);
+            System.out.println(itemImports.get(0).getMake());
             for (Object i : itemImports) {
                 itemList.getItems().add(i);
             }
