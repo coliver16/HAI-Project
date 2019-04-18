@@ -1,4 +1,5 @@
 package items;
+import java.lang.*;
 //import users.User;
 
 public class Item {
@@ -14,7 +15,7 @@ public class Item {
     public String photo;
     public float value;
     public String comments;
-    public Boolean deleted;
+    public Boolean deleted = false;
 
     //Constructor to create an Item
     public Item(int item, /*User user,*/ Room room, Category category, Type type, String make, String model, String serial, String receipt, String photo, float value, String comments) {
@@ -168,5 +169,13 @@ public class Item {
 
     public String getComments() {
         return comments;
+    }
+
+
+    public boolean Compare(Item two) {
+        Float f1 = new Float(this.getValue());
+        Float f2 = new Float(two.getValue());
+        boolean equals = this.getRoom().equals(two.getRoom()) && this.getCategory().equals(two.getCategory()) && this.getType().equals(two.getType()) && this.getMake().equals(two.getMake()) && this.getModel().equals(two.getModel()) && this.getSerial().equals(two.getSerial()) && this.getReceipt().equals(two.getReceipt()) && this.getPhoto().equals(two.getPhoto()) && Float.compare(f1, f2) == 0 && this.getComments().equals(two.getComments());
+        return equals;
     }
 }
