@@ -1,4 +1,18 @@
 package users;
+import database.database;
+import local.*;
+import userInterface.Main;
+import items.*;
+//import users.User;
+
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import java.sql.Connection;
+import java.sql.Statement;
 
 public class Profile {
     //public User user;
@@ -34,57 +48,49 @@ public class Profile {
 
         if (fname.equals("")) {
             this.firstName = oldProfile.getFirstName();
-        }
-        else {
+        } else {
             this.firstName = fname;
         }
 
         if (lname.equals("")) {
             this.lastName = oldProfile.getLastName();
-        }
-        else {
+        } else {
             this.lastName = lname;
         }
 
         if (email.equals("")) {
             this.email = oldProfile.getEmail();
-        }
-        else {
+        } else {
             this.email = email;
         }
 
         if (pw.equals("")) {
             this.pw = oldProfile.getPw();
-        }
-        else {
+        } else {
             this.pw = pw;
         }
 
         if (phoneNumber.equals("")) {
             this.phoneNumber = oldProfile.getPhoneNumber();
-        }
-        else {
+        } else {
             this.phoneNumber = phoneNumber;
         }
 
         if (insuranceCompanyName.equals("")) {
             this.insuranceCompanyName = oldProfile.getInsuranceCompanyName();
-        }
-        else {
+        } else {
             this.insuranceCompanyName = insuranceCompanyName;
         }
 
         if (insuranceCompanyEmail.equals("")) {
             this.insuranceCompanyEmail = oldProfile.getInsuranceCompanyEmail();
-        }
-        else {
+        } else {
             this.insuranceCompanyEmail = insuranceCompanyEmail;
         }
 
         if (insuranceCompanyFax.equals("")) {
             this.insuranceCompanyFax = oldProfile.getInsuranceCompanyFax();
-        }
-        else {
+        } else {
             this.insuranceCompanyFax = insuranceCompanyFax;
         }
     }
@@ -113,15 +119,16 @@ public class Profile {
      */
 
     //Getters
+
     /*public User getUser() {
         return user;
     }*/
 
-    private String getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    private String getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
@@ -129,23 +136,61 @@ public class Profile {
         return email;
     }
 
-    private String getPw() {
+    public String getPw() {
         return pw;
     }
 
-    private String getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    private String getInsuranceCompanyName() {
+    public String getInsuranceCompanyName() {
         return insuranceCompanyName;
     }
 
-    private String getInsuranceCompanyFax() {
+    public String getInsuranceCompanyFax() {
         return insuranceCompanyFax;
     }
 
-    private String getInsuranceCompanyEmail() {
+    public String getInsuranceCompanyEmail() {
+        return insuranceCompanyEmail;
+    }
+
+    //Setters
+
+    /*public User getUser() {
+        return user;
+    }*/
+
+    public String setFirstName() {
+        return firstName;
+    }
+
+    public String setLastName() {
+        return lastName;
+    }
+
+    public String setEmail() {
+        return email;
+    }
+
+    public String setPw() {
+        return pw;
+    }
+
+    public String setPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String setInsuranceCompanyName() {
+        return insuranceCompanyName;
+    }
+
+    public String setInsuranceCompanyFax() {
+        return insuranceCompanyFax;
+    }
+
+    public String setInsuranceCompanyEmail() {
         return insuranceCompanyEmail;
     }
 

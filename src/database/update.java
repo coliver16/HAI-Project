@@ -67,7 +67,8 @@ public class update{
             }
             /*try {
                 CSVWriter.writeCSV(itemList);
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 e.printStackTrace();
             }*/
         } catch (SQLException e ) {

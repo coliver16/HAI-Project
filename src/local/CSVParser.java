@@ -8,6 +8,7 @@ import java.util.EventListener;
 import java.util.List;
 
 import com.google.common.eventbus.EventBus;
+import eventBus.EventBusFactory;
 import items.Category;
 import items.Item;
 import items.Room;
@@ -59,12 +60,18 @@ public class CSVParser {
 
            // return itemList;
 
-            EventBus eventBus = new EventBus("parse");
+            //EventBus eventBus = new EventBus("parse");
             //EventListener listener = new EventListener();
-            ParseEvent pEvent = new ParseEvent(itemList);
-            //eventBus.register(new ParseEvent);
+           // ParseEvent pEvent = new ParseEvent(itemList);
+            //eventBus.register(new ParseEvent(itemList));
+            //EventBus eventBus = new EventBus();
+            System.out.println("Parsed, attempting to push event");
+            EventBus eventBus = EventBusFactory.getEventBus();
+            ParseEvent pevent = new ParseEvent(itemList);
+            eventBus.register(pevent);
+            eventBus.post(pevent);
 
-//            eventBus.post(pEvent);
+            //eventBus.post(pEvent);
 
 
             return itemList;
