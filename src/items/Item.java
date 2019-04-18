@@ -3,19 +3,19 @@ import java.lang.*;
 //import users.User;
 
 public class Item {
-    public int itemNo;
+    private int itemNo;
     //public User userno;
-    public Room room;
-    public Category category;
-    public Type type;
-    public String make;
-    public String model;
-    public String serial;
-    public String receipt;
-    public String photo;
-    public float value;
-    public String comments;
-    public Boolean deleted = false;
+    private Room room;
+    private Category category;
+    private Type type;
+    private String make;
+    private String model;
+    private String serial;
+    private String receipt;
+    private String photo;
+    private float value;
+    private String comments;
+    private Boolean deleted = false;
 
     //Constructor to create an Item
     public Item(int item, /*User user,*/ Room room, Category category, Type type, String make, String model, String serial, String receipt, String photo, float value, String comments) {

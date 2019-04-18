@@ -39,7 +39,7 @@ public class ItemList {
 
     public Item deleteItem(Item i){
         int j = itemList.indexOf(i);
-        itemList.get(j).deleted = true;
+        itemList.get(j).itemDelete();
         return itemList.get(j);
     }
 
