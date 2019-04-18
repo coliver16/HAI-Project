@@ -162,36 +162,37 @@ public class Item {
     public boolean Compare(Item two) {
         Float f1 = new Float(this.getValue());
         Float f2 = new Float(two.getValue());
+        boolean equals = true;
         if (!this.getRoom().equals(two.getRoom())) {
-            return false;
+            equals = false;
         }
         if (!this.getCategory().equals(two.getCategory())) {
-            return false;
+            equals = false;
         }
         if (!this.getType().equals(two.getType())) {
-            return false;
+            equals = false;
         }
         if (!this.getMake().equals(two.getMake())) {
-            return false;
+            equals = false;
         }
         if (!this.getModel().equals(two.getModel())) {
-            return false;
+            equals = false;
         }
         if (!this.getSerial().equals(two.getSerial())) {
-            return false;
+            equals = false;
         }
         if (!this.getReceipt().equals(two.getReceipt())) {
-            return false;
+            equals = false;
         }
         if (!this.getPhoto().equals(two.getPhoto())) {
-            return false;
+            equals = false;
         }
         if (Float.compare(f1, f2) != 0) {
-            return false;
+            equals = false;
         }
         if (!this.getComments().equals(two.getComments())) {
-            return false;
+            equals = false;
         }
-        return true;
+        return equals;
     }
 }
