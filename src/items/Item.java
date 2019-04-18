@@ -14,7 +14,7 @@ public class Item {
     public String photo;
     public float value;
     public String comments;
-    public Boolean deleted;
+    public Boolean deleted = false;
 
     //Constructor to create an Item
     public Item(int item, /*User user,*/ Room room, Category category, Type type, String make, String model, String serial, String receipt, String photo, float value, String comments) {

@@ -36,15 +36,12 @@ public class update{
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-
     }
 
-    public void Download(){
+    public List<Item> Download(){
 
         List<Item> itemList = new ArrayList<>();
-        String query = "select * " + "from " + "Item_454";
+        String query = "select * from Item_454";
         Statement stmt = null;
         try {
             stmt = conn.createStatement();
@@ -82,6 +79,7 @@ public class update{
                 }
             }
         }
+        return itemList;
     }
 
     //Add an Item
@@ -89,12 +87,27 @@ public class update{
     {
         try {
             Statement stmt = conn.createStatement();
-            String query = "INSERT INTO Item_454 (item_id, /*user_own,*/ item_room, item_category, item_type, item_make, item_model, item_serial_num, item_receipt, item_image, item_price, item_comments)" +
+            String query = "DELETE FROM Item_454 WHERE item_no = newItem.itemNo";
+            stmt.executeQuery(query);
+            query = "INSERT INTO Item_454 (item_no, /*user_own,*/ item_room, item_category, item_type, item_make, item_model, item_serial_num, item_receipt, item_image, item_price, item_comments)" +
                     "VALUES (newItem.itemNo, /*newItem.username,*/ newItem.room, newItem.category, newItem.type, newItem.make, newItem.model, newItem.serial, newItem.receipt, newItem.photo, newItem.value, newItem.comments)";
             stmt.executeQuery(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Item> compare(List<Item> local, List<Item> remote){
+        List<Item> ret = local;
+        int iter1 = 0;
+        int iter2 = 0;
+        while(ret.get(iter1+1)!=null){
+            if(ret.get(iter1).Compare(remote.get(iter2))){ret.remove(iter1); }//compare local w/ remote List
+            else {iter1++;}
+            iter2++;
+        }
+
+        return ret;
     }
 
 
