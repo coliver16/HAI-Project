@@ -17,6 +17,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import local.CSVParser;
 import userInterface.GuiNavigator;
 
 public class MainMenuGUIController {
@@ -118,8 +119,10 @@ public class MainMenuGUIController {
     }
 
     @FXML
-    public void setViewItems(ActionEvent event) {
+    public void setViewItems(ActionEvent event) throws InterruptedException {
+
         GuiNavigator.loadGui(GuiNavigator.VIEW_ITEMS_GUI);
+
     }
 
 
