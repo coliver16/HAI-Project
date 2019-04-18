@@ -14,6 +14,7 @@ public class Item {
     public String photo;
     public float value;
     public String comments;
+    public Boolean deleted;
 
     //Constructor to create an Item
     public Item(int item, /*User user,*/ Room room, Category category, Type type, String make, String model, String serial, String receipt, String photo, float value, String comments) {
@@ -106,15 +107,18 @@ public class Item {
         else {
             this.comments = comments;
         }
+        //
+
     }
 
 
 
 
 
+
     //Delete an Item
-    public void itemDelete(Item item) {
-        item = null;
+    public void itemDelete() {
+        this.deleted = true;
     }
 
     //Getters

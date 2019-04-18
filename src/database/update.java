@@ -20,16 +20,16 @@ public class update{
 
     {
         try {
-            conn = inventory.Connect();
+            conn = inventory.Connect();//establish database connection
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void Upload(){
+    public void Upload(List<Item> out ){
         try {
-            List<Item> input = CSVParser.readFile();
-            while (!input.isEmpty()){
+            List<Item> input = new ArrayList<>(out);//set new List<Item> = local .CSV file
+            while (!input.isEmpty()){//upload to database one item at a time
                 Item entry = input.remove(0);
                 addItem(entry);
             }
@@ -65,11 +65,11 @@ public class update{
                 Item item = new Item(itemNo, /*user,*/ room, category, type, make, model, serial, receipt, photo, value, comments);
                 itemList.add(item);
             }
-            try {
+            /*try {
                 CSVWriter.writeCSV(itemList);
             } catch (IOException e) {
                 e.printStackTrace();
-            }
+            }*/
         } catch (SQLException e ) {
             e.printStackTrace();
         } finally {
@@ -81,7 +81,6 @@ public class update{
                 }
             }
         }
-
     }
 
     //Add an Item
@@ -95,10 +94,6 @@ public class update{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-
-
     }
 
 
