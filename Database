@@ -11,6 +11,7 @@
 -- Creates the Item Table of the database
 CREATE TABLE Item_454 (
     item_id int IDENTITY not null, -- An auto incremented value to give each item an unique identifier
+    item_no int not null, -- For item class in java
     -- user_own int not null, -- A column that says which user owns this item
     email_own varchar(50) not null, -- owner's email
     item_room varchar(50) not null, -- What room of the house the item is located in (Ex. Living Room, Kitchen, etc.)
