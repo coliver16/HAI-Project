@@ -71,6 +71,9 @@ public class viewItemsGUIController {
     @FXML
     private Button deleteButton;
 
+    @FXML
+    private Button updateButton;
+
     public class EventHandler {
         @Subscribe
         public void parseEvent(ParseEvent event) {

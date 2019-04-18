@@ -52,7 +52,7 @@ public class update{
     public List<Item> Download(){
 
         List<Item> itemList = new ArrayList<>();
-        String query = "select * from Item_454";
+        String query = "SELECT * FROM Item_454 WHERE profile_email = 'cmuney13@gmail.com' ";
         Statement stmt = null;
         try {
             stmt = conn.createStatement();
@@ -112,7 +112,7 @@ public class update{
         List<Item> ret = local;
         int iter1 = 0;
         int iter2 = 0;
-        while(ret.get(iter1+1)!=null){
+        while(ret.get(iter1)!=null && remote.get(iter2) != null){
             if(ret.get(iter1).Compare(remote.get(iter2))){ret.remove(iter1); }//compare local w/ remote List
             else {iter1++;}
             iter2++;
