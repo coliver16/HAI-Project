@@ -9,7 +9,7 @@ public class Login {
     database inventory = new database();
     Connection conn;
     Profile currentProfile = new Profile("", "", "", "", "", "", "", "");
-    //
+
     public boolean Login(String logEmail, String logPass) {
         String query = "select * " + "from " + "Profile_454 " + "where" + "PWDCOMPARE(logPass, profile_password) = 1 " + "and profile_email = logEmail";
         Statement stmt = null;
