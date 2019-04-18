@@ -124,11 +124,11 @@ public class Profile {
         return user;
     }*/
 
-    private String getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    private String getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
@@ -136,23 +136,23 @@ public class Profile {
         return email;
     }
 
-    private String getPw() {
+    public String getPw() {
         return pw;
     }
 
-    private String getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    private String getInsuranceCompanyName() {
+    public String getInsuranceCompanyName() {
         return insuranceCompanyName;
     }
 
-    private String getInsuranceCompanyFax() {
+    public String getInsuranceCompanyFax() {
         return insuranceCompanyFax;
     }
 
-    private String getInsuranceCompanyEmail() {
+    public String getInsuranceCompanyEmail() {
         return insuranceCompanyEmail;
     }
 
@@ -162,11 +162,11 @@ public class Profile {
         return user;
     }*/
 
-    private String setFirstName() {
+    public String setFirstName() {
         return firstName;
     }
 
-    private String setLastName() {
+    public String setLastName() {
         return lastName;
     }
 
@@ -174,23 +174,23 @@ public class Profile {
         return email;
     }
 
-    private String setPw() {
+    public String setPw() {
         return pw;
     }
 
-    private String setPhoneNumber() {
+    public String setPhoneNumber() {
         return phoneNumber;
     }
 
-    private String setInsuranceCompanyName() {
+    public String setInsuranceCompanyName() {
         return insuranceCompanyName;
     }
 
-    private String setInsuranceCompanyFax() {
+    public String setInsuranceCompanyFax() {
         return insuranceCompanyFax;
     }
 
-    private String setInsuranceCompanyEmail() {
+    public String setInsuranceCompanyEmail() {
         return insuranceCompanyEmail;
     }
 

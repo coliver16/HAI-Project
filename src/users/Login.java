@@ -27,12 +27,12 @@ public class Login {
             String insuranceCompanyEmail = rs.getString("policy_claims_email");
             currentProfile = new Profile(fname, lname, email, pw, phoneNumber, insuranceCompanyName, insuranceCompanyFax, insuranceCompanyEmail);
             //Check that currentProfile login was successful
-            if (currentProfile.getEmail().equals("")) {
-                loggedIn = false;
-            }
-            else {
+            loggedIn = (currentProfile.getEmail().equals(logEmail) && currentProfile.getPw().equals(logPass));
+            /*if (currentProfile.getEmail().equals(logEmail) && currentProfile.getPw().equals(logPass)) {
                 loggedIn = true;
-            }
+            } else {
+                loggedIn = false;
+            }*/
         }
         catch (SQLException e) {
             e.printStackTrace();
