@@ -67,7 +67,8 @@ public class Main extends Application {
     public static void main(String[] args) throws Exception {
         EventBusFactory.getEventBus().register(new EventListener());
         ItemList itemList = new ItemList();
-
+        database inventory = new database();
+        inventory.Connect();
         Thread thread = new Thread() {
             public void run() {
                 try {
