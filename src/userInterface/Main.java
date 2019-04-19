@@ -1,4 +1,5 @@
 package userInterface;
+import javafx.application.Platform;
 import users.Login;
 
 import eventBus.EventBusFactory;
@@ -35,6 +36,11 @@ public class Main extends Application {
         primaryStage.setMaxHeight(1080);
         primaryStage.setMaxWidth(1920);
         primaryStage.show();
+        primaryStage.setOnCloseRequest( event -> {
+            Platform.exit();
+            System.exit(0);
+        });
+
     }
 
 
@@ -84,7 +90,7 @@ public class Main extends Application {
                 return;
             }
         };
-        thread.start();
+        thread.join();
         launch(args);
 
 

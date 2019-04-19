@@ -16,6 +16,7 @@ import items.Type;
 import org.apache.commons.csv.*;
 //import users.User;
 import local.ParseEvent;
+import users.Profile;
 
 public class CSVParser {
 
@@ -77,55 +78,56 @@ public class CSVParser {
             return itemList;
         }
 
+    static public Profile readProfile() throws Exception {
+
+        String firstName = "";
+        String lastName = "";
+        String email = "";
+        String pw = "";
+        String phoneNumber = "";
+        String insuranceCompanyName = "";
+        String insuranceCompanyFax = "";
+        String insuranceCompanyEmail = "";
 
 
-    /*public class Item {
-        //private boolean delete;
-        private String itemNo;
-        private String room;
-        private String category;
-        private String type;
-        private String make;
-        private String model;
-        private String serial;
-        private String receipt;
-        private String photo;
-        private String value;
-        private String comments;
+        String fileName= "src\\users\\userprofile.csv";
+        File file= new File(fileName);
+        String path = file.getAbsolutePath();
+        Reader in = new FileReader(path);
+        Iterable<CSVRecord> records = CSVFormat.EXCEL.withHeader("firstName","lastName","email","password","phoneNumber","insuranceCompanyName","insuranceCompanyFax", "insuranceCompanyEmail").parse(in);
+        for (CSVRecord record : records) {
 
-        public Item() {}
-
-        public Item(String item, String room, String cat, String type, String make, String model, String serial, String receipt, String photo, String value, String comment) {
-            //this.delete = del;
-            this.itemNo = item;
-            this.room = room;
-            this.category = cat;
-            this.type = type;
-            this.make = make;
-            this.model = model;
-            this.serial = serial;
-            this.receipt = receipt;
-            this.photo = photo;
-            this.value = value;
-            this.comments = comment;
+            firstName = record.get("firstName");
+            lastName = record.get("lastName");
+            email = record.get("email");
+            pw = record.get("password");
+            phoneNumber = record.get("phoneNumber");
+            insuranceCompanyEmail = record.get("insuranceCompanyEmail");
+            insuranceCompanyFax = record.get("insuranceCompanyFax");
+            insuranceCompanyName = record.get("insuranceCompanyName");
         }
 
-        // public boolean getDelete() { return delete;}
-        public String getItemNo() { return itemNo;}
-        public String getRoom() { return room;}
-        public String getCategory() { return category;}
-        public String getType() { return type;}
-        public String getMake() { return make;}
-        public String getModel() { return model;}
-        public String getSerial() { return serial;}
-        public String getReceipt() { return receipt;}
-        public String getPhoto() { return photo;}
-        public String getValue() { return value;}
-        public String getComments() { return comments;}
+        // return itemList;
 
-        //public void setDelete(boolean b) { delete = b; }
+        //EventBus eventBus = new EventBus("parse");
+        //EventListener listener = new EventListener();
+        // ParseEvent pEvent = new ParseEvent(itemList);
+        //eventBus.register(new ParseEvent(itemList));
+        //EventBus eventBus = new EventBus();
+        System.out.println("Parsed user profile");
+        //EventBus eventBus = EventBusFactory.getEventBus();
+        //ParseEvent pevent = new ParseEvent(itemList);
+        //eventBus.register(pevent);
+        //eventBus.post(pevent);
 
-    }*/
+        //eventBus.post(pEvent);
+        Profile profile = new Profile(firstName, lastName, email, pw, phoneNumber, insuranceCompanyName, insuranceCompanyFax, insuranceCompanyEmail);
+
+        return profile;
+    }
+
+
+
 
 }
 
