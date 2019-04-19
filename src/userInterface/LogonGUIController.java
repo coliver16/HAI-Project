@@ -1,5 +1,10 @@
 package userInterface;
 
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
+import eventBus.EventBusFactory;
+import items.ItemList;
+import items.ItemListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.SnapshotParameters;
@@ -11,10 +16,21 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import local.CSVParser;
+import local.CSVWriter;
+import org.apache.commons.csv.CSVPrinter;
 import users.Login;
+import users.Profile;
+import users.UserLoginEvent;
+
+import java.io.IOException;
 
 public class LogonGUIController {
+    EventBus eventBus = EventBusFactory.getEventBus();
+    CSVParser parser = new CSVParser();
+    CSVWriter csvWriter = new CSVWriter();
     Boolean loggedIn = false;
+    Profile userProfile = new Profile("","","","","","","","");
 
     @FXML
     private Label whyHai = new Label();
@@ -49,8 +65,34 @@ public class LogonGUIController {
     @FXML
     private CheckBox rememberMe = new CheckBox();
 
+    public class EventHandler {
+        @Subscribe
+        public void userLoginEvent(UserLoginEvent event) {
+            System.out.println("User has logged in");
+            userProfile = event.getMessage();
+
+            if (rememberMe.isSelected()) {
+                try {
+                    CSVWriter.writeUserProfile(userProfile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void registerListener() {
+        ItemListener listener = new ItemListener();
+        eventBus.register(listener);
+    }
+
     @FXML
     public void initialize() {
+        EventHandler handler = new EventHandler();
+        eventBus.register(handler);
+        registerListener();
+
+
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(5.0);
         dropShadow.setOffsetX(3.0);
@@ -119,20 +161,40 @@ public class LogonGUIController {
     };
 
     @FXML
-    private void loginButton(ActionEvent event) {
+    private void loginButton(ActionEvent event) throws Exception {
         final String user = username.getText();
         final String pass = password.getText();
         System.out.println("User: " + user + " Pass: " + pass);
         Login log = new Login();
 
-        if (user.equals("cmuney13@gmail.com") && password.equals("password")) {
-        //if (log.Log("cmuney13@gmail.com","password")) {
+        //if (user.equals("cmuney13@gmail.com") && password.equals("password")) {
+        if (log.Log("cmuney13@gmail.com","password")) {
             message.setText("Your Password is confirmed!");
             message.setTextFill(Color.rgb(0,0,0));
             //username.clear();
             //password.clear();
             setLoggedIn(true);
+
+            Thread thread = new Thread(){
+                public void run() {
+                    try {
+                        ItemList.setItemList(CSVParser.readFile());
+                        System.out.println("parsed file");
+                        return;
+                    } catch (Exception e) {
+                        System.out.println("Error");
+                        e.printStackTrace();
+
+                        System.out.println(e);
+                    }
+                    //return;
+                }
+            };
+            thread.join();
+            thread.run();
+
             GuiNavigator.loadGui(GuiNavigator.MAIN_MENU_GUI);
+
         }
         else {
             username.clear();

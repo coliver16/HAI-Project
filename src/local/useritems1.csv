@@ -1,10 +1,10 @@
 itemNo,Room,Category,Type,make,model,serial,receipt,photo,value,comments,lastupdate,delete
-0,items.Room@1847fa36,items.Category@3ac007e3,items.Type@69a6dad2,Sony,Bravia,123456789,receipt,photo,1200.0,netflix-stuff,java.text.SimpleDateFormat@f17b4ca5
-5,items.Room@148f0cc3,items.Category@33bed22e,items.Type@9fb24a5,Sony,Something,5498138,receipt,photo,200.0,For watching smut,java.text.SimpleDateFormat@f17b4ca5
-27,items.Room@56d41f02,items.Category@3a51e80f,items.Type@7f3b62c9,Lazy Boy,Black Panther,NA,receipt,photo,2000.0,Unicorn Leather,java.text.SimpleDateFormat@f17b4ca5
-55,items.Room@2f35bf87,items.Category@59ef896c,items.Type@6c4b03ce,Apple,MacBook,66758,receipt,photo,999.0,Cuz I'm hip,java.text.SimpleDateFormat@f17b4ca5
-68,items.Room@48c219a4,items.Category@4a095ebc,items.Type@6f881a78,Dolby,Atmos,9875,receipt,photo,400.0,Eargasm,java.text.SimpleDateFormat@f17b4ca5
-75,items.Room@5b693134,items.Category@33e1cc4,items.Type@3c24ea1,GE,Frigerator 2000,64879531,receipt,photo,800.0,Keeping my shit cold since I 2018,java.text.SimpleDateFormat@f17b4ca5
-101,items.Room@2cb6df7b,items.Category@3ec4bb48,items.Type@4d6f5868,LG,TVinator 21000,16345,receipt,photo,200.0,Watching more smut,java.text.SimpleDateFormat@f17b4ca5
-112,items.Room@5c49a022,items.Category@461ef1d7,items.Type@5d1b0ca7,Pandora,Disney Collection,3468975,receipt,photo,1200.0,Fancy stuff,java.text.SimpleDateFormat@f17b4ca5
-162,items.Room@6a80a374,items.Category@7b5946b6,items.Type@4af89043,Craftsman,Carkit,548768,receipt,photo,400.0,For fixing stuff,java.text.SimpleDateFormat@f17b4ca5
+0,Livingroom,Electronics,Television,Sony,Bravia,123456789,receipt,photo,1200.0,netflix-stuff,2019-04-19 00:57:15.648,false
+5,Livingroom,Electronics,BluRay Player,Sony,Something,5498138,receipt,photo,200.0,For watching smut,2019-04-19 00:57:15.649,false
+27,Livingroom,Furniture,Couch,Lazy Boy,Black Panther,NA,receipt,photo,2000.0,Unicorn Leather,2019-04-19 00:57:15.649,false
+55,Gameroom,Electronics,Computer,Apple,MacBook,66758,receipt,photo,999.0,Cuz I'm hip,2019-04-19 00:57:15.649,false
+68,Gameroom,Electronics,Speakers,Dolby,Atmos,9875,receipt,photo,400.0,Eargasm,2019-04-19 00:57:15.649,false
+75,Kitchen,Appliances,Refrigerator,GE,Frigerator 2000,64879531,receipt,photo,800.0,Keeping my shit cold since I 2018,2019-04-19 00:57:15.649,false
+101,Bedroom,Electronics,Television,LG,TVinator 21000,16345,receipt,photo,200.0,Watching more smut,2019-04-19 00:57:15.649,false
+112,Bedroom,Jewelry,Necklace,Pandora,Disney Collection,3468975,receipt,photo,1200.0,Fancy stuff,2019-04-19 00:57:15.649,false
+162,Garage,Tools,Tools,Craftsman,Carkit,548768,receipt,photo,400.0,For fixing stuff,2019-04-19 00:57:15.649,false

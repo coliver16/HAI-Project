@@ -75,22 +75,7 @@ public class Main extends Application {
         ItemList itemList = new ItemList();
         database inventory = new database();
         inventory.Connect();
-        Thread thread = new Thread() {
-            public void run() {
-                try {
-                    itemList.setItemList(CSVParser.readFile());
-                    System.out.println("parsed file");
-                    return;
-                } catch (Exception e) {
-                    System.out.println("Error");
-                    e.printStackTrace();
 
-                    System.out.println(e);
-                }
-                return;
-            }
-        };
-        thread.join();
         launch(args);
 
 

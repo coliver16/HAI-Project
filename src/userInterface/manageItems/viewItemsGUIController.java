@@ -3,11 +3,9 @@ package userInterface.manageItems;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import eventBus.EventBusFactory;
-import eventBus.EventListener;
-import items.Item;
-import items.ItemEvent;
-import items.ItemList;
-import items.ItemListener;
+import items.*;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -84,8 +82,13 @@ public class viewItemsGUIController {
             itemImports = (List) event.getMessage();
             System.out.println("Event: " + event.toString());
             System.out.println(itemImports.get(0).getMake());
-            for (Object i : itemImports) {
-                itemList.getItems().add(i);
+            for (Item i : itemImports) {
+                Item item = new Item(i.getItemNo(), new Room(i.getRoom().getStatus()), i.getCategory(), i.getType(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments());
+                //itemList.getItems().add(i);
+
+                itemList.getItems().add(item);
+                //itemList.getItems().
+
             }
         }
     }
@@ -129,8 +132,8 @@ public class viewItemsGUIController {
         };
         thread.start();*/
        // itemImports = (List) csvparser.readFile();
-        //csvWriter.writeCSV((List) itemImports);
-        //csvparser.readFile();
+        csvWriter.writeCSV((List) itemImports);
+        //CSVParser.readFile();
 
 
 
@@ -216,6 +219,7 @@ public class viewItemsGUIController {
 
 
 
+        //column2.setCellValueFactory(cellData -> new SimpleStringProperty(Room.rooms.Bathroom.toString()));
 
         itemList.getSelectionModel().setSelectionMode(
                 SelectionMode.MULTIPLE
@@ -248,8 +252,18 @@ public class viewItemsGUIController {
         itemList.getItems().add(new Item("00162", "Garage", "Tools", "Tools", "Craftsman", "Carkit", "548768", "receipt", "photo","$400", "For fixing stuff"));
         */
 
-        for (Object i : itemImports) {
-            itemList.getItems().add(i);
+        //for (Object i : itemImports) {
+        //   itemList.getItems().add(i);
+        //}
+
+        for (Item i : itemImports) {
+            Item item = new Item(i.getItemNo(), new Room(i.getRoom().getStatus()), i.getCategory(), i.getType(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments());
+            //itemList.getItems().add(i);
+            //itemList.getItems().add(
+            itemList.getItems().add(new Item(i.getItemNo(), new Room(i.getRoom().getStatus().toString()), i.getCategory(), i.getType(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments()));
+            //itemList.getItems().add(item);
+            //itemList.getItems().
+
         }
 
         backButton.setText("Back");
@@ -268,8 +282,11 @@ public class viewItemsGUIController {
             items.add((Item) itemList.getItems().get((Integer) i));
         }
 
-        for (Object i : items) {
+        for (Item i : items) {
             itemList.getItems().remove(i);
+            int j = ItemList.getItemList().indexOf(i);
+            //ItemList.getItemList().get(j).itemDelete();
+            ItemList.itemList.get(j).itemDelete();
         }
 
 

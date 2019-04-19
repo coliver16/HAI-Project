@@ -44,6 +44,8 @@ public class CSVParser {
                 }
                 //int itemNo = Integer.valueOf(record.get("itemNo"));
                 Room room = new Room(record.get("Room"));
+                System.out.println(room.getStatus());
+                //Room room = new Room(Room.rooms.Bathroom);
                 Category category = new Category(record.get("Category"));
                 Type type = new Type(record.get("Type"));
                 String make = record.get("make");

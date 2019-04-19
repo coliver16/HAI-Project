@@ -1,5 +1,8 @@
 package users;
+import com.google.common.eventbus.EventBus;
 import database.database;
+import eventBus.EventBusFactory;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -64,6 +67,11 @@ public class Login {
         catch (SQLException e) {
             e.printStackTrace();
         }
+
+        EventBus eventBus = EventBusFactory.getEventBus();
+        UserLoginEvent userLoginEvent = new UserLoginEvent(currentProfile);
+        eventBus.register(userLoginEvent);
+        eventBus.post(userLoginEvent);
         return loggedIn;
     }
 }
