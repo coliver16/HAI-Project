@@ -51,9 +51,22 @@
         <HBox maxWidth="1920" alignment="BOTTOM_CENTER" GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.halignment="CENTER"
               GridPane.hgrow="ALWAYS">
             <VBox alignment="CENTER">
-                <TableView fx:id="itemList" prefWidth="1275">
+                <HBox spacing="10">
+                    <TableView fx:id="itemList" prefWidth="1275">
+                    </TableView>
 
-                </TableView>
+                    <VBox alignment="CENTER" spacing="10">
+                        <ImageView fx:id="itemImage"  fitHeight="130" fitWidth="130" pickOnBounds="true"
+                                   preserveRatio="true">
+                        </ImageView>
+
+                        <ImageView fx:id="itemReceipt" fitHeight="130" fitWidth="130" pickOnBounds="true"
+                                   preserveRatio="true">
+                        </ImageView>
+
+                    </VBox>
+                </HBox>
+
 
 
                 <HBox alignment="CENTER">

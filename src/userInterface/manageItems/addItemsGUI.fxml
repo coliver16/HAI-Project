@@ -78,13 +78,13 @@
                         </VBox.margin>
                     </Button>
 
-                    <ImageView fx:id="imageReceipt"  fitHeight="130" fitWidth="130" pickOnBounds="true"
+                    <ImageView fx:id="imageReceipt" fitHeight="130" fitWidth="130" pickOnBounds="true"
                                preserveRatio="true">
                         <image>
                             <Image url="@noReceipt.png" />
                         </image>
                     </ImageView>
-                    <Button text="Upload Receipt" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
+                    <Button text="Upload Receipt" onAction="#setUploadReceipt" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
                         <VBox.margin>
                             <Insets top="10" bottom="10" ></Insets>
                         </VBox.margin>

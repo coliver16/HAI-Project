@@ -17,6 +17,7 @@ import javafx.scene.SnapshotParameters;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
@@ -28,6 +29,7 @@ import local.CSVWriter;
 import local.ParseEvent;
 import userInterface.GuiNavigator;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,9 +46,18 @@ public class viewItemsGUIController {
     private String name = Profile.getUserName();
     private List<Item> itemImports = ItemList.getItemList();
     private Boolean confirmDelete = false;
+    private int increment = 1000;
 
-    Alert alertConfirmDelete = new Alert(Alert.AlertType.CONFIRMATION);
-    Alert alertConfirmAdd = new Alert(Alert.AlertType.CONFIRMATION);
+    private File defaultImage = new File("src\\userInterface\\manageItems\\noImage.png");
+    private File defaultReceipt = new File("src\\userInterface\\manageItems\\noReceipt.png");
+
+    @FXML
+    private Image imageBox = new Image(defaultImage.toURI().toString());
+    @FXML
+    private Image receiptBox = new Image(defaultReceipt.toURI().toString());
+
+    private Alert alertConfirmDelete = new Alert(Alert.AlertType.CONFIRMATION);
+    private Alert alertConfirmAdd = new Alert(Alert.AlertType.CONFIRMATION);
 
 
     @FXML
@@ -78,6 +89,12 @@ public class viewItemsGUIController {
 
     @FXML
     private Button updateButton;
+
+    @FXML
+    private ImageView itemReceipt;
+
+    @FXML
+    private ImageView itemImage;
 
     public class EventHandler {
         @Subscribe
@@ -121,6 +138,13 @@ public class viewItemsGUIController {
 
     @FXML
     public void initialize() throws Exception{
+
+        itemImage.setImage(imageBox);
+        //itemImage.setSmooth(true);
+        //itemImage.setPreserveRatio(true);
+
+        itemReceipt.setImage(receiptBox);
+
         EventHandler handler = new EventHandler();
         eventBus.register(handler);
         registerListener();
@@ -250,6 +274,42 @@ public class viewItemsGUIController {
                 itemList.getItems().add(i);
             }
         }
+
+        itemList.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                System.out.println("Selection event");
+                int i = itemList.getSelectionModel().getSelectedIndex();
+                Item thing;
+                thing = (Item) itemList.getItems().get((Integer) i);
+                File newImage = new File(thing.getPhoto());
+                File newReceipt = new File(thing.getReceipt());
+                if (newImage.exists()) {
+                    imageBox = new Image(newImage.toURI().toString());
+                }
+                else {
+                    imageBox = new Image(defaultImage.toURI().toString());
+                }
+                if (newReceipt.exists()) {
+                    receiptBox = new Image(newReceipt.toURI().toString());
+                }
+                else {
+                    receiptBox = new Image(defaultReceipt.toURI().toString());
+                }
+                itemImage.setImage(imageBox);
+                itemReceipt.setImage(receiptBox);
+
+
+                /*
+                private File defaultImage = new File("src\\userInterface\\manageItems\\noImage.png");
+                private File defaultReceipt = new File("src\\userInterface\\manageItems\\noReceipt.png");
+
+                @FXML
+                private Image imageBox = new Image(defaultImage.toURI().toString());
+                @FXML
+                private Image receiptBox = new Image(defaultReceipt.toURI().toString());
+                 */
+            }
+        });
 
         backButton.setText("Back");
         addButton.setText("Add Item");

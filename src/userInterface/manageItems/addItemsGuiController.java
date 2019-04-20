@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
 public class addItemsGuiController {
     EventBus eventBus = EventBusFactory.getEventBus();
@@ -98,13 +99,13 @@ public class addItemsGuiController {
     @FXML
     private Button uploadReceipt;
 
-    ObservableList<String> roomOptions =
+    private ObservableList<String> roomOptions =
             FXCollections.observableArrayList(
                     "Attic", "Basement", "Livingroom", "DiningRoom", "Bedroom", "Bathroom", "Kitchen", "Garage", "Gameroom", "Office", "Other"
             );
     private String rooms[] = {"Attic", "Basement", "Living room", "Dining room", "Bed room", "Bath room", "Kitchen", "Garage", "Game room", "Office", "Other"};
 
-    ObservableList<String> categoryOptions =
+    private ObservableList<String> categoryOptions =
             FXCollections.observableArrayList(
                     "Antiques", "Appliances", "Art", "Automotive", "Clothing", "Collectibles", "Electronic", "Furniture", "Jewelry", "MusicalInstruments", "Tools", "Other"
             );
@@ -210,7 +211,7 @@ public class addItemsGuiController {
         Category c = new Category(categoryOptions.get(category.getSelectionModel().getSelectedIndex()));
         Type t = new Type(productType.getText());
 
-        Item item = new Item(0, r,c,t, make.getText(), model.getText(), serial.getText(), "receipt","image", Float.parseFloat(value.getText()), comments.getText());
+        Item item = new Item(0, r,c,t, make.getText(), model.getText(), serial.getText(), receiptName,imageName, Float.parseFloat(value.getText()), comments.getText());
 
         ItemEvent itemEvent = new ItemEvent(item);
         eventBus.register(itemEvent);
@@ -231,7 +232,7 @@ public class addItemsGuiController {
         Category c = new Category(categoryOptions.get(category.getSelectionModel().getSelectedIndex()));
         Type t = new Type(productType.getText());
 
-        Item item = new Item(0, r,c,t, make.getText(), model.getText(), serial.getText(), "receipt","image", Float.parseFloat(value.getText()), comments.getText());
+        Item item = new Item(0, r,c,t, make.getText(), model.getText(), serial.getText(), receiptName,imageName, Float.parseFloat(value.getText()), comments.getText());
 
         ItemEvent itemEvent = new ItemEvent(item);
         eventBus.register(itemEvent);
@@ -253,15 +254,58 @@ public class addItemsGuiController {
     @FXML
     private void setUploadImage(ActionEvent event) throws Exception {
         FileChooser fc = new FileChooser();
-        //fc.
         fc.setTitle("Select Item Image");
         File selectedImage = fc.showOpenDialog(null);
-
+        String tempName;
         if (selectedImage != null) {
-            imageName = selectedImage.getName();
-            File newFile = new File(USER_IMAGES + imageName);
-            Files.copy(selectedImage.toPath(), newFile.toPath());
-        }
+            tempName = selectedImage.getName();
 
+            Thread thread = new Thread() {
+                public void run() {
+                    try {
+                        File newFile = new File(USER_IMAGES + tempName);
+                        Files.copy(selectedImage.toPath(), newFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                        imageName = newFile.toPath().toString();
+                        return;
+                    } catch (Exception e) {
+                        System.out.println("Error");
+                        e.printStackTrace();
+
+                        System.out.println(e);
+                    }
+                    //return;
+                }
+            };
+            thread.start();
+        }
+    }
+
+    @FXML
+    private void setUploadReceipt(ActionEvent event) throws Exception {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Select Item Receipt");
+        File selectedImage = fc.showOpenDialog(null);
+        String tempName;
+        if (selectedImage != null) {
+            tempName = selectedImage.getName();
+
+            Thread thread = new Thread() {
+                public void run() {
+                    try {
+                        File newFile = new File(USER_RECEIPTS + tempName);
+                        Files.copy(selectedImage.toPath(), newFile.toPath() , StandardCopyOption.REPLACE_EXISTING);
+                        receiptName = tempName;
+                        return;
+                    } catch (Exception e) {
+                        System.out.println("Error");
+                        e.printStackTrace();
+
+                        System.out.println(e);
+                    }
+                    //return;
+                }
+            };
+            thread.start();
+        }
     }
 }
