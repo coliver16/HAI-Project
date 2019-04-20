@@ -26,7 +26,9 @@ public class CSVWriter {
         CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.EXCEL.withHeader("itemNo","Room","Category","Type","make","model","serial","receipt","photo","value","comments","lastupdate","delete"));
         ) {
           for  (Item i: items) {
-              csvPrinter.printRecord(i.getItemNo(), i.getRoom().getStatus(), i.getCategory().getCategory(), i.getType().getProductTypeString(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments(), FORMATTER.format(new Date()).toString(), i.isDeleted().booleanValue());
+              if (!"itemNo".equals(i.getItemNo())) {
+                  csvPrinter.printRecord(i.getItemNo(), i.getRoom().getStatus(), i.getCategory().getCategory(), i.getType().getProductTypeString(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments(), FORMATTER.format(new Date()).toString(), i.isDeleted().booleanValue());
+              }
           }
             csvPrinter.flush();
         }

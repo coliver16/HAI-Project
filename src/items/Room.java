@@ -16,7 +16,7 @@ public class Room {
         room = r;
     }
     public enum rooms {
-        Livingroom, Bedroom, Kitchen, Bathroom, Office, Garage, Gameroom, Other
+        Attic, Basement, Livingroom, Diningroom, Bedroom, Kitchen, Bathroom, Office, Garage, Gameroom, Other
     }
 
     public rooms getStatus() {

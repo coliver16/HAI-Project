@@ -27,10 +27,12 @@ import java.io.IOException;
 
 public class LogonGUIController {
     EventBus eventBus = EventBusFactory.getEventBus();
+    Profile profile = Profile.getProfile();
+
     CSVParser parser = new CSVParser();
     CSVWriter csvWriter = new CSVWriter();
     Boolean loggedIn = false;
-    Profile userProfile = new Profile("","","","","","","","");
+    Profile userProfile;
 
     @FXML
     private Label whyHai = new Label();
@@ -78,6 +80,9 @@ public class LogonGUIController {
                     e.printStackTrace();
                 }
             }
+            profile = event.getMessage();
+
+            System.out.println(profile.getUserName());
         }
     }
 
@@ -190,8 +195,9 @@ public class LogonGUIController {
                     //return;
                 }
             };
-            thread.join();
-            thread.run();
+
+            thread.start();
+            //thread.join();
 
             GuiNavigator.loadGui(GuiNavigator.MAIN_MENU_GUI);
 

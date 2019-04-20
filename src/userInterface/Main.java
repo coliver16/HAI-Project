@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 import database.*;
 import local.CSVParser;
 import local.ParseEvent;
+import users.Profile;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -74,6 +75,7 @@ public class Main extends Application {
         EventBusFactory.getEventBus().register(new EventListener());
         ItemList itemList = new ItemList();
         database inventory = new database();
+        Profile profile = new Profile("","","","","","","","");
         inventory.Connect();
 
         launch(args);

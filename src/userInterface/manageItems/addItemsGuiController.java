@@ -1,7 +1,11 @@
 package userInterface.manageItems;
 
+import com.google.common.eventbus.EventBus;
+import eventBus.EventBusFactory;
+import items.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.*;
@@ -11,8 +15,20 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+import java.io.File;
+import java.nio.file.Files;
 
 public class addItemsGuiController {
+    EventBus eventBus = EventBusFactory.getEventBus();
+    String imageName;
+    String receiptName;
+    String USER_IMAGES = "src\\local\\images\\";
+    String USER_RECEIPTS = "src\\local\\receipts\\";
+
+
     @FXML
     private ComboBox room;
 
@@ -74,19 +90,25 @@ public class addItemsGuiController {
     private ImageView itemImage;
 
     @FXML
+    private Button uploadImage;
+
+    @FXML
     private ImageView imageReceipt;
+
+    @FXML
+    private Button uploadReceipt;
 
     ObservableList<String> roomOptions =
             FXCollections.observableArrayList(
-                    "Living Room", "Dining Room", "Bed Room (Master)", "Bedroom (Child)", "Bedroom (Guest)", "Kitchen", "Garage", "Attic", "Basement", "Other"
+                    "Attic", "Basement", "Livingroom", "DiningRoom", "Bedroom", "Bathroom", "Kitchen", "Garage", "Gameroom", "Office", "Other"
             );
-    private String rooms[] = {"Living Room", "Dining Room", "Bed Room (Master)", "Bedroom (Child)", "Bedroom (Guest)", "Kitchen", "Garage", "Attic", "Basement", "Other"};
+    private String rooms[] = {"Attic", "Basement", "Living room", "Dining room", "Bed room", "Bath room", "Kitchen", "Garage", "Game room", "Office", "Other"};
 
     ObservableList<String> categoryOptions =
             FXCollections.observableArrayList(
-                    "Antiques", "Appliances", "Automotive", "Clothing", "Collectibles", "Furniture", "Electronic", "Jewelry", "Musical Instruments", "tools", "Other"
+                    "Antiques", "Appliances", "Art", "Automotive", "Clothing", "Collectibles", "Electronic", "Furniture", "Jewelry", "MusicalInstruments", "Tools", "Other"
             );
-    private String categories[] = {"Antiques", "Appliances", "Automotive", "Clothing", "Collectibles", "Furniture", "Electronic", "Jewelry", "Musical Instruments", "tools", "Other"};
+    private String categories[] = {"Antiques", "Appliances", "Art", "Automotive", "Clothing", "Collectibles", "Electronic", "Furniture", "Jewelry", "Musical Instruments", "Tools", "Other"};
 
     @FXML
     public void initialize() {
@@ -101,13 +123,7 @@ public class addItemsGuiController {
         roomLabel.setTextFill(Color.rgb(255,255,255));
         roomLabel.setEffect(dropShadow);
 
-
-        //Room = new ComboBox(FXCollections
-        //        .observableArrayList(rooms));
-        //Room = new ComboBox(roomOptions);
         room.setItems(roomOptions);
-        //Room.getItems().setAll(rooms);
-        //Room.getItems().addAll("Living Room", "Dining Room", "Bed Room (Master)", "Bedroom (Child)", "Bedroom (Guest)", "Kitchen", "Garage", "Attic", "Basement", "Other");
         room.setEditable(true);
 
         categoryLabel.setText("Category");
@@ -115,10 +131,6 @@ public class addItemsGuiController {
         categoryLabel.setTextFill(Color.rgb(255,255,255));
         categoryLabel.setEffect(dropShadow);
 
-        //Category = new ComboBox(FXCollections
-        //        .observableArrayList(categories));
-        //Category.getItems().addAll("Antiques", "Appliances", "Automotive", "Clothing", "Collectibles", "Furniture", "Electronic", "Jewelry", "Musical Instruments", "tools", "Other");
-        //Category = new ComboBox(categoryOptions);
         category.setItems(categoryOptions);
         category.setEditable(true);
 
@@ -191,6 +203,65 @@ public class addItemsGuiController {
         imageReceipt.setImage(user);
 
     }
-    ;
 
+    @FXML
+    private void setSubmit(ActionEvent event) throws Exception {
+        Room r = new Room(roomOptions.get(room.getSelectionModel().getSelectedIndex()));
+        Category c = new Category(categoryOptions.get(category.getSelectionModel().getSelectedIndex()));
+        Type t = new Type(productType.getText());
+
+        Item item = new Item(0, r,c,t, make.getText(), model.getText(), serial.getText(), "receipt","image", Float.parseFloat(value.getText()), comments.getText());
+
+        ItemEvent itemEvent = new ItemEvent(item);
+        eventBus.register(itemEvent);
+        eventBus.post(itemEvent);
+        Stage stage = (Stage) submit.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void setCancel(ActionEvent event) {
+        Stage stage = (Stage) submit.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void setSubmitAndAdd(ActionEvent event) throws Exception {
+        Room r = new Room(roomOptions.get(room.getSelectionModel().getSelectedIndex()));
+        Category c = new Category(categoryOptions.get(category.getSelectionModel().getSelectedIndex()));
+        Type t = new Type(productType.getText());
+
+        Item item = new Item(0, r,c,t, make.getText(), model.getText(), serial.getText(), "receipt","image", Float.parseFloat(value.getText()), comments.getText());
+
+        ItemEvent itemEvent = new ItemEvent(item);
+        eventBus.register(itemEvent);
+        eventBus.post(itemEvent);
+        addReset();
+    }
+
+    private void addReset() {
+        roomOptions.clear();
+        categoryOptions.clear();
+        productType.clear();
+        make.clear();
+        model.clear();
+        serial.clear();
+        value.clear();
+        comments.clear();
+    }
+
+    @FXML
+    private void setUploadImage(ActionEvent event) throws Exception {
+        FileChooser fc = new FileChooser();
+        //fc.
+        fc.setTitle("Select Item Image");
+        File selectedImage = fc.showOpenDialog(null);
+
+        if (selectedImage != null) {
+            imageName = selectedImage.getName();
+            File newFile = new File(USER_IMAGES + imageName);
+            Files.copy(selectedImage.toPath(), newFile.toPath());
+        }
+
+    }
 }

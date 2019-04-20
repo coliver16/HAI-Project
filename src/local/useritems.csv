@@ -1,9 +1,9 @@
-﻿1,Livingroom,Electronics,Television,Sony,Bravia,123456789,receipt,photo,1200.00,netflix-stuff,,
-5,Livingroom,Electronics,BluRay Player,Sony,Something,5498138,receipt,photo,200.00,For watching smut,,
-27,Livingroom,Furniture,Couch,Lazy Boy,Black Panther,NA,receipt,photo,2000.00,Unicorn Leather,,
-55,Gameroom,Electronics,Computer,Apple,MacBook,66758,receipt,photo,999.00,Cuz I'm hip,,
-68,Gameroom,Electronics,Speakers,Dolby,Atmos,9875,receipt,photo,400.00,Eargasm,,
-75,Kitchen,Appliances,Refrigerator,GE,Frigerator 2000,64879531,receipt,photo,800.00,Keeping my shit cold since I 2018,,
-101,Bedroom,Electronics,Television,LG,TVinator 21000,16345,receipt,photo,200.00,Watching more smut,,
-112,Bedroom,Jewelry,Necklace,Pandora,Disney Collection,3468975,receipt,photo,1200.00,Fancy stuff,,
-162,Garage,Tools,Tools,Craftsman,Carkit,548768,receipt,photo,400.00,For fixing stuff,,
+﻿0,Livingroom,Electronics,Television,Sony,Bravia,123456789,receipt,photo,1200.0,netflix-stuff,2019-04-19 22:06:25.011,false
+5,Livingroom,Electronics,BluRay Player,Sony,Something,5498138,receipt,photo,200.0,For watching smut,2019-04-19 22:06:25.011,false
+27,Livingroom,Furniture,Couch,Lazy Boy,Black Panther,NA,receipt,photo,2000.0,Unicorn Leather,2019-04-19 22:06:25.011,false
+55,Gameroom,Electronics,Computer,Apple,MacBook,66758,receipt,photo,999.0,Cuz I'm hip,2019-04-19 22:06:25.012,false
+68,Gameroom,Electronics,Speakers,Dolby,Atmos,9875,receipt,photo,400.0,Eargasm,2019-04-19 22:06:25.012,false
+75,Kitchen,Appliances,Refrigerator,GE,Frigerator 2000,64879531,receipt,photo,800.0,Keeping my shit cold since I 2018,2019-04-19 22:06:25.012,false
+101,Bedroom,Electronics,Television,LG,TVinator 21000,16345,receipt,photo,200.0,Watching more smut,2019-04-19 22:06:25.012,false
+112,Bedroom,Jewelry,Necklace,Pandora,Disney Collection,3468975,receipt,photo,1200.0,Fancy stuff,2019-04-19 22:06:25.012,true
+162,Garage,Tools,Tools,Craftsman,Carkit,548768,receipt,photo,400.0,For fixing stuff,2019-04-19 22:06:25.012,true
