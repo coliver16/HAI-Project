@@ -8,22 +8,26 @@ import items.*;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import java.sql.Connection;
 import java.sql.Statement;
 
 public class Profile {
     //public User user;
-    private String firstName;
-    private String lastName;
-    public String email;
-    private String pw;
-    private String phoneNumber;
-    private String insuranceCompanyName;
-    private String insuranceCompanyFax;
-    private String insuranceCompanyEmail;
+    private String firstName = "";
+    private String lastName = "";
+    private String email = "";
+    private String pw = "";
+    private String phoneNumber = "";
+    private String insuranceCompanyName = "";
+    private String insuranceCompanyFax = "";
+    private String insuranceCompanyEmail = "";
+    private static List<String> userProfile;
+
+    public static Profile getProfile() {
+        return new Profile(userProfile.get(0), userProfile.get(1), userProfile.get(2), userProfile.get(3), userProfile.get(4), userProfile.get(5), userProfile.get(6), userProfile.get(7));
+    };
 
     //Constructer to create a new Profile
     public Profile(/*User user,*/ String fname, String lname, String email, String pw, String phoneNumber, String insuranceCompanyName, String insuranceCompanyFax, String insuranceCompanyEmail) {
@@ -36,6 +40,7 @@ public class Profile {
         this.insuranceCompanyName = insuranceCompanyName;
         this.insuranceCompanyEmail = insuranceCompanyEmail;
         this.insuranceCompanyFax = insuranceCompanyFax;
+        userProfile = new ArrayList<>(Arrays.asList(this.firstName, this.lastName, this.email, this.pw, this.phoneNumber, this.insuranceCompanyName, this.insuranceCompanyEmail, this.insuranceCompanyFax));
     }
 
     public void profileUpdate(Profile oldProfile, /*User user,*/ String fname, String lname, String email, String pw, String phoneNumber, String insuranceCompanyName, String insuranceCompanyFax, String insuranceCompanyEmail) {
@@ -124,9 +129,12 @@ public class Profile {
         return user;
     }*/
 
+    public static List<String> getUserProfile() { return userProfile;}
     public String getFirstName() {
         return firstName;
     }
+
+    public static String getUserName() { return (userProfile.get(0) + " " + userProfile.get(1));}
 
     public String getLastName() {
         return lastName;

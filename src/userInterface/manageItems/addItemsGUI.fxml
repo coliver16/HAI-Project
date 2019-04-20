@@ -72,19 +72,19 @@
                             <Image url="@noImage.png" />
                         </image>
                     </ImageView>
-                    <Button text="Upload Image" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
+                    <Button text="Upload Image" onAction="#setUploadImage" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
                         <VBox.margin>
                             <Insets top="10" bottom="10"></Insets>
                         </VBox.margin>
                     </Button>
 
-                    <ImageView fx:id="imageReceipt"  fitHeight="130" fitWidth="130" pickOnBounds="true"
+                    <ImageView fx:id="imageReceipt" fitHeight="130" fitWidth="130" pickOnBounds="true"
                                preserveRatio="true">
                         <image>
                             <Image url="@noReceipt.png" />
                         </image>
                     </ImageView>
-                    <Button text="Upload Receipt" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
+                    <Button text="Upload Receipt" onAction="#setUploadReceipt" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
                         <VBox.margin>
                             <Insets top="10" bottom="10" ></Insets>
                         </VBox.margin>
@@ -101,20 +101,20 @@
             </TextArea>
 
             <HBox maxWidth="450" minWidth="450">
-                <Button fx:id="submit" textAlignment="CENTER" prefWidth="250" prefHeight="50" defaultButton="true">
+                <Button fx:id="submit" onAction="#setSubmit" textAlignment="CENTER" prefWidth="250" prefHeight="50" defaultButton="true">
                     <HBox.margin>
                         <Insets top="10" right="10" bottom="10" left="10"></Insets>
                     </HBox.margin>
                 </Button>
 
-                <Button fx:id="submitAndAdd" textAlignment="CENTER" prefWidth="400" prefHeight="50" defaultButton="true">
+                <Button fx:id="submitAndAdd" onAction="#setSubmitAndAdd" textAlignment="CENTER" prefWidth="400" prefHeight="50" defaultButton="true">
                     <HBox.margin>
                         <Insets top="10" right="10" bottom="10" left="10"></Insets>
                     </HBox.margin>
                 </Button>
             </HBox>
             <HBox maxWidth="450" minWidth="450">
-                <Button fx:id="cancel" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
+                <Button fx:id="cancel" onAction="#setCancel" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
                     <HBox.margin>
                         <Insets top="10" right="10" bottom="10" left="10"></Insets>
                     </HBox.margin>

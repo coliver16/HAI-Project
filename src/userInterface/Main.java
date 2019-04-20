@@ -1,4 +1,5 @@
 package userInterface;
+import javafx.application.Platform;
 import users.Login;
 
 import eventBus.EventBusFactory;
@@ -13,6 +14,7 @@ import javafx.stage.Stage;
 import database.*;
 import local.CSVParser;
 import local.ParseEvent;
+import users.Profile;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -35,6 +37,11 @@ public class Main extends Application {
         primaryStage.setMaxHeight(1080);
         primaryStage.setMaxWidth(1920);
         primaryStage.show();
+        primaryStage.setOnCloseRequest( event -> {
+            Platform.exit();
+            System.exit(0);
+        });
+
     }
 
 
@@ -67,23 +74,10 @@ public class Main extends Application {
     public static void main(String[] args) throws Exception {
         EventBusFactory.getEventBus().register(new EventListener());
         ItemList itemList = new ItemList();
+        database inventory = new database();
+        Profile profile = new Profile("","","","","","","","");
+        inventory.Connect();
 
-        Thread thread = new Thread() {
-            public void run() {
-                try {
-                    itemList.setItemList(CSVParser.readFile());
-                    System.out.println("parsed file");
-                    return;
-                } catch (Exception e) {
-                    System.out.println("Error");
-                    e.printStackTrace();
-
-                    System.out.println(e);
-                }
-                return;
-            }
-        };
-        thread.start();
         launch(args);
 
 

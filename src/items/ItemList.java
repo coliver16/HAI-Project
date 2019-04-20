@@ -12,7 +12,7 @@ public class ItemList {
         @Subscribe
         public void parseEvent(ParseEvent event) {
             System.out.println("Made it to event");
-            itemList = (List) event.getMessage();
+            itemList = event.getMessage();
             //System.out.println("Event: " + event.toString());
             //System.out.println(itemImports.get(0).make);
             //for (Object i : itemImports) {

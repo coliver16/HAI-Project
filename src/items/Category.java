@@ -13,7 +13,7 @@ public class Category {
     }
 
     public enum categories {
-        Antiques, Appliances, Art, Automotive, Clothing, Electronics, Furniture, Jewelry, Tools, Other
+        Antiques, Appliances, Art, Automotive, Clothing, Electronics, Furniture, Jewelry, MusicalInstruments, Tools, Other
     }
 
     public categories getCategory() {

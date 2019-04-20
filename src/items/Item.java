@@ -114,6 +114,8 @@ public class Item {
         return itemNo;
     }
 
+    public void setItemNo(int x) { itemNo = x;}
+
     /*public User getUser() {
         return userno;
     }*/
@@ -165,13 +167,13 @@ public class Item {
         Float f1 = new Float(this.getValue());
         Float f2 = new Float(two.getValue());
         boolean equals = true;
-        if (!this.getRoom().equals(two.getRoom())) {
+        if (!this.getRoom().getStatus().equals(two.getRoom().getStatus())) {
             equals = false;
         }
-        if (!this.getCategory().equals(two.getCategory())) {
+        if (!this.getCategory().getCategory().equals(two.getCategory().getCategory())) {
             equals = false;
         }
-        if (!this.getType().equals(two.getType())) {
+        if (!this.getType().productType.equals(two.getType().productType)) {
             equals = false;
         }
         if (!this.getMake().equals(two.getMake())) {

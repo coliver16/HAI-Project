@@ -1,12 +1,14 @@
 package userInterface;
 
+import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
+import eventBus.EventBusFactory;
+import items.ItemList;
+import items.ItemListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.SnapshotParameters;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
@@ -14,10 +16,23 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import local.CSVParser;
+import local.CSVWriter;
+import org.apache.commons.csv.CSVPrinter;
 import users.Login;
+import users.Profile;
+import users.UserLoginEvent;
+
+import java.io.IOException;
 
 public class LogonGUIController {
+    EventBus eventBus = EventBusFactory.getEventBus();
+    Profile profile = Profile.getProfile();
+
+    CSVParser parser = new CSVParser();
+    CSVWriter csvWriter = new CSVWriter();
     Boolean loggedIn = false;
+    Profile userProfile;
 
     @FXML
     private Label whyHai = new Label();
@@ -50,7 +65,39 @@ public class LogonGUIController {
     private Label message = new Label();
 
     @FXML
+    private CheckBox rememberMe = new CheckBox();
+
+    public class EventHandler {
+        @Subscribe
+        public void userLoginEvent(UserLoginEvent event) {
+            System.out.println("User has logged in");
+            userProfile = event.getMessage();
+
+            if (rememberMe.isSelected()) {
+                try {
+                    CSVWriter.writeUserProfile(userProfile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            profile = event.getMessage();
+
+            System.out.println(profile.getUserName());
+        }
+    }
+
+    public void registerListener() {
+        ItemListener listener = new ItemListener();
+        eventBus.register(listener);
+    }
+
+    @FXML
     public void initialize() {
+        EventHandler handler = new EventHandler();
+        eventBus.register(handler);
+        registerListener();
+
+
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(5.0);
         dropShadow.setOffsetX(3.0);
@@ -71,6 +118,11 @@ public class LogonGUIController {
         contactUs.setFont(Font.font("Tahoma",15));
         contactUs.setTextFill(Color.rgb(255,255,255));
         contactUs.setEffect(dropShadow);
+
+        rememberMe.setText("Remember Login?");
+        rememberMe.setFont(Font.font("Tahoma",10));
+        rememberMe.setTextFill(Color.rgb(255,255,255));
+        rememberMe.setEffect(dropShadow);
 
         username.setEffect((new DropShadow(20, Color.BLACK)));
         password.setEffect((new DropShadow(20, Color.BLACK)));
@@ -114,18 +166,41 @@ public class LogonGUIController {
     };
 
     @FXML
-    private void loginButton(ActionEvent event) {
-        final  String user = username.getText();
+    private void loginButton(ActionEvent event) throws Exception {
+        final String user = username.getText();
         final String pass = password.getText();
+        System.out.println("User: " + user + " Pass: " + pass);
         Login log = new Login();
 
-        if (log.Log(user,pass)) {
+        //if (user.equals("cmuney13@gmail.com") && password.equals("password")) {
+        if (log.Log("cmuney13@gmail.com","password")) {
             message.setText("Your Password is confirmed!");
             message.setTextFill(Color.rgb(0,0,0));
             //username.clear();
             //password.clear();
             setLoggedIn(true);
+
+            Thread thread = new Thread(){
+                public void run() {
+                    try {
+                        ItemList.setItemList(CSVParser.readFile());
+                        System.out.println("parsed file");
+                        return;
+                    } catch (Exception e) {
+                        System.out.println("Error");
+                        e.printStackTrace();
+
+                        System.out.println(e);
+                    }
+                    //return;
+                }
+            };
+
+            thread.start();
+            //thread.join();
+
             GuiNavigator.loadGui(GuiNavigator.MAIN_MENU_GUI);
+
         }
         else {
             username.clear();

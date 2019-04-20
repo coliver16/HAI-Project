@@ -19,10 +19,12 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import local.CSVParser;
 import userInterface.GuiNavigator;
+import users.Profile;
+import users.UserLoginEvent;
 
 public class MainMenuGUIController {
 
-    private String name = "John Doe";
+    private String name = Profile.getUserName();
 
     Boolean loggedIn = true;
 

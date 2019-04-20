@@ -7,18 +7,23 @@ public class Room {
     private rooms room;
 
     public Room(String r) {
-        room = rooms.valueOf(r);
+        //room = rooms.valueOf(r);
+        room = Enum.valueOf(Room.rooms.class, r);
+
     }
 
     public Room(rooms r) {
         room = r;
     }
     public enum rooms {
-        Livingroom, Bedroom, Kitchen, Bathroom, Office, Garage, Gameroom, Other
+        Attic, Basement, Livingroom, Diningroom, Bedroom, Kitchen, Bathroom, Office, Garage, Gameroom, Other
     }
 
     public rooms getStatus() {
         return room;
+    }
+    public String getRoom() {
+        return room.toString();
     }
 
     public void setStatus(String r) {

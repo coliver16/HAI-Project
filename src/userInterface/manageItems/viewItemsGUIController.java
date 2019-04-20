@@ -3,12 +3,11 @@ package userInterface.manageItems;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import eventBus.EventBusFactory;
-import eventBus.EventListener;
-import items.Item;
-import items.ItemEvent;
-import items.ItemList;
-import items.ItemListener;
+import items.*;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +17,7 @@ import javafx.scene.SnapshotParameters;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
@@ -29,23 +29,36 @@ import local.CSVWriter;
 import local.ParseEvent;
 import userInterface.GuiNavigator;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import local.CSVParser;
+import users.Profile;
+import users.UserLoginEvent;
 
 public class viewItemsGUIController {
-    EventBus eventBus = EventBusFactory.getEventBus();
-    CSVParser parser = new CSVParser();
-    CSVWriter csvWriter = new CSVWriter();
+    private EventBus eventBus = EventBusFactory.getEventBus();
+    private CSVParser parser = new CSVParser();
+    private CSVWriter csvWriter = new CSVWriter();
+    private String name = Profile.getUserName();
+    private List<Item> itemImports = ItemList.getItemList();
+    private Boolean confirmDelete = false;
+    private int increment = 1000;
 
-    private String name = "John Doe";
+    private File defaultImage = new File("src\\userInterface\\manageItems\\noImage.png");
+    private File defaultReceipt = new File("src\\userInterface\\manageItems\\noReceipt.png");
 
+    @FXML
+    private Image imageBox = new Image(defaultImage.toURI().toString());
+    @FXML
+    private Image receiptBox = new Image(defaultReceipt.toURI().toString());
 
-    List<Item> itemImports = ItemList.getItemList();
+    private Alert alertConfirmDelete = new Alert(Alert.AlertType.CONFIRMATION);
+    private Alert alertConfirmAdd = new Alert(Alert.AlertType.CONFIRMATION);
 
-    Boolean loggedIn = true;
 
     @FXML
     private Label whyHai = new Label();
@@ -77,6 +90,12 @@ public class viewItemsGUIController {
     @FXML
     private Button updateButton;
 
+    @FXML
+    private ImageView itemReceipt;
+
+    @FXML
+    private ImageView itemImage;
+
     public class EventHandler {
         @Subscribe
         public void parseEvent(ParseEvent event) {
@@ -84,9 +103,23 @@ public class viewItemsGUIController {
             itemImports = (List) event.getMessage();
             System.out.println("Event: " + event.toString());
             System.out.println(itemImports.get(0).getMake());
-            for (Object i : itemImports) {
-                itemList.getItems().add(i);
+            for (Item i : itemImports) {
+                Item item = new Item(i.getItemNo(), new Room(i.getRoom().getStatus()), i.getCategory(), i.getType(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments());
+                //itemList.getItems().add(i);
+
+                itemList.getItems().add(item);
+                //itemList.getItems().
+
             }
+        }
+
+        @Subscribe
+        public void itemEvent(ItemEvent event) {
+            System.out.println("Item Added");
+            event.getMessage().setItemNo(999);
+            itemImports.add(event.getMessage());
+            itemList.getItems().add(event.getMessage());
+            ItemList.itemList.add(event.getMessage());
         }
     }
 
@@ -98,42 +131,33 @@ public class viewItemsGUIController {
     public void registerListener() {
         ItemListener listener = new ItemListener();
         eventBus.register(listener);
-
-
     }
+
+
+
 
     @FXML
     public void initialize() throws Exception{
+
+        itemImage.setImage(imageBox);
+        //itemImage.setSmooth(true);
+        //itemImage.setPreserveRatio(true);
+
+        itemReceipt.setImage(receiptBox);
+
         EventHandler handler = new EventHandler();
         eventBus.register(handler);
         registerListener();
 
-       // if (itemImports == null) {
+        alertConfirmDelete.setTitle("Confirm Dialog");
+        alertConfirmDelete.setHeaderText("You will delete this item from the cloud.");
+        alertConfirmDelete.setContentText("Do you wish to confirm deletion?");
 
-       // }
-       // CSVParser csvparser = new CSVParser();
-        //CSVParser.readFile();
+        alertConfirmAdd.setTitle("Confirm Dialog");
+        alertConfirmAdd.setHeaderText("You will add this item to the cloud.");
+        alertConfirmAdd.setContentText("Do you wish to confirm creation of new item?");
 
-        /*Thread thread = new Thread(){
-            public void run() {
-                try {
-                    CSVParser.readFile();
-                    System.out.println("parsed file");
-                } catch (Exception e) {
-                    System.out.println("Error");
-                    e.printStackTrace();
-
-                    System.out.println(e);
-                }
-            }
-        };
-        thread.start();*/
-       // itemImports = (List) csvparser.readFile();
-        //csvWriter.writeCSV((List) itemImports);
-        //csvparser.readFile();
-
-
-
+       // csvWriter.writeCSV((List) itemImports);
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(5.0);
         dropShadow.setOffsetX(3.0);
@@ -178,27 +202,27 @@ public class viewItemsGUIController {
 //        TableColumn<Item, Boolean> column1 = new TableColumn<>("Delete?");
 //        column1.setCellValueFactory(new PropertyValueFactory<>("delete"));
 
-        TableColumn<String, Item> column1 = new TableColumn<>("Item No.");
+        TableColumn<Item, String> column1 = new TableColumn<>("Item No.");
         column1.setCellValueFactory(new PropertyValueFactory<>("itemNo"));
-        TableColumn<String, Item> column2 = new TableColumn<>("Room");
+        TableColumn<Item, String> column2 = new TableColumn<>("Room");
         column2.setCellValueFactory(new PropertyValueFactory<>("Room"));
-        TableColumn<String, Item> column3 = new TableColumn<>("Category");
+        TableColumn<Item, String> column3 = new TableColumn<>("Category");
         column3.setCellValueFactory(new PropertyValueFactory<>("Category"));
-        TableColumn<String, Item> column4 = new TableColumn<>("Product Type");
+        TableColumn<Item, String> column4 = new TableColumn<>("Product Type");
         column4.setCellValueFactory(new PropertyValueFactory<>("Type"));
-        TableColumn<String, Item> column5 = new TableColumn<>("Make");
+        TableColumn<Item, String> column5 = new TableColumn<>("Make");
         column5.setCellValueFactory(new PropertyValueFactory<>("make"));
-        TableColumn<String, Item> column6 = new TableColumn<>("Model");
+        TableColumn<Item, String> column6 = new TableColumn<>("Model");
         column6.setCellValueFactory(new PropertyValueFactory<>("model"));
-        TableColumn<String, Item> column7 = new TableColumn<>("Serial");
+        TableColumn<Item, String> column7 = new TableColumn<>("Serial");
         column7.setCellValueFactory(new PropertyValueFactory<>("serial"));
-        TableColumn<String, Item> column8 = new TableColumn<>("Receipt");
+        TableColumn<Item, String> column8 = new TableColumn<>("Receipt");
         column8.setCellValueFactory(new PropertyValueFactory<>("receipt"));
-        TableColumn<String, Item> column9 = new TableColumn<>("Photo");
+        TableColumn<Item, String> column9 = new TableColumn<>("Photo");
         column9.setCellValueFactory(new PropertyValueFactory<>("photo"));
-        TableColumn<String, Item> column10 = new TableColumn<>("Value");
+        TableColumn<Item, String> column10 = new TableColumn<>("Value");
         column10.setCellValueFactory(new PropertyValueFactory<>("value"));
-        TableColumn<String, Item> column11 = new TableColumn<>("Misc Comments");
+        TableColumn<Item, String> column11 = new TableColumn<>("Misc Comments");
         column11.setCellValueFactory(new PropertyValueFactory<>("comments"));
 
        // column1.setMinWidth(50);
@@ -215,13 +239,20 @@ public class viewItemsGUIController {
         column11.setMinWidth(225);
 
 
+        column2.setCellValueFactory(cellData -> {
+            return new SimpleStringProperty(cellData.getValue().getRoom().getStatus().toString());
+        });
 
+        column3.setCellValueFactory(cellData -> {
+            return new SimpleStringProperty(cellData.getValue().getCategory().getCategory().toString());
+        });
 
+        column4.setCellValueFactory(cellData -> {
+            return new SimpleStringProperty(cellData.getValue().getType().productType.toString());
+        });
         itemList.getSelectionModel().setSelectionMode(
                 SelectionMode.MULTIPLE
         );
-
-
 
         itemList.getColumns().add(column1);
         itemList.getColumns().add(column2);
@@ -234,23 +265,51 @@ public class viewItemsGUIController {
         itemList.getColumns().add(column9);
         itemList.getColumns().add(column10);
         itemList.getColumns().add(column11);
-        //itemList.getColumns().add(column12);
 
-        /*
-        itemList.getItems().add(new Item("00001", "Living Room", "Electronics", "Television", "Sony", "Bravia", "12345567", "receipt", "photo","$1200", "Netflix-n-chill"));
-        itemList.getItems().add(new Item("00005", "Living Room", "Electronics", "BluRay Player", "Sony", "Something", "5498138", "receipt", "photo","$200", "For watching smut"));
-        itemList.getItems().add(new Item("00027", "Living Room", "Furniture", "Couch", "Lazy Boy", "Black Panther", "NA", "receipt", "photo","$2000", "Unicorn Leather"));
-        itemList.getItems().add(new Item("00055", "Game Room", "Electronics", "Computer", "Apple", "MacBook", "66758", "receipt", "photo","$99900", "Cuz I'm hip"));
-        itemList.getItems().add(new Item("00068", "Game Room", "Electronics", "Speakers", "Dolby", "Atmos", "9875", "receipt", "photo","$400", "Eargasm"));
-        itemList.getItems().add(new Item("00075", "Kitchen", "Appliance", "Refrigerator", "GE", "Frigerator 2000", "64879531", "receipt", "photo","$800", "Keeping my shit cold since I 2018"));
-        itemList.getItems().add(new Item("00101", "Bed Room", "Electronics", "Television", "LG", "TVinator 21000", "16345", "receipt", "photo","$200", "Watching more smut"));
-        itemList.getItems().add(new Item("00112", "Bed Room", "Jewelry", "Necklace", "Pandora", "Disney Collection", "3468975", "receipt", "photo","$1200", "Fancy stuff"));
-        itemList.getItems().add(new Item("00162", "Garage", "Tools", "Tools", "Craftsman", "Carkit", "548768", "receipt", "photo","$400", "For fixing stuff"));
-        */
 
-        for (Object i : itemImports) {
-            itemList.getItems().add(i);
+        for (Item i : itemImports) {
+            //Item item = new Item(i.getItemNo(), new Room(i.getRoom().getStatus()), i.getCategory(), i.getType(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments());
+            if (!i.isDeleted()) {
+                //itemList.getItems().add(new Item(i.getItemNo(), new Room(i.getRoom().getStatus().toString()), i.getCategory(), i.getType(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments()));
+                itemList.getItems().add(i);
+            }
         }
+
+        itemList.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                System.out.println("Selection event");
+                int i = itemList.getSelectionModel().getSelectedIndex();
+                Item thing;
+                thing = (Item) itemList.getItems().get((Integer) i);
+                File newImage = new File(thing.getPhoto());
+                File newReceipt = new File(thing.getReceipt());
+                if (newImage.exists()) {
+                    imageBox = new Image(newImage.toURI().toString());
+                }
+                else {
+                    imageBox = new Image(defaultImage.toURI().toString());
+                }
+                if (newReceipt.exists()) {
+                    receiptBox = new Image(newReceipt.toURI().toString());
+                }
+                else {
+                    receiptBox = new Image(defaultReceipt.toURI().toString());
+                }
+                itemImage.setImage(imageBox);
+                itemReceipt.setImage(receiptBox);
+
+
+                /*
+                private File defaultImage = new File("src\\userInterface\\manageItems\\noImage.png");
+                private File defaultReceipt = new File("src\\userInterface\\manageItems\\noReceipt.png");
+
+                @FXML
+                private Image imageBox = new Image(defaultImage.toURI().toString());
+                @FXML
+                private Image receiptBox = new Image(defaultReceipt.toURI().toString());
+                 */
+            }
+        });
 
         backButton.setText("Back");
         addButton.setText("Add Item");
@@ -261,18 +320,48 @@ public class viewItemsGUIController {
 
 
     @FXML
-    public void setDeleteButton(ActionEvent event) {
-        ObservableList selectedItem = itemList.getSelectionModel().getSelectedIndices();//getSelectedItem();
-        ArrayList<Item> items = new ArrayList<Item>();
-        for (Object i : selectedItem) {
-            items.add((Item) itemList.getItems().get((Integer) i));
+    public void setDeleteButton(ActionEvent event) throws InterruptedException {
+        Optional<ButtonType> result = alertConfirmDelete.showAndWait();
+        if (result.get() == ButtonType.OK) {
+
+            ObservableList selectedItem = itemList.getSelectionModel().getSelectedIndices();//getSelectedItem();
+            ArrayList<Item> items = new ArrayList<Item>();
+            for (Object i : selectedItem) {
+                items.add((Item) itemList.getItems().get((Integer) i));
+            }
+
+            for (Item i : items) {
+                for (Item j : ItemList.itemList) {
+
+                    if (j.Compare(i)) {
+                        j.itemDelete();
+                        break;
+                    }
+                }
+                itemList.getItems().remove(i);
+            }
+            alertConfirmDelete.close();
+
+            Thread thread = new Thread() {
+                public void run() {
+                    try {
+                        CSVWriter.writeCSV(ItemList.itemList);
+                        System.out.println("wrote file");
+                        return;
+                    } catch (Exception e) {
+                        System.out.println("Error");
+                        e.printStackTrace();
+
+                        System.out.println(e);
+                    }
+                    //return;
+                }
+            };
+            thread.start();
         }
-
-        for (Object i : items) {
-            itemList.getItems().remove(i);
+        else {
+            alertConfirmDelete.close();
         }
-
-
 
     }
 
@@ -300,7 +389,7 @@ public class viewItemsGUIController {
         stage.setMinHeight(750);
         stage.setMaxHeight(750);
         stage.initModality(Modality.WINDOW_MODAL);
-        stage.setAlwaysOnTop(true);
+        stage.setAlwaysOnTop(false);
         stage.setScene(scene);
         stage.showAndWait();
 
