@@ -147,10 +147,12 @@ public class Item {
     public String getReceipt() {
         return receipt;
     }
+    public void setReceipt(String s) { receipt = s;}
 
     public String getPhoto() {
         return photo;
     }
+    public void setPhoto(String s) { photo = s;}
 
     public float getValue() {
         return value;

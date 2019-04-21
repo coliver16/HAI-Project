@@ -15,6 +15,7 @@ import database.*;
 import local.CSVParser;
 import local.ParseEvent;
 import users.Profile;
+import users.UserProfile;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -74,8 +75,8 @@ public class Main extends Application {
     public static void main(String[] args) throws Exception {
         EventBusFactory.getEventBus().register(new EventListener());
         ItemList itemList = new ItemList();
+        UserProfile userProfile = new UserProfile();
         database inventory = new database();
-        Profile profile = new Profile("","","","","","","","");
         inventory.Connect();
 
         launch(args);

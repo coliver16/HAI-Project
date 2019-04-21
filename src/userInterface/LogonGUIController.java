@@ -26,13 +26,12 @@ import users.UserLoginEvent;
 import java.io.IOException;
 
 public class LogonGUIController {
-    EventBus eventBus = EventBusFactory.getEventBus();
-    Profile profile = Profile.getProfile();
+    private EventBus eventBus = EventBusFactory.getEventBus();
 
-    CSVParser parser = new CSVParser();
-    CSVWriter csvWriter = new CSVWriter();
-    Boolean loggedIn = false;
-    Profile userProfile;
+    private CSVParser parser = new CSVParser();
+    private CSVWriter csvWriter = new CSVWriter();
+    private Boolean loggedIn = false;
+    private Profile userProfile;
 
     @FXML
     private Label whyHai = new Label();
@@ -72,7 +71,6 @@ public class LogonGUIController {
         public void userLoginEvent(UserLoginEvent event) {
             System.out.println("User has logged in");
             userProfile = event.getMessage();
-
             if (rememberMe.isSelected()) {
                 try {
                     CSVWriter.writeUserProfile(userProfile);
@@ -80,9 +78,7 @@ public class LogonGUIController {
                     e.printStackTrace();
                 }
             }
-            profile = event.getMessage();
 
-            System.out.println(profile.getUserName());
         }
     }
 

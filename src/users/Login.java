@@ -68,10 +68,9 @@ public class Login {
             e.printStackTrace();
         }
 
-        EventBus eventBus = EventBusFactory.getEventBus();
-        UserLoginEvent userLoginEvent = new UserLoginEvent(currentProfile);
-        eventBus.register(userLoginEvent);
-        eventBus.post(userLoginEvent);
+        if (loggedIn) {
+            UserProfile.setUserProfile(currentProfile);
+        }
         return loggedIn;
     }
 }
