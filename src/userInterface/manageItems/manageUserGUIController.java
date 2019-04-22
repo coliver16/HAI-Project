@@ -1,37 +1,28 @@
-package userInterface.newUser;
+package userInterface.manageItems;
 
-import com.sun.java.accessibility.util.GUIInitializedListener;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.util.StringConverter;
-import sun.plugin2.message.Message;
 import userInterface.GuiNavigator;
 import users.Profile;
+import users.UserProfile;
 
-import javax.swing.text.MaskFormatter;
-import java.net.PasswordAuthentication;
-import java.security.Key;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+public class manageUserGUIController {
 
-public class createUserGUIController {
     private Alert invalidInput = new Alert(Alert.AlertType.ERROR);
+    private Alert passwordsNotMatch = new Alert(Alert.AlertType.ERROR);
+    private Alert confirmProfileChange = new Alert(Alert.AlertType.CONFIRMATION);
 
     @FXML
     private Label whyHai = new Label();
@@ -106,7 +97,7 @@ public class createUserGUIController {
     private TextField insuranceEmail;
 
     @FXML
-    private Button createProfile;
+    private Button updateProfile;
 
     @FXML
     private Button cancelProfile;
@@ -116,6 +107,14 @@ public class createUserGUIController {
         invalidInput.setTitle("Invalid Input!");
         invalidInput.setHeaderText("You have submitted invalid inputs.");
         invalidInput.setContentText("Please correct items highlighted in red. Resubmit when completed.");
+
+        passwordsNotMatch.setTitle("Invalid Passwords!");
+        passwordsNotMatch.setHeaderText("Your passwords do not match.");
+        passwordsNotMatch.setContentText("Please ensure your password and confirmation password match.");
+
+        confirmProfileChange.setTitle("Profile Change Detected!");
+        confirmProfileChange.setHeaderText("You have changed the values of your profile.");
+        confirmProfileChange.setContentText("These changes will be permanent. Press OK to confirm changes..");
 
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(5.0);
@@ -176,7 +175,7 @@ public class createUserGUIController {
         firstName.setPromptText("Name");
         lastName.setPromptText("Last");
         email.setPromptText("someone@somewhere.com");
-        //phoneNumber.setPromptText("(999) 999-9999");
+        phoneNumber.setPromptText("(999) 999-9999");
         insuranceCo.setPromptText("HAI Insurance LTD");
         insuranceFax.setPromptText("(999) 999-9999");
         insuranceEmail.setPromptText("help@me.com");
@@ -205,7 +204,6 @@ public class createUserGUIController {
             insuranceFax.setText(finalString);
         });
 
-
         whyHai.setText("Why HAI");
         whyHai.setFont(Font.font("Tahoma",15));
         whyHai.setTextFill(Color.rgb(255,255,255));
@@ -221,29 +219,39 @@ public class createUserGUIController {
         contactUs.setTextFill(Color.rgb(255,255,255));
         contactUs.setEffect(dropShadow);
 
-
         Rectangle clip = new Rectangle(cloudLogo.getFitWidth(), cloudLogo.getFitHeight());
-//        Rectangle clip1 = new Rectangle(userLogo.getFitWidth(), userLogo.getFitHeight());
         clip.setArcWidth(20);
         clip.setArcHeight(20);
-//        clip1.setArcWidth(20);
-//        clip1.setArcHeight(20);
 
         SnapshotParameters parameters = new SnapshotParameters();
         parameters.setFill(Color.TRANSPARENT);
         WritableImage cloud = cloudLogo.snapshot(parameters, null);
-  //      WritableImage User = userLogo.snapshot(parameters,null);
 
         cloudLogo.setClip(null);
         cloudLogo.setEffect((new DropShadow(20, Color.BLACK)));
-
-//        userLogo.setClip(null);
-//        userLogo.setEffect((new DropShadow(20,Color.BLACK)));
         cloudLogo.setImage(cloud);
-    //    userLogo.setImage(User);
+        cancelProfile.setText("Exit User Profile");
+        updateProfile.setText("Update User Profile");
 
-        cancelProfile.setText("Cancel User");
-        createProfile.setText("Create User");
+        firstName.setText(UserProfile.getUserProfile().getFirstName());
+        lastName.setText(UserProfile.getUserProfile().getLastName());
+        email.setText(UserProfile.getUserProfile().getEmail());
+        insuranceCo.setText(UserProfile.getUserProfile().getInsuranceCompanyName());
+        insuranceEmail.setText(UserProfile.getUserProfile().getInsuranceCompanyEmail());
+        insuranceFax.setText(UserProfile.getUserProfile().getInsuranceCompanyFax());
+
+        firstName.setEditable(false);
+        lastName.setEditable(false);
+        email.setEditable(false);
+        phoneNumber.setEditable(false);
+        insuranceCo.setEditable(false);
+        insuranceEmail.setEditable(false);
+        insuranceFax.setEditable(false);
+        password.setEditable(false);
+        verifyPassword.setEditable(false);
+
+        updateProfile.setDisable(false);
+
     }
 
     private boolean checkInput() {
@@ -268,20 +276,6 @@ public class createUserGUIController {
         }
         else {
             personalEmail.setTextFill(Color.rgb(255,255,255));
-        }
-        if (password.getText().isEmpty()) {
-            valid = false;
-            pass.setTextFill(Color.rgb(255,0,0));
-        }
-        else {
-            pass.setTextFill(Color.rgb(255,255,255));
-        }
-        if (verifyPassword.getText().isEmpty() || !validatePasswords()) {
-            valid = false;
-            passVerify.setTextFill(Color.rgb(255,0,0));
-        }
-        else {
-            passVerify.setTextFill(Color.rgb(255,255,255));
         }
         if (phoneNumber.getText().isEmpty() || phoneNumber.getLength() != 12 || phone.getText().contains("#")) {
             valid = false;
@@ -314,21 +308,53 @@ public class createUserGUIController {
         return valid;
     }
 
+    private boolean verifyChanges() {
+        boolean valid = true;
+        if (!firstName.getText().equals(UserProfile.getUserProfile().getFirstName())) {
+            valid = false;
+        }
+        if (!lastName.getText().equals(UserProfile.getUserProfile().getLastName())) {
+            valid = false;
+        }
+        if (email.getText().equals(UserProfile.getUserProfile().getEmail())) {
+            valid = false;
+        }
+        if (phoneNumber.getText().equals(UserProfile.getUserProfile().getPhoneNumber())) {
+            valid = false;
+        }
+        if (insuranceCo.getText().equals(UserProfile.getUserProfile().getInsuranceCompanyName())) {
+            valid = false;
+        }
+        if (insuranceEmail.getText().equals(UserProfile.getUserProfile().getInsuranceCompanyEmail())) {
+            valid = false;
+        }
+        if (insuranceFax.getText().equals(UserProfile.getUserProfile().getInsuranceCompanyFax())) {
+            valid = false;
+        }
+        return valid;
+    }
+
     public boolean validatePasswords() {
         return (password == verifyPassword);
     }
 
     @FXML
     public void setCancelProfile(ActionEvent event) {
-        GuiNavigator.loadGui(GuiNavigator.LOGIN_GUI);
+        GuiNavigator.loadGui(GuiNavigator.MAIN_MENU_GUI);
     }
 
     @FXML
-    public void setCreateProfile(ActionEvent event) {
+    public void setUpdateProfile(ActionEvent event) {
         if (checkInput()) {
-            Profile profile = new Profile(firstName.getText(), lastName.getText(), email.getText(), password.getText(), phoneNumber.getText(), insuranceCo.getText(),
-                    insuranceFax.getText(), insuranceEmail.getText());
-            GuiNavigator.loadGui(GuiNavigator.CREATE_USER_SUCCESS_GUI);
+            Optional<ButtonType> result = confirmProfileChange.showAndWait();
+            if (result.get() == ButtonType.OK){
+
+                //setUserProfile(new Profile(firstName.getText(), lastName.getText(), email.getText(), password.getText(), phoneNumber.getText(), insuranceCo.getText(),
+                //        insuranceFax.getText(), insuranceEmail.getText()));
+                // TODO: need method call to update user profile and password with server
+                GuiNavigator.loadGui(GuiNavigator.MAIN_MENU_GUI);
+            }
+
             // TODO: need method to create user with server
         }
         else {
@@ -336,8 +362,6 @@ public class createUserGUIController {
         }
     }
 
-    @FXML
-    public void setLoginMenu(ActionEvent event) {
-        GuiNavigator.loadGui(GuiNavigator.LOGIN_GUI);
+    public void setUserProfile(Profile p) {
     }
 }

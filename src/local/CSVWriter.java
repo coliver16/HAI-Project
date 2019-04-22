@@ -1,10 +1,15 @@
 package local;
 
+import items.Category;
 import items.Item;
+import items.Room;
+import items.Type;
 import org.apache.commons.csv.*;
 import users.Profile;
 
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -31,6 +36,20 @@ public class CSVWriter {
               }
           }
             csvPrinter.flush();
+        }
+    }
+
+    public static void appendToCSV(List<Item> items) throws IOException {
+        File file = new File(USER_ITEMS_FILE);
+        FileWriter fileWriter = new FileWriter(file, true);
+        try (BufferedWriter writer = new BufferedWriter(fileWriter);
+             CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.EXCEL);
+        ){
+            for (Item i: items) {
+                if (!"itemNo".equals(i.getItemNo())) {
+                    csvPrinter.printRecord(i.getItemNo(), i.getRoom().getStatus(), i.getCategory().getCategory(), i.getType().getProductTypeString(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments(), FORMATTER.format(new Date()).toString(), i.isDeleted().booleanValue());
+                }
+            }
         }
     }
 
