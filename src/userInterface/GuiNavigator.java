@@ -11,6 +11,7 @@ public class GuiNavigator {
     public static final String CREATE_USER_GUI = "newUser/createUserGUI.fxml";
     public static final String CREATE_USER_SUCCESS_GUI = "newUser/createUserSuccessGUI.fxml";
     public static final String VIEW_ITEMS_GUI = "manageItems/viewItemsGUI.fxml";
+    public static final String MODIFY_USER_PRO = "manageItems/manageUserGUI.fxml";
 
     /** Main application layout controller **/
     private static MainController mainController;

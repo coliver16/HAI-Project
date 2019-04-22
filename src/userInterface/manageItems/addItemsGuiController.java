@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
@@ -26,9 +27,18 @@ public class addItemsGuiController {
     EventBus eventBus = EventBusFactory.getEventBus();
     String imageName;
     String receiptName;
-    String USER_IMAGES = "src\\local\\images\\";
-    String USER_RECEIPTS = "src\\local\\receipts\\";
+    private File defaultImage = new File("src\\userInterface\\manageItems\\noImage.png");
+    private File defaultReceipt = new File("src\\userInterface\\manageItems\\noReceipt.png");
+    String tempImage;
+    String tempReceipt;
 
+    private Alert invalidInput = new Alert(Alert.AlertType.ERROR);
+
+    @FXML
+    private Image imageBox = new Image(defaultImage.toURI().toString());
+
+    @FXML
+    private Image receiptBox = new Image(defaultReceipt.toURI().toString());
 
     @FXML
     private ComboBox room;
@@ -94,7 +104,7 @@ public class addItemsGuiController {
     private Button uploadImage;
 
     @FXML
-    private ImageView imageReceipt;
+    private ImageView itemReceipt;
 
     @FXML
     private Button uploadReceipt;
@@ -113,6 +123,16 @@ public class addItemsGuiController {
 
     @FXML
     public void initialize() {
+        itemImage.setImage(imageBox);
+        itemReceipt.setImage(receiptBox);
+
+        invalidInput.setTitle("Invalid Input!");
+        invalidInput.setHeaderText("You have submitted invalid inputs.");
+        invalidInput.setContentText("Please correct items highlighted in red. Resubmit when completed.");
+
+        imageName = defaultImage.toPath().toString();
+        receiptName = defaultReceipt.toPath().toString();
+
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(5.0);
         dropShadow.setOffsetX(3.0);
@@ -183,8 +203,8 @@ public class addItemsGuiController {
         cancel.setText("Cancel Item");
 
 
-        Rectangle clip = new Rectangle(itemImage.getFitWidth(), itemImage.getFitHeight());
-        Rectangle clip1 = new Rectangle(imageReceipt.getFitWidth(), imageReceipt.getFitHeight());
+        /*Rectangle clip = new Rectangle(itemImage.getFitWidth(), itemImage.getFitHeight());
+        Rectangle clip1 = new Rectangle(itemReceipt.getFitWidth(), itemReceipt.getFitHeight());
         clip.setArcWidth(20);
         clip.setArcHeight(20);
         clip1.setArcWidth(20);
@@ -193,31 +213,91 @@ public class addItemsGuiController {
         SnapshotParameters parameters = new SnapshotParameters();
         parameters.setFill(Color.TRANSPARENT);
         WritableImage cloud = itemImage.snapshot(parameters, null);
-        WritableImage user = imageReceipt.snapshot(parameters,null);
+        WritableImage user = itemReceipt.snapshot(parameters,null);
 
         itemImage.setClip(null);
-        imageReceipt.setEffect((new DropShadow(20, Color.BLACK)));
+        itemReceipt.setEffect((new DropShadow(20, Color.BLACK)));
 
         itemImage.setClip(null);
-        imageReceipt.setEffect((new DropShadow(20,Color.BLACK)));
-        itemImage.setImage(cloud);
-        imageReceipt.setImage(user);
+        itemReceipt.setEffect((new DropShadow(20,Color.BLACK)));
+        itemImage.setImage(imageBox);
+        itemReceipt.setImage(receiptBox);*/
 
+
+    }
+
+    private boolean checkInput() {
+        boolean valid = true;
+        if (room.getEditor().getText().isEmpty()) {
+            valid = false;
+            roomLabel.setTextFill(Color.rgb(255,0,0));
+        }
+        else {
+            roomLabel.setTextFill(Color.rgb(255,255,255));
+        }
+        if (category.getEditor().getText().isEmpty()) {
+            valid = false;
+            categoryLabel.setTextFill(Color.rgb(255,0,0));
+        }
+        else {
+            categoryLabel.setTextFill(Color.rgb(255,255,255));
+        }
+        if  (productType.getText().isEmpty()) {
+            valid = false;
+            productLabel.setTextFill(Color.rgb(255,0,0));
+        }
+        else {
+            productLabel.setTextFill(Color.rgb(255,255,255));
+        }
+        if (make.getText().isEmpty()) {
+            valid = false;
+            makeLabel.setTextFill(Color.rgb(255,0,0));
+        }
+        else {
+            makeLabel.setTextFill(Color.rgb(255,255,255));
+        }
+        if (model.getText().isEmpty()) {
+            valid = false;
+            modelLabel.setTextFill(Color.rgb(255,0,0));
+        }
+        else {
+            modelLabel.setTextFill(Color.rgb(255,255,255));
+        }
+        if (serial.getText().isEmpty()) {
+            valid = false;
+            serialLabel.setTextFill(Color.rgb(255,0,0));
+        }
+        else {
+            serialLabel.setTextFill(Color.rgb(255,255,255));
+        }
+        if (value.getText().isEmpty()) {
+            valid = false;
+            valueLabel.setTextFill(Color.rgb(255,0,0));
+        }
+        else {
+            valueLabel.setTextFill(Color.rgb(255,255,255));
+        }
+        return valid;
     }
 
     @FXML
     private void setSubmit(ActionEvent event) throws Exception {
-        Room r = new Room(roomOptions.get(room.getSelectionModel().getSelectedIndex()));
-        Category c = new Category(categoryOptions.get(category.getSelectionModel().getSelectedIndex()));
-        Type t = new Type(productType.getText());
+        if (checkInput()) {
+            Room r = new Room(roomOptions.get(room.getSelectionModel().getSelectedIndex()));
+            Category c = new Category(categoryOptions.get(category.getSelectionModel().getSelectedIndex()));
+            Type t = new Type(productType.getText());
 
-        Item item = new Item(0, r,c,t, make.getText(), model.getText(), serial.getText(), receiptName,imageName, Float.parseFloat(value.getText()), comments.getText());
+            Item item = new Item(0, r, c, t, make.getText(), model.getText(), serial.getText(), tempReceipt, tempImage, Float.parseFloat(value.getText()), comments.getText());
 
-        ItemEvent itemEvent = new ItemEvent(item);
-        eventBus.register(itemEvent);
-        eventBus.post(itemEvent);
-        Stage stage = (Stage) submit.getScene().getWindow();
-        stage.close();
+            ItemEvent itemEvent = new ItemEvent(item);
+            eventBus.register(itemEvent);
+            eventBus.post(itemEvent);
+            Stage stage = (Stage) submit.getScene().getWindow();
+            stage.close();
+        }
+        else {
+            invalidInput.showAndWait();
+        }
     }
 
     @FXML
@@ -228,16 +308,21 @@ public class addItemsGuiController {
 
     @FXML
     private void setSubmitAndAdd(ActionEvent event) throws Exception {
-        Room r = new Room(roomOptions.get(room.getSelectionModel().getSelectedIndex()));
-        Category c = new Category(categoryOptions.get(category.getSelectionModel().getSelectedIndex()));
-        Type t = new Type(productType.getText());
+        if (checkInput()) {
+            Room r = new Room(roomOptions.get(room.getSelectionModel().getSelectedIndex()));
+            Category c = new Category(categoryOptions.get(category.getSelectionModel().getSelectedIndex()));
+            Type t = new Type(productType.getText());
 
-        Item item = new Item(0, r,c,t, make.getText(), model.getText(), serial.getText(), receiptName,imageName, Float.parseFloat(value.getText()), comments.getText());
+            Item item = new Item(0, r, c, t, make.getText(), model.getText(), serial.getText(), tempReceipt, tempImage, Float.parseFloat(value.getText()), comments.getText());
 
-        ItemEvent itemEvent = new ItemEvent(item);
-        eventBus.register(itemEvent);
-        eventBus.post(itemEvent);
-        addReset();
+            ItemEvent itemEvent = new ItemEvent(item);
+            eventBus.register(itemEvent);
+            eventBus.post(itemEvent);
+            addReset();
+        }
+        else {
+            invalidInput.showAndWait();
+        }
     }
 
     private void addReset() {
@@ -256,27 +341,12 @@ public class addItemsGuiController {
         FileChooser fc = new FileChooser();
         fc.setTitle("Select Item Image");
         File selectedImage = fc.showOpenDialog(null);
-        String tempName;
+        //String tempName;
         if (selectedImage != null) {
-            tempName = selectedImage.getName();
+            tempImage = selectedImage.toPath().toString();
+            imageBox = new Image(selectedImage.toURI().toString());
+            itemImage.setImage(imageBox);
 
-            Thread thread = new Thread() {
-                public void run() {
-                    try {
-                        File newFile = new File(USER_IMAGES + tempName);
-                        Files.copy(selectedImage.toPath(), newFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                        imageName = newFile.toPath().toString();
-                        return;
-                    } catch (Exception e) {
-                        System.out.println("Error");
-                        e.printStackTrace();
-
-                        System.out.println(e);
-                    }
-                    //return;
-                }
-            };
-            thread.start();
         }
     }
 
@@ -285,27 +355,12 @@ public class addItemsGuiController {
         FileChooser fc = new FileChooser();
         fc.setTitle("Select Item Receipt");
         File selectedImage = fc.showOpenDialog(null);
-        String tempName;
+        //String tempName;
         if (selectedImage != null) {
-            tempName = selectedImage.getName();
+            tempReceipt = selectedImage.getName();
+            receiptBox = new Image(selectedImage.toURI().toString());
+            itemReceipt.setImage(receiptBox);
 
-            Thread thread = new Thread() {
-                public void run() {
-                    try {
-                        File newFile = new File(USER_RECEIPTS + tempName);
-                        Files.copy(selectedImage.toPath(), newFile.toPath() , StandardCopyOption.REPLACE_EXISTING);
-                        receiptName = tempName;
-                        return;
-                    } catch (Exception e) {
-                        System.out.println("Error");
-                        e.printStackTrace();
-
-                        System.out.println(e);
-                    }
-                    //return;
-                }
-            };
-            thread.start();
         }
     }
 }

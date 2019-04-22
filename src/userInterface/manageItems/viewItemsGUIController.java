@@ -4,10 +4,8 @@ import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import eventBus.EventBusFactory;
 import items.*;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,37 +26,36 @@ import javafx.stage.Stage;
 import local.CSVWriter;
 import local.ParseEvent;
 import userInterface.GuiNavigator;
-
+import database.update;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import local.CSVParser;
-import users.Profile;
-import users.UserLoginEvent;
+import users.UserProfile;
 
 public class viewItemsGUIController {
     private EventBus eventBus = EventBusFactory.getEventBus();
-    private CSVParser parser = new CSVParser();
-    private CSVWriter csvWriter = new CSVWriter();
-    private String name = Profile.getUserName();
-    private List<Item> itemImports = ItemList.getItemList();
-    private Boolean confirmDelete = false;
-    private int increment = 1000;
 
+    private String USER_IMAGES = "src\\local\\images\\";
+    private String USER_RECEIPTS = "src\\local\\receipts\\";
     private File defaultImage = new File("src\\userInterface\\manageItems\\noImage.png");
     private File defaultReceipt = new File("src\\userInterface\\manageItems\\noReceipt.png");
+
+    private String name;
+    private List<Item> itemImports = ItemList.getItemList();
+    private int increment = 1000;
+
+    private Alert alertConfirmDelete = new Alert(Alert.AlertType.CONFIRMATION);
+    private Alert alertConfirmAdd = new Alert(Alert.AlertType.CONFIRMATION);
+
 
     @FXML
     private Image imageBox = new Image(defaultImage.toURI().toString());
     @FXML
     private Image receiptBox = new Image(defaultReceipt.toURI().toString());
-
-    private Alert alertConfirmDelete = new Alert(Alert.AlertType.CONFIRMATION);
-    private Alert alertConfirmAdd = new Alert(Alert.AlertType.CONFIRMATION);
-
 
     @FXML
     private Label whyHai = new Label();
@@ -96,6 +93,10 @@ public class viewItemsGUIController {
     @FXML
     private ImageView itemImage;
 
+    public viewItemsGUIController() {
+        name = UserProfile.getUserProfile().getFirstName() + " " + UserProfile.getUserProfile().getLastName();
+    }
+
     public class EventHandler {
         @Subscribe
         public void parseEvent(ParseEvent event) {
@@ -116,16 +117,59 @@ public class viewItemsGUIController {
         @Subscribe
         public void itemEvent(ItemEvent event) {
             System.out.println("Item Added");
-            event.getMessage().setItemNo(999);
-            itemImports.add(event.getMessage());
-            itemList.getItems().add(event.getMessage());
-            ItemList.itemList.add(event.getMessage());
-        }
-    }
+            event.getMessage().setItemNo(increment++);
+            Item i = event.getMessage();
+            Thread thread = new Thread() {
+                public void run() {
+                    try {
+                        // save local copy of item photo
+                        if (i.getPhoto() != null) {
+                            File original = new File(i.getPhoto());
+                            String filename = original.getName();
+                            String extension = filename.substring(filename.lastIndexOf(".") + 1, original.getName().length());
+                            String newPath = USER_IMAGES + i.getItemNo() + "_" + i.getMake() + "_" + i.getModel() + "." + extension;
+                            File newFile = new File(newPath);
+                            Files.copy(original.toPath(), newFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                            //newFile.renameTo(new File(USER_IMAGES + i.getItemNo()+"_"+i.getMake()+"_"+i.getModel()));
+                            i.setPhoto(newFile.toPath().toString());
+                        }
+                        else {
+                            i.setPhoto(defaultImage.getPath().toString());
+                        }
 
-    @Subscribe
-    public void itemEvent(ItemEvent event) {
-        itemImports.add(event.getMessage());
+                        // save local copy of item receipt
+                        if (i.getReceipt() != null) {
+                            File original = new File(i.getReceipt());
+                            String filename = original.getName();
+                            String extension = filename.substring(filename.lastIndexOf(".") + 1, original.getName().length());
+                            String newPath = USER_RECEIPTS + i.getItemNo() + "_" + i.getMake() + "_" + i.getModel() + "_RECEIPT" + "." + extension;
+                            File newFile = new File(newPath);
+                            Files.copy(original.toPath(), newFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                            //newFile.renameTo(new File(USER_IMAGES + i.getItemNo()+"_"+i.getMake()+"_"+i.getModel()));
+                            i.setPhoto(newFile.toPath().toString());
+                        }
+                        else {
+                            i.setReceipt(defaultReceipt.getPath().toString());
+                        }
+
+                        itemImports.add(i);
+                        itemList.getItems().add(i);
+                        ItemList.itemList.add(i);
+
+                        List<Item> l = new ArrayList<>();
+                        l.add(i);
+                        CSVWriter.appendToCSV(l);
+                    } catch (Exception e) {
+                        System.out.println("Error");
+                        e.printStackTrace();
+
+                        System.out.println(e);
+                    }
+                    //return;
+                }
+            };
+            thread.start();
+        }
     }
 
     public void registerListener() {
@@ -140,8 +184,6 @@ public class viewItemsGUIController {
     public void initialize() throws Exception{
 
         itemImage.setImage(imageBox);
-        //itemImage.setSmooth(true);
-        //itemImage.setPreserveRatio(true);
 
         itemReceipt.setImage(receiptBox);
 
@@ -157,7 +199,6 @@ public class viewItemsGUIController {
         alertConfirmAdd.setHeaderText("You will add this item to the cloud.");
         alertConfirmAdd.setContentText("Do you wish to confirm creation of new item?");
 
-       // csvWriter.writeCSV((List) itemImports);
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(5.0);
         dropShadow.setOffsetX(3.0);
@@ -272,6 +313,9 @@ public class viewItemsGUIController {
             if (!i.isDeleted()) {
                 //itemList.getItems().add(new Item(i.getItemNo(), new Room(i.getRoom().getStatus().toString()), i.getCategory(), i.getType(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments()));
                 itemList.getItems().add(i);
+                if (i.getItemNo() > increment) {
+                    increment = i.getItemNo() + 1;
+                }
             }
         }
 
@@ -372,7 +416,7 @@ public class viewItemsGUIController {
 
     @FXML
     public void setUpdateButton(ActionEvent event) {
-        // Jon use this area
+        update.update();
     }
 
     @FXML

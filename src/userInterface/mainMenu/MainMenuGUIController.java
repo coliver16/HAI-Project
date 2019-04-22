@@ -19,12 +19,17 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import local.CSVParser;
 import userInterface.GuiNavigator;
+import userInterface.manageItems.viewItemsGUIController;
 import users.Profile;
 import users.UserLoginEvent;
+import users.UserProfile;
+
+import javax.swing.*;
+import java.io.IOException;
 
 public class MainMenuGUIController {
 
-    private String name = Profile.getUserName();
+    private String name = UserProfile.getUserProfile().getFirstName() + " " + UserProfile.getUserProfile().getLastName();
 
     Boolean loggedIn = true;
 
@@ -124,7 +129,17 @@ public class MainMenuGUIController {
     public void setViewItems(ActionEvent event) throws InterruptedException {
 
         GuiNavigator.loadGui(GuiNavigator.VIEW_ITEMS_GUI);
+    }
 
+    @FXML
+    public void setViewProfile(ActionEvent event) {
+        GuiNavigator.loadGui(GuiNavigator.MODIFY_USER_PRO);
+    }
+    @FXML
+    public void setAddItems(ActionEvent event) throws IOException {
+        GuiNavigator.loadGui(GuiNavigator.VIEW_ITEMS_GUI);
+        viewItemsGUIController controller = new viewItemsGUIController();
+        controller.setAddButton(new ActionEvent());
     }
 
 

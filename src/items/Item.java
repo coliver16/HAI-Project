@@ -4,7 +4,7 @@ import java.lang.*;
 
 public class Item {
     private int itemNo;
-    //public User userno;
+    //public String email;
     private Room room;
     private Category category;
     private Type type;
@@ -147,10 +147,12 @@ public class Item {
     public String getReceipt() {
         return receipt;
     }
+    public void setReceipt(String s) { receipt = s;}
 
     public String getPhoto() {
         return photo;
     }
+    public void setPhoto(String s) { photo = s;}
 
     public float getValue() {
         return value;

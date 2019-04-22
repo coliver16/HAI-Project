@@ -54,7 +54,7 @@
             </ImageView>
             <VBox alignment="CENTER">
                 <HBox>
-                    <Button fx:id="viewProfile" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
+                    <Button fx:id="viewProfile" onAction="#setViewProfile" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
                         <HBox.margin>
                             <Insets top="10" right="10" bottom="10" left="10"></Insets>
                         </HBox.margin>
@@ -71,7 +71,7 @@
                             <Insets top="10" right="10" bottom="10" left="10"></Insets>
                         </HBox.margin>
                     </Button>
-                    <Button fx:id="addItems" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
+                    <Button fx:id="addItems" onAction="#setAddItems" textAlignment="CENTER" prefWidth="200" prefHeight="50" defaultButton="true">
                         <HBox.margin>
                             <Insets top="10" right="10" bottom="10" left="10"></Insets>
                         </HBox.margin>
