@@ -173,7 +173,7 @@ public class LogonGUIController {
         Login log = new Login();
 
         //if (user.equals("cmuney13@gmail.com") && password.equals("password")) {
-        if (log.Log("cmuney13@gmail.com","password")) {
+        if (log.Log(user,pass)) {
             message.setText("Your Password is confirmed!");
             message.setTextFill(Color.rgb(0,0,0));
             //username.clear();

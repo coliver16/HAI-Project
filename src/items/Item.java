@@ -4,7 +4,7 @@ import java.lang.*;
 
 public class Item {
     private int itemNo;
-    //public User userno;
+    //public String email;
     private Room room;
     private Category category;
     private Type type;

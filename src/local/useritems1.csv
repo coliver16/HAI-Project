@@ -1,12 +1,10 @@
 itemNo,Room,Category,Type,make,model,serial,receipt,photo,value,comments,lastupdate,delete
-0,Livingroom,Electronics,Television,Sony,Bravia,123456789,receipt,photo,1200.0,netflix-stuff,2019-04-20 01:22:03.584,false
-5,Livingroom,Electronics,BluRay Player,Sony,Something,5498138,receipt,photo,200.0,For watching smut,2019-04-20 01:22:03.584,false
-27,Livingroom,Furniture,Couch,Lazy Boy,Black Panther,NA,receipt,photo,2000.0,Unicorn Leather,2019-04-20 01:22:03.584,false
-55,Gameroom,Electronics,Computer,Apple,MacBook,66758,receipt,photo,999.0,Cuz I'm hip,2019-04-20 01:22:03.584,false
-68,Gameroom,Electronics,Speakers,Dolby,Atmos,9875,receipt,photo,400.0,Eargasm,2019-04-20 01:22:03.584,true
-75,Kitchen,Appliances,Refrigerator,GE,Frigerator 2000,64879531,receipt,photo,800.0,Keeping my shit cold since I 2018,2019-04-20 01:22:03.584,false
-101,Bedroom,Electronics,Television,LG,TVinator 21000,16345,receipt,photo,200.0,Watching more smut,2019-04-20 01:22:03.585,false
-112,Bedroom,Jewelry,Necklace,Pandora,Disney Collection,3468975,receipt,photo,1200.0,Fancy stuff,2019-04-20 01:22:03.585,true
-162,Garage,Tools,Tools,Craftsman,Carkit,548768,receipt,photo,400.0,For fixing stuff,2019-04-20 01:22:03.585,true
-999,Basement,Appliances,"TextField[id=productType, styleClass=text-input text-field]",asdf,asdf,asdf,receipt,image,1234.0,asdf,2019-04-20 01:22:03.585,false
-999,Basement,Appliances,"TextField[id=productType, styleClass=text-input text-field]",asdf,asdf,asdf,receipt,image,1234.0,asdf,2019-04-20 01:22:03.585,false
+0,Livingroom,Electronics,Television,Sony,Bravia,123456789,receipt,photo,1200.0,netflix-stuff,2019-04-21 15:57:19.363,false
+5,Livingroom,Electronics,BluRay Player,Sony,Something,5498138,receipt,photo,200.0,For watching smut,2019-04-21 15:57:19.402,true
+27,Livingroom,Furniture,Couch,Lazy Boy,Black Panther,NA,receipt,photo,2000.0,Unicorn Leather,2019-04-21 15:57:19.403,false
+55,Gameroom,Electronics,Computer,Apple,MacBook,66758,receipt,photo,999.0,Cuz I'm hip,2019-04-21 15:57:19.403,false
+68,Gameroom,Electronics,Speakers,Dolby,Atmos,9875,receipt,photo,400.0,Eargasm,2019-04-21 15:57:19.403,false
+75,Kitchen,Appliances,Refrigerator,GE,Frigerator 2000,64879531,receipt,photo,800.0,Keeping my shit cold since I 2018,2019-04-21 15:57:19.403,false
+101,Bedroom,Electronics,Television,LG,TVinator 21000,16345,receipt,photo,200.0,Watching more smut,2019-04-21 15:57:19.403,false
+112,Bedroom,Jewelry,Necklace,Pandora,Disney Collection,3468975,receipt,photo,1200.0,Fancy stuff,2019-04-21 15:57:19.404,true
+162,Garage,Tools,Tools,Craftsman,Carkit,548768,receipt,photo,400.0,For fixing stuff,2019-04-21 15:57:19.404,true

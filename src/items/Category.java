@@ -28,7 +28,6 @@ public class Category {
         category = c;
     }
 
-
     //An array list of all the categories
     EnumSet<categories> allCategories = EnumSet.allOf(categories.class);
     List<categories> listOfCategories = new ArrayList<>(allCategories);

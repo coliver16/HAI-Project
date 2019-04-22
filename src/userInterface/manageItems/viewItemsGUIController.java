@@ -27,7 +27,7 @@ import javafx.stage.Stage;
 import local.CSVWriter;
 import local.ParseEvent;
 import userInterface.GuiNavigator;
-
+import database.update;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -312,7 +312,7 @@ public class viewItemsGUIController {
 
     @FXML
     public void setUpdateButton(ActionEvent event) {
-        // Jon use this area
+        update.update();
     }
 
     @FXML
