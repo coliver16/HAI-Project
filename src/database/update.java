@@ -17,7 +17,7 @@ import java.sql.PreparedStatement;
 
 public class update{
     static database inventory = new database();
-    static Connection conn;
+    static Connection conn = null;
     static Profile currentProfile;
 
     static {
@@ -28,15 +28,14 @@ public class update{
         }
     }
 
-    static {
+
+
+    public static void update(){
         try {
             conn = inventory.Connect();//establish database connection
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public static void update(){
         List<Item> remote = Download("Item_454");
         try {
             List<Item> local = CSVParser.readFile();
@@ -45,6 +44,52 @@ public class update{
         } catch (Exception e) {
             e.printStackTrace();
         }
+        finally {
+            try {
+                if(conn != null)conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void profileUpdate(){
+
+        try { conn = inventory.Connect();//establish database connection
+        } catch (Exception e) {e.printStackTrace(); }
+        PreparedStatement pstmt=null;
+
+        try {
+            pstmt = conn.prepareStatement("DELETE FROM Profile_454 WHERE profile_email = ? ");
+            pstmt.setString( 1, currentProfile.getEmail());
+            pstmt.executeUpdate();
+            pstmt = conn.prepareStatement("INSERT INTO Profile_454 (profile_firstname, profile_lastname, profile_email, profile_password, profile_phone_number, policy_company, policy_fax, policy_claims_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            pstmt.setString(1,currentProfile.getFirstName());
+            pstmt.setString(2,currentProfile.getLastName());
+            pstmt.setString(3,currentProfile.getEmail());
+            pstmt.setString(4,currentProfile.getPw());
+            pstmt.setString(5,currentProfile.getPhoneNumber());
+            pstmt.setString(6,currentProfile.getInsuranceCompanyName());
+            pstmt.setString(7,currentProfile.getInsuranceCompanyFax());
+            pstmt.setString(8,currentProfile.getInsuranceCompanyEmail());
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                if(pstmt != null)pstmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if(conn != null)conn.close();
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     public void restore(){
@@ -57,7 +102,7 @@ public class update{
             List<Item> input = new ArrayList<>(out);//set new List<Item> = local .CSV file
             while (!input.isEmpty()){//upload to database one item at a time
                 Item entry = input.remove(0);
-                if(entry.isDeleted()){System.out.println(entry.isDeleted());addDeleted(entry);}
+                if(entry.isDeleted()){System.out.print(entry.getItemNo());System.out.println(entry.isDeleted());addDeleted(entry);}
                 else {addItem(entry);}
             }
         } catch (Exception e) {
@@ -67,16 +112,21 @@ public class update{
 
     public static List<Item> Download(String db){
 
+        try {
+            conn = inventory.Connect();//establish database connection
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         List<Item> itemList = new ArrayList<>();
-        //PreparedStatement pstmt = null;
+        ResultSet rs =null;
+        PreparedStatement pstmt = null;
         System.out.println(conn);
         try {
-            PreparedStatement pstmt=null;
             if(db == "Item_454"){//for update else is for restore
             pstmt = conn.prepareStatement("SELECT * FROM Item_454 WHERE email_own = ? ");}
             else if(db == "DeletedItems_454"){pstmt = conn.prepareStatement("SELECT * FROM DeletedItems_454 WHERE email_own = ? ");}
             pstmt.setString(1,currentProfile.getEmail());
-            ResultSet rs = pstmt.executeQuery();
+            rs = pstmt.executeQuery();
             while (rs.next()) {
                 int itemNo = Integer.valueOf(rs.getString("item_id"));
                 Room room = new Room(rs.getString("item_room"));
@@ -92,22 +142,28 @@ public class update{
                 Item item = new Item(itemNo, /*user,*/ room, category, type, make, model, serial, receipt, photo, value, comments);
                 itemList.add(item);
             }
-            /*try {
-                CSVWriter.writeCSV(itemList);
-            }
-            catch (IOException e) {
-                e.printStackTrace();
-            }*/
         } catch (SQLException e ) {
             e.printStackTrace();
+        }finally {
+            try { if(rs != null)rs.close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if(pstmt != null)pstmt.close(); } catch (SQLException e) { e.printStackTrace(); }
+            try { if(conn != null)conn.close(); } catch (SQLException e) { e.printStackTrace(); }
         }
         return itemList;
     }
 
     public static void addDeleted(Item newItem)
     {
+
         try {
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM DeletedItems_454 WHERE item_id = ? ");
+            conn = inventory.Connect();//establish database connection
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        PreparedStatement pstmt =null;
+        try {
+            pstmt = conn.prepareStatement("DELETE FROM DeletedItems_454 WHERE item_id = ? ");
             pstmt.setInt( 1, newItem.getItemNo());
             pstmt.executeUpdate();
             pstmt = conn.prepareStatement("INSERT INTO DeletedItems_454 (item_id, email_own, item_room, item_category, item_type, item_make, item_model, item_serial_num, item_receipt, item_image, item_price, item_comments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -124,16 +180,37 @@ public class update{
             pstmt.setFloat(11,newItem.getValue());
             pstmt.setString(12,newItem.getComments());
             pstmt.executeUpdate();
+            pstmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        finally{
+            try {
+                if(pstmt != null)pstmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if(conn != null)conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     //Add an Item
     public static void addItem(Item newItem)
     {
+
         try {
-            PreparedStatement pstmt = conn.prepareStatement("DELETE FROM Item_454 WHERE item_no = ? ");
+            conn = inventory.Connect();//establish database connection
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        PreparedStatement pstmt = null;
+        try {
+            pstmt = conn.prepareStatement("DELETE FROM Item_454 WHERE item_no = ? ");
             pstmt.setInt( 1, newItem.getItemNo());
             pstmt.executeUpdate();
             pstmt = conn.prepareStatement("INSERT INTO Item_454 (item_no, email_own, item_room, item_category, item_type, item_make, item_model, item_serial_num, item_receipt, item_image, item_price, item_comments, item_deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -151,20 +228,22 @@ public class update{
             pstmt.setString(12,newItem.getComments());
             pstmt.setBoolean(13,newItem.isDeleted());
             pstmt.executeUpdate();
-
+            pstmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            try {
+                if(pstmt != null)pstmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if(conn != null)conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-        /*try {
-            Statement stmt = conn.createStatement();
-            String query = "DELETE FROM Item_454 WHERE item_no = newItem.itemNo";
-            stmt.executeQuery(query);
-            query = "INSERT INTO Item_454 (item_no, /*user_own,*/ /*item_room, item_category, item_type, item_make, item_model, item_serial_num, item_receipt, item_image, item_price, item_comments)" +
-                    "VALUES (newItem.itemNo, /*newItem.username,*//* newItem.room, newItem.category, newItem.type, newItem.make, newItem.model, newItem.serial, newItem.receipt, newItem.photo, newItem.value, newItem.comments)";
-           /* stmt.executeQuery(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }*/
+
     }
 
     public static List<Item> compare(List<Item> local, List<Item> remote){
