@@ -32,12 +32,14 @@ public class Login {
         catch (Exception e) {
             e.printStackTrace();
         }
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
         boolean loggedIn = false;
         try {
-            PreparedStatement pstmt = conn.prepareStatement("SELECT * FROM Profile_454 WHERE profile_email = ? AND profile_password = ? ");
+            pstmt = conn.prepareStatement("SELECT * FROM Profile_454 WHERE profile_email = ? AND profile_password = ? ");
             pstmt.setString(1,logEmail);
             pstmt.setString(2,logPass);
-            ResultSet rs = pstmt.executeQuery();
+            rs = pstmt.executeQuery();
             //System.out.println("sql query" + pstmt.toString());
             if(rs.next()) {
                 //pstmt = conn.prepareStatement("SELECT * FROM Profile_454 Where profile_email = ? ");
@@ -66,6 +68,23 @@ public class Login {
         }
         catch (SQLException e) {
             e.printStackTrace();
+        }finally {
+            try {
+                if(rs != null)rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (pstmt != null)pstmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if(conn != null)conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
         }
 
         if (loggedIn) {
