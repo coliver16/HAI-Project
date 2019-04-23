@@ -71,6 +71,8 @@ public class database{
                 System.out.println(pw);
                 s3.listBuckets();
                 s3.listObjects();
+                //s3.deleteObject("backround.jpg");
+                //s3.putObject("background.jpg", "/Users/rober/Pictures/backround.jpg");
             }
         } catch (SQLException e ) {
             e.printStackTrace();
