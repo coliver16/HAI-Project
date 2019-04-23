@@ -53,12 +53,12 @@ CREATE TABLE Profile_454 (
     profile_lastname varchar(50) not null, -- The user's last name
     profile_email varchar(50) not null, -- The user's profile email
     profile_password varchar(50) not null, -- The user's profile password
-    profile_phone_number text not null, -- The user's phone number
+    profile_phone_number varchar(10) not null, -- The user's phone number
     policy_company text not null, -- The company in which the user has a policy with
-    policy_fax text not null, -- The company's fax number in which the user has a policy with
+    policy_fax varchar(10) not null, -- The company's fax number in which the user has a policy with
     policy_claims_email text not null, -- The company's claims email address in which the user has a policy with
-    CONSTRAINT CK_phone_number CHECK (profile_phone_number LIKE REPLICATE ('[0-9]',10)), -- Check to make sure the phone number is 10 digits, no more, no less
-    CONSTRAINT CK_fax CHECK (policy_fax LIKE REPLICATE ('[0-9]',10)), -- Check to make sure the fax number is 10 digits, no more, no less
+    -- CONSTRAINT CK_phone_number CHECK (profile_phone_number LIKE REPLICATE ('[0-9]',10)), -- Check to make sure the phone number is 10 digits, no more, no less
+    -- CONSTRAINT CK_fax CHECK (policy_fax LIKE REPLICATE ('[0-9]',10)), -- Check to make sure the fax number is 10 digits, no more, no less
     -- CONSTRAINT FK_profile FOREIGN KEY (profile_user) REFERENCES User_454(id) -- This allows for each profile created to be attributed to a specific user
 	)
 
