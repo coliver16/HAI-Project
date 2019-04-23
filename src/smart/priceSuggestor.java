@@ -132,7 +132,7 @@ public class priceSuggestor {
         //Calculate the deviation from the suggested for each using the equation (Deviating Price - Suggested Price)/Suggested Price
         //Find the mean of all those deviations excluding those means that are higher than .8 or lower than -.8 (in order to weed out bad input)
         //Return that mean (variable dev)
-        //Every 10 added deviation prices, we repeat this process
+        //Every 10 added deviation prices, we repeat this process automatically
         return dev;
     }
 }
