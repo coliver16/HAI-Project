@@ -13,6 +13,7 @@ public class Item {
     private String serial;
     private String receipt;
     private String photo;
+    private String key = "";
     private float value;
     private String comments;
     private Boolean deleted = false;
@@ -153,6 +154,9 @@ public class Item {
         return photo;
     }
     public void setPhoto(String s) { photo = s;}
+
+    public String getKey(){return key; }
+    protected void setKey(String k){this.key=k;}
 
     public float getValue() {
         return value;

@@ -163,9 +163,7 @@ public class update{
 
         PreparedStatement pstmt =null;
         try {
-            pstmt = conn.prepareStatement("DELETE FROM DeletedItems_454 WHERE item_id = ? ");
-            pstmt.setInt( 1, newItem.getItemNo());
-            pstmt.executeUpdate();
+
             pstmt = conn.prepareStatement("INSERT INTO DeletedItems_454 (item_id, email_own, item_room, item_category, item_type, item_make, item_model, item_serial_num, item_receipt, item_image, item_price, item_comments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             pstmt.setInt(1,newItem.getItemNo());
             pstmt.setString(2,currentProfile.getEmail());
@@ -179,6 +177,10 @@ public class update{
             pstmt.setString(10,newItem.getPhoto());
             pstmt.setFloat(11,newItem.getValue());
             pstmt.setString(12,newItem.getComments());
+            pstmt.executeUpdate();
+            pstmt = conn.prepareStatement("DELETE FROM Items_454 WHERE item_id = ? AND email_own = ? ");
+            pstmt.setInt( 1, newItem.getItemNo());
+            pstmt.setString(2,currentProfile.getEmail());
             pstmt.executeUpdate();
             pstmt.close();
         } catch (SQLException e) {
@@ -210,8 +212,9 @@ public class update{
 
         PreparedStatement pstmt = null;
         try {
-            pstmt = conn.prepareStatement("DELETE FROM Item_454 WHERE item_no = ? ");
+            pstmt = conn.prepareStatement("DELETE FROM Item_454 WHERE item_no = ? AND email_own = ? ");
             pstmt.setInt( 1, newItem.getItemNo());
+            pstmt.setString(2,currentProfile.getEmail());
             pstmt.executeUpdate();
             pstmt = conn.prepareStatement("INSERT INTO Item_454 (item_no, email_own, item_room, item_category, item_type, item_make, item_model, item_serial_num, item_receipt, item_image, item_price, item_comments, item_deleted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             pstmt.setInt(1,newItem.getItemNo());
