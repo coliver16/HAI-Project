@@ -65,26 +65,27 @@ CREATE TABLE Profile_454 (
 
 --Dummy data for Web Portal tests
 
-INSERT INTO dbo.Item_454 (email_own, item_room, item_category, item_type, item_make, item_model, item_serial_num, item_receipt, item_image, item_price, item_comments, item_deleted)
-            VALUES ( 'cmuney13@gmail.com',
+INSERT INTO dbo.Item_454 (item_no, email_own, item_room, item_category, item_type, item_make, item_model, item_serial_num, item_receipt, item_image, item_price, item_comments, item_deleted)
+            VALUES ( 1,
+	    	    'cmuney13@gmail.com',
                     'library',
                     'books',
                     'book',
                     'issa book',
                     'book still',
-                    12345,
+                    '12345',
                     'receipt',
                     'photo',
                     23.00,
                     'this mah book',
 		    0)
 
-INSERT INTO dbo.Profile_454(profile_firstname, profile_lastname, profile_email, profile_password, profile_phone_number, policy company, policy_fax, policy_claims_email)
+INSERT INTO dbo.Profile_454(profile_firstname, profile_lastname, profile_email, profile_password, profile_phone_number, policy_company, policy_fax, policy_claims_email)
             VALUES ( 'Curtis',
                   'Oliver',
                   'cmuney13@gmail.com',
                   'password',
-                  '6666666969'
-                  'company'
+                  '6666666969',
+                  'company',
                   '1234567890',
                   'email@email.com')
