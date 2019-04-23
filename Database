@@ -53,9 +53,9 @@ CREATE TABLE Profile_454 (
     profile_lastname varchar(50) not null, -- The user's last name
     profile_email varchar(50) not null, -- The user's profile email
     profile_password varchar(50) not null, -- The user's profile password
-    profile_phone_number int not null, -- The user's phone number
+    profile_phone_number text not null, -- The user's phone number
     policy_company text not null, -- The company in which the user has a policy with
-    policy_fax int not null, -- The company's fax number in which the user has a policy with
+    policy_fax text not null, -- The company's fax number in which the user has a policy with
     policy_claims_email text not null, -- The company's claims email address in which the user has a policy with
     CONSTRAINT CK_phone_number CHECK (profile_phone_number LIKE REPLICATE ('[0-9]',10)), -- Check to make sure the phone number is 10 digits, no more, no less
     CONSTRAINT CK_fax CHECK (policy_fax LIKE REPLICATE ('[0-9]',10)), -- Check to make sure the fax number is 10 digits, no more, no less
@@ -65,9 +65,8 @@ CREATE TABLE Profile_454 (
 
 --Dummy data for Web Portal tests
 
-INSERT INTO dbo.Item_454 (user_own, email_own, item_room, item_category, item_type, item_make, item_model, item_serial_num, item_receipt, item_image, item_price, item_comments)
-            VALUES (1,
-                    cmuney13@gmail.com,
+INSERT INTO dbo.Item_454 (email_own, item_room, item_category, item_type, item_make, item_model, item_serial_num, item_receipt, item_image, item_price, item_comments)
+            VALUES ( 'cmuney13@gmail.com',
                     'library',
                     'books',
                     'book',
@@ -79,13 +78,12 @@ INSERT INTO dbo.Item_454 (user_own, email_own, item_room, item_category, item_ty
                     23.00,
                     'this mah book')
 
-INSERT INTO dbo.Profile_454(profile_user, profile_firstname, profile_lastname, profile_email, profile_password, profile_phone_number, policy company, policy_fax, policy_claims_email)
-            VALUES(1,
-                  'Curtis',
+INSERT INTO dbo.Profile_454(profile_firstname, profile_lastname, profile_email, profile_password, profile_phone_number, policy company, policy_fax, policy_claims_email)
+            VALUES ( 'Curtis',
                   'Oliver',
                   'cmuney13@gmail.com',
                   'password',
-                  6666666969
+                  '6666666969'
                   'company'
-                  fax,
+                  '1234567890',
                   'email@email.com')
