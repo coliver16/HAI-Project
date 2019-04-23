@@ -31,42 +31,55 @@ public class priceSuggestor {
         int medindex;
         int size = 0;
         dev = deviates();
+        //Create an array to be able to select prices by index
         Float[] priceArray = new Float[size];
+        //Create an array list to be able to add prices dynamically
         ArrayList<Float> priceList = new ArrayList<>();
         try {
+            //Select all price that match with passed serial num
             pstmt = conn.prepareStatement("select item_price from items_454 where item_serial_num = ?");
             pstmt.setString(1, serial);
             rs = pstmt.executeQuery();
             while (rs.next()) {
+                //Add these prices dynamically to the array list
                 priceList.add(rs.getFloat("item_price"));
                 size += 1;
             }
+            //Convert the array list to an array to be able to select prices by index
             priceArray = priceList.toArray(priceArray);
+            //Sort the array in asceding order
             Collections.sort(priceList);
+            //if the size of the array is odd, the median is the middle number
             if (size/2 != 0) {
                 medindex = (size+1)/2;
                 estimate = priceArray[medindex];
             }
+            //if the size of the array is even, the median is the average of the two middle numbers
             else {
                 medindex = size/2;
                 estimate = (priceArray[medindex]+priceArray[medindex+1])/2;
             }
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             e.printStackTrace();
-        } finally {
+        }
+        finally {
             try {
                 if (rs != null) rs.close();
-            } catch (SQLException e) {
+            }
+            catch (SQLException e) {
                 e.printStackTrace();
             }
             try {
                 if (pstmt != null) pstmt.close();
-            } catch (SQLException e) {
+            }
+            catch (SQLException e) {
                 e.printStackTrace();
             }
             try {
                 if (conn != null) conn.close();
-            } catch (SQLException e) {
+            }
+            catch (SQLException e) {
                 e.printStackTrace();
             }
         }
@@ -104,7 +117,8 @@ public class priceSuggestor {
         }
         catch (SQLException e) {
             e.printStackTrace();
-        } finally {
+        }
+        finally {
             try {
                 if (rs != null) rs.close();
             } catch (SQLException e) {
@@ -131,7 +145,7 @@ public class priceSuggestor {
         //Calculate the deviation from the suggested for each using the equation (Deviating Price - Suggested Price)/Suggested Price
         //Find the mean of all those deviations excluding those means that are higher than .8 or lower than -.8 (in order to weed out bad input)
         //Return that mean (variable dev)
-        //Every 10 added deviation prices, we repeat this process automatically
+        //Every 10 added deviation prices, we repeat this process automatically tp update dev
         return dev;
     }
 }
