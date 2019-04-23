@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class priceSuggestor {
     static database inventory = new database();
