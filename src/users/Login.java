@@ -68,7 +68,8 @@ public class Login {
         }
         catch (SQLException e) {
             e.printStackTrace();
-        }finally {
+        }
+        finally {
             try {
                 if(rs != null)rs.close();
             } catch (SQLException e) {
