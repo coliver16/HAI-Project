@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.*;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import users.Login;
+import items.S3;
 
 public class database{
     /*//Driver, Host + URL
@@ -60,6 +61,7 @@ public class database{
 
         String query = "select * " + "from " + "Profile_454";
         try {
+            S3 s3 = new S3();
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
@@ -67,12 +69,18 @@ public class database{
                 String pw = rs.getString("profile_password");
                 System.out.println(fname + "\t");
                 System.out.println(pw);
+                s3.listBuckets();
+                s3.listObjects();
+                //s3.deleteObject("backround.jpg");
+                //s3.putObject("background.jpg", "/Users/rober/Pictures/backround.jpg");
             }
         } catch (SQLException e ) {
             e.printStackTrace();
         } finally {
             if (stmt != null) { stmt.close(); }
         }
+
+
     return conn;
 
     }
