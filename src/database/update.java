@@ -211,6 +211,7 @@ public class update{
         }
 
         PreparedStatement pstmt = null;
+        S3 s3 = new S3();
         try {
             pstmt = conn.prepareStatement("DELETE FROM Item_454 WHERE item_no = ? AND email_own = ? ");
             pstmt.setInt( 1, newItem.getItemNo());
@@ -230,6 +231,9 @@ public class update{
             pstmt.setFloat(11,newItem.getValue());
             pstmt.setString(12,newItem.getComments());
             pstmt.setBoolean(13,newItem.isDeleted());
+            s3.createFolder(currentProfile.getEmail());
+            s3.putObject(currentProfile.getEmail() + "/" + newItem.getPhoto(), newItem.getPhoto());
+            s3.putObject(currentProfile.getEmail() + "/" + newItem.getReceipt(), newItem.getReceipt());
             pstmt.executeUpdate();
             pstmt.close();
         } catch (SQLException e) {

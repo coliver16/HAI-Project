@@ -7,15 +7,13 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
-import com.amazonaws.services.s3.model.Bucket;
-import com.amazonaws.services.s3.model.GetObjectRequest;
-import com.amazonaws.services.s3.model.ListObjectsRequest;
-import com.amazonaws.services.s3.model.ObjectListing;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.S3Object;
-import com.amazonaws.services.s3.model.S3ObjectSummary;
+import com.amazonaws.services.s3.model.*;
 import com.amazonaws.auth.*;
+
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.InputStream;
+import java.io.PushbackInputStream;
 import java.util.List;
 
 public class S3 {
@@ -23,8 +21,6 @@ public class S3 {
     AmazonS3 s3 = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(creds)).withRegion(Regions.US_EAST_2).build();
 
     private String bucketName = "cis454project2";
-    private String key;
-    private String pathname;
 
     //List Buckets
     public void listBuckets()
@@ -59,5 +55,15 @@ public class S3 {
     public void deleteObject(String key)
     {
         { s3.deleteObject(bucketName, key); }
+    }
+
+    //Create Folder
+    public void createFolder (String foldName)
+    {
+        ObjectMetadata md = new ObjectMetadata();
+        md.setContentLength(0);
+        InputStream emp = new ByteArrayInputStream(new byte[0]);
+        PutObjectRequest p = new PutObjectRequest(bucketName, foldName + "/", emp, md);
+        s3.putObject(p);
     }
 }

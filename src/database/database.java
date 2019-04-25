@@ -69,10 +69,11 @@ public class database{
                 String pw = rs.getString("profile_password");
                 System.out.println(fname + "\t");
                 System.out.println(pw);
-                s3.listBuckets();
-                s3.listObjects();
+                //s3.listBuckets();
+                //s3.listObjects();
+                //s3.createFolder("yeetyeet");
                 //s3.deleteObject("backround.jpg");
-                //s3.putObject("background.jpg", "/Users/rober/Pictures/backround.jpg");
+                //s3.putObject("yeet/background.jpg", "/Users/rober/Pictures/backround.jpg");
             }
         } catch (SQLException e ) {
             e.printStackTrace();
