@@ -31,37 +31,38 @@ public class CSVParser {
             Reader in = new FileReader(path);
             Iterable<CSVRecord> records = CSVFormat.EXCEL.withHeader("itemNo","Room","Category","Type","make","model","serial","receipt","photo","value","comments","lastupdate","delete").parse(in);
             for (CSVRecord record : records) {
+                if (!record.get("Room").equals("Room")) {
 
-               //Item thing = new Item(record.get("itemNo"),record.get("Category"),record.get("Type"),record.get("make"),record.get("model"),record.get("serial"),record.get("receipt"),record.get("photo"),record.get("value"),record.get("comments"));
+                    //Item thing = new Item(record.get("itemNo"),record.get("Category"),record.get("Type"),record.get("make"),record.get("model"),record.get("serial"),record.get("receipt"),record.get("photo"),record.get("value"),record.get("comments"));
 
-                String i = record.get("itemNo");
-                int itemNo;
-                try {
-                    itemNo = Integer.valueOf(i.toString());
+                    String i = record.get("itemNo");
+                    int itemNo;
+                    try {
+                        itemNo = Integer.valueOf(i.toString());
+                    } catch (NumberFormatException e) {
+                        itemNo = 0;
+                    }
+                    //int itemNo = Integer.valueOf(record.get("itemNo"));
+                    Room room = new Room(record.get("Room")); //(record.get("Room"));
+                    System.out.println(room.getStatus());
+                    //Room room = new Room(Room.rooms.Bathroom);
+                    Category category = new Category(record.get("Category"));
+                    Type type = new Type(record.get("Type"));
+                    String make = record.get("make");
+                    String model = record.get("model");
+                    String serial = record.get("serial");
+                    String receipt = record.get("receipt");
+                    String photo = record.get("photo");
+                    float value = Float.valueOf(record.get("value"));
+                    String comments = record.get("comments");
+                    boolean deleted = Boolean.parseBoolean(record.get("delete"));
+                    //User user = new User(123456);
+                    Item item = new Item(itemNo, /*user,*/ room, category, type, make, model, serial, receipt, photo, value, comments);
+                    if (deleted) {
+                        item.itemDelete();
+                    }
+                    itemList.add(item);
                 }
-                catch (NumberFormatException e) {
-                    itemNo = 0;
-                }
-                //int itemNo = Integer.valueOf(record.get("itemNo"));
-                Room room = new Room(record.get("Room"));
-                System.out.println(room.getStatus());
-                //Room room = new Room(Room.rooms.Bathroom);
-                Category category = new Category(record.get("Category"));
-                Type type = new Type(record.get("Type"));
-                String make = record.get("make");
-                String model = record.get("model");
-                String serial = record.get("serial");
-                String receipt = record.get("receipt");
-                String photo = record.get("photo");
-                float value = Float.valueOf(record.get("value"));
-                String comments = record.get("comments");
-                boolean deleted = Boolean.parseBoolean(record.get("delete"));
-                //User user = new User(123456);
-                Item item = new Item(itemNo, /*user,*/ room, category, type, make, model, serial, receipt, photo, value, comments);
-                if (deleted) {
-                    item.itemDelete();
-                }
-                itemList.add(item);
                 //System.out.println(itemNo);
             }
 

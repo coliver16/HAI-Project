@@ -42,7 +42,6 @@ public class Main extends Application {
             Platform.exit();
             System.exit(0);
         });
-
     }
 
 
@@ -71,7 +70,6 @@ public class Main extends Application {
         return scene;
     }
 
-
     public static void main(String[] args) throws Exception {
         EventBusFactory.getEventBus().register(new EventListener());
         ItemList itemList = new ItemList();
@@ -80,10 +78,5 @@ public class Main extends Application {
         inventory.Connect();
 
         launch(args);
-
-
-
-
-
     }
 }

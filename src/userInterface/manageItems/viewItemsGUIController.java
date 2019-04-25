@@ -101,15 +101,19 @@ public class viewItemsGUIController {
         @Subscribe
         public void parseEvent(ParseEvent event) {
             System.out.println("Made it to event");
+            itemList.getItems().clear();
             itemImports = (List) event.getMessage();
             System.out.println("Event: " + event.toString());
             System.out.println(itemImports.get(0).getMake());
+            itemList.getItems().clear();
             for (Item i : itemImports) {
-                Item item = new Item(i.getItemNo(), new Room(i.getRoom().getStatus()), i.getCategory(), i.getType(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments());
-                //itemList.getItems().add(i);
+                if (!i.isDeleted()) {
+                    Item item = new Item(i.getItemNo(), new Room(i.getRoom().getStatus()), i.getCategory(), i.getType(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments());
+                    //itemList.getItems().add(i);
 
-                itemList.getItems().add(item);
-                //itemList.getItems().
+                    itemList.getItems().add(item);
+                    //itemList.getItems().
+                }
 
             }
         }
