@@ -25,7 +25,7 @@ CREATE TABLE Item_454 (
     item_price decimal(7,2) not null, -- Price of the item, (99,999.99) is the max price
     item_comments text not null, -- Any extra comments about the item the user wants to add
     item_deleted bit not null, -- A boolean to check if an item has been deleted ('true' converted to 1,'false' converted to 0)
-    CONSTRAINT PK_item PRIMARY KEY (item_id) -- This allows for each item added to be attributed to a specific user
+    -- CONSTRAINT PK_item PRIMARY KEY (item_id) -- This allows for each item added to be attributed to a specific user
 	)
 
 -- Creates the Deleted Items Table of the databae
@@ -43,7 +43,7 @@ CREATE TABLE DeletedItems_454 (
     item_image text not null, -- An image of the item or a close replicate
     item_price decimal(7,2) not null, -- Price of the item, (99,999.99) is the max price
     item_comments text not null, -- Any extra comments about the item the user wants to add
-    CONSTRAINT FK_items FOREIGN KEY (item_id) REFERENCES Item_454(item_id) -- This allows for each deleted item added to be an existing item
+    -- CONSTRAINT FK_items FOREIGN KEY (item_id) REFERENCES Item_454(item_id) -- This allows for each deleted item added to be an existing item
     )
 
 CREATE TABLE Profile_454 (
