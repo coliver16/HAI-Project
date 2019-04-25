@@ -20,8 +20,8 @@ public class deviate {
     public static float getSuggested() {return suggested;}
     public List<Float> getDeviations() { return deviations; }
     //Setters
-    public void setUserInput(float i) {userInput = i;}
-    public void setSuggested(float i) {suggested = i;}
+    public void setUserInput(float in) {userInput = in;}
+    public void setSuggested(float s) {suggested = s;}
 
 
     //Calculates the percentage of deviation from the suggested price and store as a float, and return that float
