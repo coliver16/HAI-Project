@@ -20,7 +20,7 @@ import java.util.List;
 
 public class CSVWriter {
 
-    private static final String USER_ITEMS_FILE = "src\\local\\useritems1.csv";
+    private static final String USER_ITEMS_FILE = "src\\local\\useritems.csv";
     private static final String USER_PROFILE = "src\\users\\userprofile.csv";
     private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 

@@ -129,6 +129,7 @@ public class update{
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 int itemNo = Integer.valueOf(rs.getString("item_id"));
+                //System.out.println("room" + rs.getString("item_room"));
                 Room room = new Room(rs.getString("item_room"));
                 Category category = new Category(rs.getString("item_category"));
                 Type type = new Type(rs.getString("item_type"));
@@ -163,7 +164,10 @@ public class update{
 
         PreparedStatement pstmt =null;
         try {
-
+            pstmt = conn.prepareStatement("DELETE FROM DeletedItems_454 WHERE item_id = ? AND email_own = ? ");
+            pstmt.setInt( 1, newItem.getItemNo());
+            pstmt.setString(2,currentProfile.getEmail());
+            pstmt.executeUpdate();
             pstmt = conn.prepareStatement("INSERT INTO DeletedItems_454 (item_id, email_own, item_room, item_category, item_type, item_make, item_model, item_serial_num, item_receipt, item_image, item_price, item_comments) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             pstmt.setInt(1,newItem.getItemNo());
             pstmt.setString(2,currentProfile.getEmail());
@@ -178,7 +182,7 @@ public class update{
             pstmt.setFloat(11,newItem.getValue());
             pstmt.setString(12,newItem.getComments());
             pstmt.executeUpdate();
-            pstmt = conn.prepareStatement("DELETE FROM Items_454 WHERE item_id = ? AND email_own = ? ");
+            pstmt = conn.prepareStatement("DELETE FROM Item_454 WHERE item_id = ? AND email_own = ? ");
             pstmt.setInt( 1, newItem.getItemNo());
             pstmt.setString(2,currentProfile.getEmail());
             pstmt.executeUpdate();
@@ -211,6 +215,7 @@ public class update{
         }
 
         PreparedStatement pstmt = null;
+        S3 s3 = new S3();
         try {
             pstmt = conn.prepareStatement("DELETE FROM Item_454 WHERE item_no = ? AND email_own = ? ");
             pstmt.setInt( 1, newItem.getItemNo());
@@ -230,6 +235,9 @@ public class update{
             pstmt.setFloat(11,newItem.getValue());
             pstmt.setString(12,newItem.getComments());
             pstmt.setBoolean(13,newItem.isDeleted());
+            s3.createFolder(currentProfile.getEmail());
+            s3.putObject(currentProfile.getEmail() + "/" + newItem.getPhoto(), newItem.getPhoto());
+            s3.putObject(currentProfile.getEmail() + "/" + newItem.getReceipt(), newItem.getReceipt());
             pstmt.executeUpdate();
             pstmt.close();
         } catch (SQLException e) {
@@ -255,15 +263,17 @@ public class update{
         int iter2 = 0;
         System.out.println(ret.size());
         System.out.println(remote.size());
-        /*for(int i=0; i<ret.size();){
+        for(int i=0; i<ret.size();i++){
+            for(int j=0; j<remote.size();j++){
+                if(ret.get(i).Compare(remote.get(j))){ret.remove(i);i--;break;}
+            }
+        }
 
-        }*/
-
-        while(iter1 < ret.size() && iter2 < remote.size()){
+        /*while(iter1 < ret.size() && iter2 < remote.size()){
             if(ret.get(iter1).Compare(remote.get(iter2))){ret.remove(iter1); }//compare local w/ remote List
             else {iter1++;}
             iter2++;
-        }
+        }*/
 
         return ret;
     }
