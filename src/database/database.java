@@ -7,7 +7,7 @@ import java.sql.Statement;
 import java.util.*;
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
 import users.Login;
-import items.S3;
+//import items.S3;
 
 public class database{
     /*//Driver, Host + URL
@@ -59,7 +59,7 @@ public class database{
             x.printStackTrace();
         }*/
 
-        String query = "select * " + "from " + "Profile_454";
+        /*String query = "select * " + "from " + "Profile_454";
         try {
             S3 s3 = new S3();
             stmt = conn.createStatement();
@@ -78,7 +78,7 @@ public class database{
             e.printStackTrace();
         } finally {
             if (stmt != null) { stmt.close(); }
-        }
+        }*/
 
 
     return conn;

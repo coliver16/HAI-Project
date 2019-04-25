@@ -376,13 +376,11 @@ public class viewItemsGUIController {
 
             for (Item i : items) {
                 for (Item j : ItemList.itemList) {
-
                     if (j.Compare(i)) {
-                        j.itemDelete();
-                        break;
+                        i.itemDelete();
+                        itemList.getItems().remove(i);
                     }
                 }
-                itemList.getItems().remove(i);
             }
             alertConfirmDelete.close();
 

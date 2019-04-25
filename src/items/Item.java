@@ -169,7 +169,7 @@ public class Item {
     public Boolean isDeleted(){return deleted;}
 
 
-    public boolean Compare(Item two) {
+    public boolean Compare(Item two) {//4/25 added deleted check JP
         Float f1 = new Float(this.getValue());
         Float f2 = new Float(two.getValue());
         boolean equals = true;
@@ -201,6 +201,9 @@ public class Item {
             equals = false;
         }
         if (!this.getComments().equals(two.getComments())) {
+            equals = false;
+        }
+        if (!(this.isDeleted() == two.isDeleted())){//4/25 JP
             equals = false;
         }
         return equals;

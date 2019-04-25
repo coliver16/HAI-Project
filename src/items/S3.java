@@ -1,4 +1,4 @@
-package items;
+/*package items;
 
 import com.amazonaws.AmazonClientException;
 import com.amazonaws.AmazonServiceException;
@@ -60,4 +60,4 @@ public class S3 {
     {
         { s3.deleteObject(bucketName, key); }
     }
-}
+}*/
