@@ -29,18 +29,17 @@ public class priceSuggestor {
         }
     }
 
-    //TODO: Search for year in comments and add that to be passed
-    public float Suggest(String make, String model, String comments) {
+    public float Suggest(String make, String model, String year) {
         float estimate = 0;
         int medindex;
         int size = 0;
         Float[] priceArray = new Float[size];
         ArrayList<Float> priceList = new ArrayList<>();
         try {
-            pstmt = conn.prepareStatement("select item_price from items_454 where item_make = ? and item_model = ? and item_comments = ");
+            pstmt = conn.prepareStatement("select item_price from items_454 where item_make = ? and item_model = ? and item_comments like ? ");
             pstmt.setString(1, make);
             pstmt.setString(2, model);
-            pstmt.setString(1, comments);
+            pstmt.setString(3, "%" + year + "%");
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 priceList.add(rs.getFloat("item_price"));
