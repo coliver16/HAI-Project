@@ -72,17 +72,20 @@ public class deviate {
         float standard = .8f;
         float negStandard = -.8f;
         Float[] arrDeviations = new Float[0];
+        int numDeviationsCounted = 0;
         //Enough new data has been collected for dev to be updated
         if (proceed) {
             //calculate mean of all deviations
             arrDeviations = deviations.toArray(arrDeviations);
-            //Float[] arrDeviations = deviations.toArray(new Float[deviations.size()]);
             for (int i = 0; i < deviations.size(); i++) {
+                //Any values in deviations that are between -.8 and .8, are used in the calculations for new dev
                 if ((Float.compare(arrDeviations[i], standard) < 1) && (Float.compare(arrDeviations[i], negStandard) > 1)) {
                     sum += arrDeviations[i];
+                    numDeviationsCounted++;
+
                 }
             }
-            devDec = sum / deviations.size();
+            devDec = sum / numDeviationsCounted;
             priceSuggestor.numDevUpdates++;
         }
         //Dev has gone through no updates meaning, no data has been collected yet, therefore dev is 0
