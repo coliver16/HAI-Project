@@ -7,6 +7,7 @@ public class deviate {
     static float userInput;
     static float suggested;
     public static List<Float> deviations;
+    public static float devDec = 0;
 
     //Constructor
     public deviate(float in, float s) {
@@ -63,10 +64,9 @@ public class deviate {
         }
         return check;
     }
-
+    //TODO: Fix decUpdate(), so that old dev value is returned if there aren't enough new deviations or 0 is returned before any data is collected
     //Calculates the mean of all single deviations in order to return an adjusted/updated overall deviation to be accounted for during future suggestions
     public static float devUpdate() {
-        float devDec = 0;
         boolean proceed = checkDeviationsSize();
         float sum = 0;
         float standard = .8f;
