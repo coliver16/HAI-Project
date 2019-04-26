@@ -2,7 +2,7 @@ package smart;
 
 import java.util.List;
 
-//Create a class "deviate" that creates deviate objects which have values userInputs and suggested
+//Create a class "deviate" which has the values userInputs and suggested
 public class deviate {
     static float userInput;
     static float suggested;
@@ -18,7 +18,8 @@ public class deviate {
     //Getters
     public static float getUserInput() {return userInput;}
     public static float getSuggested() {return suggested;}
-    public List<Float> getDeviations() { return deviations; }
+    public List<Float> getDeviations() {return deviations;}
+
     //Setters
     public void setUserInput(float in) {userInput = in;}
     public void setSuggested(float s) {suggested = s;}
@@ -31,7 +32,7 @@ public class deviate {
         return singleDev;
     }
 
-    //Adds the calculated percentage (float) to a list
+    //Adds the calculated percentage (float) to a list of other deviations
     public static void addDeviationDecimal(float suggested, float input) {
         float singleDevAddition = 0;
         deviate d = new deviate(suggested, input);
@@ -50,6 +51,7 @@ public class deviate {
 
     //Calculates the mean of all single deviations in order to return an adjusted/updated overall deviation to be accounted for during future suggestions
     public float devUpdate() {
+        float devDec = 0;
         boolean proceed = checkDeviationsSize();
         float sum = 0;
         if (proceed = true) {
@@ -58,8 +60,8 @@ public class deviate {
             for (int i = 0; i < deviations.size(); i++) {
                 sum += arrdeviations[i];
             }
-            dev = sum/deviations.size();
+            devDec = sum/deviations.size();
         }
-        return dev;
+        return devDec;
     }
 }
