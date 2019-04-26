@@ -64,7 +64,7 @@ public class deviate {
         }
         return check;
     }
-    //TODO: Fix decUpdate(), so that old dev value is returned if there aren't enough new deviations or 0 is returned before any data is collected
+    //TODO: Fix devUpdate(), so that the old dev value is returned if there aren't enough new deviations or 0 is returned before any data is collected (possibly through using a pointer?)
     //Calculates the mean of all single deviations in order to return an adjusted/updated overall deviation to be accounted for during future suggestions
     public static float devUpdate() {
         boolean proceed = checkDeviationsSize();
