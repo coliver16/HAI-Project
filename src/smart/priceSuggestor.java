@@ -93,4 +93,4 @@ public class priceSuggestor {
     //TODO: To incorporate Suggest() method into GUI, it should be a button that users can select
     //TODO: To incorporate addDeviationDecimal() to GUI, the method should look like: if (userInput != suggested) {addDeviationDecimal(suggested, userInput}
     //TODO: Make sure that this process is happening every 10 deviations (I think I have accounted for this in devUpdate())
-    //TODO: Prompt users to input the year of an item in the comments.
+    //TODO: Prompt users to input the year of an item in the comments
