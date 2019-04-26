@@ -77,9 +77,6 @@ public class priceSuggestor {
         return estimate;
     }
 }
-
-    //Store suggested prices and deviating prices until we get up to 10 devaiting prices
-    //Calculate the deviation from the suggested for each using the equation (Deviating Price - Suggested Price)/Suggested Price
-    //Find the mean of all those deviations excluding those means that are higher than .8 or lower than -.8 (in order to weed out bad input)
-    //Return that mean (variable dev)
-    //Every 10 added deviation prices, we repeat this process automatically tp update dev
+    //TODO: Add Suggest() and addDeviationDecimal() methods to GUI
+    //TODO: To incorporate addDeviationDecimal() to GUI, the method should look like: if (userInput != suggested) {addDeviationDecimal(suggested, userInput}
+    //TODO: Make sure that this process is happening every 10 deviations (I think I have accounted for this in devUpdate())
