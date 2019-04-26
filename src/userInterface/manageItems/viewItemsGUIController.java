@@ -34,7 +34,10 @@ import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import users.Profile;
 import users.UserProfile;
+import items.S3;
 
 public class viewItemsGUIController {
     private EventBus eventBus = EventBusFactory.getEventBus();
@@ -129,6 +132,7 @@ public class viewItemsGUIController {
                         // save local copy of item photo
                         if (i.getPhoto() != null) {
                             File original = new File(i.getPhoto());
+                            S3 s3 = new S3();
                             String filename = original.getName();
                             String extension = filename.substring(filename.lastIndexOf(".") + 1, original.getName().length());
                             String newPath = USER_IMAGES + i.getItemNo() + "_" + i.getMake() + "_" + i.getModel() + "." + extension;
@@ -136,6 +140,8 @@ public class viewItemsGUIController {
                             Files.copy(original.toPath(), newFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
                             //newFile.renameTo(new File(USER_IMAGES + i.getItemNo()+"_"+i.getMake()+"_"+i.getModel()));
                             i.setPhoto(newFile.toPath().toString());
+                            s3.createFolder(UserProfile.getUserProfile().getEmail());
+                            s3.putObject(UserProfile.getUserProfile().getEmail() + "/" + newFile.toPath(), newFile.getAbsolutePath());
                         }
                         else {
                             i.setPhoto(defaultImage.getPath().toString());

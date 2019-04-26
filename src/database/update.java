@@ -235,9 +235,9 @@ public class update{
             pstmt.setFloat(11,newItem.getValue());
             pstmt.setString(12,newItem.getComments());
             pstmt.setBoolean(13,newItem.isDeleted());
-            s3.createFolder(currentProfile.getEmail());
-            s3.putObject(currentProfile.getEmail() + "/" + newItem.getPhoto(), newItem.getPhoto());
-            s3.putObject(currentProfile.getEmail() + "/" + newItem.getReceipt(), newItem.getReceipt());
+            //s3.createFolder(currentProfile.getEmail());
+            //s3.putObject(currentProfile.getEmail() + "/" + newItem.getPhoto(), newItem.getPhoto());
+            //s3.putObject(currentProfile.getEmail() + "/" + newItem.getReceipt(), newItem.getReceipt());
             pstmt.executeUpdate();
             pstmt.close();
         } catch (SQLException e) {
