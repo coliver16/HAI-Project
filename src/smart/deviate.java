@@ -57,14 +57,14 @@ public class deviate {
     public static boolean checkDeviationsSize() {
         int size = deviations.size();
         boolean check;
-        if (size <= 10) {
+        if (size < 10) {
             check = false;
         } else {
             check = true;
         }
         return check;
     }
-    //TODO: Fix devUpdate(), so that the old dev value is returned if there aren't enough new deviations or 0 is returned before any data is collected (possibly through using a pointer?)
+
     //Calculates the mean of all single deviations in order to return an adjusted/updated overall deviation to be accounted for during future suggestions
     public static float devUpdate() {
         boolean proceed = checkDeviationsSize();
@@ -72,6 +72,7 @@ public class deviate {
         float standard = .8f;
         float negStandard = -.8f;
         Float[] arrDeviations = new Float[0];
+        //Enough new data has been collected for dev to be updated
         if (proceed) {
             //calculate mean of all deviations
             arrDeviations = deviations.toArray(arrDeviations);
@@ -82,7 +83,12 @@ public class deviate {
                 }
             }
             devDec = sum / deviations.size();
+            priceSuggestor.numDevUpdates++;
         }
+        //Dev has gone through no updates meaning, no data has been collected yet, therefore dev is 0
+        else if (priceSuggestor.numDevUpdates == 0) {devDec = 0;}
+        //Dev has gone through atleast one update, but not enough new data has been collected for an update, therefore the old dev value is returned
+        else {devDec = priceSuggestor.devPointer;}
         //empty the array, so that the next 10 values can be stored + devUpdate can update dev accordingly
         deviations.clear();
         return devDec;

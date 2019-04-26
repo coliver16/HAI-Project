@@ -16,7 +16,9 @@ public class priceSuggestor {
     static Profile currentProfile;
     PreparedStatement pstmt = null;
     ResultSet rs = null;
-    float dev = deviate.devUpdate();
+    static float dev = deviate.devUpdate();
+    static float devPointer = dev;
+    public static int numDevUpdates;
 
     static {
         try {
