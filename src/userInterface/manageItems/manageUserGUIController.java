@@ -204,6 +204,30 @@ public class manageUserGUIController {
             insuranceFax.setText(finalString);
         });
 
+        phoneNumber.textProperty().addListener((observable, oldValue, newValue) -> {
+            Pattern p = Pattern.compile("\\d+");
+            Matcher m = p.matcher(newValue);
+            StringBuilder result = new StringBuilder();
+            String finalString = "";
+            try {
+                while (m.find()) {
+                    result.append(m.group());
+                }
+                int size = result.length();
+                for (int i = 0; i < size; i++) {
+                    if (i == 3 || i == 6) finalString += "-";
+                    finalString += result.charAt(i);
+                }
+                for (int i = size; i < 10; i++) {
+                    if (i == 3 || i == 6) finalString += "-";
+                    finalString += "#";
+                }
+            } catch (Exception e) {
+                finalString = "INVALID NUMBER";
+            }
+            phoneNumber.setText(finalString);
+        });
+
         whyHai.setText("Why HAI");
         whyHai.setFont(Font.font("Tahoma",15));
         whyHai.setTextFill(Color.rgb(255,255,255));
@@ -239,18 +263,19 @@ public class manageUserGUIController {
         insuranceCo.setText(UserProfile.getUserProfile().getInsuranceCompanyName());
         insuranceEmail.setText(UserProfile.getUserProfile().getInsuranceCompanyEmail());
         insuranceFax.setText(UserProfile.getUserProfile().getInsuranceCompanyFax());
+        phoneNumber.setText(UserProfile.getUserProfile().getPhoneNumber());
 
-        firstName.setEditable(false);
-        lastName.setEditable(false);
-        email.setEditable(false);
-        phoneNumber.setEditable(false);
-        insuranceCo.setEditable(false);
-        insuranceEmail.setEditable(false);
-        insuranceFax.setEditable(false);
-        password.setEditable(false);
-        verifyPassword.setEditable(false);
+        firstName.setEditable(true);
+        lastName.setEditable(true);
+        email.setEditable(true);
+        phoneNumber.setEditable(true);
+        insuranceCo.setEditable(true);
+        insuranceEmail.setEditable(true);
+        insuranceFax.setEditable(true);
+        password.setEditable(true);
+        verifyPassword.setEditable(true);
 
-        updateProfile.setDisable(false);
+        //updateProfile.setDisable(false);
 
     }
 
