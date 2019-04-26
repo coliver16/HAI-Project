@@ -8,3 +8,4 @@ itemNo,Room,Category,Type,make,model,serial,receipt,photo,value,comments,lastupd
 101,Bedroom,Electronics,Television,LG,TVinator 21000,16345,src\local\receipts\receipt.jpg,photo,200.0,Watching more smut,2019-04-25 15:39:17.607,false
 112,Bedroom,Jewelry,Necklace,Pandora,Disney Collection,3468975,src\local\receipts\receipt.jpg,photo,1200.0,Fancy stuff,2019-04-25 15:39:17.608,true
 162,Garage,Tools,Tools,Craftsman,Carkit,548768,src\local\receipts\receipt.jpg,photo,400.0,For fixing stuff,2019-04-25 15:39:17.608,true
+1000,Attic,Appliances,yeet,yeet2,yeet3,adslkfjasd,src\userInterface\manageItems\noReceipt.png,src\local\images\1000_yeet2_yeet3.jpg,10.0,,2019-04-26 13:08:16.392,false
