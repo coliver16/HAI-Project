@@ -8,7 +8,6 @@ HAI, Homeowners Assistant for Insurance
 Nicholas Robson - nlrobson@syr.edu                  Jon Prishvalko - jgprishv@syr.edu
 Curtis Oliver - cuoliver@syr.edu                    Matt Hillebrand - mchilleb@syr.edu
 Meagan Sanchez - mnsanche@syr.edu
-Jennifer Colletta - jrcollet@syr.edu
 </pre>
 
 ## Getting Started:
