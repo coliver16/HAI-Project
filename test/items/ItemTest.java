@@ -1,4 +1,4 @@
-package items;
+/*package items;
 
 import org.junit.Test;
 import org.hamcrest.*;
@@ -162,4 +162,4 @@ public class ItemTest {
       //Confirm functionality
       assertEquals(item.isDeleted(), true);
     }
-}
+}*/
