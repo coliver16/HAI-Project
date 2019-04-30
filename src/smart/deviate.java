@@ -76,10 +76,9 @@ public class deviate {
         int numDeviationsCounted = 0;
         //Enough new data has been collected for dev to be updated
         if (proceed) {
-            //calculate mean of all deviations
+            //calculate mean of all new deviations between -.8 and .8
             arrDeviations = deviations.toArray(arrDeviations);
             for (int i = 0; i < deviations.size(); i++) {
-                //Any values in deviations that are between -.8 and .8, are used in the calculations for new dev
                 if ((Float.compare(arrDeviations[i], standard) < 1) && (Float.compare(arrDeviations[i], negStandard) > 1)) {
                     sum += arrDeviations[i];
                     numDeviationsCounted++;
