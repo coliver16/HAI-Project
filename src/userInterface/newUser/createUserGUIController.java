@@ -208,6 +208,30 @@ public class createUserGUIController {
             insuranceFax.setText(finalString);
         });
 
+        phoneNumber.textProperty().addListener((observable, oldValue, newValue) -> {
+            Pattern p = Pattern.compile("\\d+");
+            Matcher m = p.matcher(newValue);
+            StringBuilder result = new StringBuilder();
+            String finalString = "";
+            try {
+                while (m.find()) {
+                    result.append(m.group());
+                }
+                int size = result.length();
+                for (int i = 0; i < size; i++) {
+                    if (i == 3 || i == 6) finalString += "-";
+                    finalString += result.charAt(i);
+                }
+                for (int i = size; i < 10; i++) {
+                    if (i == 3 || i == 6) finalString += "-";
+                    finalString += "#";
+                }
+            } catch (Exception e) {
+                finalString = "INVALID NUMBER";
+            }
+            phoneNumber.setText(finalString);
+        });
+
 
         whyHai.setText("Why HAI");
         whyHai.setFont(Font.font("Tahoma",15));
@@ -318,7 +342,7 @@ public class createUserGUIController {
     }
 
     public boolean validatePasswords() {
-        return (password == verifyPassword);
+        return (password.getText().equals(verifyPassword.getText()));
     }
 
     @FXML
@@ -331,16 +355,16 @@ public class createUserGUIController {
         if (checkInput()) {
             Profile profile = new Profile(firstName.getText(), lastName.getText(), email.getText(), password.getText(), phoneNumber.getText(), insuranceCo.getText(),
                     insuranceFax.getText(), insuranceEmail.getText());
-            Thread thread = new Thread() {
-                public void run() {
+            //Thread thread = new Thread() {
+             //   public void run() {
                     try {
                         CSVWriter.writeUserProfile(profile);
                         update.profileUpdate();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }
-            };
+            //    }
+            //};
             GuiNavigator.loadGui(GuiNavigator.CREATE_USER_SUCCESS_GUI);
             // TODO: need method to create user with server
         }

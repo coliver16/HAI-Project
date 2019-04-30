@@ -22,6 +22,7 @@ import org.apache.commons.csv.CSVPrinter;
 import users.Login;
 import users.Profile;
 import users.UserLoginEvent;
+import users.UserProfile;
 
 import java.io.IOException;
 
@@ -119,6 +120,7 @@ public class LogonGUIController {
         rememberMe.setFont(Font.font("Tahoma",10));
         rememberMe.setTextFill(Color.rgb(255,255,255));
         rememberMe.setEffect(dropShadow);
+        rememberMe.setSelected(true);
 
         username.setEffect((new DropShadow(20, Color.BLACK)));
         password.setEffect((new DropShadow(20, Color.BLACK)));
@@ -145,6 +147,11 @@ public class LogonGUIController {
         userLogo.setImage(user);
 
         createUser.setText("Create User");
+        Profile tempProfile = UserProfile.getUserProfile();
+        if (!tempProfile.getEmail().isEmpty()) {
+            username.setText(tempProfile.getEmail());
+            password.setText(tempProfile.getPw());
+        }
     }
 
     @FXML
@@ -200,7 +207,7 @@ public class LogonGUIController {
 
         }
         else {
-            username.clear();
+            //username.clear();
             password.clear();
             message.setText("Your Password is Incorrect!");
             message.setFont(Font.font("Tahoma",15));
