@@ -22,14 +22,14 @@ public class priceSuggestor {
 
     public priceSuggestor() {};
 
-    static {
+    /*static {
         try {
             conn = inventory.Connect();//establish database connection
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     public int Suggest(String make, String model, String year) {
         float estimate = 0;
@@ -38,6 +38,14 @@ public class priceSuggestor {
         Float[] priceArray = new Float[size];
         ArrayList<Float> priceList = new ArrayList<>();
         try {
+            {
+                try {
+                    conn = inventory.Connect();//establish database connection
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
             pstmt = conn.prepareStatement("select item_price from Item_454 where item_make = ? and item_model = ? and item_comments like ? ");
             pstmt.setString(1, make);
             pstmt.setString(2, model);
