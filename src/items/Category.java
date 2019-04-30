@@ -1,6 +1,9 @@
 package items;
 import java.util.*;
 
+/**
+ * Item Category Class
+ */
 public class Category {
     private categories category;
 

@@ -18,12 +18,22 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * CSVWriter handles the responsibilites of writing requried *.csv files
+ */
 public class CSVWriter {
 
+    // locations of local files
     private static final String USER_ITEMS_FILE = "src\\local\\useritems.csv";
     private static final String USER_PROFILE = "src\\users\\userprofile.csv";
+    // date format
     private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
+    /**
+     * Write item list csv
+     * @param items list of user items
+     * @throws IOException
+     */
     public static void writeCSV(List<Item> items) throws IOException {
 
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(USER_ITEMS_FILE));
@@ -39,6 +49,11 @@ public class CSVWriter {
         }
     }
 
+    /**
+     * Append new items to item list csv
+     * @param items List of new items to add
+     * @throws IOException
+     */
     public static void appendToCSV(List<Item> items) throws IOException {
         File file = new File(USER_ITEMS_FILE);
         FileWriter fileWriter = new FileWriter(file, true);
@@ -53,6 +68,11 @@ public class CSVWriter {
         }
     }
 
+    /**
+     * Write user profile to csv
+     * @param profile user profile
+     * @throws IOException
+     */
     public static void writeUserProfile(Profile profile) throws IOException {
 
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(USER_PROFILE));

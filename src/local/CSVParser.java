@@ -18,73 +18,73 @@ import org.apache.commons.csv.*;
 import local.ParseEvent;
 import users.Profile;
 
+/**
+ * CSVParser is responsible for parsing CSV files to requried data structures
+ */
 public class CSVParser {
 
-        static public List<Item> readFile() throws Exception {
+    /**
+     * Parse from item list csv
+     * @return @itemList
+     * @throws Exception
+     */
+    static public List<Item> readFile() throws Exception {
+        List<Item>  itemList = new ArrayList<>();
 
-            //Item Item = new Item();
-            List<Item>  itemList = new ArrayList<>();
+        String fileName= "src\\local\\useritems.csv";
+        File file= new File(fileName);
+        String path = file.getAbsolutePath();
+        Reader in = new FileReader(path);
+        Iterable<CSVRecord> records = CSVFormat.EXCEL.withHeader("itemNo","Room","Category","Type","make","model","serial","receipt","photo","value","comments","lastupdate","delete").parse(in);
+        for (CSVRecord record : records) {
+            if (!record.get("Room").equals("Room")) {
 
-            String fileName= "src\\local\\useritems.csv";
-            File file= new File(fileName);
-            String path = file.getAbsolutePath();
-            Reader in = new FileReader(path);
-            Iterable<CSVRecord> records = CSVFormat.EXCEL.withHeader("itemNo","Room","Category","Type","make","model","serial","receipt","photo","value","comments","lastupdate","delete").parse(in);
-            for (CSVRecord record : records) {
-                if (!record.get("Room").equals("Room")) {
-
-                    //Item thing = new Item(record.get("itemNo"),record.get("Category"),record.get("Type"),record.get("make"),record.get("model"),record.get("serial"),record.get("receipt"),record.get("photo"),record.get("value"),record.get("comments"));
-
-                    String i = record.get("itemNo");
-                    int itemNo;
-                    try {
-                        itemNo = Integer.valueOf(i.toString());
-                    } catch (NumberFormatException e) {
-                        itemNo = 0;
-                    }
-                    //int itemNo = Integer.valueOf(record.get("itemNo"));
-                    Room room = new Room(record.get("Room")); //(record.get("Room"));
-                    System.out.println(room.getStatus());
-                    //Room room = new Room(Room.rooms.Bathroom);
-                    Category category = new Category(record.get("Category"));
-                    Type type = new Type(record.get("Type"));
-                    String make = record.get("make");
-                    String model = record.get("model");
-                    String serial = record.get("serial");
-                    String receipt = record.get("receipt");
-                    String photo = record.get("photo");
-                    float value = Float.valueOf(record.get("value"));
-                    String comments = record.get("comments");
-                    boolean deleted = Boolean.parseBoolean(record.get("delete"));
-                    //User user = new User(123456);
-                    Item item = new Item(itemNo, /*user,*/ room, category, type, make, model, serial, receipt, photo, value, comments);
-                    if (deleted) {
-                        item.itemDelete();
-                    }
-                    itemList.add(item);
+                String i = record.get("itemNo");
+                int itemNo;
+                try {
+                    itemNo = Integer.valueOf(i.toString());
+                } catch (NumberFormatException e) {
+                    itemNo = 0;
                 }
-                //System.out.println(itemNo);
+                Room room = new Room(record.get("Room"));
+                System.out.println(room.getStatus());
+                Category category = new Category(record.get("Category"));
+                Type type = new Type(record.get("Type"));
+                String make = record.get("make");
+                String model = record.get("model");
+                String serial = record.get("serial");
+                String receipt = record.get("receipt");
+                String photo = record.get("photo");
+                float value = Float.valueOf(record.get("value"));
+                String comments = record.get("comments");
+                boolean deleted = Boolean.parseBoolean(record.get("delete"));
+                Item item = new Item(itemNo, /*user,*/ room, category, type, make, model, serial, receipt, photo, value, comments);
+                if (deleted) {
+                    item.itemDelete();
+                }
+                itemList.add(item);
             }
-
-           // return itemList;
-
-            //EventBus eventBus = new EventBus("parse");
-            //EventListener listener = new EventListener();
-           // ParseEvent pEvent = new ParseEvent(itemList);
-            //eventBus.register(new ParseEvent(itemList));
-            //EventBus eventBus = new EventBus();
-            System.out.println("Parsed, attempting to push event");
-            EventBus eventBus = EventBusFactory.getEventBus();
-            ParseEvent pevent = new ParseEvent(itemList);
-            eventBus.register(pevent);
-            eventBus.post(pevent);
-
-            //eventBus.post(pEvent);
-
-
-            return itemList;
         }
 
+        System.out.println("Parsed, attempting to push event");
+        /**
+         * Since we cannot return items between threads,
+         * EventBus is used to send message for other thread
+         * to get object
+         */
+        EventBus eventBus = EventBusFactory.getEventBus();
+        ParseEvent pevent = new ParseEvent(itemList);
+        eventBus.register(pevent);
+        eventBus.post(pevent);
+
+        return itemList;
+    }
+
+    /**
+     * Parse user profile from CSV
+     * @return user profile
+     * @throws Exception
+     */
     static public Profile readProfile() throws Exception {
 
         String firstName = "";
@@ -114,20 +114,8 @@ public class CSVParser {
             insuranceCompanyName = record.get("insuranceCompanyName");
         }
 
-        // return itemList;
-
-        //EventBus eventBus = new EventBus("parse");
-        //EventListener listener = new EventListener();
-        // ParseEvent pEvent = new ParseEvent(itemList);
-        //eventBus.register(new ParseEvent(itemList));
-        //EventBus eventBus = new EventBus();
         System.out.println("Parsed user profile");
-        //EventBus eventBus = EventBusFactory.getEventBus();
-        //ParseEvent pevent = new ParseEvent(itemList);
-        //eventBus.register(pevent);
-        //eventBus.post(pevent);
 
-        //eventBus.post(pEvent);
         Profile profile = new Profile(firstName, lastName, email, pw, phoneNumber, insuranceCompanyName, insuranceCompanyFax, insuranceCompanyEmail);
 
         return profile;

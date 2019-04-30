@@ -5,6 +5,9 @@ import com.google.common.eventbus.EventBus;
 
 import java.util.concurrent.Executors;
 
+/**
+ * EventBus factory to allow classes to get instance of EventBus
+ */
 public class EventBusFactory {
 
     //hold the instance of the event bus here

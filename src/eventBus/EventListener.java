@@ -6,9 +6,11 @@ import items.ItemEvent;
 import local.ParseEvent;
 import users.Profile;
 import users.UserLoginEvent;
-
 import java.util.List;
 
+/**
+ * EventListener used to register classes to listen on EventBus
+ */
 public class EventListener {
     private int lastMessage = 0;
     private Item itemMessage;
@@ -18,12 +20,8 @@ public class EventListener {
     @Subscribe
     public void parseEvent(ParseEvent event) {
         System.out.println("Made it to event");
-        //itemImports = (List) event.getMessage();
         System.out.println("Event: " + event.toString());
         list = event.getMessage();
-        //for (Object i : itemImports) {
-        //    itemList.getItems().add(i);
-        //}
     }
 
     @Subscribe

@@ -27,6 +27,9 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 
+/**
+ * Controller class for addItemsGUI.fxml
+ */
 public class addItemsGuiController {
     EventBus eventBus = EventBusFactory.getEventBus();
     String imageName;
@@ -37,6 +40,9 @@ public class addItemsGuiController {
     String tempReceipt;
     final Tooltip tooltip = new Tooltip();
 
+    /**
+     * Set JavaFX objects
+     */
     private Alert invalidInput = new Alert(Alert.AlertType.ERROR);
 
     @FXML
@@ -116,7 +122,7 @@ public class addItemsGuiController {
 
     private ObservableList<String> roomOptions =
             FXCollections.observableArrayList(
-                    "Attic", "Basement", "Livingroom", "DiningRoom", "Bedroom", "Bathroom", "Kitchen", "Garage", "Gameroom", "Office", "Other"
+                    "Attic", "Basement", "Livingroom", "Diningroom", "Bedroom", "Bathroom", "Kitchen", "Garage", "Gameroom", "Office", "Other"
             );
     private String rooms[] = {"Attic", "Basement", "Living room", "Dining room", "Bed room", "Bath room", "Kitchen", "Garage", "Game room", "Office", "Other"};
 
@@ -126,6 +132,9 @@ public class addItemsGuiController {
             );
     private String categories[] = {"Antiques", "Appliances", "Art", "Automotive", "Clothing", "Collectibles", "Electronic", "Furniture", "Jewelry", "Musical Instruments", "Tools", "Other"};
 
+    /**
+     * Initialize controller, setting JavaFX object values
+     */
     @FXML
     public void initialize() {
         itemImage.setImage(imageBox);
@@ -149,6 +158,7 @@ public class addItemsGuiController {
         roomLabel.setTextFill(Color.rgb(255,255,255));
         roomLabel.setEffect(dropShadow);
 
+        // set dropdown values
         room.setItems(roomOptions);
         room.setEditable(true);
 
@@ -157,6 +167,7 @@ public class addItemsGuiController {
         categoryLabel.setTextFill(Color.rgb(255,255,255));
         categoryLabel.setEffect(dropShadow);
 
+        // set dropdown values
         category.setItems(categoryOptions);
         category.setEditable(true);
 
@@ -195,13 +206,6 @@ public class addItemsGuiController {
 
         value.setPromptText("200.00");
 
-        /*tooltip.setText(
-                "\nHAI! We found you a suggested value.\n" +
-                        "Feel free to adjust as desired!"
-        );*/
-
-       // value.setTooltip(tooltip);
-
         commentslabel.setText("Comments");
         commentslabel.setFont(Font.font("Tahoma",15));
         commentslabel.setTextFill(Color.rgb(255,255,255));
@@ -215,6 +219,9 @@ public class addItemsGuiController {
         cancel.setText("Cancel Item");
 
 
+        /**
+         * focus change properties for make and model, used as triggers for price suggestion algorithm
+         */
         make.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
@@ -228,8 +235,6 @@ public class addItemsGuiController {
                 }
             }
         });
-
-
 
         model.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
@@ -248,6 +253,10 @@ public class addItemsGuiController {
 
     }
 
+    /**
+     * Check for valid user input
+     * @return boolean
+     */
     private boolean checkInput() {
         boolean valid = true;
         if (room.getEditor().getText().isEmpty()) {
@@ -302,8 +311,12 @@ public class addItemsGuiController {
         return valid;
     }
 
+    /**
+     * Submit and add new item
+     * @param event mouse click
+     */
     @FXML
-    private void setSubmit(ActionEvent event) throws Exception {
+    private void setSubmit(ActionEvent event) {
         if (checkInput()) {
             Room r = new Room(roomOptions.get(room.getSelectionModel().getSelectedIndex()));
             Category c = new Category(categoryOptions.get(category.getSelectionModel().getSelectedIndex()));
@@ -322,14 +335,23 @@ public class addItemsGuiController {
         }
     }
 
+    /**
+     * Cancel add item
+     * @param event mouse click
+     */
     @FXML
     private void setCancel(ActionEvent event) {
         Stage stage = (Stage) submit.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * submit and add another item
+     * @param event mouse click
+     * TODO: Adjust to add "like" objects to make adding easier for the user (recommender)
+     */
     @FXML
-    private void setSubmitAndAdd(ActionEvent event) throws Exception {
+    private void setSubmitAndAdd(ActionEvent event) {
         if (checkInput()) {
             Room r = new Room(roomOptions.get(room.getSelectionModel().getSelectedIndex()));
             Category c = new Category(categoryOptions.get(category.getSelectionModel().getSelectedIndex()));
@@ -347,6 +369,9 @@ public class addItemsGuiController {
         }
     }
 
+    /**
+     * reset item to default
+     */
     private void addReset() {
         roomOptions.clear();
         categoryOptions.clear();
@@ -358,12 +383,16 @@ public class addItemsGuiController {
         comments.clear();
     }
 
+    /**
+     * Upload item photo
+     * @param event mouse click
+     * @throws Exception
+     */
     @FXML
     private void setUploadImage(ActionEvent event) throws Exception {
         FileChooser fc = new FileChooser();
         fc.setTitle("Select Item Image");
         File selectedImage = fc.showOpenDialog(null);
-        //String tempName;
         if (selectedImage != null) {
             tempImage = selectedImage.toPath().toString();
             imageBox = new Image(selectedImage.toURI().toString());
@@ -372,12 +401,16 @@ public class addItemsGuiController {
         }
     }
 
+    /**
+     * Upload item receipt
+     * @param event mouse click
+     * @throws Exception
+     */
     @FXML
     private void setUploadReceipt(ActionEvent event) throws Exception {
         FileChooser fc = new FileChooser();
         fc.setTitle("Select Item Receipt");
         File selectedImage = fc.showOpenDialog(null);
-        //String tempName;
         if (selectedImage != null) {
             tempReceipt = selectedImage.getName();
             receiptBox = new Image(selectedImage.toURI().toString());

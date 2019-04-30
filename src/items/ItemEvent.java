@@ -1,6 +1,9 @@
 package items;
 
-import items.Item;
+/**
+ * ItemEvent to pass item object between threads.
+ * Used with EventBus.
+ */
 public class ItemEvent {
     private Item message;
 

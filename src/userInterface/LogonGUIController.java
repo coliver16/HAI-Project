@@ -1,3 +1,7 @@
+/**
+ * Controller for logonGUI.fxml
+ */
+
 package userInterface;
 
 import com.google.common.eventbus.EventBus;
@@ -26,14 +30,17 @@ import users.UserProfile;
 
 import java.io.IOException;
 
+/**
+ * Controller class for logonGUI.fxml
+ */
 public class LogonGUIController {
     private EventBus eventBus = EventBusFactory.getEventBus();
-
-    private CSVParser parser = new CSVParser();
-    private CSVWriter csvWriter = new CSVWriter();
     private Boolean loggedIn = false;
     private Profile userProfile;
 
+    /**
+     * Set JavaFX GUI buttons, text boxes, labels, etc...
+     */
     @FXML
     private Label whyHai = new Label();
 
@@ -67,6 +74,9 @@ public class LogonGUIController {
     @FXML
     private CheckBox rememberMe = new CheckBox();
 
+    /**
+     * EventHandler to receieve login information from another thread.
+     */
     public class EventHandler {
         @Subscribe
         public void userLoginEvent(UserLoginEvent event) {
@@ -83,24 +93,34 @@ public class LogonGUIController {
         }
     }
 
+    /**
+     * Register EventBus listener
+     */
     public void registerListener() {
         ItemListener listener = new ItemListener();
         eventBus.register(listener);
     }
 
+    /**
+     * Initialize controller
+     */
     @FXML
     public void initialize() {
+        // Generate and register EventBus objects
         EventHandler handler = new EventHandler();
         eventBus.register(handler);
         registerListener();
 
-
+        // set JavaFX styling
         DropShadow dropShadow = new DropShadow();
         dropShadow.setRadius(5.0);
         dropShadow.setOffsetX(3.0);
         dropShadow.setOffsetY(3.0);
         dropShadow.setColor(Color.BLACK);
 
+        /**
+         * set object values
+         */
         whyHai.setText("Why HAI");
         whyHai.setFont(Font.font("Tahoma",15));
         whyHai.setTextFill(Color.rgb(255,255,255));
@@ -125,7 +145,9 @@ public class LogonGUIController {
         username.setEffect((new DropShadow(20, Color.BLACK)));
         password.setEffect((new DropShadow(20, Color.BLACK)));
 
-
+        /**
+         * clips are used for image positioning
+         */
         Rectangle clip = new Rectangle(cloudLogo.getFitWidth(), cloudLogo.getFitHeight());
         Rectangle clip1 = new Rectangle(userLogo.getFitWidth(), userLogo.getFitHeight());
         clip.setArcWidth(20);
@@ -154,10 +176,15 @@ public class LogonGUIController {
         }
     }
 
+    /**
+     * ActionEvent handlers for different buttons
+     * @param event mouse click or keyboard "enter" or "space" selecting button.
+     */
     @FXML
     private void createUser(ActionEvent event) {
         username.clear();
         password.clear();
+        // Switch view
         GuiNavigator.loadGui(GuiNavigator.CREATE_USER_GUI);
     }
 
@@ -168,21 +195,21 @@ public class LogonGUIController {
         message.setText("");
     };
 
+
     @FXML
     private void loginButton(ActionEvent event) throws Exception {
         final String user = username.getText();
         final String pass = password.getText();
         System.out.println("User: " + user + " Pass: " + pass);
+        // Log user in
         Login log = new Login();
 
-        //if (user.equals("cmuney13@gmail.com") && password.equals("password")) {
         if (log.Log(user,pass)) {
             message.setText("Your Password is confirmed!");
             message.setTextFill(Color.rgb(0,0,0));
-            //username.clear();
-            //password.clear();
             setLoggedIn(true);
 
+            // Execute parser on another thread to keep GUI thread free (prevents UI lock)
             Thread thread = new Thread(){
                 public void run() {
                     try {
@@ -201,8 +228,8 @@ public class LogonGUIController {
             };
 
             thread.start();
-            //thread.join();
 
+            // Switch view to mainMenuGUI.fxml
             GuiNavigator.loadGui(GuiNavigator.MAIN_MENU_GUI);
 
         }

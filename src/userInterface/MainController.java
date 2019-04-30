@@ -1,3 +1,6 @@
+/**
+ * Controller for main.fxml
+ */
 package userInterface;
 
 import javafx.fxml.FXML;

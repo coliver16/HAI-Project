@@ -1,7 +1,9 @@
 package items;
 import java.lang.*;
-//import users.User;
 
+/**
+ * Item class
+ */
 public class Item {
     private int itemNo;
     //public String email;
@@ -36,13 +38,6 @@ public class Item {
 
     //Constructor for update an Item
     public void itemUpdate(Item oldItem, /*User user,*/ Room room, Category category, Type type, String make, String model, String serial, String receipt, String photo, float value, String comments) {
-        // If any field is not provided, the Item's old inputs will be used.
-        /*if (user == null) {
-            this.userno = oldItem.getUser();
-        }
-        else {
-            this.userno = user;
-        }*/
 
         if (room == null) {
             this.room = oldItem.getRoom();

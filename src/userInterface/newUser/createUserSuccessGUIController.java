@@ -15,9 +15,14 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import userInterface.GuiNavigator;
 
-
+/**
+ * controller for successful creation of user account
+ */
 public class createUserSuccessGUIController {
 
+    /**
+     * Set JavaFX GUI buttons, textfiels, labels, etc...
+     */
     @FXML
     private Label whyHai = new Label();
 
@@ -39,6 +44,9 @@ public class createUserSuccessGUIController {
     @FXML
     private Button completeCreation;
 
+    /**
+     * initialize the controller, setting JavaFX object values
+     */
     @FXML
     public void initialize() {
         DropShadow dropShadow = new DropShadow();
@@ -51,9 +59,6 @@ public class createUserSuccessGUIController {
         message.setFont(Font.font("Tahoma",35));
         message.setTextFill(Color.rgb(255,255,255));
         message.setEffect(dropShadow);
-
-
-
 
         whyHai.setText("Why HAI");
         whyHai.setFont(Font.font("Tahoma",15));
@@ -69,7 +74,6 @@ public class createUserSuccessGUIController {
         contactUs.setFont(Font.font("Tahoma",15));
         contactUs.setTextFill(Color.rgb(255,255,255));
         contactUs.setEffect(dropShadow);
-
 
         Rectangle clip = new Rectangle(cloudLogo.getFitWidth(), cloudLogo.getFitHeight());
         Rectangle clip1 = new Rectangle(userLogo.getFitWidth(), userLogo.getFitHeight());
@@ -94,11 +98,8 @@ public class createUserSuccessGUIController {
         completeCreation.setText("Return to Login");
     }
 
-
     @FXML
     public void setLoginMenu(ActionEvent event) {
         GuiNavigator.loadGui(GuiNavigator.LOGIN_GUI);
     }
-
-
 }

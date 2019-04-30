@@ -1,41 +1,32 @@
 package userInterface.newUser;
 
-import com.sun.java.accessibility.util.GUIInitializedListener;
 import database.update;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.util.StringConverter;
 import local.CSVWriter;
-import sun.plugin2.message.Message;
 import userInterface.GuiNavigator;
 import users.Profile;
-
-import javax.swing.text.MaskFormatter;
 import java.io.IOException;
-import java.net.PasswordAuthentication;
-import java.security.Key;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+/**
+ * Controller class for createUserGUI.fxml
+ */
 public class createUserGUIController {
     private Alert invalidInput = new Alert(Alert.AlertType.ERROR);
 
+    /**
+     * Create all JavaFX objects for buttons, labels, text fields, etc...
+     */
     @FXML
     private Label whyHai = new Label();
 
@@ -114,6 +105,9 @@ public class createUserGUIController {
     @FXML
     private Button cancelProfile;
 
+    /**
+     * Initialize controller, setting JavaFX object values
+     */
     @FXML
     public void initialize() {
         invalidInput.setTitle("Invalid Input!");
@@ -179,7 +173,7 @@ public class createUserGUIController {
         firstName.setPromptText("Name");
         lastName.setPromptText("Last");
         email.setPromptText("someone@somewhere.com");
-        //phoneNumber.setPromptText("(999) 999-9999");
+        phoneNumber.setPromptText("(999) 999-9999");
         insuranceCo.setPromptText("HAI Insurance LTD");
         insuranceFax.setPromptText("(999) 999-9999");
         insuranceEmail.setPromptText("help@me.com");
@@ -250,29 +244,26 @@ public class createUserGUIController {
 
 
         Rectangle clip = new Rectangle(cloudLogo.getFitWidth(), cloudLogo.getFitHeight());
-//        Rectangle clip1 = new Rectangle(userLogo.getFitWidth(), userLogo.getFitHeight());
         clip.setArcWidth(20);
         clip.setArcHeight(20);
-//        clip1.setArcWidth(20);
-//        clip1.setArcHeight(20);
 
         SnapshotParameters parameters = new SnapshotParameters();
         parameters.setFill(Color.TRANSPARENT);
         WritableImage cloud = cloudLogo.snapshot(parameters, null);
-  //      WritableImage User = userLogo.snapshot(parameters,null);
 
         cloudLogo.setClip(null);
         cloudLogo.setEffect((new DropShadow(20, Color.BLACK)));
 
-//        userLogo.setClip(null);
-//        userLogo.setEffect((new DropShadow(20,Color.BLACK)));
         cloudLogo.setImage(cloud);
-    //    userLogo.setImage(User);
 
         cancelProfile.setText("Cancel User");
         createProfile.setText("Create User");
     }
 
+    /**
+     * Check to ensure valid user input
+     * @return valid boolean (good or bad input)
+     */
     private boolean checkInput() {
         boolean valid = true;
         if (firstName.getText().isEmpty()) {
@@ -341,32 +332,41 @@ public class createUserGUIController {
         return valid;
     }
 
+    /**
+     * Check to ensure passwords match
+     * @return boolean
+     */
     public boolean validatePasswords() {
         return (password.getText().equals(verifyPassword.getText()));
     }
 
+    /**
+     * Cancel user creation
+     * @param event cancel button was clicked
+     */
     @FXML
     public void setCancelProfile(ActionEvent event) {
         GuiNavigator.loadGui(GuiNavigator.LOGIN_GUI);
     }
 
+    /**
+     * Create and set user profile
+     * @param event create user button was clicked
+     * @throws IOException in case of CSVWriter IO
+     */
     @FXML
     public void setCreateProfile(ActionEvent event) throws IOException {
         if (checkInput()) {
             Profile profile = new Profile(firstName.getText(), lastName.getText(), email.getText(), password.getText(), phoneNumber.getText(), insuranceCo.getText(),
                     insuranceFax.getText(), insuranceEmail.getText());
-            //Thread thread = new Thread() {
-             //   public void run() {
                     try {
                         CSVWriter.writeUserProfile(profile);
+                        // write updates to server
                         update.profileUpdate();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-            //    }
-            //};
             GuiNavigator.loadGui(GuiNavigator.CREATE_USER_SUCCESS_GUI);
-            // TODO: need method to create user with server
         }
         else {
             invalidInput.showAndWait();

@@ -6,6 +6,9 @@ import local.ParseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Public class holding list of user items.
+ */
 public class ItemList {
 
     public class EventHandler {
@@ -13,11 +16,6 @@ public class ItemList {
         public void parseEvent(ParseEvent event) {
             System.out.println("Made it to event");
             itemList = event.getMessage();
-            //System.out.println("Event: " + event.toString());
-            //System.out.println(itemImports.get(0).make);
-            //for (Object i : itemImports) {
-             //   itemList.getItems().add(i);
-            //}
         }
     }
 

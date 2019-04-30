@@ -39,9 +39,12 @@ import users.Profile;
 import users.UserProfile;
 import items.S3;
 
+/**
+ * Controller class for viewItemsGUI.fxml
+ */
 public class viewItemsGUIController {
     private EventBus eventBus = EventBusFactory.getEventBus();
-
+    //paths for local content
     private String USER_IMAGES = "src\\local\\images\\";
     private String USER_RECEIPTS = "src\\local\\receipts\\";
     private File defaultImage = new File("src\\userInterface\\manageItems\\noImage.png");
@@ -49,12 +52,15 @@ public class viewItemsGUIController {
 
     private String name;
     private List<Item> itemImports = ItemList.getItemList();
+    // increment is used to serialize new items.
     private int increment = 1;
 
     private Alert alertConfirmDelete = new Alert(Alert.AlertType.CONFIRMATION);
     private Alert alertConfirmAdd = new Alert(Alert.AlertType.CONFIRMATION);
 
-
+    /**
+     * Create JavaFX Objects
+     */
     @FXML
     private Image imageBox = new Image(defaultImage.toURI().toString());
     @FXML
@@ -96,29 +102,39 @@ public class viewItemsGUIController {
     @FXML
     private ImageView itemImage;
 
+    // Get user name to display to GUI
     public viewItemsGUIController() {
         name = UserProfile.getUserProfile().getFirstName() + " " + UserProfile.getUserProfile().getLastName();
     }
 
+    /**
+     * EventHandler for successful parse of cached user items and new items
+     */
     public class EventHandler {
+        /**
+         * Successful Parse of data
+         * @param event item list from another thread
+         */
         @Subscribe
         public void parseEvent(ParseEvent event) {
             itemList.getItems().clear();
             itemImports = (List) event.getMessage();
             itemList.getItems().clear();
             for (Item i : itemImports) {
+                // filter deleted items from user view
                 if (!i.isDeleted()) {
                     if (i.getItemNo() > increment) { increment = i.getItemNo() + 1;}
                     Item item = new Item(i.getItemNo(), new Room(i.getRoom().getStatus()), i.getCategory(), i.getType(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments());
-                    //itemList.getItems().add(i);
-
                     itemList.getItems().add(item);
-                    //itemList.getItems().
                 }
 
             }
         }
 
+        /**
+         * Successful add of item
+         * @param event item passed form another thread
+         */
         @Subscribe
         public void itemEvent(ItemEvent event) {
             System.out.println("Item Added");
@@ -160,12 +176,14 @@ public class viewItemsGUIController {
                             i.setReceipt(defaultReceipt.getPath().toString());
                         }
 
+                        // add item to display list and user item list
                         itemImports.add(i);
                         itemList.getItems().add(i);
                         ItemList.itemList.add(i);
 
                         List<Item> l = new ArrayList<>();
                         l.add(i);
+                        // write new item to local CSV
                         CSVWriter.appendToCSV(l);
                     } catch (Exception e) {
                         System.out.println("Error");
@@ -173,23 +191,26 @@ public class viewItemsGUIController {
 
                         System.out.println(e);
                     }
-                    //return;
                 }
             };
             thread.start();
         }
     }
 
+    /**
+     * register listener for new items
+     */
     public void registerListener() {
         ItemListener listener = new ItemListener();
         eventBus.register(listener);
     }
 
 
-
-
+    /**
+     * initialize controller objects
+     */
     @FXML
-    public void initialize() throws Exception{
+    public void initialize() {
 
         itemImage.setImage(imageBox);
 
@@ -248,8 +269,8 @@ public class viewItemsGUIController {
 
         cloudLogo.setImage(cloud);
 
-//        TableColumn<Item, Boolean> column1 = new TableColumn<>("Delete?");
-//        column1.setCellValueFactory(new PropertyValueFactory<>("delete"));
+
+        // create table columns
 
         TableColumn<Item, String> column1 = new TableColumn<>("Item No.");
         column1.setCellValueFactory(new PropertyValueFactory<>("itemNo"));
@@ -274,7 +295,7 @@ public class viewItemsGUIController {
         TableColumn<Item, String> column11 = new TableColumn<>("Misc Comments");
         column11.setCellValueFactory(new PropertyValueFactory<>("comments"));
 
-       // column1.setMinWidth(50);
+        // set column widths
         column1.setMinWidth(50);
         column2.setMinWidth(100);
         column3.setMinWidth(100);
@@ -288,6 +309,7 @@ public class viewItemsGUIController {
         column11.setMinWidth(225);
 
 
+        // setting cell factories for enumerated values
         column2.setCellValueFactory(cellData -> {
             return new SimpleStringProperty(cellData.getValue().getRoom().getStatus().toString());
         });
@@ -303,6 +325,7 @@ public class viewItemsGUIController {
                 SelectionMode.MULTIPLE
         );
 
+        // add columns to table
         itemList.getColumns().add(column1);
         itemList.getColumns().add(column2);
         itemList.getColumns().add(column3);
@@ -316,6 +339,7 @@ public class viewItemsGUIController {
         itemList.getColumns().add(column11);
 
 
+        // add initial items to list
         for (Item i : itemImports) {
             //Item item = new Item(i.getItemNo(), new Room(i.getRoom().getStatus()), i.getCategory(), i.getType(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments());
             if (!i.isDeleted()) {
@@ -327,6 +351,10 @@ public class viewItemsGUIController {
             }
         }
 
+        /**
+         * Selection handler for table.
+         * Used for deletion of selected items or viewing images
+         */
         itemList.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 int i = itemList.getSelectionModel().getSelectedIndex();
@@ -348,20 +376,10 @@ public class viewItemsGUIController {
                 }
                 itemImage.setImage(imageBox);
                 itemReceipt.setImage(receiptBox);
-
-
-                /*
-                private File defaultImage = new File("src\\userInterface\\manageItems\\noImage.png");
-                private File defaultReceipt = new File("src\\userInterface\\manageItems\\noReceipt.png");
-
-                @FXML
-                private Image imageBox = new Image(defaultImage.toURI().toString());
-                @FXML
-                private Image receiptBox = new Image(defaultReceipt.toURI().toString());
-                 */
             }
         });
 
+        // set button labels
         backButton.setText("Back");
         addButton.setText("Add Item");
         deleteButton.setText("Delete Item");
@@ -370,6 +388,11 @@ public class viewItemsGUIController {
     }
 
 
+    /**
+     * Delete button handler
+     * @param event delete item button was clicked
+     * @throws InterruptedException
+     */
     @FXML
     public void setDeleteButton(ActionEvent event) throws InterruptedException {
         Optional<ButtonType> result = alertConfirmDelete.showAndWait();
@@ -391,6 +414,7 @@ public class viewItemsGUIController {
             }
             alertConfirmDelete.close();
 
+            // update items on CSV with background thread
             Thread thread = new Thread() {
                 public void run() {
                     try {
@@ -403,7 +427,6 @@ public class viewItemsGUIController {
 
                         System.out.println(e);
                     }
-                    //return;
                 }
             };
             thread.start();
@@ -414,16 +437,31 @@ public class viewItemsGUIController {
 
     }
 
+    /**
+     * back button was selected, load mainMenuGUI.fxml
+     * @param event mouse click
+     */
     @FXML
     public void setBackButton(ActionEvent event) {
         GuiNavigator.loadGui(GuiNavigator.MAIN_MENU_GUI);
     }
 
+    /**
+     * update user profile was selected
+     * @param event mouse click
+     */
     @FXML
     public void setUpdateButton(ActionEvent event) {
         update.update();
     }
 
+    /**
+     * add item button was selected, change view to allow data entry
+     * load add item window, load controller and open view items in the background.
+     * Window modality allows the window to be moved independent of main window.
+     * @param event mouse click
+     * @throws IOException
+     */
     @FXML
     public void setAddButton(ActionEvent event) throws IOException {
 
@@ -441,22 +479,5 @@ public class viewItemsGUIController {
         stage.setAlwaysOnTop(false);
         stage.setScene(scene);
         stage.showAndWait();
-
-        //addController.setAppMainObservableList()
-
-
-        /*Label addItemLabel = new Label("Add New Items");
-
-        StackPane addItemsLayout = new StackPane();
-        addItemsLayout.getChildren().add(addItemLabel);
-        Scene addItemScene = new Scene(addItemsLayout, 500,300);
-
-        // Setup new popout window
-        Stage addItemWindow = new Stage();
-        addItemWindow.setTitle("Add New");
-        addItemWindow.setScene(addItemScene);
-
-        addItemWindow.show();*/
-        //GuiNavigator.loadGui(GuiNavigator.VIEW_ITEMS_GUI)
     }
 }

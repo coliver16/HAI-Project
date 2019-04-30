@@ -15,18 +15,24 @@ import local.CSVWriter;
 import userInterface.GuiNavigator;
 import users.Profile;
 import users.UserProfile;
-
 import java.io.IOException;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Controller class for manageUserGUI.fxml
+ */
 public class manageUserGUIController {
 
+    // Alert to handle confirmation of changes and error handling
     private Alert invalidInput = new Alert(Alert.AlertType.ERROR);
     private Alert passwordsNotMatch = new Alert(Alert.AlertType.ERROR);
     private Alert confirmProfileChange = new Alert(Alert.AlertType.CONFIRMATION);
 
+    /**
+     * Set JavaFX objects
+     */
     @FXML
     private Label whyHai = new Label();
 
@@ -105,6 +111,9 @@ public class manageUserGUIController {
     @FXML
     private Button cancelProfile;
 
+    /**
+     * Initialize controller and set JavaFX object values.
+     */
     @FXML
     public void initialize() {
         invalidInput.setTitle("Invalid Input!");
@@ -178,11 +187,12 @@ public class manageUserGUIController {
         firstName.setPromptText("Name");
         lastName.setPromptText("Last");
         email.setPromptText("someone@somewhere.com");
-        phoneNumber.setPromptText("(999) 999-9999");
+        phoneNumber.setPromptText("999-999-9999");
         insuranceCo.setPromptText("HAI Insurance LTD");
-        insuranceFax.setPromptText("(999) 999-9999");
+        insuranceFax.setPromptText("999-999-9999");
         insuranceEmail.setPromptText("help@me.com");
 
+        // text formatter for fax number input
         insuranceFax.textProperty().addListener((observable, oldValue, newValue) -> {
             Pattern p = Pattern.compile("\\d+");
             Matcher m = p.matcher(newValue);
@@ -207,6 +217,7 @@ public class manageUserGUIController {
             insuranceFax.setText(finalString);
         });
 
+        // text formatter for phone number
         phoneNumber.textProperty().addListener((observable, oldValue, newValue) -> {
             Pattern p = Pattern.compile("\\d+");
             Matcher m = p.matcher(newValue);
@@ -282,6 +293,10 @@ public class manageUserGUIController {
 
     }
 
+    /**
+     * check for valid user input
+     * @return valid boolean
+     */
     private boolean checkInput() {
         boolean valid = true;
         if (firstName.getText().isEmpty()) {
@@ -343,6 +358,10 @@ public class manageUserGUIController {
         return valid;
     }
 
+    /**
+     * verify user changes are legitimate
+     * @returnreturn boolean
+     */
     private boolean verifyChanges() {
         boolean valid = true;
         if (!firstName.getText().equals(UserProfile.getUserProfile().getFirstName())) {
@@ -369,46 +388,51 @@ public class manageUserGUIController {
         return valid;
     }
 
+    /**
+     * verify passwords match
+     * @return boolean
+     */
     public boolean validatePasswords() {
         return (password.getText().equals(verifyPassword.getText()));
     }
 
+    /**
+     * cancel button was selected
+     * @param event mouse click
+     */
     @FXML
     public void setCancelProfile(ActionEvent event) {
         GuiNavigator.loadGui(GuiNavigator.MAIN_MENU_GUI);
     }
 
+    /**
+     * update profile was selected
+     * @param event mouse click
+     */
     @FXML
     public void setUpdateProfile(ActionEvent event) {
+        // ensure valid input
         if (checkInput()) {
+            // prompt user for confirmation
             Optional<ButtonType> result = confirmProfileChange.showAndWait();
             if (result.get() == ButtonType.OK){
                 System.out.println(password.getText());
                 Profile profile = new Profile(firstName.getText(), lastName.getText(), email.getText(), password.getText(), phoneNumber.getText(), insuranceCo.getText(),
                         insuranceFax.getText(), insuranceEmail.getText());
-                //Thread thread = new Thread() {
-                 //   public void run() {
-                        try {
-                            CSVWriter.writeUserProfile(profile);
-                            update.profileUpdate();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    //}
-               // };
-                // TODO: need method call to update user profile and password with server
+                // write changes to local csv
+                try {
+                    CSVWriter.writeUserProfile(profile);
+                    // write changes to server
+                    update.profileUpdate();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                // load mainMenuGUI.fxml
                 GuiNavigator.loadGui(GuiNavigator.MAIN_MENU_GUI);
             }
-
-            // TODO: need method to create user with server
         }
         else {
             invalidInput.showAndWait();
         }
-    }
-
-    public void setUserProfile(Profile p) {
-        //User
-
     }
 }

@@ -27,12 +27,16 @@ import users.UserProfile;
 import javax.swing.*;
 import java.io.IOException;
 
+/**
+ * Controller class for mainMenuGUI.fxml
+ */
 public class MainMenuGUIController {
-
     private String name = UserProfile.getUserProfile().getFirstName() + " " + UserProfile.getUserProfile().getLastName();
-
     Boolean loggedIn = true;
 
+    /**
+     * Set JavaFX objects
+     */
     @FXML
     private Label whyHai = new Label();
 
@@ -63,7 +67,9 @@ public class MainMenuGUIController {
     @FXML
     private Button logOut;
 
-
+    /**
+     * Initialize controller, setting JavaFX object values
+     */
     @FXML
     public void initialize() {
         DropShadow dropShadow = new DropShadow();
@@ -119,22 +125,41 @@ public class MainMenuGUIController {
         userLogo.setImage(user);
     }
 
+    /**
+     * logout selected
+     * @param event mouse click
+     */
     @FXML
     public void setLogOut(ActionEvent event) {
         setLoggedIn(true);
         GuiNavigator.loadGui(GuiNavigator.LOGIN_GUI);
     }
 
+    /**
+     * view items selected
+     * @param event mouse click
+     * @throws InterruptedException
+     */
     @FXML
     public void setViewItems(ActionEvent event) throws InterruptedException {
 
         GuiNavigator.loadGui(GuiNavigator.VIEW_ITEMS_GUI);
     }
 
+    /**
+     * user profile selected
+     * @param event mouse click
+     */
     @FXML
     public void setViewProfile(ActionEvent event) {
         GuiNavigator.loadGui(GuiNavigator.MODIFY_USER_PRO);
     }
+
+    /**
+     * select add items
+     * @param event mouse click
+     * @throws IOException in case loadGUI fails
+     */
     @FXML
     public void setAddItems(ActionEvent event) throws IOException {
         GuiNavigator.loadGui(GuiNavigator.VIEW_ITEMS_GUI);
@@ -142,8 +167,6 @@ public class MainMenuGUIController {
         controller.setAddButton(new ActionEvent());
     }
 
-
-    //@FXML
     private void setLoggedIn(boolean b) {
         loggedIn = b;
     }

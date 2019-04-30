@@ -4,6 +4,11 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 
+/**
+ * GuiNavigator is required to handle the requests for and
+ * load new JavaFXML user interfaces (each fxml calls its
+ * own required controller).
+ */
 public class GuiNavigator {
     public static final String MAIN = "main.fxml";
     public static final String LOGIN_GUI = "logonGUI.fxml";

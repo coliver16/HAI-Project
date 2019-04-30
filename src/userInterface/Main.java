@@ -1,3 +1,14 @@
+/*****************************************************
+ * Authors: Nicholas Robson, John Prishvalko,
+ *          Meagan Sanchez, Curtis Oliver
+ * Course: CIS 454, Fall 2019
+ * Prof Mohan
+ * TA: Humphrey Mensah
+ *
+ * This is the main class for the Homeowners Assistant
+ * for Insurance (HAI) application.
+ *****************************************************/
+
 package userInterface;
 import javafx.application.Platform;
 import users.Login;
@@ -27,6 +38,11 @@ import java.util.List;
  */
 public class Main extends Application {
 
+    /**
+     * Creates and intializes the GUI.
+     * @param primaryStage holds the contents of the GUI
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("HAI! Let Us Help You.");
@@ -63,6 +79,11 @@ public class Main extends Application {
         return mainPane;
     }
 
+    /**
+     * Creates the required main scene
+     * @param mainPane hosts all other viewing panes
+     * @return scene to caller
+     */
     private Scene createScene(Pane mainPane) {
         Scene scene = new Scene(mainPane);
         scene.getStylesheets().setAll(getClass().getResource("gui.css").toExternalForm());
@@ -70,6 +91,11 @@ public class Main extends Application {
         return scene;
     }
 
+    /**
+     * Main method
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
         EventBusFactory.getEventBus().register(new EventListener());
         ItemList itemList = new ItemList();

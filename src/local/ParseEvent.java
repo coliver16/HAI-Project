@@ -5,6 +5,10 @@ import items.Item;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * ParseEvent to contain parsed event item for passing data between threads
+ * Part of EventBus system
+ */
 public class ParseEvent {
 
     private List<Item> message;
