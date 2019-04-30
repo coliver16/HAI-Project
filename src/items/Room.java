@@ -26,7 +26,7 @@ public class Room {
         return room.toString();
     }
 
-    public void setStatus(String r) {
+    public void setRoom(String r) {
         room = rooms.valueOf(r);
     }
 
@@ -36,7 +36,3 @@ public class Room {
     EnumSet<rooms> allRooms = EnumSet.allOf(rooms.class);
     List<rooms> listOfRooms = new ArrayList<>(allRooms);
 }
-
-
-
-
