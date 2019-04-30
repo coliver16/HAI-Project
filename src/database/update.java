@@ -36,11 +36,17 @@ public class update{
         } catch (Exception e) {
             e.printStackTrace();
         }
+        S3 s3 = new S3();
         List<Item> remote = Download("Item_454");
+        for(int i=0;i<remote.size();i++){
+            s3.downloadObject(remote.get(i).getKey());
+
+        }
         try {
             List<Item> local = CSVParser.readFile();
             List<Item> up = compare(local,remote);
             Upload(up);
+            CSVWriter.appendToCSV(remote);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -53,17 +59,47 @@ public class update{
         }
     }
 
-    public static void profileUpdate(){
+    public static void CreateProfile(Profile input){
+        try { conn = inventory.Connect();//establish database connection
+        } catch (Exception e) {e.printStackTrace(); }
+        PreparedStatement pstmt=null;
+
+        try {
+            pstmt = conn.prepareStatement("INSERT INTO Profile_454 (profile_firstname, profile_lastname, profile_email, profile_password, profile_phone_number, policy_company, policy_fax, policy_claims_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            pstmt.setString(1,input.getFirstName());
+            pstmt.setString(2,input.getLastName());
+            pstmt.setString(3,input.getEmail());
+            pstmt.setString(4,input.getPw());
+            pstmt.setString(5,input.getPhoneNumber());
+            pstmt.setString(6,input.getInsuranceCompanyName());
+            pstmt.setString(7,input.getInsuranceCompanyFax());
+            pstmt.setString(8,input.getInsuranceCompanyEmail());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                if(pstmt != null)pstmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if(conn != null)conn.close();
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void ProfileUpdate(){
 
         try { conn = inventory.Connect();//establish database connection
         } catch (Exception e) {e.printStackTrace(); }
         PreparedStatement pstmt=null;
 
         try {
-            pstmt = conn.prepareStatement("DELETE FROM Profile_454 WHERE profile_email = ? ");
-            pstmt.setString( 1, currentProfile.getEmail());
-            pstmt.executeUpdate();
-            pstmt = conn.prepareStatement("INSERT INTO Profile_454 (profile_firstname, profile_lastname, profile_email, profile_password, profile_phone_number, policy_company, policy_fax, policy_claims_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            pstmt = conn.prepareStatement("UPDATE Profile_454 SET profile_firstname = ?, profile_lastname = ?, profile_email = ?, profile_password = ?, profile_phone_number = ?, policy_company = ?, policy_fax = ?, policy_claims_email = ? WHERE (profile_email = ?)");
             pstmt.setString(1,currentProfile.getFirstName());
             pstmt.setString(2,currentProfile.getLastName());
             pstmt.setString(3,currentProfile.getEmail());
@@ -72,8 +108,8 @@ public class update{
             pstmt.setString(6,currentProfile.getInsuranceCompanyName());
             pstmt.setString(7,currentProfile.getInsuranceCompanyFax());
             pstmt.setString(8,currentProfile.getInsuranceCompanyEmail());
+            pstmt.setString(9,currentProfile.getEmail());
             pstmt.executeUpdate();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -94,7 +130,11 @@ public class update{
 
     public void restore(){
         List<Item> remote = Download("DeletedItems_454");
-
+        try {
+            CSVWriter.appendToCSV(remote);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void Upload(List<Item> out){
@@ -164,7 +204,7 @@ public class update{
 
         PreparedStatement pstmt =null;
         try {
-            pstmt = conn.prepareStatement("DELETE FROM DeletedItems_454 WHERE item_id = ? AND email_own = ? ");
+            pstmt = conn.prepareStatement("DELETE FROM DeletedItems_454 WHERE (item_id = ? AND email_own = ?) ");
             pstmt.setInt( 1, newItem.getItemNo());
             pstmt.setString(2,currentProfile.getEmail());
             pstmt.executeUpdate();
@@ -182,7 +222,7 @@ public class update{
             pstmt.setFloat(11,newItem.getValue());
             pstmt.setString(12,newItem.getComments());
             pstmt.executeUpdate();
-            pstmt = conn.prepareStatement("DELETE FROM Item_454 WHERE item_id = ? AND email_own = ? ");
+            pstmt = conn.prepareStatement("DELETE FROM Item_454 WHERE (item_id = ? AND email_own = ?) ");
             pstmt.setInt( 1, newItem.getItemNo());
             pstmt.setString(2,currentProfile.getEmail());
             pstmt.executeUpdate();
@@ -217,7 +257,7 @@ public class update{
         PreparedStatement pstmt = null;
         S3 s3 = new S3();
         try {
-            pstmt = conn.prepareStatement("DELETE FROM Item_454 WHERE item_no = ? AND email_own = ? ");
+            pstmt = conn.prepareStatement("DELETE FROM Item_454 WHERE (item_no = ? AND email_own = ?) ");
             pstmt.setInt( 1, newItem.getItemNo());
             pstmt.setString(2,currentProfile.getEmail());
             pstmt.executeUpdate();
