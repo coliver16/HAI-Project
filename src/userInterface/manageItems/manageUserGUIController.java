@@ -1,5 +1,6 @@
 package userInterface.manageItems;
 
+import database.update;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.SnapshotParameters;
@@ -10,10 +11,12 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import local.CSVWriter;
 import userInterface.GuiNavigator;
 import users.Profile;
 import users.UserProfile;
 
+import java.io.IOException;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -302,6 +305,13 @@ public class manageUserGUIController {
         else {
             personalEmail.setTextFill(Color.rgb(255,255,255));
         }
+        if (verifyPassword.getText().isEmpty() || !validatePasswords()) {
+            valid = false;
+            passVerify.setTextFill(Color.rgb(255,0,0));
+        }
+        else {
+            passVerify.setTextFill(Color.rgb(255,255,255));
+        }
         if (phoneNumber.getText().isEmpty() || phoneNumber.getLength() != 12 || phone.getText().contains("#")) {
             valid = false;
             phone.setTextFill(Color.rgb(255,0,0));
@@ -374,8 +384,18 @@ public class manageUserGUIController {
             Optional<ButtonType> result = confirmProfileChange.showAndWait();
             if (result.get() == ButtonType.OK){
 
-                //setUserProfile(new Profile(firstName.getText(), lastName.getText(), email.getText(), password.getText(), phoneNumber.getText(), insuranceCo.getText(),
-                //        insuranceFax.getText(), insuranceEmail.getText()));
+                setUserProfile(new Profile(firstName.getText(), lastName.getText(), email.getText(), password.getText(), phoneNumber.getText(), insuranceCo.getText(),
+                        insuranceFax.getText(), insuranceEmail.getText()));
+                Thread thread = new Thread() {
+                    public void run() {
+                        try {
+                            CSVWriter.writeUserProfile(UserProfile.getUserProfile());
+                            update.profileUpdate();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
                 // TODO: need method call to update user profile and password with server
                 GuiNavigator.loadGui(GuiNavigator.MAIN_MENU_GUI);
             }
@@ -388,5 +408,7 @@ public class manageUserGUIController {
     }
 
     public void setUserProfile(Profile p) {
+        //User
+
     }
 }

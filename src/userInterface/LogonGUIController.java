@@ -179,6 +179,7 @@ public class LogonGUIController {
             Thread thread = new Thread(){
                 public void run() {
                     try {
+
                         ItemList.setItemList(CSVParser.readFile());
                         System.out.println("parsed file");
                         return;

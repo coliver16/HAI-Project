@@ -1,6 +1,7 @@
 package userInterface.newUser;
 
 import com.sun.java.accessibility.util.GUIInitializedListener;
+import database.update;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,11 +20,13 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.util.StringConverter;
+import local.CSVWriter;
 import sun.plugin2.message.Message;
 import userInterface.GuiNavigator;
 import users.Profile;
 
 import javax.swing.text.MaskFormatter;
+import java.io.IOException;
 import java.net.PasswordAuthentication;
 import java.security.Key;
 import java.util.regex.Matcher;
@@ -324,10 +327,20 @@ public class createUserGUIController {
     }
 
     @FXML
-    public void setCreateProfile(ActionEvent event) {
+    public void setCreateProfile(ActionEvent event) throws IOException {
         if (checkInput()) {
             Profile profile = new Profile(firstName.getText(), lastName.getText(), email.getText(), password.getText(), phoneNumber.getText(), insuranceCo.getText(),
                     insuranceFax.getText(), insuranceEmail.getText());
+            Thread thread = new Thread() {
+                public void run() {
+                    try {
+                        CSVWriter.writeUserProfile(profile);
+                        update.profileUpdate();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
             GuiNavigator.loadGui(GuiNavigator.CREATE_USER_SUCCESS_GUI);
             // TODO: need method to create user with server
         }

@@ -38,6 +38,7 @@ public class Main extends Application {
         primaryStage.setMaxHeight(1080);
         primaryStage.setMaxWidth(1920);
         primaryStage.show();
+        UserProfile.setUserProfile(CSVParser.readProfile());
         primaryStage.setOnCloseRequest( event -> {
             Platform.exit();
             System.exit(0);

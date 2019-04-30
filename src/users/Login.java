@@ -62,6 +62,12 @@ public class Login {
                 } else {
                     loggedIn = false;
                 }*/
+
+                // EventBus event required to pass login profile to GUI **DO NOT REMOVE**
+                EventBus eventBus = EventBusFactory.getEventBus();
+                UserLoginEvent userLoginEvent = new UserLoginEvent(currentProfile);
+                eventBus.register(userLoginEvent);
+                eventBus.post(userLoginEvent);
             }
 
 
