@@ -1,6 +1,9 @@
 package items;
 import java.lang.*;
+
+import local.*;
 import users.Profile;
+import users.UserProfile;
 
 /**
  * Item class
@@ -20,6 +23,16 @@ public class Item {
     private float value;
     private String comments;
     private Boolean deleted = false;
+    static Profile currentProfile;
+    static{
+        try {
+            currentProfile = CSVParser.readProfile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //currentProfile = UserProfile.getUserProfile();
 
     //Constructor to create an Item
     public Item(int item, /*User user,*/ Room room, Category category, Type type, String make, String model, String serial, String receipt, String photo, float value, String comments) {
@@ -152,7 +165,7 @@ public class Item {
     public void setPhoto(String s) { photo = s;}
 
     public String getKey(){return key; }
-    protected void setKey(String k){this.key=k;}
+    protected void setKey(){this.key=currentProfile.getEmail()+"/"+this.getItemNo()+this.getPhoto();}
 
     public float getValue() {
         return value;
