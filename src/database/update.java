@@ -39,8 +39,10 @@ public class update{
         S3 s3 = new S3();
         List<Item> remote = Download("Item_454");
         for(int i=0;i<remote.size();i++){
-            s3.downloadObject(remote.get(i).getKey());
-
+            String filename = remote.get(i).getPhoto();
+            String extension = filename.substring(filename.lastIndexOf(".") + 1, filename.length());
+            String s = remote.get(i).getItemNo() + "_" + remote.get(i).getMake() + "_" + remote.get(i).getModel() + "." + extension;
+            s3.downloadObject(s, currentProfile.getEmail() + "/" + s);
         }
         try {
             List<Item> local = CSVParser.readFile();
@@ -65,6 +67,7 @@ public class update{
         PreparedStatement pstmt=null;
 
         try {
+            S3 s3 = new S3();
             pstmt = conn.prepareStatement("INSERT INTO Profile_454 (profile_firstname, profile_lastname, profile_email, profile_password, profile_phone_number, policy_company, policy_fax, policy_claims_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             pstmt.setString(1,input.getFirstName());
             pstmt.setString(2,input.getLastName());
@@ -74,6 +77,7 @@ public class update{
             pstmt.setString(6,input.getInsuranceCompanyName());
             pstmt.setString(7,input.getInsuranceCompanyFax());
             pstmt.setString(8,input.getInsuranceCompanyEmail());
+            s3.createFolder(input.getEmail());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -255,7 +259,6 @@ public class update{
         }
 
         PreparedStatement pstmt = null;
-        S3 s3 = new S3();
         try {
             pstmt = conn.prepareStatement("DELETE FROM Item_454 WHERE (item_no = ? AND email_own = ?) ");
             pstmt.setInt( 1, newItem.getItemNo());
@@ -275,9 +278,6 @@ public class update{
             pstmt.setFloat(11,newItem.getValue());
             pstmt.setString(12,newItem.getComments());
             pstmt.setBoolean(13,newItem.isDeleted());
-            //s3.createFolder(currentProfile.getEmail());
-            //s3.putObject(currentProfile.getEmail() + "/" + newItem.getPhoto(), newItem.getPhoto());
-            //s3.putObject(currentProfile.getEmail() + "/" + newItem.getReceipt(), newItem.getReceipt());
             pstmt.executeUpdate();
             pstmt.close();
         } catch (SQLException e) {

@@ -22,7 +22,8 @@ public class priceSuggestor {
 
     public priceSuggestor() {};
 
-    /*static {
+    /*
+    static {
         try {
             conn = inventory.Connect();//establish database connection
         }
@@ -63,22 +64,27 @@ public class priceSuggestor {
                     priceArray = priceList.toArray(priceArray);
                     //Sort the array
                     Collections.sort(priceList);
-                    //If the # of elements in the array is odd, the median in the middle #
-                    if (size / 2 != 0) {
-                        medindex = (size + 1) / 2;
-                        estimate = priceArray[medindex];
+                    //If there is only one value in the array, that value is returned
+                    if (size == 1) {
+                    estimate = priceArray[0];
                     }
-                    //If the # of elements in the array is even, the median is the average of the 2 middle #s
+                    //If there is more than one item in the list, the median is returned
+                    else if (size > 1) {
+                        //If the # of elements in the array is odd, the median is the middle #
+                        if (size / 2 != 0) {
+                            medindex = (size / 2) + 1;
+                            estimate = priceArray[medindex];
+                        }
+                        //If the # of elements in the array is even, the median is the average of the 2 middle #s
+                        else {
+                            medindex = size / 2;
+                            estimate = (priceArray[medindex] + priceArray[medindex+1]) / 2;
+                        }
+                    }
+                    //If there isn't atleast one or more items in the array, 0 is returned
                     else {
-                        medindex = size / 2;
-                        if (size == 1) {
-                            estimate = (priceArray[medindex])/2;
-                        }
-                        else if (size > 1) {
-                            estimate = (priceArray[medindex] + priceArray[medindex + 1]) / 2;
-                        }
-                        else { estimate = 0;}
-                    }
+                        estimate = 0;
+                     }
                 }
         } catch (SQLException e) {
             e.printStackTrace();
