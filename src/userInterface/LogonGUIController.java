@@ -207,7 +207,6 @@ public class LogonGUIController {
 
         }
         else {
-            //username.clear();
             password.clear();
             message.setText("Your Password is Incorrect!");
             message.setFont(Font.font("Tahoma",15));
