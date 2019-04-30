@@ -218,7 +218,7 @@ public class addItemsGuiController {
         make.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (!newValue && !model.getText().isEmpty()) {
+                if (!newValue && !model.getText().isEmpty() && value.getText().isEmpty() && !make.getText().isEmpty()) {
                     priceSuggestor p = new priceSuggestor();
                     value.setText(String.valueOf(p.Suggest(make.getText(), model.getText(), "")));
                     tooltip.setText("HAI! We found you a suggested value.\n" +
@@ -234,7 +234,7 @@ public class addItemsGuiController {
         model.focusedProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                if (!newValue && !make.getText().isEmpty()) {
+                if (!newValue && !make.getText().isEmpty() && value.getText().isEmpty() && !make.getText().isEmpty()) {
                     priceSuggestor p = new priceSuggestor();
                     value.setText(String.valueOf(p.Suggest(make.getText(), model.getText(), "")));
                     tooltip.setText("HAI! We found you a suggested value.\n" +
