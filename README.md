@@ -21,7 +21,7 @@ https://www.jetbrains.com/idea/download/#section=windows
 
 You will also need to install the JDBC plugin, located in 'Settings' -> 'Plugins'
 
-### Setting Intellij Porject,  Project dependencies as well as Module Paths and Dependencies:
+### Setting Intellij Project,  Project dependencies as well as Module Paths and Dependencies:
 1. In Intellij, select to open Project, and open CIS_454_Project2 folder.
 2. Select File -> Project Structure (See fig 1):
     1. Select Java 1.8 JDK. (If this isn't an option, you need to install Java 1.8 JDK)
