@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 
 public class RoomTest {
 
+    //Constructor tests
     @Test void constructors()
     {
       Room r0 = new Room("Attic");
@@ -15,6 +16,7 @@ public class RoomTest {
       assertNotEquals(r1, r2);
     }
 
+    //Testing for getStatus
     @Test
     public void getStatus()
     {
@@ -22,6 +24,7 @@ public class RoomTest {
       assertNotEquals(r0.getStatus, Room.rooms.Diningroom);
     }
 
+    //Testing for getRoom
     @Test
     public void getRoom()
     {
@@ -29,6 +32,7 @@ public class RoomTest {
       assertNotEquals(r0.getRoom(), "Diningroom");
     }
 
+    //Testing for setRoom
     @Test
     public void setRoom()
     {
@@ -37,6 +41,7 @@ public class RoomTest {
       assertNotEquals(r0.getRoom(), "Attic");
     }
 
+    //Testing for setStatus
     @Test
     public void setStatus()
     {
