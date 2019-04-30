@@ -149,7 +149,7 @@ public class viewItemsGUIController {
                             S3 s3 = new S3();
                             String filename = original.getName();
                             String extension = filename.substring(filename.lastIndexOf(".") + 1, original.getName().length());
-                            String newPath = USER_IMAGES + i.getItemNo() + "_" + i.getMake() + "_" + i.getModel() + "." + extension;
+                            String newPath = USER_IMAGES+ i.getItemNo() + "_" + i.getMake() + "_" + i.getModel() + "." + extension;
                             File newFile = new File(newPath);
                             Files.copy(original.toPath(), newFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
                             //newFile.renameTo(new File(USER_IMAGES + i.getItemNo()+"_"+i.getMake()+"_"+i.getModel()));

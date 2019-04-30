@@ -1,5 +1,6 @@
 package items;
 import java.lang.*;
+import users.Profile;
 
 /**
  * Item class

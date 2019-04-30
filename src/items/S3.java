@@ -21,6 +21,7 @@ public class S3 {
     AmazonS3 s3 = AmazonS3ClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(creds)).withRegion(Regions.US_EAST_2).build();
 
     private String bucketName = "cis454project2";
+    private String folder;
 
     //List Buckets
     public void listBuckets()
@@ -52,9 +53,9 @@ public class S3 {
     }
 
     //Delete Object
-    public void deleteObject(String key)
+    public void deleteObject(String folder, String key)
     {
-        { s3.deleteObject(bucketName, key); }
+        { s3.deleteObject(folder, key); }
     }
 
     //Create Folder
@@ -65,5 +66,13 @@ public class S3 {
         InputStream emp = new ByteArrayInputStream(new byte[0]);
         PutObjectRequest p = new PutObjectRequest(bucketName, foldName + "/", emp, md);
         s3.putObject(p);
+    }
+
+    //Download Object
+    public void downloadObject (String key)
+    {
+        File download = new File(key);
+        ObjectMetadata obj = new ObjectMetadata();
+        obj = s3.getObject(new GetObjectRequest(bucketName, key), download);
     }
 }

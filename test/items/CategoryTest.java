@@ -1,6 +1,7 @@
 package items;
 
 import org.junit.Test;
+import org.hamcrest.*;
 
 import static org.junit.Assert.*;
 

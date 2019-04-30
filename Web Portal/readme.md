@@ -11,4 +11,4 @@
 #### To use the hosted web server
 
   - Create your account on the desktop app & add items
-  - Visit http://ec2-3-17-159-149.us-east-2.compute.amazonaws.com/ and input email & password
+  - Visit the link from the desktop app and input email & password
