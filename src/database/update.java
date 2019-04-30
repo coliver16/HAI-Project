@@ -48,7 +48,6 @@ public class update{
             List<Item> local = CSVParser.readFile();
             List<Item> up = compare(local,remote);
             Upload(up);
-            //CSVWriter.appendToCSV(remote);
         } catch (Exception e) {
             e.printStackTrace();
         }

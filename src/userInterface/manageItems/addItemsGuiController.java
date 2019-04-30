@@ -128,7 +128,7 @@ public class addItemsGuiController {
 
     private ObservableList<String> categoryOptions =
             FXCollections.observableArrayList(
-                    "Antiques", "Appliances", "Art", "Automotive", "Clothing", "Collectibles", "Electronic", "Furniture", "Jewelry", "MusicalInstruments", "Tools", "Other"
+                    "Antiques", "Appliances", "Art", "Automotive", "Clothing", "Collectibles", "Electronics", "Furniture", "Jewelry", "MusicalInstruments", "Tools", "Other"
             );
     private String categories[] = {"Antiques", "Appliances", "Art", "Automotive", "Clothing", "Collectibles", "Electronic", "Furniture", "Jewelry", "Musical Instruments", "Tools", "Other"};
 

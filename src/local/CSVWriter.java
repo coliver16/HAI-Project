@@ -38,11 +38,11 @@ public class CSVWriter {
 
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(USER_ITEMS_FILE));
 
-        CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.EXCEL.withHeader("itemNo","Room","Category","Type","make","model","serial","receipt","photo","value","comments","lastupdate","delete"));
+        CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.EXCEL.withHeader("itemNo","Room","Category","Type","make","model","serial","receipt","photo","value","comments","lastupdate","delete","email_own"));//4/30 JGP added email_own header
         ) {
           for  (Item i: items) {
               if (!"itemNo".equals(i.getItemNo())) {
-                  csvPrinter.printRecord(i.getItemNo(), i.getRoom().getStatus(), i.getCategory().getCategory(), i.getType().getProductTypeString(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments(), FORMATTER.format(new Date()).toString(), i.isDeleted().booleanValue());
+                  csvPrinter.printRecord(i.getItemNo(), i.getRoom().getStatus(), i.getCategory().getCategory(), i.getType().getProductTypeString(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments(), FORMATTER.format(new Date()).toString(), i.isDeleted().booleanValue(), i.email);//4/30 JGP added i.email string
               }
           }
             csvPrinter.flush();
@@ -62,7 +62,7 @@ public class CSVWriter {
         ){
             for (Item i: items) {
                 if (!"itemNo".equals(i.getItemNo())) {
-                    csvPrinter.printRecord(i.getItemNo(), i.getRoom().getStatus(), i.getCategory().getCategory(), i.getType().getProductTypeString(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments(), FORMATTER.format(new Date()).toString(), i.isDeleted().booleanValue());
+                    csvPrinter.printRecord(i.getItemNo(), i.getRoom().getStatus(), i.getCategory().getCategory(), i.getType().getProductTypeString(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments(), FORMATTER.format(new Date()).toString(), i.isDeleted().booleanValue(), i.email);//4/30 JGP added i.email string
                 }
             }
         }

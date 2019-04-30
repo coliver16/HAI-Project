@@ -12,7 +12,7 @@ public class Item {
     int i = "thing/stuff".indexOf('/');
     String string = "thing/stuff".substring(i+1, "thing/stuff".length());
     private int itemNo;
-    //public String email;
+    public String email;
     private Room room;
     private Category category;
     private Type type;
@@ -34,7 +34,7 @@ public class Item {
         }
     }
 
-    //currentProfile = UserProfile.getUserProfile();
+//currentProfile = UserProfile.getUserProfile();
 
     //Constructor to create an Item
     public Item(int item, /*User user,*/ Room room, Category category, Type type, String make, String model, String serial, String receipt, String photo, float value, String comments) {
@@ -50,6 +50,7 @@ public class Item {
         this.photo = photo;
         this.value = value;
         this.comments = comments;
+        this.email = currentProfile.getEmail();
     }
 
     //Constructor for update an Item
@@ -111,6 +112,8 @@ public class Item {
         } else {
             this.comments = comments;
         }
+
+        this.email=currentProfile.getEmail();
         //
 
     }
