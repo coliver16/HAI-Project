@@ -9,6 +9,8 @@ import users.UserProfile;
  * Item class
  */
 public class Item {
+    int i = "thing/stuff".indexOf('/');
+    String string = "thing/stuff".substring(i+1, "thing/stuff".length());
     private int itemNo;
     //public String email;
     private Room room;
