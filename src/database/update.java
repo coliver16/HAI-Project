@@ -36,14 +36,14 @@ public class update{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //S3 s3 = new S3();
+        S3 s3 = new S3();
         List<Item> remote = Download("Item_454");
-        /*for(int i=0;i<remote.size();i++){
+        for(int i=0;i<remote.size();i++){
             String filename = remote.get(i).getPhoto();
             String extension = filename.substring(filename.lastIndexOf(".") + 1, filename.length());
             String s = remote.get(i).getItemNo() + "_" + remote.get(i).getMake() + "_" + remote.get(i).getModel() + "." + extension;
-            s3.downloadObject(s, currentProfile.getEmail() + "/" + s);
-        }*/
+            s3.downloadObject(s, currentProfile.getEmail() + "/" + "src\\local\\images\\" + s);
+        }
         try {
             List<Item> local = CSVParser.readFile();
             List<Item> up = compare(local,remote);
