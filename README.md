@@ -85,9 +85,9 @@ A user can add a single item by pressing Add Item or can add multiple items by p
 
 ## Misc Details:
 1. This is a Java based application that utilizes JavaFX for the GUI.
-..* Due to some complications with compatibility, HAI! currently is only compatible with Windows.
+    ..* Due to some complications with compatibility, HAI! currently is only compatible with Windows.
 2. We integrated Guava EventBus to enable us to efficiently use multi-threaded functions to keep UI thread open.
-..* [https://github.com/google/guava/wiki/EventBusExplained]
+    ..* [https://github.com/google/guava/wiki/EventBusExplained]
 3. We use AWS in conjunction with S3 for storage of images and item lists.
 4. Our recommender algorithm is currently based on finding median values for similar items uploaded to our system.
 
