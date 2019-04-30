@@ -69,9 +69,9 @@ public class S3 {
     }
 
     //Download Object
-    public void downloadObject (String key)
+    public void downloadObject (String filepath, String key)
     {
-        File download = new File(key);
+        File download = new File("src\\local\\images\\" + filepath);
         ObjectMetadata obj = new ObjectMetadata();
         obj = s3.getObject(new GetObjectRequest(bucketName, key), download);
     }
