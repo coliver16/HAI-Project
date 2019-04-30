@@ -41,18 +41,15 @@ You will also need to install the JDBC plugin, located in 'Settings' -> 'Plugins
     6. import jar_files folder as a whole
 
 Figure 1:
-![alt text][f1]
-[f1]: https://github.com/nlrobson/CIS_454_Project2/blob/master/HAI_ProjectSettings.PNG "Project Settings"
+![alt text](https://github.com/nlrobson/CIS_454_Project2/blob/master/HAI_ProjectSettings.PNG "Project Settings")
 
 
 Figure 2:
-![alt text][f2]
-[f2]: https://github.com/nlrobson/CIS_454_Project2/blob/master/HAI_ModuleSources.PNG "Module Sources"
+![alt text](https://github.com/nlrobson/CIS_454_Project2/blob/master/HAI_ModuleSources.PNG "Module Sources")
 
 
 Figure f3:
-![alt text][f3]
-[f3]: https://github.com/nlrobson/CIS_454_Project2/blob/master/HAI_ModuleDependencies.PNG "Module Dependencies"
+![alt text](https://github.com/nlrobson/CIS_454_Project2/blob/master/HAI_ModuleDependencies.PNG "Module Dependencies")
 
 
 
