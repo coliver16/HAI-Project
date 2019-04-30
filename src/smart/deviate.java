@@ -1,12 +1,13 @@
 package smart;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //Create a class "deviate" which has the values userInputs and suggested
 public class deviate {
     static float userInput;
     static float suggested;
-    public static List<Float> deviations;
+    public static List<Float> deviations = new ArrayList<>();
     public static float devDec = 0;
 
     //Constructor

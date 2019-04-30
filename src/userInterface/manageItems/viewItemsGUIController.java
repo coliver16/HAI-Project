@@ -49,7 +49,7 @@ public class viewItemsGUIController {
 
     private String name;
     private List<Item> itemImports = ItemList.getItemList();
-    private int increment = 1000;
+    private int increment = 1;
 
     private Alert alertConfirmDelete = new Alert(Alert.AlertType.CONFIRMATION);
     private Alert alertConfirmAdd = new Alert(Alert.AlertType.CONFIRMATION);
@@ -103,14 +103,12 @@ public class viewItemsGUIController {
     public class EventHandler {
         @Subscribe
         public void parseEvent(ParseEvent event) {
-            System.out.println("Made it to event");
             itemList.getItems().clear();
             itemImports = (List) event.getMessage();
-            System.out.println("Event: " + event.toString());
-            System.out.println(itemImports.get(0).getMake());
             itemList.getItems().clear();
             for (Item i : itemImports) {
                 if (!i.isDeleted()) {
+                    if (i.getItemNo() > increment) { increment = i.getItemNo() + 1;}
                     Item item = new Item(i.getItemNo(), new Room(i.getRoom().getStatus()), i.getCategory(), i.getType(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments());
                     //itemList.getItems().add(i);
 
@@ -331,7 +329,6 @@ public class viewItemsGUIController {
 
         itemList.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-                System.out.println("Selection event");
                 int i = itemList.getSelectionModel().getSelectedIndex();
                 Item thing;
                 thing = (Item) itemList.getItems().get((Integer) i);

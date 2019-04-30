@@ -20,6 +20,8 @@ public class priceSuggestor {
     static float devPointer = dev;
     public static int numDevUpdates;
 
+    public priceSuggestor() {};
+
     static {
         try {
             conn = inventory.Connect();//establish database connection
@@ -29,14 +31,14 @@ public class priceSuggestor {
         }
     }
 
-    public float Suggest(String make, String model, String year) {
+    public int Suggest(String make, String model, String year) {
         float estimate = 0;
         int medindex;
         int size = 0;
         Float[] priceArray = new Float[size];
         ArrayList<Float> priceList = new ArrayList<>();
         try {
-            pstmt = conn.prepareStatement("select item_price from items_454 where item_make = ? and item_model = ? and item_comments like ? ");
+            pstmt = conn.prepareStatement("select item_price from Item_454 where item_make = ? and item_model = ? and item_comments like ? ");
             pstmt.setString(1, make);
             pstmt.setString(2, model);
             pstmt.setString(3, "%" + year + "%");
@@ -60,7 +62,13 @@ public class priceSuggestor {
                     //If the # of elements in the array is even, the median is the average of the 2 middle #s
                     else {
                         medindex = size / 2;
-                        estimate = (priceArray[medindex] + priceArray[medindex + 1]) / 2;
+                        if (size == 1) {
+                            estimate = (priceArray[medindex])/2;
+                        }
+                        else if (size > 1) {
+                            estimate = (priceArray[medindex] + priceArray[medindex + 1]) / 2;
+                        }
+                        else { estimate = 0;}
                     }
                 }
             //Returns "no data" if the result set is empty
@@ -86,7 +94,7 @@ public class priceSuggestor {
         }
         //Account for deviation
         estimate += estimate*dev;
-        return estimate;
+        return (int) estimate;
     }
 }
     //TODO: Add Suggest() and addDeviationDecimal() methods to GUI

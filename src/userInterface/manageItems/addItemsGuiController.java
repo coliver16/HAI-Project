@@ -3,6 +3,8 @@ package userInterface.manageItems;
 import com.google.common.eventbus.EventBus;
 import eventBus.EventBusFactory;
 import items.*;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,7 +20,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import smart.priceSuggestor;
 
+import javax.swing.event.ChangeEvent;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
@@ -31,6 +35,7 @@ public class addItemsGuiController {
     private File defaultReceipt = new File("src\\userInterface\\manageItems\\noReceipt.png");
     String tempImage;
     String tempReceipt;
+    final Tooltip tooltip = new Tooltip();
 
     private Alert invalidInput = new Alert(Alert.AlertType.ERROR);
 
@@ -190,6 +195,13 @@ public class addItemsGuiController {
 
         value.setPromptText("200.00");
 
+        /*tooltip.setText(
+                "\nHAI! We found you a suggested value.\n" +
+                        "Feel free to adjust as desired!"
+        );*/
+
+       // value.setTooltip(tooltip);
+
         commentslabel.setText("Comments");
         commentslabel.setFont(Font.font("Tahoma",15));
         commentslabel.setTextFill(Color.rgb(255,255,255));
@@ -203,25 +215,35 @@ public class addItemsGuiController {
         cancel.setText("Cancel Item");
 
 
-        /*Rectangle clip = new Rectangle(itemImage.getFitWidth(), itemImage.getFitHeight());
-        Rectangle clip1 = new Rectangle(itemReceipt.getFitWidth(), itemReceipt.getFitHeight());
-        clip.setArcWidth(20);
-        clip.setArcHeight(20);
-        clip1.setArcWidth(20);
-        clip1.setArcHeight(20);
+        make.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if (!newValue && !model.getText().isEmpty()) {
+                    priceSuggestor p = new priceSuggestor();
+                    value.setText(String.valueOf(p.Suggest(make.getText(), model.getText(), "")));
+                    tooltip.setText("HAI! We found you a suggested value.\n" +
+                            "Feel free to adjust as desired!");
+                    tooltip.setFont(new Font("Arial", 14));
+                    value.setTooltip(tooltip);
+                }
+            }
+        });
 
-        SnapshotParameters parameters = new SnapshotParameters();
-        parameters.setFill(Color.TRANSPARENT);
-        WritableImage cloud = itemImage.snapshot(parameters, null);
-        WritableImage user = itemReceipt.snapshot(parameters,null);
 
-        itemImage.setClip(null);
-        itemReceipt.setEffect((new DropShadow(20, Color.BLACK)));
 
-        itemImage.setClip(null);
-        itemReceipt.setEffect((new DropShadow(20,Color.BLACK)));
-        itemImage.setImage(imageBox);
-        itemReceipt.setImage(receiptBox);*/
+        model.focusedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if (!newValue && !make.getText().isEmpty()) {
+                    priceSuggestor p = new priceSuggestor();
+                    value.setText(String.valueOf(p.Suggest(make.getText(), model.getText(), "")));
+                    tooltip.setText("HAI! We found you a suggested value.\n" +
+                            "Feel free to adjust as desired!");
+                    tooltip.setFont(new Font("Arial", 14));
+                    value.setTooltip(tooltip);
+                }
+            }
+        });
 
 
     }
