@@ -370,7 +370,7 @@ public class manageUserGUIController {
     }
 
     public boolean validatePasswords() {
-        return (password == verifyPassword);
+        return (password.getText().equals(verifyPassword.getText()));
     }
 
     @FXML
@@ -383,19 +383,19 @@ public class manageUserGUIController {
         if (checkInput()) {
             Optional<ButtonType> result = confirmProfileChange.showAndWait();
             if (result.get() == ButtonType.OK){
-
-                setUserProfile(new Profile(firstName.getText(), lastName.getText(), email.getText(), password.getText(), phoneNumber.getText(), insuranceCo.getText(),
-                        insuranceFax.getText(), insuranceEmail.getText()));
-                Thread thread = new Thread() {
-                    public void run() {
+                System.out.println(password.getText());
+                Profile profile = new Profile(firstName.getText(), lastName.getText(), email.getText(), password.getText(), phoneNumber.getText(), insuranceCo.getText(),
+                        insuranceFax.getText(), insuranceEmail.getText());
+                //Thread thread = new Thread() {
+                 //   public void run() {
                         try {
-                            CSVWriter.writeUserProfile(UserProfile.getUserProfile());
+                            CSVWriter.writeUserProfile(profile);
                             update.profileUpdate();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                    }
-                };
+                    //}
+               // };
                 // TODO: need method call to update user profile and password with server
                 GuiNavigator.loadGui(GuiNavigator.MAIN_MENU_GUI);
             }
