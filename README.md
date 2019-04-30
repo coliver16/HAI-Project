@@ -40,15 +40,15 @@ You will also need to install the JDBC plugin, located in 'Settings' -> 'Plugins
     5. guava-23.0.jar
     6. import jar_files folder as a whole
 
-Figure 1:
+**_Figure 1:_**
 ![alt text](https://github.com/nlrobson/CIS_454_Project2/blob/master/HAI_ProjectSettings.PNG "Project Settings")
 
 
-Figure 2:
+**_Figure 2:_**
 ![alt text](https://github.com/nlrobson/CIS_454_Project2/blob/master/HAI_ModuleSources.PNG "Module Sources")
 
 
-Figure f3:
+**_Figure 3:_**
 ![alt text](https://github.com/nlrobson/CIS_454_Project2/blob/master/HAI_ModuleDependencies.PNG "Module Dependencies")
 
 
