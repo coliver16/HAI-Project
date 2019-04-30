@@ -1,5 +1,5 @@
 # HAI! CIS_454_Project 2
-# 2nd Group Project, Group 4
+2nd Group Project, Group 4
 
 HAI, Homeowners Assistant for Insurance
 
@@ -52,6 +52,9 @@ You will also need to install the JDBC plugin, located in 'Settings' -> 'Plugins
 ![alt text](https://github.com/nlrobson/CIS_454_Project2/blob/master/HAI_ModuleDependencies.PNG "Module Dependencies")
 
 
+### Web Portal
+Web Portal information can be found at [https://github.com/nlrobson/CIS_454_Project2/blob/master/Web%20Portal/readme.md]
+
 
 ### Running HAI!
 Once the Java and Intellij environment is setup:
@@ -82,15 +85,12 @@ A user can add a single item by pressing Add Item or can add multiple items by p
 
 ## Misc Details:
 1. This is a Java based application that utilizes JavaFX for the GUI.
-..*Due to some complications with compatibility, HAI! currently is only compatible with Windows.
+..* Due to some complications with compatibility, HAI! currently is only compatible with Windows.
 2. We integrated Guava EventBus to enable us to efficiently use multi-threaded functions to keep UI thread open.
-..*[https://github.com/google/guava/wiki/EventBusExplained]
+..* [https://github.com/google/guava/wiki/EventBusExplained]
 3. We use AWS in conjunction with S3 for storage of images and item lists.
 4. Our recommender algorithm is currently based on finding median values for similar items uploaded to our system.
 
 **NOTE: The Main.java is located in src/userinterface/**
 **Each JavaFXML file has a corresponding controller.java class that controls the functionality**
 
-[f1]: https://github.com/nlrobson/CIS_454_Project2/HAI_ProjectSettings.PNG
-[f2]: https://github.com/nlrobson/CIS_454_Project2/HAI_ModuleSources.PNG
-[f3]: https://github.com/nlrobson/CIS_454_Project2/HAI_ModuleDependencies.PNG
