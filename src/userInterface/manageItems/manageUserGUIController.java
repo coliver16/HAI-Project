@@ -423,7 +423,7 @@ public class manageUserGUIController {
                 try {
                     CSVWriter.writeUserProfile(profile);
                     // write changes to server
-                    update.profileUpdate();
+                    update.ProfileUpdate();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
