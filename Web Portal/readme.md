@@ -11,4 +11,5 @@
 #### To use the hosted web server
 
   - Create your account on the desktop app & add items
-  - Visit the link from the desktop app and input email & password
+  - Visit the link from the desktop app and input email & password, or;
+  - [Visit the site from here](ec2-18-217-117-132.us-east-2.compute.amazonaws.com)
