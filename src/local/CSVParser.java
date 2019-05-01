@@ -17,6 +17,7 @@ import org.apache.commons.csv.*;
 //import users.User;
 import local.ParseEvent;
 import users.Profile;
+import users.UserProfile;
 
 /**
  * CSVParser is responsible for parsing CSV files to requried data structures
@@ -35,9 +36,10 @@ public class CSVParser {
         File file= new File(fileName);
         String path = file.getAbsolutePath();
         Reader in = new FileReader(path);
-        Iterable<CSVRecord> records = CSVFormat.EXCEL.withHeader("itemNo","Room","Category","Type","make","model","serial","receipt","photo","value","comments","lastupdate","delete").parse(in);
+        Iterable<CSVRecord> records = CSVFormat.EXCEL.withHeader("itemNo","Room","Category","Type","make","model","serial","receipt","photo","value","comments","lastupdate","delete", "email_own").parse(in); // added email_own
+        Profile p = UserProfile.getUserProfile();
         for (CSVRecord record : records) {
-            if (!record.get("Room").equals("Room")) {
+            if (!record.get("Room").equals("Room") && record.get("email_own").equals(p.getEmail())) {
 
                 String i = record.get("itemNo");
                 int itemNo;
