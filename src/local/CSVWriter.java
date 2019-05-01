@@ -1,5 +1,7 @@
 package local;
 
+import com.google.common.eventbus.EventBus;
+import eventBus.EventBusFactory;
 import items.Category;
 import items.Item;
 import items.Room;
@@ -47,6 +49,11 @@ public class CSVWriter {
           }
             csvPrinter.flush();
         }
+
+        EventBus eventBus = EventBusFactory.getEventBus();
+        ParseEvent pevent = new ParseEvent(items);
+        eventBus.register(pevent);
+        eventBus.post(pevent);
     }
 
     /**

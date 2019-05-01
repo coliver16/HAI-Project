@@ -131,6 +131,7 @@ public class MainMenuGUIController {
      */
     @FXML
     public void setLogOut(ActionEvent event) {
+        UserProfile.clear();
         setLoggedIn(true);
         GuiNavigator.loadGui(GuiNavigator.LOGIN_GUI);
     }
