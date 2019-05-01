@@ -45,6 +45,7 @@ public class addItemsGuiController {
     private String selectedRoom;
     private String selectedCat;
 
+
     /**
      * Set JavaFX objects
      */
