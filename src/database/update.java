@@ -37,7 +37,7 @@ public class update{
             e.printStackTrace();
         }
         S3 s3 = new S3();
-        List<Item> remote = Download("Item_454");
+        List<Item> remote = Download("Item_454");//pull item list from server
         for(int i=0;i<remote.size();i++){
             String filename = remote.get(i).getPhoto();
             String extension = filename.substring(filename.lastIndexOf(".") + 1, filename.length());
@@ -45,9 +45,11 @@ public class update{
             s3.downloadObject(s, currentProfile.getEmail() + "/" + "src\\local\\images\\" + s);
         }
         try {
-            List<Item> local = CSVParser.readFile();
-            List<Item> up = compare(local,remote);
+            List<Item> local = CSVParser.readFile();//pull item list from csv file
+            List<Item> up = compare(local,remote);//compare and pop local where equals remote
             Upload(up);
+            remote = Download("Item_454");//get updated item list from database
+            CSVWriter.writeCSV(remote);
         } catch (Exception e) {
             e.printStackTrace();
         }
