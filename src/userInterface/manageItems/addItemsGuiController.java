@@ -160,7 +160,7 @@ public class addItemsGuiController {
 
         // set dropdown values
         room.setItems(roomOptions);
-        room.setEditable(true);
+        room.setEditable(false);
 
         categoryLabel.setText("Category");
         categoryLabel.setFont(Font.font("Tahoma",15));
@@ -169,7 +169,7 @@ public class addItemsGuiController {
 
         // set dropdown values
         category.setItems(categoryOptions);
-        category.setEditable(true);
+        category.setEditable(false);
 
         productLabel.setText("Product");
         productLabel.setFont(Font.font("Tahoma",15));
@@ -177,6 +177,7 @@ public class addItemsGuiController {
         productLabel.setEffect(dropShadow);
 
         productType.setPromptText("Type of Item");
+
 
         makeLabel.setText("Make");
         makeLabel.setFont(Font.font("Tahoma",15));
@@ -249,6 +250,60 @@ public class addItemsGuiController {
                 }
             }
         });
+
+        value.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    value.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+                if (value.getText().length() > 7) {
+                    String s = value.getText().substring(0, 7);
+                    value.setText(s);
+                }
+            }
+        });
+
+        serial.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (serial.getText().length() > 30) {
+                    String s = serial.getText().substring(0, 30);
+                    serial.setText(s);
+                }
+            }
+        });
+
+        make.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (make.getText().length() > 20) {
+                    String s = make.getText().substring(0, 20);
+                    make.setText(s);
+                }
+            }
+        });
+
+        model.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (model.getText().length() > 20) {
+                    String s = model.getText().substring(0, 20);
+                    model.setText(s);
+                }
+            }
+        });
+
+        productType.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (productType.getText().length() > 20) {
+                    String s = productType.getText().substring(0, 20);
+                    productType.setText(s);
+                }
+            }
+        });
+
 
 
     }
