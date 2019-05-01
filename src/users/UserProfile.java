@@ -3,6 +3,10 @@ package users;
 import com.google.common.eventbus.Subscribe;
 
 public class UserProfile {
+    public static void clear() {
+        userProfile = new Profile("","","","","","","","");
+    }
+
     public class EventHandler {
         @Subscribe
         public void userLoginEvent(UserLoginEvent event) {

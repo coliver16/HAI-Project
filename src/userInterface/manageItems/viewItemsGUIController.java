@@ -154,7 +154,6 @@ public class viewItemsGUIController {
                             Files.copy(original.toPath(), newFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
                             //newFile.renameTo(new File(USER_IMAGES + i.getItemNo()+"_"+i.getMake()+"_"+i.getModel()));
                             i.setPhoto(newFile.toPath().toString());
-                            s3.createFolder(UserProfile.getUserProfile().getEmail());
                             s3.putObject(UserProfile.getUserProfile().getEmail() + "/" + newFile.toPath(), newFile.getAbsolutePath());
                         }
                         else {
@@ -164,6 +163,7 @@ public class viewItemsGUIController {
                         // save local copy of item receipt
                         if (i.getReceipt() != null) {
                             File original = new File(i.getReceipt());
+                            S3 s3 = new S3();
                             String filename = original.getName();
                             String extension = filename.substring(filename.lastIndexOf(".") + 1, original.getName().length());
                             String newPath = USER_RECEIPTS + i.getItemNo() + "_" + i.getMake() + "_" + i.getModel() + "_RECEIPT" + "." + extension;
@@ -171,6 +171,7 @@ public class viewItemsGUIController {
                             Files.copy(original.toPath(), newFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
                             //newFile.renameTo(new File(USER_IMAGES + i.getItemNo()+"_"+i.getMake()+"_"+i.getModel()));
                             i.setPhoto(newFile.toPath().toString());
+                            s3.putObject(UserProfile.getUserProfile().getEmail() + "/" + newFile.toPath(), newFile.getAbsolutePath());
                         }
                         else {
                             i.setReceipt(defaultReceipt.getPath().toString());
@@ -342,12 +343,16 @@ public class viewItemsGUIController {
         // add initial items to list
         for (Item i : itemImports) {
             //Item item = new Item(i.getItemNo(), new Room(i.getRoom().getStatus()), i.getCategory(), i.getType(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments());
-            if (!i.isDeleted()) {
-                //itemList.getItems().add(new Item(i.getItemNo(), new Room(i.getRoom().getStatus().toString()), i.getCategory(), i.getType(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments()));
-                itemList.getItems().add(i);
-                if (i.getItemNo() > increment) {
-                    increment = i.getItemNo() + 1;
-                }
+            //if(i.email.equals(UserProfile.getUserProfile().getEmail())) {//4/30 JGP check email for user ownership
+                if ((!i.isDeleted())){ //&& (i.email == UserProfile.getUserProfile().getEmail())) {
+                    //System.out.println("item: " + i.getModel()+ " email: " + i.email);
+                    //System.out.println(UserProfile.getUserProfile().getEmail());
+                    //itemList.getItems().add(new Item(i.getItemNo(), new Room(i.getRoom().getStatus().toString()), i.getCategory(), i.getType(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments()));
+                    itemList.getItems().add(i);
+                    if (i.getItemNo() > increment) {
+                        increment = i.getItemNo() + 1;
+                    }
+                //}
             }
         }
 

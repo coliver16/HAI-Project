@@ -40,6 +40,9 @@ public class addItemsGuiController {
     String tempReceipt;
     final Tooltip tooltip = new Tooltip();
 
+    private String selectedRoom;
+    private String selectedCat;
+
     /**
      * Set JavaFX objects
      */
@@ -128,7 +131,7 @@ public class addItemsGuiController {
 
     private ObservableList<String> categoryOptions =
             FXCollections.observableArrayList(
-                    "Antiques", "Appliances", "Art", "Automotive", "Clothing", "Collectibles", "Electronic", "Furniture", "Jewelry", "MusicalInstruments", "Tools", "Other"
+                    "Antiques", "Appliances", "Art", "Automotive", "Clothing", "Collectibles", "Electronics", "Furniture", "Jewelry", "MusicalInstruments", "Tools", "Other"
             );
     private String categories[] = {"Antiques", "Appliances", "Art", "Automotive", "Clothing", "Collectibles", "Electronic", "Furniture", "Jewelry", "Musical Instruments", "Tools", "Other"};
 
@@ -160,7 +163,15 @@ public class addItemsGuiController {
 
         // set dropdown values
         room.setItems(roomOptions);
-        room.setEditable(true);
+
+        room.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue ov, String t, String t1) {
+                selectedRoom = t1;
+                room.getEditor().setText(t1);
+            }
+        });
+        //room.setEditable(true);
 
         categoryLabel.setText("Category");
         categoryLabel.setFont(Font.font("Tahoma",15));
@@ -169,7 +180,15 @@ public class addItemsGuiController {
 
         // set dropdown values
         category.setItems(categoryOptions);
-        category.setEditable(true);
+
+        category.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue ov, String t, String t1) {
+                selectedCat = t1;
+                category.getEditor().setText(t1);
+            }
+        });
+        //category.setEditable(true);
 
         productLabel.setText("Product");
         productLabel.setFont(Font.font("Tahoma",15));
@@ -177,6 +196,7 @@ public class addItemsGuiController {
         productLabel.setEffect(dropShadow);
 
         productType.setPromptText("Type of Item");
+
 
         makeLabel.setText("Make");
         makeLabel.setFont(Font.font("Tahoma",15));
@@ -249,6 +269,60 @@ public class addItemsGuiController {
                 }
             }
         });
+
+        value.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    value.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+                if (value.getText().length() > 7) {
+                    String s = value.getText().substring(0, 7);
+                    value.setText(s);
+                }
+            }
+        });
+
+        serial.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (serial.getText().length() > 30) {
+                    String s = serial.getText().substring(0, 30);
+                    serial.setText(s);
+                }
+            }
+        });
+
+        make.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (make.getText().length() > 20) {
+                    String s = make.getText().substring(0, 20);
+                    make.setText(s);
+                }
+            }
+        });
+
+        model.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (model.getText().length() > 20) {
+                    String s = model.getText().substring(0, 20);
+                    model.setText(s);
+                }
+            }
+        });
+
+        productType.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (productType.getText().length() > 20) {
+                    String s = productType.getText().substring(0, 20);
+                    productType.setText(s);
+                }
+            }
+        });
+
 
 
     }

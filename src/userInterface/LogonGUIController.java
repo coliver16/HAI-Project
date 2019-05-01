@@ -198,6 +198,8 @@ public class LogonGUIController {
 
     @FXML
     private void loginButton(ActionEvent event) throws Exception {
+        //TODO: Compare username provided with the username of the user profile (if loaded. should be loaded from main controller if exists)
+        //TODO: If the nuser name and UserProfile name are different, then we need to delete the user's CSV file for items.
         final String user = username.getText();
         final String pass = password.getText();
         System.out.println("User: " + user + " Pass: " + pass);

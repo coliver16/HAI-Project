@@ -3,6 +3,7 @@ import local.*;
 import userInterface.Main;
 import items.*;
 import users.Profile;
+import users.UserProfile;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -22,7 +23,7 @@ public class update{
 
     static {
         try {
-            currentProfile = CSVParser.readProfile();
+            currentProfile = UserProfile.getUserProfile();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -32,25 +33,41 @@ public class update{
 
     public static void update(){
         try {
+            currentProfile = CSVParser.readProfile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
             conn = inventory.Connect();//establish database connection
         } catch (Exception e) {
             e.printStackTrace();
         }
         S3 s3 = new S3();
-        List<Item> remote = Download("Item_454");
+        List<Item> remote = Download("Item_454");//pull item list from server
         for(int i=0;i<remote.size();i++){
-            s3.downloadObject(remote.get(i).getKey());
-
+            String filename = remote.get(i).getPhoto();
+            String extension = filename.substring(filename.lastIndexOf(".") + 1, filename.length());
+            String s = remote.get(i).getItemNo() + "_" + remote.get(i).getMake() + "_" + remote.get(i).getModel() + "." + extension;
+            s3.downloadObject(s, currentProfile.getEmail() + "/" + "src\\local\\images\\" + s);
         }
         try {
-            List<Item> local = CSVParser.readFile();
-            List<Item> up = compare(local,remote);
+            List<Item> local = CSVParser.readFile();//pull item list from csv file
+            List<Item> up = compare(local,remote);//compare and pop local where equals remote
             Upload(up);
-            CSVWriter.appendToCSV(remote);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        finally {
+
+        remote = Download("Item_454");//get updated item list from database
+        try {
+            CSVWriter.writeCSV(remote);
+            CSVParser.readFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
             try {
                 if(conn != null)conn.close();
             } catch (SQLException e) {
@@ -60,11 +77,17 @@ public class update{
     }
 
     public static void CreateProfile(Profile input){
+        try {
+            currentProfile = CSVParser.readProfile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         try { conn = inventory.Connect();//establish database connection
         } catch (Exception e) {e.printStackTrace(); }
         PreparedStatement pstmt=null;
 
         try {
+            S3 s3 = new S3();
             pstmt = conn.prepareStatement("INSERT INTO Profile_454 (profile_firstname, profile_lastname, profile_email, profile_password, profile_phone_number, policy_company, policy_fax, policy_claims_email) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             pstmt.setString(1,input.getFirstName());
             pstmt.setString(2,input.getLastName());
@@ -74,6 +97,7 @@ public class update{
             pstmt.setString(6,input.getInsuranceCompanyName());
             pstmt.setString(7,input.getInsuranceCompanyFax());
             pstmt.setString(8,input.getInsuranceCompanyEmail());
+            s3.createFolder(input.getEmail());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -93,7 +117,11 @@ public class update{
     }
 
     public static void ProfileUpdate(){
-
+        try {
+            currentProfile = CSVParser.readProfile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         try { conn = inventory.Connect();//establish database connection
         } catch (Exception e) {e.printStackTrace(); }
         PreparedStatement pstmt=null;
@@ -139,6 +167,11 @@ public class update{
 
     public static void Upload(List<Item> out){
         try {
+            currentProfile = CSVParser.readProfile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
             List<Item> input = new ArrayList<>(out);//set new List<Item> = local .CSV file
             while (!input.isEmpty()){//upload to database one item at a time
                 Item entry = input.remove(0);
@@ -151,6 +184,11 @@ public class update{
     }
 
     public static List<Item> Download(String db){
+        try {
+            currentProfile = CSVParser.readProfile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         try {
             conn = inventory.Connect();//establish database connection
@@ -168,7 +206,9 @@ public class update{
             pstmt.setString(1,currentProfile.getEmail());
             rs = pstmt.executeQuery();
             while (rs.next()) {
-                int itemNo = Integer.valueOf(rs.getString("item_id"));
+                int itemNo;
+                if(db == "Item_454"){itemNo = Integer.valueOf(rs.getString("item_no"));}
+                else{itemNo = Integer.valueOf((rs.getString("item_id")));}
                 //System.out.println("room" + rs.getString("item_room"));
                 Room room = new Room(rs.getString("item_room"));
                 Category category = new Category(rs.getString("item_category"));
@@ -195,6 +235,11 @@ public class update{
 
     public static void addDeleted(Item newItem)
     {
+        try {
+            currentProfile = CSVParser.readProfile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         try {
             conn = inventory.Connect();//establish database connection
@@ -222,7 +267,7 @@ public class update{
             pstmt.setFloat(11,newItem.getValue());
             pstmt.setString(12,newItem.getComments());
             pstmt.executeUpdate();
-            pstmt = conn.prepareStatement("DELETE FROM Item_454 WHERE (item_id = ? AND email_own = ?) ");
+            pstmt = conn.prepareStatement("DELETE FROM Item_454 WHERE (item_no = ? AND email_own = ?) ");
             pstmt.setInt( 1, newItem.getItemNo());
             pstmt.setString(2,currentProfile.getEmail());
             pstmt.executeUpdate();
@@ -247,6 +292,11 @@ public class update{
     //Add an Item
     public static void addItem(Item newItem)
     {
+        try {
+            currentProfile = CSVParser.readProfile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         try {
             conn = inventory.Connect();//establish database connection
@@ -255,7 +305,6 @@ public class update{
         }
 
         PreparedStatement pstmt = null;
-        S3 s3 = new S3();
         try {
             pstmt = conn.prepareStatement("DELETE FROM Item_454 WHERE (item_no = ? AND email_own = ?) ");
             pstmt.setInt( 1, newItem.getItemNo());
@@ -275,9 +324,6 @@ public class update{
             pstmt.setFloat(11,newItem.getValue());
             pstmt.setString(12,newItem.getComments());
             pstmt.setBoolean(13,newItem.isDeleted());
-            //s3.createFolder(currentProfile.getEmail());
-            //s3.putObject(currentProfile.getEmail() + "/" + newItem.getPhoto(), newItem.getPhoto());
-            //s3.putObject(currentProfile.getEmail() + "/" + newItem.getReceipt(), newItem.getReceipt());
             pstmt.executeUpdate();
             pstmt.close();
         } catch (SQLException e) {

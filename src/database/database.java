@@ -10,11 +10,13 @@ import users.Login;
 //import items.S3;
 
 public class database{
-    /*//Driver, Host + URL
+    /*
+    Driver, Host + URL
     static final String databaseHost = "haiproject.database.windows.net";
     static final String databaseURL = "jdbc:sqlserver://haiproject.database.windows.net:1433;database=Inventory";
     static final String databaseDriver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    //Database credentials*/
+    Database credentials
+    */
     //static final String User = "haiadmin";
     //static final String pass = "HAIpassw0rd";
 

@@ -1,13 +1,18 @@
 package items;
 import java.lang.*;
+
+import local.*;
 import users.Profile;
+import users.UserProfile;
 
 /**
  * Item class
  */
 public class Item {
+    int i = "thing/stuff".indexOf('/');
+    String string = "thing/stuff".substring(i+1, "thing/stuff".length());
     private int itemNo;
-    //public String email;
+    public String email;
     private Room room;
     private Category category;
     private Type type;
@@ -19,10 +24,21 @@ public class Item {
     private String key = "";
     private float value;
     private String comments;
-    private Boolean deleted = false;
+    private Boolean deleted;
+    static Profile currentProfile;
+
+
+//currentProfile = UserProfile.getUserProfile();
 
     //Constructor to create an Item
     public Item(int item, /*User user,*/ Room room, Category category, Type type, String make, String model, String serial, String receipt, String photo, float value, String comments) {
+
+        try {
+            currentProfile = CSVParser.readProfile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         this.itemNo = item;
         //this.userno = user;
         this.room = room;
@@ -35,6 +51,8 @@ public class Item {
         this.photo = photo;
         this.value = value;
         this.comments = comments;
+        this.email = currentProfile.getEmail();
+        this.deleted = false;
     }
 
     //Constructor for update an Item
@@ -96,6 +114,8 @@ public class Item {
         } else {
             this.comments = comments;
         }
+
+        this.email=currentProfile.getEmail();
         //
 
     }
@@ -152,7 +172,7 @@ public class Item {
     public void setPhoto(String s) { photo = s;}
 
     public String getKey(){return key; }
-    protected void setKey(String k){this.key=k;}
+    protected void setKey(){this.key=currentProfile.getEmail()+"/"+this.getItemNo()+this.getPhoto();}
 
     public float getValue() {
         return value;
