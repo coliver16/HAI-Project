@@ -20,6 +20,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import smart.deviate;
 import smart.priceSuggestor;
 
 import javax.swing.event.ChangeEvent;
@@ -39,6 +40,7 @@ public class addItemsGuiController {
     String tempImage;
     String tempReceipt;
     final Tooltip tooltip = new Tooltip();
+    private float smartPricing;
 
     private String selectedRoom;
     private String selectedCat;
@@ -247,7 +249,11 @@ public class addItemsGuiController {
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if (!newValue && !model.getText().isEmpty() && (value.getText().isEmpty() || value.getText().equals("0") )&& !make.getText().isEmpty()) {
                     priceSuggestor p = new priceSuggestor();
-                    value.setText(String.valueOf(p.Suggest(make.getText(), model.getText(), "")));
+                    smartPricing = p.Suggest(make.getText(), model.getText(), "");
+                    //value.setText(String.valueOf(p.Suggest(make.getText(), model.getText(), "")));
+                    if (smartPricing > (float)0) {
+                        value.setText(String.valueOf(smartPricing));
+                    }
                     tooltip.setText("HAI! We found you a suggested value.\n" +
                             "Feel free to adjust as desired!");
                     tooltip.setFont(new Font("Arial", 14));
@@ -261,7 +267,11 @@ public class addItemsGuiController {
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 if (!newValue && !make.getText().isEmpty() && (value.getText().isEmpty() || value.getText().equals("0") ) && !make.getText().isEmpty()) {
                     priceSuggestor p = new priceSuggestor();
-                    value.setText(String.valueOf(p.Suggest(make.getText(), model.getText(), "")));
+                    smartPricing = p.Suggest(make.getText(), model.getText(), "");
+                    //value.setText(String.valueOf(p.Suggest(make.getText(), model.getText(), "")));
+                    if (smartPricing > (float)0) {
+                        value.setText(String.valueOf(smartPricing));
+                    }
                     tooltip.setText("HAI! We found you a suggested value.\n" +
                             "Feel free to adjust as desired!");
                     tooltip.setFont(new Font("Arial", 14));
@@ -397,7 +407,9 @@ public class addItemsGuiController {
             Type t = new Type(productType.getText());
 
             Item item = new Item(0, r, c, t, make.getText(), model.getText(), serial.getText(), tempReceipt, tempImage, Float.parseFloat(value.getText()), comments.getText());
-
+            if (!value.getText().equals(String.valueOf(smartPricing)) && smartPricing > 0) {
+                deviate.addDeviationDecimal(smartPricing, Float.valueOf(value.getText()));
+            }
             ItemEvent itemEvent = new ItemEvent(item);
             eventBus.register(itemEvent);
             eventBus.post(itemEvent);
@@ -432,7 +444,9 @@ public class addItemsGuiController {
             Type t = new Type(productType.getText());
 
             Item item = new Item(0, r, c, t, make.getText(), model.getText(), serial.getText(), tempReceipt, tempImage, Float.parseFloat(value.getText()), comments.getText());
-
+            if (!value.getText().equals(String.valueOf(smartPricing)) && smartPricing > 0) {
+                deviate.addDeviationDecimal(smartPricing, Float.valueOf(value.getText()));
+            }
             ItemEvent itemEvent = new ItemEvent(item);
             eventBus.register(itemEvent);
             eventBus.post(itemEvent);
@@ -455,6 +469,7 @@ public class addItemsGuiController {
         serial.clear();
         value.clear();
         comments.clear();
+        smartPricing = (float) 0;
     }
 
     /**

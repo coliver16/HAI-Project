@@ -123,6 +123,34 @@ public class CSVParser {
         return profile;
     }
 
+    /**
+     * Parse user profile from CSV
+     * @return user profile
+     * @throws Exception
+     */
+    static public List<Float> readDeviations() throws Exception {
+
+        List<Float> dev = new ArrayList<>();
+
+
+        String fileName= "src\\smart\\deviations.csv";
+        File file= new File(fileName);
+        String path = file.getAbsolutePath();
+        Reader in = new FileReader(path);
+        Iterable<CSVRecord> records = CSVFormat.EXCEL.withHeader("deviation").parse(in);
+        for (CSVRecord record : records) {
+            if (!record.get("deviation").equals("deviation")) {
+                dev.add(Float.parseFloat(record.get("deviation")));
+            }
+       }
+
+        System.out.println("Parsed user profile");
+
+        if (dev.isEmpty()) {
+            dev.add((float) 0);
+        }
+        return dev;
+    }
 
 
 

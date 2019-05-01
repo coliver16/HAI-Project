@@ -123,7 +123,7 @@ public class viewItemsGUIController {
             for (Item i : itemImports) {
                 // filter deleted items from user view
                 if (!i.isDeleted()) {
-                    if (i.getItemNo() > increment) { increment = i.getItemNo() + 1;}
+                    if (i.getItemNo() > increment) { increment = i.getItemNo() + 1; }
                     Item item = new Item(i.getItemNo(), new Room(i.getRoom().getStatus()), i.getCategory(), i.getType(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments());
                     itemList.getItems().add(item);
                 }
@@ -138,7 +138,7 @@ public class viewItemsGUIController {
         @Subscribe
         public void itemEvent(ItemEvent event) {
             System.out.println("Item Added");
-            event.getMessage().setItemNo(increment++);
+           // event.getMessage().setItemNo(increment++);
             Item i = event.getMessage();
             Thread thread = new Thread() {
                 public void run() {
@@ -176,6 +176,7 @@ public class viewItemsGUIController {
                         else {
                             i.setReceipt(defaultReceipt.getPath().toString());
                         }
+                        i.setItemNo(increment++);
 
                         // add item to display list and user item list
                         itemImports.add(i);

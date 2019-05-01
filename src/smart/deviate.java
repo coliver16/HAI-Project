@@ -1,5 +1,9 @@
 package smart;
 
+import items.ItemList;
+import local.CSVParser;
+import local.CSVWriter;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +56,21 @@ public class deviate {
         deviate d = new deviate(suggested, input);
         singleDevAddition = d.calculateSingleDeviation();
         deviations.add(singleDevAddition);
+
+        Thread thread = new Thread() {
+            public void run() {
+                try {
+                    CSVWriter.deviationCSV(deviations);
+                    System.out.println("wrote file deviations");
+                } catch (Exception e) {
+                    System.out.println("Error");
+                    e.printStackTrace();
+                    System.out.println(e);
+                }
+            }
+        };
+        thread.start();
+
     }
 
     //Check if there are enough deviations to update dev
@@ -68,6 +87,16 @@ public class deviate {
 
     //Calculates the mean of all single deviations in order to return an adjusted/updated overall deviation to be accounted for during future suggestions
     public static float devUpdate() {
+        if (deviations.isEmpty()) {
+            try {
+                deviations = CSVParser.readDeviations();
+                System.out.println("wrote file deviations");
+            } catch (Exception e) {
+                System.out.println("Error");
+                e.printStackTrace();
+                System.out.println(e);
+            }
+        }
         boolean proceed = checkDeviationsSize();
         float sum = 0;
         float standard = .8f;

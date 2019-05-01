@@ -28,6 +28,7 @@ public class CSVWriter {
     // locations of local files
     private static final String USER_ITEMS_FILE = "src\\local\\useritems.csv";
     private static final String USER_PROFILE = "src\\users\\userprofile.csv";
+    private static final String DEVIATION_LIST = "src\\smart\\deviations.csv";
     // date format
     private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
@@ -87,6 +88,24 @@ public class CSVWriter {
              CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.EXCEL.withHeader("firstName","lastName","email","password","phoneNumber","insuranceCompanyName","insuranceCompanyFax", "insuranceCompanyEmail"));
         ) {
             csvPrinter.printRecord(profile.getFirstName().toString(), profile.getLastName(), profile.getEmail(), profile.getPw(), profile.getPhoneNumber(), profile.getInsuranceCompanyName(), profile.getInsuranceCompanyFax(), profile.getInsuranceCompanyEmail());
+            csvPrinter.flush();
+        }
+    }
+
+    /**
+     * Write deviation list csv
+     * @param deviations list of user items
+     * @throws IOException
+     */
+    public static void deviationCSV(List<Float> deviations) throws IOException {
+
+        try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(DEVIATION_LIST));
+
+             CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.EXCEL.withHeader("deviation"));
+        ) {
+            for  (Float i: deviations) {
+                csvPrinter.printRecord(i);
+            }
             csvPrinter.flush();
         }
     }

@@ -1,8 +1,5 @@
 itemNo,Room,Category,Type,make,model,serial,receipt,photo,value,comments,lastupdate,delete,email_own
-0,Livingroom,Electronics,Television,Sony,Bravia,123456789,src\local\receipts\receipt.jpg,src\local\images\SonyBravia.jpg,1200.0,netflix-stuff,2019-04-30 22:19:24.462,false,yeyeet@yeet.yeet
-27,Livingroom,Furniture,Couch,Lazy Boy,Black Panther,NA,src\local\receipts\receipt.jpg,src\local\images\LazyBoy.jpg,2000.0,Unicorn Leather,2019-04-30 22:19:24.462,false,yeyeet@yeet.yeet
-55,Gameroom,Electronics,Computer,Apple,MacBook,66758,src\local\receipts\receipt.jpg,photo,999.0,Cuz I'm hip,2019-04-30 22:19:24.462,false,yeyeet@yeet.yeet
-68,Gameroom,Electronics,Speakers,Dolby,Atmos,9875,src\local\receipts\receipt.jpg,photo,400.0,Eargasm,2019-04-30 22:19:24.463,false,yeyeet@yeet.yeet
-75,Kitchen,Appliances,Refrigerator,GE,Frigerator 2000,64879531,src\local\receipts\receipt.jpg,photo,800.0,Keeping my shit cold since I 2018,2019-04-30 22:19:24.463,false,yeyeet@yeet.yeet
-101,Bedroom,Electronics,Television,LG,TVinator 21000,16345,src\local\receipts\receipt.jpg,photo,200.0,Watching more smut,2019-04-30 22:19:24.463,false,yeyeet@yeet.yeet
-1000,Attic,Appliances,yeet,yeet2,yeet3,adslkfjasd,src\userInterface\manageItems\noReceipt.png,src\local\images\1000_yeet2_yeet3.jpg,10.0,,2019-04-30 22:19:24.463,false,yeyeet@yeet.yeet
+0,Livingroom,Electronics,Television,Sony,Bravia,123456789,src\local\receipts\receipt.jpg,src\local\images\SonyBravia.jpg,1200.0,netflix-stuff,2019-04-30 23:35:32.704,false,yeyeet@yeet.yeet
+27,Livingroom,Furniture,Couch,Lazy Boy,Black Panther,NA,src\local\receipts\receipt.jpg,src\local\images\LazyBoy.jpg,2000.0,Unicorn Leather,2019-04-30 23:35:32.704,false,yeyeet@yeet.yeet
+55,Gameroom,Electronics,Computer,Apple,MacBook,66758,src\local\receipts\receipt.jpg,photo,999.0,Cuz I'm hip,2019-04-30 23:35:32.704,false,yeyeet@yeet.yeet
+58,Bedroom,Clothing,Electroncis,Sony,Bravia,wf3,src\userInterface\manageItems\noReceipt.png,src\userInterface\manageItems\noImage.png,12000.0,,2019-04-30 23:35:32.704,false,yeyeet@yeet.yeet

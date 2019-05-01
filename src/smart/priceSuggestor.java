@@ -16,7 +16,7 @@ public class priceSuggestor {
     static Profile currentProfile;
     PreparedStatement pstmt = null;
     ResultSet rs = null;
-    static float dev = deviate.devUpdate();
+    static float dev;// = deviate.devUpdate();
     static float devPointer = dev;
     public static int numDevUpdates;
 
@@ -33,6 +33,7 @@ public class priceSuggestor {
     }*/
 
     public int Suggest(String make, String model, String year) {
+        dev = deviate.devUpdate();
         float estimate = 0;
         int medindex;
         int size = 0;
@@ -71,14 +72,14 @@ public class priceSuggestor {
                     //If there is more than one item in the list, the median is returned
                     else if (size > 1) {
                         //If the # of elements in the array is odd, the median is the middle #
-                        if (size / 2 != 0) {
+                        if (size % 2 != 0) {
                             medindex = (size / 2) + 1;
                             estimate = priceArray[medindex];
                         }
                         //If the # of elements in the array is even, the median is the average of the 2 middle #s
                         else {
                             medindex = size / 2;
-                            estimate = (priceArray[medindex] + priceArray[medindex+1]) / 2;
+                            estimate = (priceArray[medindex-1] + priceArray[medindex]) / 2;
                         }
                     }
                     //If there isn't atleast one or more items in the array, 0 is returned
