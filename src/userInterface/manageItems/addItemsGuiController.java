@@ -40,6 +40,9 @@ public class addItemsGuiController {
     String tempReceipt;
     final Tooltip tooltip = new Tooltip();
 
+    private String selectedRoom;
+    private String selectedCat;
+
     /**
      * Set JavaFX objects
      */
@@ -160,7 +163,15 @@ public class addItemsGuiController {
 
         // set dropdown values
         room.setItems(roomOptions);
-        room.setEditable(false);
+
+        room.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue ov, String t, String t1) {
+                selectedRoom = t1;
+                room.getEditor().setText(t1);
+            }
+        });
+        //room.setEditable(true);
 
         categoryLabel.setText("Category");
         categoryLabel.setFont(Font.font("Tahoma",15));
@@ -169,7 +180,15 @@ public class addItemsGuiController {
 
         // set dropdown values
         category.setItems(categoryOptions);
-        category.setEditable(false);
+
+        category.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue ov, String t, String t1) {
+                selectedCat = t1;
+                category.getEditor().setText(t1);
+            }
+        });
+        //category.setEditable(true);
 
         productLabel.setText("Product");
         productLabel.setFont(Font.font("Tahoma",15));
