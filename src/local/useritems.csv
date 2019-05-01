@@ -1,5 +1,8 @@
 itemNo,Room,Category,Type,make,model,serial,receipt,photo,value,comments,lastupdate,delete,email_own
-0,Livingroom,Electronics,Television,Sony,Bravia,123456789,src\local\receipts\receipt.jpg,src\local\images\SonyBravia.jpg,1200.0,netflix-stuff,2019-04-30 23:35:32.704,false,yeyeet@yeet.yeet
-27,Livingroom,Furniture,Couch,Lazy Boy,Black Panther,NA,src\local\receipts\receipt.jpg,src\local\images\LazyBoy.jpg,2000.0,Unicorn Leather,2019-04-30 23:35:32.704,false,yeyeet@yeet.yeet
-55,Gameroom,Electronics,Computer,Apple,MacBook,66758,src\local\receipts\receipt.jpg,photo,999.0,Cuz I'm hip,2019-04-30 23:35:32.704,false,yeyeet@yeet.yeet
-58,Bedroom,Clothing,Electroncis,Sony,Bravia,wf3,src\userInterface\manageItems\noReceipt.png,src\userInterface\manageItems\noImage.png,12000.0,,2019-04-30 23:35:32.704,false,yeyeet@yeet.yeet
+1001,Kitchen,Collectibles,Cheez-Its,Cheez,Its,Not Serial; Cheez-Its,src\userInterface\manageItems\noReceipt.png,src\local\images\1001_Cheez_Its.jpg,20.0,CHEEZ-ITS,2019-04-30 23:29:24.266,false,johndoe@gmail.com
+0,Livingroom,Electronics,Television,Sony,Bravia,123456789,src\local\receipts\receipt.jpg,src\local\images\SonyBravia.jpg,1200.0,netflix-stuff,2019-04-30 23:29:24.266,false,johndoe@gmail.com
+27,Livingroom,Furniture,Couch,Lazy Boy,Black Panther,NA,src\local\receipts\receipt.jpg,src\local\images\LazyBoy.jpg,2000.0,Unicorn Leather,2019-04-30 23:29:24.266,false,johndoe@gmail.com
+1003,Gameroom,Automotive,Engine,GEO,PRIZM,something,src\userInterface\manageItems\noReceipt.png,src\local\images\1003_GEO_PRIZM.jpg,625.0,Gaming power,2019-04-30 23:29:24.267,false,johndoe@gmail.com
+68,Gameroom,Electronics,Speakers,Dolby,Atmos,9875,src\local\receipts\receipt.jpg,photo,400.0,Eargasm,2019-04-30 23:29:24.267,false,johndoe@gmail.com
+1000,Attic,Appliances,yeet,yeet2,yeet3,adslkfjasd,src\userInterface\manageItems\noReceipt.png,src\local\images\1000_yeet2_yeet3.jpg,10.0,,2019-04-30 23:29:24.267,false,johndoe@gmail.com
+1002,Bathroom,Art,Priceless Art,Fancy,Schmancy,ART,src\userInterface\manageItems\noReceipt.png,src\local\images\1002_Fancy_Schmancy.jpg,10.0,Priceless art,2019-04-30 23:29:24.267,false,johndoe@gmail.com
