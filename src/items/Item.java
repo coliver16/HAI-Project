@@ -26,18 +26,19 @@ public class Item {
     private String comments;
     private Boolean deleted = false;
     static Profile currentProfile;
-    static{
-        try {
-            currentProfile = CSVParser.readProfile();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
 
 //currentProfile = UserProfile.getUserProfile();
 
     //Constructor to create an Item
     public Item(int item, /*User user,*/ Room room, Category category, Type type, String make, String model, String serial, String receipt, String photo, float value, String comments) {
+
+        try {
+            currentProfile = CSVParser.readProfile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         this.itemNo = item;
         //this.userno = user;
         this.room = room;

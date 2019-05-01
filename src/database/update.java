@@ -3,6 +3,7 @@ import local.*;
 import userInterface.Main;
 import items.*;
 import users.Profile;
+import users.UserProfile;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -22,7 +23,7 @@ public class update{
 
     static {
         try {
-            currentProfile = CSVParser.readProfile();
+            currentProfile = UserProfile.getUserProfile();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -48,9 +49,15 @@ public class update{
             List<Item> local = CSVParser.readFile();//pull item list from csv file
             List<Item> up = compare(local,remote);//compare and pop local where equals remote
             Upload(up);
-            remote = Download("Item_454");//get updated item list from database
-            CSVWriter.writeCSV(remote);
+
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        remote = Download("Item_454");//get updated item list from database
+        try {
+            CSVWriter.writeCSV(remote);
+        } catch (IOException e) {
             e.printStackTrace();
         }
         finally {

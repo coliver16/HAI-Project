@@ -345,8 +345,8 @@ public class viewItemsGUIController {
             //Item item = new Item(i.getItemNo(), new Room(i.getRoom().getStatus()), i.getCategory(), i.getType(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments());
             //if(i.email.equals(UserProfile.getUserProfile().getEmail())) {//4/30 JGP check email for user ownership
                 if ((!i.isDeleted())){ //&& (i.email == UserProfile.getUserProfile().getEmail())) {
-                    System.out.println("item: " + i.getModel()+ " email: " + i.email);
-                    System.out.println(UserProfile.getUserProfile().getEmail());
+                    //System.out.println("item: " + i.getModel()+ " email: " + i.email);
+                    //System.out.println(UserProfile.getUserProfile().getEmail());
                     //itemList.getItems().add(new Item(i.getItemNo(), new Room(i.getRoom().getStatus().toString()), i.getCategory(), i.getType(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments()));
                     itemList.getItems().add(i);
                     if (i.getItemNo() > increment) {
