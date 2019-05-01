@@ -50,10 +50,10 @@ public class CSVWriter {
             csvPrinter.flush();
         }
 
-        EventBus eventBus = EventBusFactory.getEventBus();
+       /* EventBus eventBus = EventBusFactory.getEventBus();
         ParseEvent pevent = new ParseEvent(items);
         eventBus.register(pevent);
-        eventBus.post(pevent);
+        eventBus.post(pevent);*/
     }
 
     /**

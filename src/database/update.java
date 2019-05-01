@@ -62,10 +62,12 @@ public class update{
         remote = Download("Item_454");//get updated item list from database
         try {
             CSVWriter.writeCSV(remote);
+            CSVParser.readFile();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally {
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
             try {
                 if(conn != null)conn.close();
             } catch (SQLException e) {
@@ -265,7 +267,7 @@ public class update{
             pstmt.setFloat(11,newItem.getValue());
             pstmt.setString(12,newItem.getComments());
             pstmt.executeUpdate();
-            pstmt = conn.prepareStatement("DELETE FROM Item_454 WHERE (item_id = ? AND email_own = ?) ");
+            pstmt = conn.prepareStatement("DELETE FROM Item_454 WHERE (item_no = ? AND email_own = ?) ");
             pstmt.setInt( 1, newItem.getItemNo());
             pstmt.setString(2,currentProfile.getEmail());
             pstmt.executeUpdate();

@@ -24,7 +24,7 @@ public class Item {
     private String key = "";
     private float value;
     private String comments;
-    private Boolean deleted = false;
+    private Boolean deleted;
     static Profile currentProfile;
 
 
@@ -52,6 +52,7 @@ public class Item {
         this.value = value;
         this.comments = comments;
         this.email = currentProfile.getEmail();
+        this.deleted = false;
     }
 
     //Constructor for update an Item
