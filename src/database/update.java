@@ -32,6 +32,11 @@ public class update{
 
     public static void update(){
         try {
+            currentProfile = CSVParser.readProfile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
             conn = inventory.Connect();//establish database connection
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,6 +68,11 @@ public class update{
     }
 
     public static void CreateProfile(Profile input){
+        try {
+            currentProfile = CSVParser.readProfile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         try { conn = inventory.Connect();//establish database connection
         } catch (Exception e) {e.printStackTrace(); }
         PreparedStatement pstmt=null;
@@ -98,7 +108,11 @@ public class update{
     }
 
     public static void ProfileUpdate(){
-
+        try {
+            currentProfile = CSVParser.readProfile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         try { conn = inventory.Connect();//establish database connection
         } catch (Exception e) {e.printStackTrace(); }
         PreparedStatement pstmt=null;
@@ -144,6 +158,11 @@ public class update{
 
     public static void Upload(List<Item> out){
         try {
+            currentProfile = CSVParser.readProfile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
             List<Item> input = new ArrayList<>(out);//set new List<Item> = local .CSV file
             while (!input.isEmpty()){//upload to database one item at a time
                 Item entry = input.remove(0);
@@ -156,6 +175,11 @@ public class update{
     }
 
     public static List<Item> Download(String db){
+        try {
+            currentProfile = CSVParser.readProfile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         try {
             conn = inventory.Connect();//establish database connection
@@ -202,6 +226,11 @@ public class update{
 
     public static void addDeleted(Item newItem)
     {
+        try {
+            currentProfile = CSVParser.readProfile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         try {
             conn = inventory.Connect();//establish database connection
@@ -254,6 +283,11 @@ public class update{
     //Add an Item
     public static void addItem(Item newItem)
     {
+        try {
+            currentProfile = CSVParser.readProfile();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         try {
             conn = inventory.Connect();//establish database connection
