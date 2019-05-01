@@ -1,6 +1,8 @@
 package userInterface.manageItems;
 
 import database.update;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.SnapshotParameters;
@@ -214,7 +216,13 @@ public class manageUserGUIController {
             } catch (Exception e) {
                 finalString = "INVALID NUMBER";
             }
-            insuranceFax.setText(finalString);
+            if (finalString.length() > 12) {
+                String s = finalString.substring(0, 12);
+                insuranceFax.setText(s);
+            }
+            else {
+                insuranceFax.setText(finalString);
+            }
         });
 
         // text formatter for phone number
@@ -239,7 +247,14 @@ public class manageUserGUIController {
             } catch (Exception e) {
                 finalString = "INVALID NUMBER";
             }
-            phoneNumber.setText(finalString);
+
+            if (finalString.length() > 12) {
+                String s = finalString.substring(0, 12);
+                phoneNumber.setText(s);
+            }
+            else {
+                phoneNumber.setText(finalString);
+            }
         });
 
         whyHai.setText("Why HAI");
@@ -289,7 +304,76 @@ public class manageUserGUIController {
         password.setEditable(true);
         verifyPassword.setEditable(true);
 
-        //updateProfile.setDisable(false);
+        firstName.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (firstName.getText().length() > 20) {
+                    String s = firstName.getText().substring(0, 20);
+                    firstName.setText(s);
+                }
+            }
+        });
+
+        lastName.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (lastName.getText().length() > 20) {
+                    String s = lastName.getText().substring(0, 20);
+                    lastName.setText(s);
+                }
+            }
+        });
+
+        email.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (email.getText().length() > 20) {
+                    String s = email.getText().substring(0, 20);
+                    email.setText(s);
+                }
+            }
+        });
+
+        password.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (password.getText().length() > 20) {
+                    String s = password.getText().substring(0, 20);
+                    password.setText(s);
+                }
+            }
+        });
+
+        verifyPassword.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (verifyPassword.getText().length() > 20) {
+                    String s = verifyPassword.getText().substring(0, 20);
+                    verifyPassword.setText(s);
+                }
+            }
+        });
+
+        insuranceEmail.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (insuranceEmail.getText().length() > 20) {
+                    String s = insuranceEmail.getText().substring(0, 20);
+                    insuranceEmail.setText(s);
+                }
+            }
+        });
+
+        insuranceCo.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (insuranceCo.getText().length() > 20) {
+                    String s = insuranceCo.getText().substring(0, 20);
+                    insuranceCo.setText(s);
+                }
+            }
+        });
+
 
     }
 
