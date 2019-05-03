@@ -451,7 +451,10 @@ public class addItemsGuiController {
             ItemEvent itemEvent = new ItemEvent(item);
             eventBus.register(itemEvent);
             eventBus.post(itemEvent);
+
+
             addReset();
+            //Stage stage = (Stage) submit.getScene().getWindow();
         }
         else {
             invalidInput.showAndWait();
@@ -462,8 +465,8 @@ public class addItemsGuiController {
      * reset item to default
      */
     private void addReset() {
-        roomOptions.clear();
-        categoryOptions.clear();
+        room.getSelectionModel().clearSelection();
+        category.getSelectionModel().clearSelection();
         productType.clear();
         make.clear();
         model.clear();

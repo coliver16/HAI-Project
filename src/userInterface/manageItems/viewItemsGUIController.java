@@ -133,6 +133,7 @@ public class viewItemsGUIController {
                 }
 
             }
+
         }
 
         /**
@@ -314,7 +315,6 @@ public class viewItemsGUIController {
         column10.setMinWidth(100);
         column11.setMinWidth(225);
 
-
         // setting cell factories for enumerated values
         column2.setCellValueFactory(cellData -> {
             return new SimpleStringProperty(cellData.getValue().getRoom().getStatus().toString());
@@ -356,6 +356,8 @@ public class viewItemsGUIController {
             }
             initialized = true;
         }
+
+        itemList.getSortOrder().add(column1);
 
 
         /**
