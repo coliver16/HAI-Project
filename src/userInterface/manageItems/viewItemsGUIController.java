@@ -138,7 +138,7 @@ public class viewItemsGUIController {
         @Subscribe
         public void itemEvent(ItemEvent event) {
             System.out.println("Item Added");
-           // event.getMessage().setItemNo(increment++);
+            event.getMessage().setItemNo(increment++);
             Item i = event.getMessage();
             Thread thread = new Thread() {
                 public void run() {
@@ -170,18 +170,18 @@ public class viewItemsGUIController {
                             File newFile = new File(newPath);
                             Files.copy(original.toPath(), newFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
                             //newFile.renameTo(new File(USER_IMAGES + i.getItemNo()+"_"+i.getMake()+"_"+i.getModel()));
-                            i.setPhoto(newFile.toPath().toString());
+                            i.setReceipt(newFile.toPath().toString());
                             s3.putObject(UserProfile.getUserProfile().getEmail() + "/" + newFile.toPath(), newFile.getAbsolutePath());
                         }
                         else {
                             i.setReceipt(defaultReceipt.getPath().toString());
                         }
-                        i.setItemNo(increment++);
+                        //i.setItemNo(increment++);
 
                         // add item to display list and user item list
                         itemImports.add(i);
                         itemList.getItems().add(i);
-                        ItemList.itemList.add(i);
+                        ItemList.addItem(i);
 
                         List<Item> l = new ArrayList<>();
                         l.add(i);
@@ -349,10 +349,10 @@ public class viewItemsGUIController {
                     //System.out.println("item: " + i.getModel()+ " email: " + i.email);
                     //System.out.println(UserProfile.getUserProfile().getEmail());
                     //itemList.getItems().add(new Item(i.getItemNo(), new Room(i.getRoom().getStatus().toString()), i.getCategory(), i.getType(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments()));
-                    itemList.getItems().add(i);
-                    if (i.getItemNo() > increment) {
-                        increment = i.getItemNo() + 1;
-                    }
+                    //itemList.getItems().add(i);
+                    //if (i.getItemNo() > increment) {
+                    //    increment = i.getItemNo() + 1;
+                    //}
                 //}
             }
         }
@@ -414,11 +414,14 @@ public class viewItemsGUIController {
                 for (Item j : ItemList.itemList) {
                     if (j.Compare(i)) {
                         i.itemDelete();
+                        j.itemDelete();
+
                         itemList.getItems().remove(i);
                     }
                 }
             }
             alertConfirmDelete.close();
+            ItemList.itemList.isEmpty();
 
             // update items on CSV with background thread
             Thread thread = new Thread() {

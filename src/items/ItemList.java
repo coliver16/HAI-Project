@@ -30,7 +30,7 @@ public class ItemList {
         return itemList;
     }
 
-    public List<Item> addItem(Item i) {
+    public static List<Item> addItem(Item i) {
         itemList.add(i);
         return itemList;
     }
