@@ -51,7 +51,8 @@ public class update{
             s3.downloadObject(s, currentProfile.getEmail() + "/" + "src\\local\\images\\" + s);
         }
         try {
-            List<Item> local = CSVParser.readFile();//pull item list from csv file
+            //List<Item> local = CSVParser.readFile();//pull item list from csv file
+            List<Item> local = ItemList.getItemList();//pull item list from csv file
             List<Item> up = compare(local,remote);//compare and pop local where equals remote
             Upload(up);
 

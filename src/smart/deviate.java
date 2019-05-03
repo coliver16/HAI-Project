@@ -122,7 +122,10 @@ public class deviate {
         //Dev has gone through atleast one update, but not enough new data has been collected for an update, therefore the old dev value is returned
         else {devDec = priceSuggestor.devPointer;}
         //empty the array, so that the next 10 values can be stored + devUpdate can update dev accordingly
-        deviations.clear();
+        if (deviations.size() > 10){
+            deviations.remove(0);
+        }
+        //deviations.clear();
         return devDec;
     }
 }

@@ -1,6 +1,8 @@
 package items;
 
+import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
+import eventBus.EventBusFactory;
 import local.ParseEvent;
 
 import java.util.ArrayList;
@@ -10,6 +12,11 @@ import java.util.List;
  * Public class holding list of user items.
  */
 public class ItemList {
+    private EventBus eventBus = EventBusFactory.getEventBus();
+    public void initialize() {
+        EventHandler handler = new EventHandler();
+        eventBus.register(handler);
+    }
 
     public class EventHandler {
         @Subscribe

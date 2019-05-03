@@ -23,6 +23,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import local.CSVParser;
 import local.CSVWriter;
 import local.ParseEvent;
 import userInterface.GuiNavigator;
@@ -55,6 +56,7 @@ public class viewItemsGUIController {
     // increment is used to serialize new items.
     private int increment = 1;
 
+    private boolean initialized = false;
     private Alert alertConfirmDelete = new Alert(Alert.AlertType.CONFIRMATION);
     private Alert alertConfirmAdd = new Alert(Alert.AlertType.CONFIRMATION);
 
@@ -117,6 +119,8 @@ public class viewItemsGUIController {
          */
         @Subscribe
         public void parseEvent(ParseEvent event) {
+            // Updated repeat bug. Updating global class object after parse.
+            ItemList.setItemList(event.getMessage());
             itemList.getItems().clear();
             itemImports = (List) event.getMessage();
             itemList.getItems().clear();
@@ -342,20 +346,17 @@ public class viewItemsGUIController {
 
 
         // add initial items to list
-        for (Item i : itemImports) {
-            //Item item = new Item(i.getItemNo(), new Room(i.getRoom().getStatus()), i.getCategory(), i.getType(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments());
-            //if(i.email.equals(UserProfile.getUserProfile().getEmail())) {//4/30 JGP check email for user ownership
-                if ((!i.isDeleted())){ //&& (i.email == UserProfile.getUserProfile().getEmail())) {
-                    //System.out.println("item: " + i.getModel()+ " email: " + i.email);
-                    //System.out.println(UserProfile.getUserProfile().getEmail());
-                    //itemList.getItems().add(new Item(i.getItemNo(), new Room(i.getRoom().getStatus().toString()), i.getCategory(), i.getType(), i.getMake(), i.getModel(), i.getSerial(), i.getReceipt(), i.getPhoto(), i.getValue(), i.getComments()));
-                    //itemList.getItems().add(i);
-                    //if (i.getItemNo() > increment) {
-                    //    increment = i.getItemNo() + 1;
-                    //}
-                //}
+        if (!initialized) {
+            for (Item i : itemImports) {
+                if (!i.isDeleted()) {
+
+                    itemList.getItems().add(i);
+                }
+
             }
+            initialized = true;
         }
+
 
         /**
          * Selection handler for table.
@@ -416,12 +417,14 @@ public class viewItemsGUIController {
                         i.itemDelete();
                         j.itemDelete();
 
-                        itemList.getItems().remove(i);
+                        this.itemList.getItems().remove(i);
+                        //itemImports.remove(i);
                     }
                 }
             }
             alertConfirmDelete.close();
-            ItemList.itemList.isEmpty();
+            itemList.getSelectionModel().clearSelection();
+            //ItemList.itemList.isEmpty();
 
             // update items on CSV with background thread
             Thread thread = new Thread() {
@@ -429,6 +432,7 @@ public class viewItemsGUIController {
                     try {
                         CSVWriter.writeCSV(ItemList.itemList);
                         System.out.println("wrote file");
+                        //CSVParser.readFile();
                         return;
                     } catch (Exception e) {
                         System.out.println("Error");
